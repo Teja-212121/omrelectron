@@ -1,0 +1,18 @@
+.s-TranslationGrid input.custom-text {
+  width: 100%;
+}
+
+.s-UserPermissionDialog > .size,
+.s-RolePermissionDialog > .size,
+.s-UserRoleDialog > .size {
+    min-width: 770px;
+    width: 770px;
+    min-height: 550px;
+    height: 550px;
+}
+
+.s-UserPermissionDialog .s-DataGrid,
+.s-RolePermissionDialog .s-DataGrid,
+.s-UserRoleDialog .s-DataGrid {
+  height: 100%;
+}

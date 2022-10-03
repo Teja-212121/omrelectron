@@ -1,0 +1,693 @@
+﻿@model Rio.Common.DashboardPageModel
+@inject Serenity.ITextLocalizer Localizer
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["PageId"] = "Dashboard";
+}
+
+@section Head {
+@Html.StyleBundle("Pages/Dashboard")
+@Html.ScriptBundle("Pages/Dashboard")
+}
+
+@section ContentHeader {
+    <h1>@Localizer.Get("Navigation.Dashboard")</h1>
+}
+
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card s-dashboard-card-sm">
+            <div class="card-body">
+                <h3>@Model.OpenOrders</h3>
+                <p>Open Orders</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="" class="card-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card s-dashboard-card-sm s-alt">
+            <div class="card-body">
+                <h3>@Model.ClosedOrderPercent<sup style="font-size: 20px">%</sup></h3>
+                <p>Closed Orders</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-truck"></i>
+            </div>
+            <a href="" class="card-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card s-dashboard-card-sm">
+            <div class="card-body">
+                <h3>@Model.CustomerCount</h3>
+                <p>Total Customers</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-user-plus"></i>
+            </div>
+            <a href="" class="card-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card s-dashboard-card-sm s-alt">
+            <div class="card-body">
+                <h3>@Model.ProductCount</h3>
+                <p>Product Types</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-tag"></i>
+            </div>
+            <a href="" class="card-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <section class="col-lg-7">
+        <div class="card s-dashboard-card">
+            <div class="card-body">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="header"><h3 class="card-title">Orders</h3></li>
+                    <li class="nav-item ms-auto"><a class="nav-link active" href="#orders-by-quarter-pane" data-bs-toggle="tab">By Quarter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#orders-by-type-pane" data-bs-toggle="tab">By Type</a></li>
+                </ul>
+                <div class="tab-content no-padding">
+                    <div class="tab-pane fade show active" id="orders-by-quarter-pane">
+                        <canvas id="orders-by-quarter-chart" style="height: 280px;"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="orders-by-type-pane">
+                        <canvas id="orders-by-type-chart" style="height: 280px; width: 300px; margin: 0 auto;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card s-dashboard-card s-chat">
+            <div class="row g-0" data-status="online">
+                <div class="col-12 col-lg-5 col-xl-4 s-chat-sidebar">
+                    <div class="d-flex align-items-center justify-content-center p-3 s-chat-profile-section">
+                        <a class="btn">
+                            <img src="~/Content/avatar/avatar1.jpg" class="s-chat-profile-image rounded-circle me-1" s-alt="Mike Harris" width="60" height="60">
+                            <span class="ms-1">
+                                Mike Harris
+                            </span>
+                            <i class="fa fa-chevron-down expand-button text-muted"></i>
+                        </a>
+                        <div id="status-options" class="dropdown-menu">
+                            <ul>
+                                <li id="status-online" class=""><span class="status-circle"></span> <p>Online</p></li>
+                                <li id="status-away" class="active"><span class="status-circle"></span> <p>Away</p></li>
+                                <li id="status-busy" class=""><span class="status-circle"></span> <p>Busy</p></li>
+                                <li id="status-offline" class=""><span class="status-circle"></span> <p>Offline</p></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center px-2">
+                        <div class="flex-grow-1">
+                            <input type="text" class="form-control mb-3" placeholder="Search contacts...">
+                        </div>
+                    </div>
+
+                    <a href="#" class="list-group-item list-group-item-action border-0 active">
+                        <div class="badge bg-success float-end">2</div>
+                        <div class="d-flex align-items-start">
+                            <img src="~/Content/avatar/avatar2.jpg" class="rounded-circle me-1" s-alt="Vanessa Simons" width="40" height="40">
+                            <div class="flex-grow-1 ms-3">
+                                Vanessa Simons
+                                <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <div class="d-flex align-items-start">
+                            <img src="~/Content/avatar/avatar3.jpg" class="rounded-circle me-1" s-alt="Chris Lessman" width="40" height="40">
+                            <div class="flex-grow-1 ms-3">
+                                Chris Lessman
+                                <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <div class="d-flex align-items-start">
+                            <img src="~/Content/avatar/avatar4.jpg" class="rounded-circle me-1" s-alt="Daniel Mason" width="40" height="40">
+                            <div class="flex-grow-1 ms-3">
+                                Daniel Mason
+                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <div class="d-flex align-items-start">
+                            <img src="~/Content/avatar/avatar5.png" class="rounded-circle me-1" s-alt="Fiona Green" width="40" height="40">
+                            <div class="flex-grow-1 ms-3">
+                                Fiona Green
+                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <div class="d-flex align-items-start">
+                            <img src="~/Content/avatar/avatar6.png" class="rounded-circle me-1" s-alt="Dean Wilder" width="40" height="40">
+                            <div class="flex-grow-1 ms-3">
+                                Dean Wilder
+                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-12 col-lg-7 col-xl-8">
+                    <div class="s-chat-header py-2 px-4 d-none d-lg-block">
+                        <div class="d-flex align-items-center py-1">
+                            <div class="position-relative">
+                                <img src="~/Content/avatar/avatar2.jpg" class="rounded-circle me-1" s-alt="Vanessa Simons" width="40" height="40">
+                            </div>
+                            <div class="flex-grow-1 ps-3">
+                                <div class="text-muted small"><em>Typing...</em></div>
+                            </div>
+                            <div>
+                                <button class="btn btn-lg me-2 px-3"><i class="fa fa-phone"></i></button>
+                                <button class="btn btn-lg me-2 px-3"><i class="fa fa-video"></i></button>
+                                <button class="btn btn-lg px-2"><i class="fa fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="position-relative">
+                        <div class="s-chat-messages p-4">
+
+                            <div class="s-chat-message-own pb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar1.jpg" class="rounded-circle me-1" s-alt="Chris Wood" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 me-3">
+                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+                                </div>
+                            </div>
+
+                            <div class="s-chat-message-other pb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar2.jpg" class="rounded-circle me-1" s-alt="Vanessa Simons" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:34 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 ms-3">
+                                    
+                                    Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+                                </div>
+                            </div>
+
+                            <div class="s-chat-message-own mb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar1.jpg" class="rounded-circle me-1" s-alt="Chris Wood" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:35 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 me-3">
+                                    Cum ea graeci tractatos.
+                                </div>
+                            </div>
+
+                            <div class="s-chat-message-other pb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar2.jpg" class="rounded-circle me-1" s-alt="Vanessa Simons" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:36 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 ms-3">
+                                    Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae commodo lectus mauris et velit.
+                                    Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
+                                </div>
+                            </div>
+
+                            <div class="s-chat-message-other pb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar2.jpg" class="rounded-circle me-1" s-alt="Vanessa Simons" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:37 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 ms-3">
+                                    
+                                    Cras pulvinar, sapien id vehicula aliquet, diam velit elementum orci.
+                                </div>
+                            </div>
+
+                            <div class="s-chat-message-own mb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar1.jpg" class="rounded-circle me-1" s-alt="Chris Wood" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:38 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 me-3">
+                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+                                </div>
+                            </div>
+
+                            <div class="s-chat-message-other pb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar2.jpg" class="rounded-circle me-1" s-alt="Vanessa Simons" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:39 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 ms-3">
+                                    
+                                    Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+                                </div>
+                            </div>
+
+                            <div class="s-chat-message-own mb-4">
+                                <div>
+                                    <img src="~/Content/avatar/avatar1.jpg" class="rounded-circle me-1" s-alt="Chris Wood" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:40 am</div>
+                                </div>
+                                <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 me-3">
+                                    Cum ea graeci tractatos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-grow-0 py-3 px-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Type your message">
+                            <button class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="card s-dashboard-card s-dashboard-todo">
+            <div class="card-header pb-0">
+                <h3 class="card-title">Tasks</h3>
+            </div>
+            <div class="card-body">
+                <ul class="s-todo-list">
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Design the data model</span>
+                        <small class="label"><i class="fa fa-clock-o"></i> 10 mins</small>
+                    </li>
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Prepare database migration</span>
+                        <small class="label"><i class="fa fa-clock-o"></i> 20 mins</small>
+                    </li>
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Generate code with Sergen</span>
+                        <small class="label"><i class="fa fa-clock-o"></i> 5 mins</small>
+                    </li>
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Refine generated code and UI</span>
+                        <small class="label"><i class="fa fa-clock-o"></i> 10 mins</small>
+                    </li>
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Prepare unit tests</span>
+                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 45 mins</small>
+                    </li>
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Test on acceptance</span>
+                        <small class="label"><i class="fa fa-clock-o"></i> 15 mins</small>
+                    </li>
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Prepare release notes</span>
+                        <small class="label"><i class="fa fa-clock-o"></i> 15 mins</small>
+                    </li>
+                    <li>
+                        <span class="handle">
+                            <i class="fa fa-grip-vertical"></i>
+                        </span>
+                        <input type="checkbox" class="form-check-input" value="" name="">
+                        <span class="text">Deploy to production</span>
+                        <small class="label"><i class="fa fa-clock-o"></i> 10 mins</small>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer pt-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="type another task">
+                    <button class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="col-lg-5">
+        <div class="card s-dashboard-card bg-world-map">
+            <div class="card-header d-flex">
+                <h3 class="card-title text-white">
+                    <i class="fa fa-map-marker"></i> Visitors
+                </h3>
+                <div class="ms-auto s-dashboard-card-tools">
+                    <button class="btn btn-primary btn-sm daterange" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="world-map" style="height: 253px; width: 100%;"></div>
+            </div>
+            <div class="card-footer border-top-0">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <div id="sparkline-1"></div>
+                        <div class="knob-label text-white text-opacity-75">New Visitors</div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div id="sparkline-2"></div>
+                        <div class="knob-label text-white text-opacity-75">Online</div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div id="sparkline-3"></div>
+                        <div class="knob-label text-white text-opacity-75">Returning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card s-dashboard-card">
+            <div class="card-header d-flex">
+                <h3 class="card-title">Traffic &amp; Origin</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="traffic-chart" style="height: 250px;"></canvas>
+            </div>
+            <div class="card-footer no-border">
+                <div class="row">
+                    <div class="col-4 text-center" style="border-right: 1px solid #f4f4f4">
+                        <input type="text" class="knob" data-readonly="true" value="45" data-width="60" data-height="60" data-fgColor="#39a0ff" data-bgColor="#39a0ff50">
+                        <div class="knob-label">Search</div>
+                    </div>
+                    <div class="col-4 text-center" style="border-right: 1px solid #f4f4f4">
+                        <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39a0ff" data-bgColor="#39a0ff50">
+                        <div class="knob-label">Social</div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <input type="text" class="knob" data-readonly="true" value="35" data-width="60" data-height="60" data-fgColor="#39a0ff" data-bgColor="#39a0ff50">
+                        <div class="knob-label">Other</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card s-dashboard-card">
+            <div class="card-body p-0">
+                <div id="calendar" style="width: 100%"></div>
+            </div>
+            <div class="card-footer py-4">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="clearfix">
+                            <span class="pull-left">Task #1</span>
+                            <small class="float-end">90%</small>
+                        </div>
+                        <div class="progress xs">
+                            <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                        </div>
+                        <div class="clearfix">
+                            <span class="pull-left">Task #2</span>
+                            <small class="float-end">70%</small>
+                        </div>
+                        <div class="progress xs">
+                            <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="clearfix">
+                            <span class="pull-left">Task #3</span>
+                            <small class="float-end">60%</small>
+                        </div>
+                        <div class="progress xs">
+                            <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                        </div>
+                        <div class="clearfix">
+                            <span class="pull-left">Task #4</span>
+                            <small class="float-end">40%</small>
+                        </div>
+                        <div class="progress xs">
+                            <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+
+    $(function () {
+
+        
+        $('.daterange').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment()
+        }, function (start, end) {
+            window.alert("You chose: " + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        });
+
+        $(".knob").knob();
+
+        var visitorsData = {
+            "US": 398, //USA
+            "SA": 400, //Saudi Arabia
+            "CA": 1000, //Canada
+            "DE": 500, //Germany
+            "FR": 760, //France
+            "CN": 300, //China
+            "AU": 700, //Australia
+            "BR": 600, //Brazil
+            "IN": 800, //India
+            "GB": 320, //Great Britain
+            "RU": 3000 //Russia
+        };
+
+        $('#world-map').vectorMap({
+            map: 'world_mill_en',
+            backgroundColor: "transparent",
+            regionStyle: {
+                initial: {
+                    fill: 'rgba(64, 80, 96, 0.5)',
+                    "fill-opacity": 1,
+                    stroke: 'none',
+                    "stroke-width": 0,
+                    "stroke-opacity": 1
+                }
+            },
+            series: {
+                regions: [{
+                    values: visitorsData,
+                    scale: ["#72b1dc", "#f3f7ff"],
+                    normalizeFunction: 'polynomial'
+                }]
+            },
+            onRegionLabelShow: function (e, el, code) {
+                if (typeof visitorsData[code] != "undefined")
+                    el.html(el.html() + ': ' + visitorsData[code] + ' new visitors');
+            }
+        });
+
+        $("#calendar").datepicker();
+
+        const scaleGrid = {
+            color: 'rgba(140, 142, 150, 0.15)',
+            borderDash: [8, 4]
+        }
+
+        var salesByQuarterChart = new Chart(document.getElementById('orders-by-quarter-chart'), {
+            type: 'line',
+            data: {
+                labels: ['2020 Q1', '2020 Q2', '2020 Q3', '2020 Q4', '2021 Q1', '2021 Q2', '2021 Q3', '2021 Q4' ],
+                datasets: [
+                    {
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgb(255, 255, 255, 0.7)',
+                        borderWidth: 4,
+                        radius: 0,
+                        hitRadius: 6,
+                        label: 'Closed Orders',
+                        fill: true,
+                        data: [ 1969, 3597, 1914, 4293, 3795, 5967, 4460, 5713 ]
+                    },
+                    {
+                        label: 'All Orders',
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                        borderColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 4,
+                        radius: 0,
+                        hitRadius: 6,
+                        fill: true,
+                        data: [ 4912, 3767, 6810, 5670, 4820, 15073, 10687, 8432 ]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'rgb(140, 142, 150)'
+                        },
+                        grid: {
+                            display: false,
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'rgb(140, 142, 150)'
+                        },
+                        grid: scaleGrid
+                    }
+                }
+            }
+        });
+      
+        var salesByTypeChart = new Chart(document.getElementById('orders-by-type-chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
+                datasets: [{
+                    label: 'Sales by Type',
+                    data: [20, 50, 30],
+                    backgroundColor:  [
+                        '#4dc9f6',
+                        '#f67019',
+                        '#f53794'
+                    ]
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false
+            }
+        });
+
+        var trafficChart = new Chart(document.getElementById('traffic-chart'), {
+            type: 'bar',
+            data: {
+                labels: Array(37).fill().map(function(x, n) { var d = new Date(); d.setDate(d.getDate() - n); return Q.formatDate(d, 'MMM dd'); }).reverse(),
+                datasets: [
+                    {
+                        label: 'Search',
+                        backgroundColor: "#206bc4", 
+                        barPercentage: 0.7,
+                        data: [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 2, 12, 5, 8, 22, 6, 8, 6, 4, 1, 8, 24, 29, 51, 40, 47, 23, 26, 50, 26, 41, 22, 46, 47, 81, 46, 6]
+                    },
+                    {
+                        label: 'Social',
+                        backgroundColor: "#79a6dc",
+                        barPercentage: 0.7,
+                        data: [2, 5, 4, 3, 3, 1, 4, 7, 5, 1, 2, 5, 3, 2, 6, 7, 7, 1, 5, 5, 2, 12, 4, 6, 18, 3, 5, 2, 13, 15, 20, 47, 18, 15, 11, 10, 0]
+                    },
+                    {
+                        label: 'Other',
+                        backgroundColor: "#bfe399",
+                        barPercentage: 0.7,
+                        data: [2, 9, 1, 7, 8, 3, 6, 5, 5, 4, 6, 4, 1, 9, 3, 6, 7, 5, 2, 8, 4, 9, 1, 2, 6, 7, 5, 1, 8, 3, 2, 3, 4, 9, 7, 1, 6]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        ticks: {
+                            callback: function(val, index) {
+                                return index % 4 === 0 ? this.getLabelForValue(val) : '';
+                            },
+                            color: 'rgb(140, 142, 150)'
+                        },
+                        grid: {
+                            color: 'rgba(140, 142, 150, 0.15)',
+                            borderDash: [8, 4]
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        ticks: {
+                            color: 'rgb(140, 142, 150)'
+                        },
+                        grid: {
+                            color: 'rgba(140, 142, 150, 0.15)',
+                            borderDash: [8, 4]
+                        }
+                    }
+                }
+            }
+        });
+            
+
+        var sparklineOpt = {
+            type: 'bar',
+            barColor: "#f0f0f0",
+            barWidth: 6,
+            barSpacing: 2,
+            height: '40'
+        }
+
+        $('#sparkline-1').sparkline([1000, 1200, 920, 927, 931, 1027, 819, 930, 1021], sparklineOpt);
+        $('#sparkline-2').sparkline([515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921], sparklineOpt);
+        $('#sparkline-3').sparkline([15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21], sparklineOpt);
+
+        $('.s-dashboard-card ul.nav a').on('shown.bs.tab', function () {
+            salesByQuarterChart.update();
+            salesByTypeChart.update();
+            //line.redraw();
+        });
+
+        var todoList = document.querySelector(".s-todo-list");
+        if (todoList) {
+            $(todoList).sortable({
+                placeholder: "sort-highlight",
+                handle: ".handle",
+                forcePlaceholderSize: true,
+                zIndex: 999999
+            });
+
+            todoList.addEventListener('change', function(e) {
+                var li = e.target.closest('li');
+                li && li.classList.toggle('s-todo-done');
+            });
+        }
+    });
+</script>

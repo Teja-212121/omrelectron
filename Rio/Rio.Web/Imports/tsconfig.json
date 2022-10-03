@@ -1,0 +1,9 @@
+{
+  "extends": "../Namespaces/tsconfig.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "noEmit": true,
+    "emitDeclarationOnly": false,
+    "rootDir": "../"
+  }
+}

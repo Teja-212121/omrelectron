@@ -1,0 +1,11 @@
+@model GridPageModel
+@inject ITextLocalizer Localizer
+@{
+    ViewData["ESModules"] = Model.ESModules;
+    if (Model.PageTitle != null)
+        ViewData["Title"] = Model.PageTitle.ToString(Localizer);
+}
+<div id="GridDiv"></div>
+
+<script type="module" src="@Url.Content(Model.Module)">
+</script>

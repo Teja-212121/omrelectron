@@ -1,0 +1,29 @@
+﻿{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "composite": true,
+    "declaration": true,
+    "emitBOM": true,
+    "jsx": "react",
+    "noEmitHelpers": true,
+    "noEmitOnError": false,
+    "sourceMap": true,
+    "inlineSources": true,
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "../",
+    "outFile": "../wwwroot/Scripts/site/Rio.Web.js",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "target": "ES6",
+    "typeRoots": [
+      "../node_modules/@types",
+      "../typings/"
+    ]
+  },
+  "include": [
+    "../Imports/**/*",
+    "./**/*"
+  ]
+}
