@@ -1,9 +1,10 @@
-import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
 
 export interface RoleRow {
     RoleId?: number;
     RoleName?: string;
     RoleKey?: string;
+    TenantId?: number;
 }
 
 export abstract class RoleRow {

@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -34,6 +34,13 @@ namespace Rio.Administration
             set => fields.RoleKey[this] = value;
         }
 
+        [Insertable(false), Updatable(false)]
+        public Int32? TenantId
+        {
+            get => Fields.TenantId[this];
+            set => Fields.TenantId[this] = value;
+        }
+
         public RoleRow()
         {
         }
@@ -48,6 +55,7 @@ namespace Rio.Administration
             public Int32Field RoleId;
             public StringField RoleName;
             public StringField RoleKey;
+            public Int32Field TenantId;
         }
     }
 }

@@ -3,6 +3,7 @@
         RoleId?: number;
         RoleName?: string;
         RoleKey?: string;
+        TenantId?: number;
     }
 
     export namespace RoleRow {
@@ -22,7 +23,8 @@
         export declare const enum Fields {
             RoleId = "RoleId",
             RoleName = "RoleName",
-            RoleKey = "RoleKey"
+            RoleKey = "RoleKey",
+            TenantId = "TenantId"
         }
     }
 }

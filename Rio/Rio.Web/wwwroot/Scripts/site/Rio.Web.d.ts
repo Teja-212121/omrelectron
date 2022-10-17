@@ -139,6 +139,7 @@ declare namespace Rio.Administration {
         RoleId?: number;
         RoleName?: string;
         RoleKey?: string;
+        TenantId?: number;
     }
     namespace RoleRow {
         const idProperty = "RoleId";
@@ -153,7 +154,8 @@ declare namespace Rio.Administration {
         const enum Fields {
             RoleId = "RoleId",
             RoleName = "RoleName",
-            RoleKey = "RoleKey"
+            RoleKey = "RoleKey",
+            TenantId = "TenantId"
         }
     }
 }
@@ -598,6 +600,7 @@ declare namespace Rio.Texts {
                 const RoleId: string;
                 const RoleKey: string;
                 const RoleName: string;
+                const TenantId: string;
             }
             namespace RolePermission {
                 const PermissionKey: string;
