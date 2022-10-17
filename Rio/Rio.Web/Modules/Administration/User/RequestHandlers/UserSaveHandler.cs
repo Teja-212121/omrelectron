@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
+using Rio.Web;
 using Serenity;
 using Serenity.Data;
 using Serenity.Extensions;
@@ -66,6 +67,9 @@ namespace Rio.Administration
 
             if (IsUpdate)
             {
+                if (Old.TenantId != User.GetTenantId())
+                    Permissions.ValidatePermission(PermissionKeys.Tenants, Context.Localizer);
+
                 environmentOptions.CheckPublicDemo(Row.UserId);
 
                 if (Row.IsAssigned(Fld.Password) && !Row.Password.IsEmptyOrNull())
@@ -94,6 +98,12 @@ namespace Rio.Administration
             {
                 Row.Source = "site";
                 Row.IsActive = Row.IsActive ?? 1;
+
+                if (!Permissions.HasPermission(PermissionKeys.Tenants) ||
+                    Row.TenantId == null)
+                {
+                    Row.TenantId = User.GetTenantId();
+                }
             }
 
             if (IsCreate || !Row.Password.IsEmptyOrNull())

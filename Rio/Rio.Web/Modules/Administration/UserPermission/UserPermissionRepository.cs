@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Memory;
 using Rio.Administration;
 using Serenity;
 using Serenity.Abstractions;
@@ -18,9 +18,16 @@ namespace Rio.Administration.Repositories
 {
     public class UserPermissionRepository : BaseRepository
     {
-        public UserPermissionRepository(IRequestContext context)
+        private readonly ITwoLevelCache cache;
+        private readonly ISqlConnections connections;
+        private readonly ITypeSource typeSource;
+
+        public UserPermissionRepository(IRequestContext context, ITwoLevelCache cache, ISqlConnections connections, ITypeSource typeSource)
              : base(context)
         {
+            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            this.connections = connections ?? throw new ArgumentNullException(nameof(connections));
+            this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
         }
 
         private static MyRow.RowFields Fld { get { return MyRow.Fields; } }
@@ -42,6 +49,10 @@ namespace Rio.Administration.Repositories
             var newList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
             foreach (var p in request.Permissions)
                 newList[p.PermissionKey] = p.Granted ?? false;
+
+            var allowedKeys = ListPermissionKeys(cache, connections, typeSource);
+            if (newList.Keys.Any(x => !allowedKeys.Contains(x)))
+                throw new AccessViolationException();
 
             if (oldList.Count == newList.Count &&
                 oldList.All(x => newList.ContainsKey(x.Key) && newList[x.Key] == x.Value))
@@ -236,6 +247,7 @@ namespace Rio.Administration.Repositories
                             ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                 }
 
+                result.Remove(Administration.PermissionKeys.Tenants);
                 result.Remove("ImpersonateAs");
                 result.Remove("*");
                 result.Remove("?");

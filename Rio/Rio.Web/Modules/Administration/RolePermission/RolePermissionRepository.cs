@@ -1,4 +1,5 @@
-﻿using Serenity;
+using Serenity;
+using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Services;
 using System;
@@ -11,9 +12,16 @@ namespace Rio.Administration.Repositories
 {
     public class RolePermissionRepository : BaseRepository
     {
-        public RolePermissionRepository(IRequestContext context)
+        private readonly ITwoLevelCache cache;
+        private readonly ISqlConnections connections;
+        private readonly ITypeSource typeSource;
+
+        public RolePermissionRepository(IRequestContext context, ITwoLevelCache cache, ISqlConnections connections, ITypeSource typeSource)
              : base(context)
         {
+            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            this.connections = connections ?? throw new ArgumentNullException(nameof(connections));
+            this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
         }
 
         private static MyRow.RowFields Fld { get { return MyRow.Fields; } }
@@ -34,6 +42,11 @@ namespace Rio.Administration.Repositories
 
             var newList = new HashSet<string>(request.Permissions.ToList(),
                 StringComparer.OrdinalIgnoreCase);
+
+            var allowedKeys = UserPermissionRepository
+                .ListPermissionKeys(cache, connections, typeSource);
+            if (newList.Any(x => !allowedKeys.Contains(x)))
+                throw new AccessViolationException();
 
             if (oldList.SetEquals(newList))
                 return new SaveResponse();

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
+using Rio.Web;
+using Serenity;
 using Serenity.Data;
 using Serenity.Extensions;
 using Serenity.Extensions.Entities;
@@ -25,6 +27,9 @@ namespace Rio.Administration
         protected override void ValidateRequest()
         {
             base.ValidateRequest();
+
+            if (Row.TenantId != User.GetTenantId())
+                Permissions.ValidatePermission(PermissionKeys.Tenants, Context.Localizer);
 
             environmentOptions.CheckPublicDemo(Row.UserId);
         }

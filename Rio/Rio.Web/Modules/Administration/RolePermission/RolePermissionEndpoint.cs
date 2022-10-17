@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Services;
 using System.Data;
@@ -12,14 +13,18 @@ namespace Rio.Administration.Endpoints
     public class RolePermissionController : ServiceEndpoint
     {
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse Update(IUnitOfWork uow, RolePermissionUpdateRequest request)
+        public SaveResponse Update(IUnitOfWork uow, RolePermissionUpdateRequest request,
+            [FromServices] ISqlConnections sqlConnections,
+             [FromServices] ITypeSource typeSource)
         {
-            return new MyRepository(Context).Update(uow, request);
+            return new MyRepository(Context, Cache, sqlConnections, typeSource).Update(uow, request);
         }
 
-        public RolePermissionListResponse List(IDbConnection connection, RolePermissionListRequest request)
+        public RolePermissionListResponse List(IDbConnection connection, RolePermissionListRequest request,
+             [FromServices] ISqlConnections sqlConnections,
+             [FromServices] ITypeSource typeSource)
         {
-            return new MyRepository(Context).List(connection, request);
+            return new MyRepository(Context, Cache, sqlConnections, typeSource).List(connection, request);
         }
     }
 }
