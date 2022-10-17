@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -120,6 +120,22 @@ namespace Rio.Administration
             set => fields.LastDirectoryUpdate[this] = value;
         }
 
+        [DisplayName("Tenant"), ForeignKey("Tenants", "TenantId"), LeftJoin("tnt")]
+        [LookupEditor(typeof(TenantRow))]
+        [ReadPermission(PermissionKeys.Tenants)]
+        public Int32? TenantId
+        {
+            get => Fields.TenantId[this];
+            set => Fields.TenantId[this] = value;
+        }
+
+        [DisplayName("Tenant"), Expression("tnt.TenantName")]
+        public String TenantName
+        {
+            get => Fields.TenantName[this];
+            set => Fields.TenantName[this] = value;
+        }
+
         [NotMapped, MinSelectLevel(SelectLevel.Explicit), ReadPermission("ImpersonateAs")]
         public string ImpersonationToken
         {
@@ -170,6 +186,9 @@ namespace Rio.Administration
 
             public StringField ImpersonationToken;
             public ListField<int> Roles;
+
+            public Int32Field TenantId;
+            public StringField TenantName;
         }
     }
 }

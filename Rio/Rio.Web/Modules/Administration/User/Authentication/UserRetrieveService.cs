@@ -1,4 +1,4 @@
-﻿using Serenity;
+using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using System;
@@ -42,7 +42,8 @@ namespace Rio.Administration
                     PasswordHash = user.PasswordHash,
                     PasswordSalt = user.PasswordSalt,
                     UpdateDate = user.UpdateDate,
-                    LastDirectoryUpdate = user.LastDirectoryUpdate
+                    LastDirectoryUpdate = user.LastDirectoryUpdate,
+                    TenantId = user.TenantId.Value
                 };
 
             return null;
@@ -88,7 +89,7 @@ namespace Rio.Administration
             if (username is null)
                 throw new ArgumentNullException(nameof(username));
 
-            var user = userRetriever.ByUsername(username);
+            var user = (UserDefinition)userRetriever.ByUsername(username);
             if (user == null)
                 throw new ArgumentOutOfRangeException(nameof(username));
 
@@ -97,6 +98,7 @@ namespace Rio.Administration
 
             var identity = new GenericIdentity(username, authType);
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+            identity.AddClaim(new Claim("TenantId", user.TenantId.ToInvariant())); // add tenant id claim
 
             return new ClaimsPrincipal(identity);
         }

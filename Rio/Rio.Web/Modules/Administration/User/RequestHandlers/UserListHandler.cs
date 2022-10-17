@@ -1,10 +1,11 @@
-﻿using Serenity;
+using Rio.Web;
+using Serenity;
+using Serenity.Data;
 using Serenity.Services;
 using System;
 using MyRequest = Rio.Administration.UserListRequest;
 using MyResponse = Serenity.Services.ListResponse<Rio.Administration.UserRow>;
 using MyRow = Rio.Administration.UserRow;
-
 
 namespace Rio.Administration
 {
@@ -33,6 +34,16 @@ namespace Rio.Administration
                         entity.ImpersonationToken = UserHelper.GetImpersonationToken(Cache.Memory, Request.DataProtector,
                             Request.ClientHash, Context.User.Identity.Name, entity.Username);
             }
+        }
+
+        protected override void ApplyFilters(SqlQuery query)
+        {
+            base.ApplyFilters(query);
+
+            if (Permissions.HasPermission(PermissionKeys.Tenants))
+                return;
+
+            query.Where(MyRow.Fields.TenantId == User.GetTenantId());
         }
     }
 }

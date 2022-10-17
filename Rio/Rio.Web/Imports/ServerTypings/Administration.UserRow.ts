@@ -17,6 +17,8 @@
         PasswordConfirm?: string;
         ImpersonationToken?: string;
         Roles?: number[];
+        TenantId?: number;
+        TenantName?: string;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -56,6 +58,8 @@
             PasswordConfirm = "PasswordConfirm",
             ImpersonationToken = "ImpersonationToken",
             Roles = "Roles",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

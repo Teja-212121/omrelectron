@@ -11,6 +11,7 @@
         Password: Serenity.PasswordEditor;
         PasswordConfirm: Serenity.PasswordEditor;
         Source: Serenity.StringEditor;
+        TenantId: Serenity.LookupEditor;
     }
 
     export class UserForm extends Serenity.PrefixedContext {
@@ -43,7 +44,8 @@
                     'UserImage', w5,
                     'Password', w6,
                     'PasswordConfirm', w6,
-                    'Source', w0
+                    'Source', w0,
+                    'TenantId', w2
                 ]);
             }
         }

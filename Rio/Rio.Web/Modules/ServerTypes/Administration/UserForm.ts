@@ -13,6 +13,7 @@ export interface UserForm {
     Password: PasswordEditor;
     PasswordConfirm: PasswordEditor;
     Source: StringEditor;
+    TenantId: LookupEditor;
 }
 
 export class UserForm extends PrefixedContext {
@@ -44,7 +45,8 @@ export class UserForm extends PrefixedContext {
                 'UserImage', w5,
                 'Password', w6,
                 'PasswordConfirm', w6,
-                'Source', w0
+                'Source', w0,
+                'TenantId', w2
             ]);
         }
     }

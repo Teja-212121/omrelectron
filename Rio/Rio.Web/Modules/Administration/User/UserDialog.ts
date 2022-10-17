@@ -63,4 +63,11 @@ export class UserDialog extends EntityDialog<UserRow, any> {
         this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
             .closest('.field').find('sup').toggle(this.isNew());
     }
+
+    protected getPropertyItems() {
+        var items = super.getPropertyItems();
+        if (!Q.Authorization.hasPermission("Administration:Tenants"))
+            items = items.filter(x => x.name != UserRow.Fields.TenantId);
+        return items;
+    }
 }

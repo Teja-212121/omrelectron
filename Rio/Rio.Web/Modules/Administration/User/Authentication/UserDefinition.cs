@@ -1,4 +1,4 @@
-﻿using Rio.Administration;
+using Rio.Administration;
 using Serenity;
 using System;
 
@@ -22,5 +22,6 @@ namespace Rio
         public DateTime? UpdateDate { get; set; }
         public DateTime? LastDirectoryUpdate { get; set; }
         public TwoFactorAuthType? TwoFactorAuth { get; set; }
+        public int TenantId { get; set; }
     }
 }

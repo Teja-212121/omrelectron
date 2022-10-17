@@ -1,5 +1,8 @@
-﻿{
+{
   "RootNamespace": "Rio",
+  "ServerTypings": {
+    "LocalTexts": true
+  },
   "EndOfLine": "LF",
   "Restore": {
     "Exclude": [
@@ -7,11 +10,19 @@
       "/wwwroot/Content/serenity/*"
     ]
   },
-  "ServerTypings": {
-    "Assemblies": [],
-    "LocalTexts": true
-  },
-  "Connections": [],
+  "Connections": [
+    {
+      "Key": "Default",
+      "Tables": [
+        {
+          "Tablename": "dbo.Tenants",
+          "Identifier": "Tenant",
+          "Module": "Administration",
+          "PermissionKey": "Administration:General"
+        }
+      ]
+    }
+  ],
   "UpgradeInfo": {
     "InitialType": "Premium",
     "InitialVersion": "6.1.9.0"

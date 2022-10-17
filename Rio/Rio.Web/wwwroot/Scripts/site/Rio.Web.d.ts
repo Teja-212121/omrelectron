@@ -62,6 +62,7 @@ declare namespace Rio.Administration {
     namespace PermissionKeys {
         const Security = "Administration:Security";
         const Translation = "Administration:Translation";
+        const Tenants = "Administration:Tenants";
     }
 }
 declare namespace Rio.Administration {
@@ -174,6 +175,59 @@ declare namespace Rio.Administration {
     }
 }
 declare namespace Rio.Administration {
+    class TenantColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace Rio.Administration {
+    interface TenantForm {
+        TenantName: Serenity.StringEditor;
+    }
+    class TenantForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace Rio.Administration {
+    interface TenantRow {
+        TenantId?: number;
+        TenantName?: string;
+    }
+    namespace TenantRow {
+        const idProperty = "TenantId";
+        const nameProperty = "TenantName";
+        const localTextPrefix = "Administration.Tenant";
+        const lookupKey = "Administration.Tenant";
+        function getLookup(): Q.Lookup<TenantRow>;
+        const deletePermission = "Administration:Tenants";
+        const insertPermission = "Administration:Tenants";
+        const readPermission = "Administration:Tenants";
+        const updatePermission = "Administration:Tenants";
+        const enum Fields {
+            TenantId = "TenantId",
+            TenantName = "TenantName"
+        }
+    }
+}
+declare namespace Rio.Administration {
+    namespace TenantService {
+        const baseUrl = "Administration/Tenant";
+        function Create(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Administration/Tenant/Create",
+            Update = "Administration/Tenant/Update",
+            Delete = "Administration/Tenant/Delete",
+            Retrieve = "Administration/Tenant/Retrieve",
+            List = "Administration/Tenant/List"
+        }
+    }
+}
+declare namespace Rio.Administration {
     interface TranslationItem {
         Key?: string;
         SourceText?: string;
@@ -230,6 +284,7 @@ declare namespace Rio.Administration {
         Password: Serenity.PasswordEditor;
         PasswordConfirm: Serenity.PasswordEditor;
         Source: Serenity.StringEditor;
+        TenantId: Serenity.LookupEditor;
     }
     class UserForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -367,6 +422,8 @@ declare namespace Rio.Administration {
         PasswordConfirm?: string;
         ImpersonationToken?: string;
         Roles?: number[];
+        TenantId?: number;
+        TenantName?: string;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -401,6 +458,8 @@ declare namespace Rio.Administration {
             PasswordConfirm = "PasswordConfirm",
             ImpersonationToken = "ImpersonationToken",
             Roles = "Roles",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
@@ -546,6 +605,10 @@ declare namespace Rio.Texts {
                 const RolePermissionId: string;
                 const RoleRoleName: string;
             }
+            namespace Tenant {
+                const TenantId: string;
+                const TenantName: string;
+            }
             namespace Translation {
                 const CustomText: string;
                 const EntityPlural: string;
@@ -573,6 +636,8 @@ declare namespace Rio.Texts {
                 const PasswordSalt: string;
                 const Roles: string;
                 const Source: string;
+                const TenantId: string;
+                const TenantName: string;
                 const TwoFactorAuth: string;
                 const UpdateDate: string;
                 const UpdateUserId: string;

@@ -1,4 +1,5 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
+using System;
 using System.Collections.Generic;
 
 namespace Rio.Administration.Forms
@@ -24,5 +25,7 @@ namespace Rio.Administration.Forms
         public string PasswordConfirm { get; set; }
         [OneWay]
         public string Source { get; set; }
+
+        public Int32? TenantId { get; set; }
     }
 }

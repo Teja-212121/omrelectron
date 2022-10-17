@@ -1,4 +1,5 @@
 ﻿using Serenity.Navigation;
+using MyPages = Rio.Administration.Pages;
 using Administration = Rio.Administration.Pages;
 
 [assembly: NavigationMenu(9000, "Administration", icon: "fa-tools")]
@@ -10,3 +11,4 @@ using Administration = Rio.Administration.Pages;
 [assembly: NavigationLink(9600, "Administration/Translations", typeof(Administration.TranslationController), icon: "fa-comment-o")]
 [assembly: NavigationLink(9700, "Administration/Roles", typeof(Administration.RoleController), icon: "fa-lock")]
 [assembly: NavigationLink(9800, "Administration/User Management", typeof(Administration.UserController), icon: "fa-users")]
+[assembly: NavigationLink(int.MaxValue, "Administration/Tenant", typeof(MyPages.TenantController), icon: null)]
