@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -21,8 +21,10 @@ namespace Rio
                 })
                 .ConfigureAppConfiguration((builderContext, config) =>
                 {
+                    var env = builderContext.HostingEnvironment;
                     config.AddJsonFile("appsettings.bundles.json");
                     config.AddJsonFile("appsettings.machine.json", optional: true);
+                    config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
                 });
         }
     }
