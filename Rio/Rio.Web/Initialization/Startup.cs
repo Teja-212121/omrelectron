@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -61,9 +61,6 @@ namespace Rio
                 typeof(Serenity.Pro.DataExplorer.DataExplorerController).Assembly,
                 typeof(Serenity.Pro.EmailClient.MailboxController).Assembly,
                 typeof(Serenity.Pro.EmailQueue.EmailQueueController).Assembly,
-                typeof(Serenity.Pro.Organization.BusinessUnitController).Assembly,
-                typeof(Serenity.Pro.Meeting.MeetingController).Assembly,
-                typeof(Serenity.Pro.WorkLog.WorkLogController).Assembly,
             }));
 
             services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));

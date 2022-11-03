@@ -59,9 +59,6 @@
     <PackageReference Include="Serenity.Pro.DataExplorer" Version="6.1.9" />
     <PackageReference Include="Serenity.Pro.EmailClient" Version="6.1.9" />
     <PackageReference Include="Serenity.Pro.EmailQueue" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.Organization" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.Meeting" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.WorkLog" Version="6.1.9" />
   </ItemGroup>
   <Import Project="$(ProSrc)Serenity.Pro.Coder\Serenity.Pro.Coder.targets" Condition="Exists('$(ProSrc)pro-features.sln')" />
   <Import Project="$(SolutionDir)Serenity\build\submodule.targets" Condition="Exists('$(SolutionDir)Serenity\build\submodule.targets')" />
