@@ -3,8 +3,8 @@ using Serenity.Extensions;
 
 namespace Rio.Migrations.DefaultDB
 {
-    [Migration(20221017_1158)]
-    public class DefaultDB_20221017_115800_MultiTenant : AutoReversingMigration
+    [Migration(20220817_1158)]
+    public class DefaultDB_20220817_115800_MultiTenant : AutoReversingMigration
     {
         public override void Up()
         {
