@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyModel.Resolution;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 using Rio.AppServices;
@@ -28,6 +29,7 @@ using Serenity.Web;
 using System;
 using System.Data.Common;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Rio
@@ -132,7 +134,18 @@ namespace Rio
                 o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 o.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 o.SlidingExpiration = true;
-            });
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+
+                cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidIssuer = "https://omrapp.azurewebsites.net",
+                    ValidAudience = "https://omrapp.azurewebsites.net",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("6LftZ6gUAAAAAD1Ken7Eep9Wv3Z_WISb9lrxh_QN"))
+                };
+            }); 
 
             services.AddLogging(loggingBuilder =>
             {
