@@ -20,7 +20,7 @@ ExamQuestions eq INNER JOIN ScannedQuestions sq on eq.QuestionIndex=sq.QuestionI
 INNER JOIN ExamSections es on es.Id = eq.ExamSectionId
 INNER JOIN ExamResults er on eq.ExamId=er.ExamId
 INNER JOIN Students S on Er.StudentId=S.Id
-INNER join ExamResultsRankWise errw on er.ExamId=errw.ExamId
+INNER join ExamRankWiseResults errw on er.ExamId=errw.ExamId
 INNER JOIN ExamSectionResults esr on esr.ExamId=eq.ExamId");
 
         }

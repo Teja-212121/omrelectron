@@ -32,6 +32,7 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("Mobile").AsString(100).NotNullable()
                 .WithColumn("DOB").AsDateTime().Nullable()
                 .WithColumn("Gender").AsInt16().Nullable()
+                .WithColumn("Note").AsString(2000).Nullable()
                 .WithColumn("InsertDate").AsDateTime().NotNullable()
                 .WithColumn("InsertUserId").AsInt32().NotNullable()
                 .WithColumn("UpdateDate").AsDateTime().Nullable()
