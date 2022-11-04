@@ -665,6 +665,43 @@ declare namespace Rio.Texts {
             }
         }
         namespace Workspace {
+            namespace Exam {
+                const Code: string;
+                const Description: string;
+                const Id: string;
+                const InsertDate: string;
+                const InsertUserId: string;
+                const IsActive: string;
+                const Name: string;
+                const NegativeMarks: string;
+                const OptionsAvailable: string;
+                const ResultCriteria: string;
+                const TenantId: string;
+                const TotalMarks: string;
+                const UpdateDate: string;
+                const UpdateUserId: string;
+            }
+            namespace Group {
+                const Description: string;
+                const Id: string;
+                const InsertDate: string;
+                const InsertUserId: string;
+                const IsActive: string;
+                const Name: string;
+                const ParentDescription: string;
+                const ParentId: string;
+                const ParentInsertDate: string;
+                const ParentInsertUserId: string;
+                const ParentIsActive: string;
+                const ParentName: string;
+                const ParentParentId: string;
+                const ParentTenantId: string;
+                const ParentUpdateDate: string;
+                const ParentUpdateUserId: string;
+                const TenantId: string;
+                const UpdateDate: string;
+                const UpdateUserId: string;
+            }
             namespace SheetType {
                 const Description: string;
                 const EPaperSize: string;
@@ -828,6 +865,186 @@ declare namespace Rio.Texts {
         const InvalidResetToken: string;
         const MinRequiredPasswordLength: string;
         const SavePrimaryKeyError: string;
+    }
+}
+declare namespace Rio.Workspace {
+    class ExamColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace Rio.Workspace {
+    interface ExamForm {
+        Code: Serenity.StringEditor;
+        Name: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        TotalMarks: Serenity.IntegerEditor;
+        NegativeMarks: Serenity.DecimalEditor;
+        OptionsAvailable: Serenity.IntegerEditor;
+        ResultCriteria: Serenity.StringEditor;
+        InsertDate: Serenity.DateEditor;
+        InsertUserId: Serenity.IntegerEditor;
+        UpdateDate: Serenity.DateEditor;
+        UpdateUserId: Serenity.IntegerEditor;
+        IsActive: Serenity.IntegerEditor;
+        TenantId: Serenity.IntegerEditor;
+    }
+    class ExamForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace Rio.Workspace {
+    interface ExamRow {
+        Id?: number;
+        Code?: string;
+        Name?: string;
+        Description?: string;
+        TotalMarks?: number;
+        NegativeMarks?: number;
+        OptionsAvailable?: number;
+        ResultCriteria?: string;
+        InsertDate?: string;
+        InsertUserId?: number;
+        UpdateDate?: string;
+        UpdateUserId?: number;
+        IsActive?: number;
+        TenantId?: number;
+    }
+    namespace ExamRow {
+        const idProperty = "Id";
+        const nameProperty = "Code";
+        const localTextPrefix = "Workspace.Exam";
+        const deletePermission = "Administration:General";
+        const insertPermission = "Administration:General";
+        const readPermission = "Administration:General";
+        const updatePermission = "Administration:General";
+        const enum Fields {
+            Id = "Id",
+            Code = "Code",
+            Name = "Name",
+            Description = "Description",
+            TotalMarks = "TotalMarks",
+            NegativeMarks = "NegativeMarks",
+            OptionsAvailable = "OptionsAvailable",
+            ResultCriteria = "ResultCriteria",
+            InsertDate = "InsertDate",
+            InsertUserId = "InsertUserId",
+            UpdateDate = "UpdateDate",
+            UpdateUserId = "UpdateUserId",
+            IsActive = "IsActive",
+            TenantId = "TenantId"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    namespace ExamService {
+        const baseUrl = "Workspace/Exam";
+        function Create(request: Serenity.SaveRequest<ExamRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ExamRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ExamRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ExamRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Workspace/Exam/Create",
+            Update = "Workspace/Exam/Update",
+            Delete = "Workspace/Exam/Delete",
+            Retrieve = "Workspace/Exam/Retrieve",
+            List = "Workspace/Exam/List"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    class GroupColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace Rio.Workspace {
+    interface GroupForm {
+        Name: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        ParentId: Serenity.IntegerEditor;
+        InsertDate: Serenity.DateEditor;
+        InsertUserId: Serenity.IntegerEditor;
+        UpdateDate: Serenity.DateEditor;
+        UpdateUserId: Serenity.IntegerEditor;
+        IsActive: Serenity.IntegerEditor;
+        TenantId: Serenity.IntegerEditor;
+    }
+    class GroupForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace Rio.Workspace {
+    interface GroupRow {
+        Id?: number;
+        Name?: string;
+        Description?: string;
+        ParentId?: number;
+        InsertDate?: string;
+        InsertUserId?: number;
+        UpdateDate?: string;
+        UpdateUserId?: number;
+        IsActive?: number;
+        TenantId?: number;
+        ParentName?: string;
+        ParentDescription?: string;
+        ParentParentId?: number;
+        ParentInsertDate?: string;
+        ParentInsertUserId?: number;
+        ParentUpdateDate?: string;
+        ParentUpdateUserId?: number;
+        ParentIsActive?: number;
+        ParentTenantId?: number;
+    }
+    namespace GroupRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Workspace.Group";
+        const deletePermission = "Administration:General";
+        const insertPermission = "Administration:General";
+        const readPermission = "Administration:General";
+        const updatePermission = "Administration:General";
+        const enum Fields {
+            Id = "Id",
+            Name = "Name",
+            Description = "Description",
+            ParentId = "ParentId",
+            InsertDate = "InsertDate",
+            InsertUserId = "InsertUserId",
+            UpdateDate = "UpdateDate",
+            UpdateUserId = "UpdateUserId",
+            IsActive = "IsActive",
+            TenantId = "TenantId",
+            ParentName = "ParentName",
+            ParentDescription = "ParentDescription",
+            ParentParentId = "ParentParentId",
+            ParentInsertDate = "ParentInsertDate",
+            ParentInsertUserId = "ParentInsertUserId",
+            ParentUpdateDate = "ParentUpdateDate",
+            ParentUpdateUserId = "ParentUpdateUserId",
+            ParentIsActive = "ParentIsActive",
+            ParentTenantId = "ParentTenantId"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    namespace GroupService {
+        const baseUrl = "Workspace/Group";
+        function Create(request: Serenity.SaveRequest<GroupRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<GroupRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<GroupRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<GroupRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Workspace/Group/Create",
+            Update = "Workspace/Group/Update",
+            Delete = "Workspace/Group/Delete",
+            Retrieve = "Workspace/Group/Retrieve",
+            List = "Workspace/Group/List"
+        }
     }
 }
 declare namespace Rio.Workspace {
