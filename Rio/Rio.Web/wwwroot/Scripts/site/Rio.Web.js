@@ -575,8 +575,96 @@ var Rio;
 (function (Rio) {
     var Texts;
     (function (Texts) {
-        Rio['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleKey: 1, RoleName: 1, TenantId: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Tenant: { TenantId: 1, TenantName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, ImpersonationToken: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, MobilePhoneNumber: 1, MobilePhoneVerified: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Roles: 1, Source: 1, TenantId: 1, TenantName: 1, TwoFactorAuth: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, GoogleButton: 1, LoginToYourAccount: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Navigation: { LogoutLink: 1, SiteTitle: 1 }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Dialogs: { PendingChangesConfirmation: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeAzure: 1, ThemeAzureLight: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeCosmos: 1, ThemeCosmosLight: 1, ThemeGlassy: 1, ThemeGlassyLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
+        Rio['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleKey: 1, RoleName: 1, TenantId: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Tenant: { TenantId: 1, TenantName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, ImpersonationToken: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, MobilePhoneNumber: 1, MobilePhoneVerified: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Roles: 1, Source: 1, TenantId: 1, TenantName: 1, TwoFactorAuth: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, Workspace: { SheetType: { Description: 1, EPaperSize: 1, HeightInPixel: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, IsPrivate: 1, Name: 1, OverlayImage: 1, PdfTemplate: 1, SheetData: 1, SheetImage: 1, SheetNumber: 1, Synced: 1, TotalQuestions: 1, UpdateDate: 1, UpdateUserId: 1, WidthInPixel: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, GoogleButton: 1, LoginToYourAccount: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Navigation: { LogoutLink: 1, SiteTitle: 1 }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Dialogs: { PendingChangesConfirmation: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeAzure: 1, ThemeAzureLight: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeCosmos: 1, ThemeCosmosLight: 1, ThemeGlassy: 1, ThemeGlassyLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
     })(Texts = Rio.Texts || (Rio.Texts = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        class SheetTypeColumns {
+        }
+        SheetTypeColumns.columnsKey = 'Workspace.SheetType';
+        Workspace.SheetTypeColumns = SheetTypeColumns;
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        class SheetTypeForm extends Serenity.PrefixedContext {
+            constructor(prefix) {
+                super(prefix);
+                if (!SheetTypeForm.init) {
+                    SheetTypeForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.StringEditor;
+                    var w1 = s.IntegerEditor;
+                    var w2 = s.BooleanEditor;
+                    var w3 = s.DateEditor;
+                    Q.initFormType(SheetTypeForm, [
+                        'Name', w0,
+                        'Description', w0,
+                        'TotalQuestions', w1,
+                        'EPaperSize', w1,
+                        'HeightInPixel', w1,
+                        'WidthInPixel', w1,
+                        'SheetData', w0,
+                        'SheetImage', w0,
+                        'OverlayImage', w0,
+                        'Synced', w2,
+                        'IsPrivate', w2,
+                        'PdfTemplate', w0,
+                        'SheetNumber', w0,
+                        'InsertDate', w3,
+                        'InsertUserId', w1,
+                        'UpdateDate', w3,
+                        'UpdateUserId', w1,
+                        'IsActive', w1
+                    ]);
+                }
+            }
+        }
+        SheetTypeForm.formKey = 'Workspace.SheetType';
+        Workspace.SheetTypeForm = SheetTypeForm;
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        let SheetTypeRow;
+        (function (SheetTypeRow) {
+            SheetTypeRow.idProperty = 'Id';
+            SheetTypeRow.nameProperty = 'Name';
+            SheetTypeRow.localTextPrefix = 'Workspace.SheetType';
+            SheetTypeRow.deletePermission = 'Administration:General';
+            SheetTypeRow.insertPermission = 'Administration:General';
+            SheetTypeRow.readPermission = 'Administration:General';
+            SheetTypeRow.updatePermission = 'Administration:General';
+        })(SheetTypeRow = Workspace.SheetTypeRow || (Workspace.SheetTypeRow = {}));
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        let SheetTypeService;
+        (function (SheetTypeService) {
+            SheetTypeService.baseUrl = 'Workspace/SheetType';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(x => {
+                SheetTypeService[x] = function (r, s, o) {
+                    return Q.serviceRequest(SheetTypeService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(SheetTypeService = Workspace.SheetTypeService || (Workspace.SheetTypeService = {}));
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
 })(Rio || (Rio = {}));
 var Rio;
 (function (Rio) {

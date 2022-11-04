@@ -664,6 +664,29 @@ declare namespace Rio.Texts {
                 const Username: string;
             }
         }
+        namespace Workspace {
+            namespace SheetType {
+                const Description: string;
+                const EPaperSize: string;
+                const HeightInPixel: string;
+                const Id: string;
+                const InsertDate: string;
+                const InsertUserId: string;
+                const IsActive: string;
+                const IsPrivate: string;
+                const Name: string;
+                const OverlayImage: string;
+                const PdfTemplate: string;
+                const SheetData: string;
+                const SheetImage: string;
+                const SheetNumber: string;
+                const Synced: string;
+                const TotalQuestions: string;
+                const UpdateDate: string;
+                const UpdateUserId: string;
+                const WidthInPixel: string;
+            }
+        }
     }
     namespace Forms {
         namespace Membership {
@@ -805,6 +828,108 @@ declare namespace Rio.Texts {
         const InvalidResetToken: string;
         const MinRequiredPasswordLength: string;
         const SavePrimaryKeyError: string;
+    }
+}
+declare namespace Rio.Workspace {
+    class SheetTypeColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace Rio.Workspace {
+    interface SheetTypeForm {
+        Name: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        TotalQuestions: Serenity.IntegerEditor;
+        EPaperSize: Serenity.IntegerEditor;
+        HeightInPixel: Serenity.IntegerEditor;
+        WidthInPixel: Serenity.IntegerEditor;
+        SheetData: Serenity.StringEditor;
+        SheetImage: Serenity.StringEditor;
+        OverlayImage: Serenity.StringEditor;
+        Synced: Serenity.BooleanEditor;
+        IsPrivate: Serenity.BooleanEditor;
+        PdfTemplate: Serenity.StringEditor;
+        SheetNumber: Serenity.StringEditor;
+        InsertDate: Serenity.DateEditor;
+        InsertUserId: Serenity.IntegerEditor;
+        UpdateDate: Serenity.DateEditor;
+        UpdateUserId: Serenity.IntegerEditor;
+        IsActive: Serenity.IntegerEditor;
+    }
+    class SheetTypeForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace Rio.Workspace {
+    interface SheetTypeRow {
+        Id?: number;
+        Name?: string;
+        Description?: string;
+        TotalQuestions?: number;
+        EPaperSize?: number;
+        HeightInPixel?: number;
+        WidthInPixel?: number;
+        SheetData?: string;
+        SheetImage?: string;
+        OverlayImage?: string;
+        Synced?: boolean;
+        IsPrivate?: boolean;
+        PdfTemplate?: string;
+        SheetNumber?: number;
+        InsertDate?: string;
+        InsertUserId?: number;
+        UpdateDate?: string;
+        UpdateUserId?: number;
+        IsActive?: number;
+    }
+    namespace SheetTypeRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Workspace.SheetType";
+        const deletePermission = "Administration:General";
+        const insertPermission = "Administration:General";
+        const readPermission = "Administration:General";
+        const updatePermission = "Administration:General";
+        const enum Fields {
+            Id = "Id",
+            Name = "Name",
+            Description = "Description",
+            TotalQuestions = "TotalQuestions",
+            EPaperSize = "EPaperSize",
+            HeightInPixel = "HeightInPixel",
+            WidthInPixel = "WidthInPixel",
+            SheetData = "SheetData",
+            SheetImage = "SheetImage",
+            OverlayImage = "OverlayImage",
+            Synced = "Synced",
+            IsPrivate = "IsPrivate",
+            PdfTemplate = "PdfTemplate",
+            SheetNumber = "SheetNumber",
+            InsertDate = "InsertDate",
+            InsertUserId = "InsertUserId",
+            UpdateDate = "UpdateDate",
+            UpdateUserId = "UpdateUserId",
+            IsActive = "IsActive"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    namespace SheetTypeService {
+        const baseUrl = "Workspace/SheetType";
+        function Create(request: Serenity.SaveRequest<SheetTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<SheetTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<SheetTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SheetTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Workspace/SheetType/Create",
+            Update = "Workspace/SheetType/Update",
+            Delete = "Workspace/SheetType/Delete",
+            Retrieve = "Workspace/SheetType/Retrieve",
+            List = "Workspace/SheetType/List"
+        }
     }
 }
 declare namespace Rio.LanguageList {
