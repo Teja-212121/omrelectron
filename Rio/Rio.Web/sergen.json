@@ -15,6 +15,18 @@
       "Key": "Default",
       "Tables": [
         {
+          "Tablename": "dbo.Exams",
+          "Identifier": "Exam",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "dbo.Groups",
+          "Identifier": "Group",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.SheetTypes",
           "Identifier": "SheetType",
           "Module": "Workspace",
