@@ -1,16 +1,10 @@
-﻿import { StringEditor, IntegerEditor, DateEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, LookupEditor, TextAreaEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface GroupForm {
     Name: StringEditor;
-    Description: StringEditor;
-    ParentId: IntegerEditor;
-    InsertDate: DateEditor;
-    InsertUserId: IntegerEditor;
-    UpdateDate: DateEditor;
-    UpdateUserId: IntegerEditor;
-    IsActive: IntegerEditor;
-    TenantId: IntegerEditor;
+    ParentId: LookupEditor;
+    Description: TextAreaEditor;
 }
 
 export class GroupForm extends PrefixedContext {
@@ -24,19 +18,13 @@ export class GroupForm extends PrefixedContext {
             GroupForm.init = true;
 
             var w0 = StringEditor;
-            var w1 = IntegerEditor;
-            var w2 = DateEditor;
+            var w1 = LookupEditor;
+            var w2 = TextAreaEditor;
 
             initFormType(GroupForm, [
                 'Name', w0,
-                'Description', w0,
                 'ParentId', w1,
-                'InsertDate', w2,
-                'InsertUserId', w1,
-                'UpdateDate', w2,
-                'UpdateUserId', w1,
-                'IsActive', w1,
-                'TenantId', w1
+                'Description', w2
             ]);
         }
     }

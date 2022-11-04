@@ -4,10 +4,6 @@
         Name?: string;
         Description?: string;
         ParentId?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
         ParentName?: string;
@@ -19,12 +15,22 @@
         ParentUpdateUserId?: number;
         ParentIsActive?: number;
         ParentTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace GroupRow {
         export const idProperty = 'Id';
+        export const isActiveProperty = 'IsActive';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.Group';
+        export const lookupKey = 'Workspace.Group';
+
+        export function getLookup(): Q.Lookup<GroupRow> {
+            return Q.getLookup<GroupRow>('Workspace.Group');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
@@ -35,10 +41,6 @@
             Name = "Name",
             Description = "Description",
             ParentId = "ParentId",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             TenantId = "TenantId",
             ParentName = "ParentName",
@@ -49,7 +51,11 @@
             ParentUpdateDate = "ParentUpdateDate",
             ParentUpdateUserId = "ParentUpdateUserId",
             ParentIsActive = "ParentIsActive",
-            ParentTenantId = "ParentTenantId"
+            ParentTenantId = "ParentTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

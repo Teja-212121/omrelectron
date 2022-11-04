@@ -1,4 +1,4 @@
-﻿import { Decorators, EntityGrid } from '@serenity-is/corelib';
+import { Decorators, DialogExtensions, EntityGrid } from '@serenity-is/corelib';
 import { GroupColumns, GroupRow, GroupService } from '../../ServerTypes/Workspace';
 import { GroupDialog } from './GroupDialog';
 
@@ -13,5 +13,18 @@ export class GroupGrid extends EntityGrid<GroupRow, any> {
 
     constructor(container: JQuery) {
         super(container);
+    }
+    protected getButtons() {
+        var buttons = super.getButtons();
+        buttons.splice(1, 3);
+
+        buttons.push(Serenity.Extensions.ExcelExportHelper.createToolButton({
+            grid: this,
+            title: 'Export',
+            service: GroupService.baseUrl + '/ListExcel',
+            onViewSubmit: () => this.onViewSubmit(),
+            separator: true
+        }));
+        return buttons;
     }
 }

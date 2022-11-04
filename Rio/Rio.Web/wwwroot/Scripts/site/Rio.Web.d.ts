@@ -962,14 +962,8 @@ declare namespace Rio.Workspace {
 declare namespace Rio.Workspace {
     interface GroupForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        ParentId: Serenity.IntegerEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        ParentId: Serenity.LookupEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class GroupForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -983,10 +977,6 @@ declare namespace Rio.Workspace {
         Name?: string;
         Description?: string;
         ParentId?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
         ParentName?: string;
@@ -998,11 +988,18 @@ declare namespace Rio.Workspace {
         ParentUpdateUserId?: number;
         ParentIsActive?: number;
         ParentTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace GroupRow {
         const idProperty = "Id";
+        const isActiveProperty = "IsActive";
         const nameProperty = "Name";
         const localTextPrefix = "Workspace.Group";
+        const lookupKey = "Workspace.Group";
+        function getLookup(): Q.Lookup<GroupRow>;
         const deletePermission = "Administration:General";
         const insertPermission = "Administration:General";
         const readPermission = "Administration:General";
@@ -1012,10 +1009,6 @@ declare namespace Rio.Workspace {
             Name = "Name",
             Description = "Description",
             ParentId = "ParentId",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             TenantId = "TenantId",
             ParentName = "ParentName",
@@ -1026,7 +1019,11 @@ declare namespace Rio.Workspace {
             ParentUpdateDate = "ParentUpdateDate",
             ParentUpdateUserId = "ParentUpdateUserId",
             ParentIsActive = "ParentIsActive",
-            ParentTenantId = "ParentTenantId"
+            ParentTenantId = "ParentTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

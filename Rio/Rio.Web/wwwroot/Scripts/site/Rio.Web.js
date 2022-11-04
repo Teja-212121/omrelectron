@@ -682,18 +682,12 @@ var Rio;
                     GroupForm.init = true;
                     var s = Serenity;
                     var w0 = s.StringEditor;
-                    var w1 = s.IntegerEditor;
-                    var w2 = s.DateEditor;
+                    var w1 = s.LookupEditor;
+                    var w2 = s.TextAreaEditor;
                     Q.initFormType(GroupForm, [
                         'Name', w0,
-                        'Description', w0,
                         'ParentId', w1,
-                        'InsertDate', w2,
-                        'InsertUserId', w1,
-                        'UpdateDate', w2,
-                        'UpdateUserId', w1,
-                        'IsActive', w1,
-                        'TenantId', w1
+                        'Description', w2
                     ]);
                 }
             }
@@ -709,8 +703,14 @@ var Rio;
         let GroupRow;
         (function (GroupRow) {
             GroupRow.idProperty = 'Id';
+            GroupRow.isActiveProperty = 'IsActive';
             GroupRow.nameProperty = 'Name';
             GroupRow.localTextPrefix = 'Workspace.Group';
+            GroupRow.lookupKey = 'Workspace.Group';
+            function getLookup() {
+                return Q.getLookup('Workspace.Group');
+            }
+            GroupRow.getLookup = getLookup;
             GroupRow.deletePermission = 'Administration:General';
             GroupRow.insertPermission = 'Administration:General';
             GroupRow.readPermission = 'Administration:General';
