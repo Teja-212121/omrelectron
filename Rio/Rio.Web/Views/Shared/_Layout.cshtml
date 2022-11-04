@@ -1,4 +1,4 @@
-﻿@inject Serenity.Navigation.INavigationModelFactory NavigationModelFactory
+@inject Serenity.Navigation.INavigationModelFactory NavigationModelFactory
 <!DOCTYPE html>
 @{
     Func<string, HtmlString> json = x => new HtmlString(Serenity.JSON.Stringify(x));
@@ -12,7 +12,7 @@
 <head>
     <partial name="@MVC.Views.Shared._LayoutHead" />
     @RenderSection("Head", false)
-    <title>@(ViewData["Title"]) - Rio</title>
+    <title>@(ViewData["Title"]) - omrapp</title>
 </head>
 <body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) @(sidebarPaneCollapsed)@(rtl ? " rtl" : "")">
 <div id="PageBackground" style="display: none"></div>
