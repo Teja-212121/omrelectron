@@ -1,4 +1,4 @@
-﻿using Serenity;
+using Serenity;
 using Serenity.ComponentModel;
 
 namespace Rio
@@ -93,7 +93,7 @@ namespace Rio
         public static class Navigation
         {
             public static LocalText LogoutLink = "Logout";
-            public static LocalText SiteTitle = "Rio";
+            public static LocalText SiteTitle = "omrapp";
         }
 
         public static class Site
