@@ -362,3 +362,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Rio/Rio.Web/App_Data/upload/temporary
+/Rio/Rio.Web/typings/serenity.corelib/index.d.ts
+/Rio/Rio.Web/wwwroot/esm/_chunks
+/Rio/Rio.Web/wwwroot/esm
+/Rio/Rio.Web/wwwroot/Scripts/serenity/texts/serenity.texts.bn.json
+/Rio/Rio.Web/wwwroot/Scripts/site/Rio.Web.js.map
+/Rio/Rio.Web/wwwroot/Scripts/site/Rio.Web.tsbuildinfo
