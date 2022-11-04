@@ -127,12 +127,6 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("QuestionIndex").AsInt32().NotNullable()
                 .WithColumn("ScannedOptions").AsInt64().NotNullable()
                 .WithColumn("CorrectedOptions").AsInt64().NotNullable()
-
-                .WithColumn("ExamCode").AsString(300).Nullable()
-                .WithColumn("ExamName").AsString(300).Nullable()
-                .WithColumn("StudentRollNo").AsInt64().Nullable()
-                .WithColumn("ScannedRollNo").AsInt64().Nullable()
-
                 .WithColumn("InsertDate").AsDateTime().NotNullable()
                 .WithColumn("InsertUserId").AsInt32().NotNullable()
                 .WithColumn("UpdateDate").AsDateTime().Nullable()
@@ -146,12 +140,6 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("QuestionIndex").AsInt32().NotNullable()
                 .WithColumn("ScannedOptions").AsInt64().NotNullable()
                 .WithColumn("CorrectedOptions").AsInt64().NotNullable()
-
-                .WithColumn("ExamCode").AsString(300).Nullable()
-                .WithColumn("ExamName").AsString(300).Nullable()
-                .WithColumn("StudentRollNo").AsInt64().Nullable()
-                .WithColumn("ScannedRollNo").AsInt64().Nullable()
-
                 .WithColumn("InsertDate").AsDateTime().NotNullable()
                 .WithColumn("InsertUserId").AsInt32().NotNullable()
                 .WithColumn("UpdateDate").AsDateTime().Nullable()

@@ -1,11 +1,11 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 
-[assembly: NavigationGroup("Rio", "fa-home", Default = true)]
+[assembly: NavigationGroup("omrapp", "fa-home", Default = true)]
 
-[assembly: NavigationSection("Rio/Demo Modules",
+[assembly: NavigationSection("omrapp/Demo Modules",
     Include = new[] { "Northwind", "Basic Samples", "Advanced Samples", "Theme Samples" })]
 
-[assembly: NavigationSection("Rio/Pro Features",
+[assembly: NavigationSection("omrapp/Pro Features",
     Include = new[] { "Meeting", "Organization", "Work Log" })]
 
 [assembly: NavigationGroup(9000, "Administration", icon: "fa-tools")]

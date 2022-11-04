@@ -15,6 +15,12 @@
       "Key": "Default",
       "Tables": [
         {
+          "Tablename": "dbo.SheetTypes",
+          "Identifier": "SheetType",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.Tenants",
           "Identifier": "Tenant",
           "Module": "Administration",
