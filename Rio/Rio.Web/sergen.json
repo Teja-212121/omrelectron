@@ -39,6 +39,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ScannedBatches",
+          "Identifier": "ScannedBatch",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.SheetTypes",
           "Identifier": "SheetType",
           "Module": "Workspace",
