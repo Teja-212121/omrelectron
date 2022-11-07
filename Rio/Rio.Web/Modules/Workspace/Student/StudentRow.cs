@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -78,10 +79,10 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Gender")]
-        public short? Gender
+        public Gender? Gender
         {
-            get => fields.Gender[this];
-            set => fields.Gender[this] = value;
+            get => (Gender)fields.Gender[this];
+            set => fields.Gender[this] = (Int16)value;
         }
 
         [DisplayName("Note"), Size(2000)]

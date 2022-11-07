@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace Rio.Workspace.Columns
         public string Email { get; set; }
         public string Mobile { get; set; }
         public DateTime Dob { get; set; }
-        public short Gender { get; set; }
+        public Gender Gender { get; set; }
         public string Note { get; set; }
         [QuickFilter]
         [DisplayName("Insert Date")]

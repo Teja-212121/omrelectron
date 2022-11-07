@@ -1,4 +1,4 @@
-﻿import { StringEditor, EmailEditor, DateEditor, IntegerEditor, TextAreaEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, EmailEditor, DateEditor, EnumEditor, TextAreaEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface StudentForm {
@@ -7,7 +7,7 @@ export interface StudentForm {
     Email: EmailEditor;
     Mobile: StringEditor;
     Dob: DateEditor;
-    Gender: IntegerEditor;
+    Gender: EnumEditor;
     Note: TextAreaEditor;
 }
 
@@ -24,7 +24,7 @@ export class StudentForm extends PrefixedContext {
             var w0 = StringEditor;
             var w1 = EmailEditor;
             var w2 = DateEditor;
-            var w3 = IntegerEditor;
+            var w3 = EnumEditor;
             var w4 = TextAreaEditor;
 
             initFormType(StudentForm, [
