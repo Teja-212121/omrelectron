@@ -14,7 +14,7 @@ namespace Rio.Workspace
     [LookupScript("Workspace.Exam", Permission = "*", Expiration = 1)]
     public sealed class ExamRow : LoggingRow<ExamRow.RowFields>, IIdRow, INameRow, IIsActiveRow, IMultiTenantRow
     {
-        [DisplayName("Id"), Identity, IdProperty]
+        [DisplayName("Id"), Identity, IdProperty, QuickSearch]
         [SortOrder(1, descending: true)]
         public long? Id
         {
@@ -29,7 +29,7 @@ namespace Rio.Workspace
             set => fields.Code[this] = value;
         }
 
-        [DisplayName("Name"), Size(500), NotNull, NameProperty]
+        [DisplayName("Name"), Size(500), NotNull, NameProperty, QuickSearch]
         public string Name
         {
             get => fields.Name[this];

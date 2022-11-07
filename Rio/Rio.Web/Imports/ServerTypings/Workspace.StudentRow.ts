@@ -9,7 +9,7 @@
         Email?: string;
         Mobile?: string;
         Dob?: string;
-        Gender?: number;
+        Gender?: Web.Enums.Gender;
         Note?: string;
         IsActive?: number;
         TenantId?: number;
