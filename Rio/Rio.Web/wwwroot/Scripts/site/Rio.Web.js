@@ -575,7 +575,7 @@ var Rio;
 (function (Rio) {
     var Texts;
     (function (Texts) {
-        Rio['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleKey: 1, RoleName: 1, TenantId: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Tenant: { TenantId: 1, TenantName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, ImpersonationToken: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, MobilePhoneNumber: 1, MobilePhoneVerified: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Roles: 1, Source: 1, TenantId: 1, TenantName: 1, TwoFactorAuth: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, Workspace: { Exam: { Code: 1, Description: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, Name: 1, NegativeMarks: 1, OptionsAvailable: 1, ResultCriteria: 1, TenantId: 1, TotalMarks: 1, UpdateDate: 1, UpdateUserId: 1 }, Group: { Description: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, Name: 1, ParentDescription: 1, ParentId: 1, ParentInsertDate: 1, ParentInsertUserId: 1, ParentIsActive: 1, ParentName: 1, ParentParentId: 1, ParentTenantId: 1, ParentUpdateDate: 1, ParentUpdateUserId: 1, TenantId: 1, UpdateDate: 1, UpdateUserId: 1 }, SheetType: { Description: 1, EPaperSize: 1, HeightInPixel: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, IsPrivate: 1, Name: 1, OverlayImage: 1, PdfTemplate: 1, SheetData: 1, SheetImage: 1, SheetNumber: 1, Synced: 1, TotalQuestions: 1, UpdateDate: 1, UpdateUserId: 1, WidthInPixel: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, GoogleButton: 1, LoginToYourAccount: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Navigation: { LogoutLink: 1, SiteTitle: 1 }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Dialogs: { PendingChangesConfirmation: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeAzure: 1, ThemeAzureLight: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeCosmos: 1, ThemeCosmosLight: 1, ThemeGlassy: 1, ThemeGlassyLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
+        Rio['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleKey: 1, RoleName: 1, TenantId: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Tenant: { TenantId: 1, TenantName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, ImpersonationToken: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, MobilePhoneNumber: 1, MobilePhoneVerified: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Roles: 1, Source: 1, TenantId: 1, TenantName: 1, TwoFactorAuth: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, Workspace: { Exam: { Code: 1, Description: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, Name: 1, NegativeMarks: 1, OptionsAvailable: 1, ResultCriteria: 1, TenantId: 1, TotalMarks: 1, UpdateDate: 1, UpdateUserId: 1 }, ExamSection: { Description: 1, ExamCode: 1, ExamDescription: 1, ExamId: 1, ExamInsertDate: 1, ExamInsertUserId: 1, ExamIsActive: 1, ExamName: 1, ExamNegativeMarks: 1, ExamOptionsAvailable: 1, ExamResultCriteria: 1, ExamTenantId: 1, ExamTotalMarks: 1, ExamUpdateDate: 1, ExamUpdateUserId: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, Name: 1, ParentDescription: 1, ParentExamId: 1, ParentId: 1, ParentInsertDate: 1, ParentInsertUserId: 1, ParentIsActive: 1, ParentName: 1, ParentParentId: 1, ParentTenantId: 1, ParentUpdateDate: 1, ParentUpdateUserId: 1, TenantId: 1, UpdateDate: 1, UpdateUserId: 1 }, Group: { Description: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, Name: 1, ParentDescription: 1, ParentId: 1, ParentInsertDate: 1, ParentInsertUserId: 1, ParentIsActive: 1, ParentName: 1, ParentParentId: 1, ParentTenantId: 1, ParentUpdateDate: 1, ParentUpdateUserId: 1, TenantId: 1, UpdateDate: 1, UpdateUserId: 1 }, SheetType: { Description: 1, EPaperSize: 1, HeightInPixel: 1, Id: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, IsPrivate: 1, Name: 1, OverlayImage: 1, PdfTemplate: 1, SheetData: 1, SheetImage: 1, SheetNumber: 1, Synced: 1, TotalQuestions: 1, UpdateDate: 1, UpdateUserId: 1, WidthInPixel: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, GoogleButton: 1, LoginToYourAccount: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Navigation: { LogoutLink: 1, SiteTitle: 1 }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Dialogs: { PendingChangesConfirmation: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeAzure: 1, ThemeAzureLight: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeCosmos: 1, ThemeCosmosLight: 1, ThemeGlassy: 1, ThemeGlassyLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
     })(Texts = Rio.Texts || (Rio.Texts = {}));
 })(Rio || (Rio = {}));
 var Rio;
@@ -641,11 +641,97 @@ var Rio;
             ExamRow.isActiveProperty = 'IsActive';
             ExamRow.nameProperty = 'Name';
             ExamRow.localTextPrefix = 'Workspace.Exam';
+            ExamRow.lookupKey = 'Workspace.Exam';
+            function getLookup() {
+                return Q.getLookup('Workspace.Exam');
+            }
+            ExamRow.getLookup = getLookup;
             ExamRow.deletePermission = 'Administration:General';
             ExamRow.insertPermission = 'Administration:General';
             ExamRow.readPermission = 'Administration:General';
             ExamRow.updatePermission = 'Administration:General';
         })(ExamRow = Workspace.ExamRow || (Workspace.ExamRow = {}));
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        class ExamSectionColumns {
+        }
+        ExamSectionColumns.columnsKey = 'Workspace.ExamSection';
+        Workspace.ExamSectionColumns = ExamSectionColumns;
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        class ExamSectionForm extends Serenity.PrefixedContext {
+            constructor(prefix) {
+                super(prefix);
+                if (!ExamSectionForm.init) {
+                    ExamSectionForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.StringEditor;
+                    var w1 = s.TextAreaEditor;
+                    var w2 = s.LookupEditor;
+                    var w3 = s.IntegerEditor;
+                    Q.initFormType(ExamSectionForm, [
+                        'Name', w0,
+                        'Description', w1,
+                        'ExamId', w2,
+                        'ParentId', w2,
+                        'TenantId', w3
+                    ]);
+                }
+            }
+        }
+        ExamSectionForm.formKey = 'Workspace.ExamSection';
+        Workspace.ExamSectionForm = ExamSectionForm;
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        let ExamSectionRow;
+        (function (ExamSectionRow) {
+            ExamSectionRow.idProperty = 'Id';
+            ExamSectionRow.isActiveProperty = 'IsActive';
+            ExamSectionRow.nameProperty = 'Name';
+            ExamSectionRow.localTextPrefix = 'Workspace.ExamSection';
+            ExamSectionRow.lookupKey = 'Workspace.ExamSection';
+            function getLookup() {
+                return Q.getLookup('Workspace.ExamSection');
+            }
+            ExamSectionRow.getLookup = getLookup;
+            ExamSectionRow.deletePermission = 'Administration:General';
+            ExamSectionRow.insertPermission = 'Administration:General';
+            ExamSectionRow.readPermission = 'Administration:General';
+            ExamSectionRow.updatePermission = 'Administration:General';
+        })(ExamSectionRow = Workspace.ExamSectionRow || (Workspace.ExamSectionRow = {}));
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
+        let ExamSectionService;
+        (function (ExamSectionService) {
+            ExamSectionService.baseUrl = 'Workspace/ExamSection';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(x => {
+                ExamSectionService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ExamSectionService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(ExamSectionService = Workspace.ExamSectionService || (Workspace.ExamSectionService = {}));
     })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
 })(Rio || (Rio = {}));
 var Rio;

@@ -21,6 +21,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ExamSections",
+          "Identifier": "ExamSection",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.Groups",
           "Identifier": "Group",
           "Module": "Workspace",
