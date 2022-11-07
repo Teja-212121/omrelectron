@@ -5,7 +5,7 @@
         Email: Serenity.EmailEditor;
         Mobile: Serenity.StringEditor;
         Dob: Serenity.DateEditor;
-        Gender: Serenity.IntegerEditor;
+        Gender: Serenity.EnumEditor;
         Note: Serenity.TextAreaEditor;
     }
 
@@ -23,7 +23,7 @@
                 var w0 = s.StringEditor;
                 var w1 = s.EmailEditor;
                 var w2 = s.DateEditor;
-                var w3 = s.IntegerEditor;
+                var w3 = s.EnumEditor;
                 var w4 = s.TextAreaEditor;
 
                 Q.initFormType(StudentForm, [

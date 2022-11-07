@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
@@ -22,7 +23,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public DateTime Dob { get; set; }
         [HalfWidth]
-        public short Gender { get; set; }
+        public Gender Gender { get; set; }
         [TextAreaEditor(Rows = 3)]
         public string Note { get; set; }
     }
