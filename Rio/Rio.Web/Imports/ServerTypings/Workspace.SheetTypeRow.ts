@@ -4,7 +4,7 @@
         Name?: string;
         Description?: string;
         TotalQuestions?: number;
-        EPaperSize?: number;
+        EPaperSize?: EPaperSize;
         HeightInPixel?: number;
         WidthInPixel?: number;
         SheetData?: string;
@@ -14,11 +14,11 @@
         IsPrivate?: boolean;
         PdfTemplate?: string;
         SheetNumber?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace SheetTypeRow {
@@ -45,11 +45,11 @@
             IsPrivate = "IsPrivate",
             PdfTemplate = "PdfTemplate",
             SheetNumber = "SheetNumber",
-            InsertDate = "InsertDate",
+            IsActive = "IsActive",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            IsActive = "IsActive"
+            UpdateDate = "UpdateDate"
         }
     }
 }

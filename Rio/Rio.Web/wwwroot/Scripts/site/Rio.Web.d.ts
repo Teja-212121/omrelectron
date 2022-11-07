@@ -868,6 +868,12 @@ declare namespace Rio.Texts {
     }
 }
 declare namespace Rio.Workspace {
+    enum EPaperSize {
+        A4 = 4,
+        A5 = 5
+    }
+}
+declare namespace Rio.Workspace {
     class ExamColumns {
         static columnsKey: string;
     }
@@ -1052,23 +1058,18 @@ declare namespace Rio.Workspace {
 declare namespace Rio.Workspace {
     interface SheetTypeForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
+        Description: Serenity.TextAreaEditor;
         TotalQuestions: Serenity.IntegerEditor;
-        EPaperSize: Serenity.IntegerEditor;
+        EPaperSize: Serenity.EnumEditor;
         HeightInPixel: Serenity.IntegerEditor;
         WidthInPixel: Serenity.IntegerEditor;
-        SheetData: Serenity.StringEditor;
-        SheetImage: Serenity.StringEditor;
-        OverlayImage: Serenity.StringEditor;
+        SheetData: Serenity.TextAreaEditor;
+        SheetImage: Serenity.ImageUploadEditor;
+        OverlayImage: Serenity.ImageUploadEditor;
         Synced: Serenity.BooleanEditor;
         IsPrivate: Serenity.BooleanEditor;
-        PdfTemplate: Serenity.StringEditor;
         SheetNumber: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
+        PdfTemplate: Serenity.ImageUploadEditor;
     }
     class SheetTypeForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -1082,7 +1083,7 @@ declare namespace Rio.Workspace {
         Name?: string;
         Description?: string;
         TotalQuestions?: number;
-        EPaperSize?: number;
+        EPaperSize?: EPaperSize;
         HeightInPixel?: number;
         WidthInPixel?: number;
         SheetData?: string;
@@ -1092,11 +1093,11 @@ declare namespace Rio.Workspace {
         IsPrivate?: boolean;
         PdfTemplate?: string;
         SheetNumber?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace SheetTypeRow {
         const idProperty = "Id";
@@ -1121,11 +1122,11 @@ declare namespace Rio.Workspace {
             IsPrivate = "IsPrivate",
             PdfTemplate = "PdfTemplate",
             SheetNumber = "SheetNumber",
-            InsertDate = "InsertDate",
+            IsActive = "IsActive",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            IsActive = "IsActive"
+            UpdateDate = "UpdateDate"
         }
     }
 }

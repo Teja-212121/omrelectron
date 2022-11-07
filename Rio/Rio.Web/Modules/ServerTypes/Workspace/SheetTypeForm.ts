@@ -1,25 +1,20 @@
-﻿import { StringEditor, IntegerEditor, BooleanEditor, DateEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, TextAreaEditor, IntegerEditor, EnumEditor, ImageUploadEditor, BooleanEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface SheetTypeForm {
     Name: StringEditor;
-    Description: StringEditor;
+    Description: TextAreaEditor;
     TotalQuestions: IntegerEditor;
-    EPaperSize: IntegerEditor;
+    EPaperSize: EnumEditor;
     HeightInPixel: IntegerEditor;
     WidthInPixel: IntegerEditor;
-    SheetData: StringEditor;
-    SheetImage: StringEditor;
-    OverlayImage: StringEditor;
+    SheetData: TextAreaEditor;
+    SheetImage: ImageUploadEditor;
+    OverlayImage: ImageUploadEditor;
     Synced: BooleanEditor;
     IsPrivate: BooleanEditor;
-    PdfTemplate: StringEditor;
     SheetNumber: StringEditor;
-    InsertDate: DateEditor;
-    InsertUserId: IntegerEditor;
-    UpdateDate: DateEditor;
-    UpdateUserId: IntegerEditor;
-    IsActive: IntegerEditor;
+    PdfTemplate: ImageUploadEditor;
 }
 
 export class SheetTypeForm extends PrefixedContext {
@@ -33,29 +28,26 @@ export class SheetTypeForm extends PrefixedContext {
             SheetTypeForm.init = true;
 
             var w0 = StringEditor;
-            var w1 = IntegerEditor;
-            var w2 = BooleanEditor;
-            var w3 = DateEditor;
+            var w1 = TextAreaEditor;
+            var w2 = IntegerEditor;
+            var w3 = EnumEditor;
+            var w4 = ImageUploadEditor;
+            var w5 = BooleanEditor;
 
             initFormType(SheetTypeForm, [
                 'Name', w0,
-                'Description', w0,
-                'TotalQuestions', w1,
-                'EPaperSize', w1,
-                'HeightInPixel', w1,
-                'WidthInPixel', w1,
-                'SheetData', w0,
-                'SheetImage', w0,
-                'OverlayImage', w0,
-                'Synced', w2,
-                'IsPrivate', w2,
-                'PdfTemplate', w0,
+                'Description', w1,
+                'TotalQuestions', w2,
+                'EPaperSize', w3,
+                'HeightInPixel', w2,
+                'WidthInPixel', w2,
+                'SheetData', w1,
+                'SheetImage', w4,
+                'OverlayImage', w4,
+                'Synced', w5,
+                'IsPrivate', w5,
                 'SheetNumber', w0,
-                'InsertDate', w3,
-                'InsertUserId', w1,
-                'UpdateDate', w3,
-                'UpdateUserId', w1,
-                'IsActive', w1
+                'PdfTemplate', w4
             ]);
         }
     }

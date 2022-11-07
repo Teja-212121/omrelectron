@@ -1,6 +1,7 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
+using Serenity.Extensions.Entities;
 using System;
 using System.ComponentModel;
 
@@ -10,9 +11,10 @@ namespace Rio.Workspace
     [DisplayName("Sheet Type"), InstanceName("Sheet Type")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
-    public sealed class SheetTypeRow : Row<SheetTypeRow.RowFields>, IIdRow, INameRow
+    public sealed class SheetTypeRow : LoggingRow<SheetTypeRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Id"), Identity, IdProperty]
+        [DisplayName("Id"), Identity, IdProperty,QuickSearch]
+        [SortOrder(1, descending: true)]
         public int? Id
         {
             get => fields.Id[this];
@@ -41,10 +43,10 @@ namespace Rio.Workspace
         }
 
         [DisplayName("E Paper Size"), NotNull]
-        public int? EPaperSize
+        public EPaperSize? EPaperSize
         {
-            get => fields.EPaperSize[this];
-            set => fields.EPaperSize[this] = value;
+            get => (EPaperSize?)fields.EPaperSize[this];
+            set => fields.EPaperSize[this] = (short?)value;
         }
 
         [DisplayName("Height In Pixel")]
@@ -68,14 +70,14 @@ namespace Rio.Workspace
             set => fields.SheetData[this] = value;
         }
 
-        [DisplayName("Sheet Image"), Size(1000)]
+        [DisplayName("Sheet Image"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/SheetImage/~")]
         public string SheetImage
         {
             get => fields.SheetImage[this];
             set => fields.SheetImage[this] = value;
         }
 
-        [DisplayName("Overlay Image"), Size(1000)]
+        [DisplayName("Overlay Image"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/OverlayImageImage/~")]
         public string OverlayImage
         {
             get => fields.OverlayImage[this];
@@ -96,7 +98,7 @@ namespace Rio.Workspace
             set => fields.IsPrivate[this] = value;
         }
 
-        [DisplayName("Pdf Template"), Size(1000)]
+        [DisplayName("Pdf Template"), Size(1000), FileUploadEditor(FilenameFormat = "SheetType/PdfTemplate/~")]
         public string PdfTemplate
         {
             get => fields.PdfTemplate[this];
@@ -110,35 +112,9 @@ namespace Rio.Workspace
             set => fields.SheetNumber[this] = value;
         }
 
-        [DisplayName("Insert Date"), NotNull]
-        public DateTime? InsertDate
-        {
-            get => fields.InsertDate[this];
-            set => fields.InsertDate[this] = value;
-        }
+        
 
-        [DisplayName("Insert User Id"), NotNull]
-        public int? InsertUserId
-        {
-            get => fields.InsertUserId[this];
-            set => fields.InsertUserId[this] = value;
-        }
-
-        [DisplayName("Update Date")]
-        public DateTime? UpdateDate
-        {
-            get => fields.UpdateDate[this];
-            set => fields.UpdateDate[this] = value;
-        }
-
-        [DisplayName("Update User Id")]
-        public int? UpdateUserId
-        {
-            get => fields.UpdateUserId[this];
-            set => fields.UpdateUserId[this] = value;
-        }
-
-        [DisplayName("Is Active"), NotNull]
+        [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(true)]
         public short? IsActive
         {
             get => fields.IsActive[this];
@@ -155,7 +131,7 @@ namespace Rio.Workspace
         {
         }
 
-        public class RowFields : RowFieldsBase
+        public class RowFields : LoggingRowFields
         {
             public Int32Field Id;
             public StringField Name;
@@ -171,10 +147,6 @@ namespace Rio.Workspace
             public BooleanField IsPrivate;
             public StringField PdfTemplate;
             public Int64Field SheetNumber;
-            public DateTimeField InsertDate;
-            public Int32Field InsertUserId;
-            public DateTimeField UpdateDate;
-            public Int32Field UpdateUserId;
             public Int16Field IsActive;
         }
     }

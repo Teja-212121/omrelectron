@@ -1,11 +1,12 @@
-﻿import { fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { EPaperSize } from "./EPaperSize";
+import { fieldsProxy } from "@serenity-is/corelib/q";
 
 export interface SheetTypeRow {
     Id?: number;
     Name?: string;
     Description?: string;
     TotalQuestions?: number;
-    EPaperSize?: number;
+    EPaperSize?: EPaperSize;
     HeightInPixel?: number;
     WidthInPixel?: number;
     SheetData?: string;
@@ -15,11 +16,11 @@ export interface SheetTypeRow {
     IsPrivate?: boolean;
     PdfTemplate?: string;
     SheetNumber?: number;
-    InsertDate?: string;
-    InsertUserId?: number;
-    UpdateDate?: string;
-    UpdateUserId?: number;
     IsActive?: number;
+    InsertUserId?: number;
+    InsertDate?: string;
+    UpdateUserId?: number;
+    UpdateDate?: string;
 }
 
 export abstract class SheetTypeRow {
