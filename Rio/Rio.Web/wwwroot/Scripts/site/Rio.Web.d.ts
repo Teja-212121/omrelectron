@@ -681,42 +681,6 @@ declare namespace Rio.Texts {
                 const UpdateDate: string;
                 const UpdateUserId: string;
             }
-            namespace ExamSection {
-                const Description: string;
-                const ExamCode: string;
-                const ExamDescription: string;
-                const ExamId: string;
-                const ExamInsertDate: string;
-                const ExamInsertUserId: string;
-                const ExamIsActive: string;
-                const ExamName: string;
-                const ExamNegativeMarks: string;
-                const ExamOptionsAvailable: string;
-                const ExamResultCriteria: string;
-                const ExamTenantId: string;
-                const ExamTotalMarks: string;
-                const ExamUpdateDate: string;
-                const ExamUpdateUserId: string;
-                const Id: string;
-                const InsertDate: string;
-                const InsertUserId: string;
-                const IsActive: string;
-                const Name: string;
-                const ParentDescription: string;
-                const ParentExamId: string;
-                const ParentId: string;
-                const ParentInsertDate: string;
-                const ParentInsertUserId: string;
-                const ParentIsActive: string;
-                const ParentName: string;
-                const ParentParentId: string;
-                const ParentTenantId: string;
-                const ParentUpdateDate: string;
-                const ParentUpdateUserId: string;
-                const TenantId: string;
-                const UpdateDate: string;
-                const UpdateUserId: string;
-            }
             namespace Group {
                 const Description: string;
                 const Id: string;
@@ -758,6 +722,25 @@ declare namespace Rio.Texts {
                 const UpdateDate: string;
                 const UpdateUserId: string;
                 const WidthInPixel: string;
+            }
+            namespace Student {
+                const Dob: string;
+                const Email: string;
+                const FirstName: string;
+                const FullName: string;
+                const Gender: string;
+                const Id: string;
+                const InsertDate: string;
+                const InsertUserId: string;
+                const IsActive: string;
+                const LastName: string;
+                const MiddleName: string;
+                const Mobile: string;
+                const Note: string;
+                const RollNo: string;
+                const TenantId: string;
+                const UpdateDate: string;
+                const UpdateUserId: string;
             }
         }
     }
@@ -953,8 +936,6 @@ declare namespace Rio.Workspace {
         const isActiveProperty = "IsActive";
         const nameProperty = "Name";
         const localTextPrefix = "Workspace.Exam";
-        const lookupKey = "Workspace.Exam";
-        function getLookup(): Q.Lookup<ExamRow>;
         const deletePermission = "Administration:General";
         const insertPermission = "Administration:General";
         const readPermission = "Administration:General";
@@ -974,128 +955,6 @@ declare namespace Rio.Workspace {
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
             UpdateDate = "UpdateDate"
-        }
-    }
-}
-declare namespace Rio.Workspace {
-    class ExamSectionColumns {
-        static columnsKey: string;
-    }
-}
-declare namespace Rio.Workspace {
-    interface ExamSectionForm {
-        Name: Serenity.StringEditor;
-        Description: Serenity.TextAreaEditor;
-        ExamId: Serenity.LookupEditor;
-        ParentId: Serenity.LookupEditor;
-        TenantId: Serenity.IntegerEditor;
-    }
-    class ExamSectionForm extends Serenity.PrefixedContext {
-        static formKey: string;
-        private static init;
-        constructor(prefix: string);
-    }
-}
-declare namespace Rio.Workspace {
-    interface ExamSectionRow {
-        Id?: number;
-        Name?: string;
-        Description?: string;
-        ExamId?: number;
-        ParentId?: number;
-        IsActive?: number;
-        TenantId?: number;
-        ExamCode?: string;
-        ExamName?: string;
-        ExamDescription?: string;
-        ExamTotalMarks?: number;
-        ExamNegativeMarks?: number;
-        ExamOptionsAvailable?: number;
-        ExamResultCriteria?: string;
-        ExamInsertDate?: string;
-        ExamInsertUserId?: number;
-        ExamUpdateDate?: string;
-        ExamUpdateUserId?: number;
-        ExamIsActive?: number;
-        ExamTenantId?: number;
-        ParentName?: string;
-        ParentDescription?: string;
-        ParentExamId?: number;
-        ParentParentId?: number;
-        ParentInsertDate?: string;
-        ParentInsertUserId?: number;
-        ParentUpdateDate?: string;
-        ParentUpdateUserId?: number;
-        ParentIsActive?: number;
-        ParentTenantId?: number;
-        InsertUserId?: number;
-        InsertDate?: string;
-        UpdateUserId?: number;
-        UpdateDate?: string;
-    }
-    namespace ExamSectionRow {
-        const idProperty = "Id";
-        const isActiveProperty = "IsActive";
-        const nameProperty = "Name";
-        const localTextPrefix = "Workspace.ExamSection";
-        const lookupKey = "Workspace.ExamSection";
-        function getLookup(): Q.Lookup<ExamSectionRow>;
-        const deletePermission = "Administration:General";
-        const insertPermission = "Administration:General";
-        const readPermission = "Administration:General";
-        const updatePermission = "Administration:General";
-        const enum Fields {
-            Id = "Id",
-            Name = "Name",
-            Description = "Description",
-            ExamId = "ExamId",
-            ParentId = "ParentId",
-            IsActive = "IsActive",
-            TenantId = "TenantId",
-            ExamCode = "ExamCode",
-            ExamName = "ExamName",
-            ExamDescription = "ExamDescription",
-            ExamTotalMarks = "ExamTotalMarks",
-            ExamNegativeMarks = "ExamNegativeMarks",
-            ExamOptionsAvailable = "ExamOptionsAvailable",
-            ExamResultCriteria = "ExamResultCriteria",
-            ExamInsertDate = "ExamInsertDate",
-            ExamInsertUserId = "ExamInsertUserId",
-            ExamUpdateDate = "ExamUpdateDate",
-            ExamUpdateUserId = "ExamUpdateUserId",
-            ExamIsActive = "ExamIsActive",
-            ExamTenantId = "ExamTenantId",
-            ParentName = "ParentName",
-            ParentDescription = "ParentDescription",
-            ParentExamId = "ParentExamId",
-            ParentParentId = "ParentParentId",
-            ParentInsertDate = "ParentInsertDate",
-            ParentInsertUserId = "ParentInsertUserId",
-            ParentUpdateDate = "ParentUpdateDate",
-            ParentUpdateUserId = "ParentUpdateUserId",
-            ParentIsActive = "ParentIsActive",
-            ParentTenantId = "ParentTenantId",
-            InsertUserId = "InsertUserId",
-            InsertDate = "InsertDate",
-            UpdateUserId = "UpdateUserId",
-            UpdateDate = "UpdateDate"
-        }
-    }
-}
-declare namespace Rio.Workspace {
-    namespace ExamSectionService {
-        const baseUrl = "Workspace/ExamSection";
-        function Create(request: Serenity.SaveRequest<ExamSectionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<ExamSectionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ExamSectionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ExamSectionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        const enum Methods {
-            Create = "Workspace/ExamSection/Create",
-            Update = "Workspace/ExamSection/Update",
-            Delete = "Workspace/ExamSection/Delete",
-            Retrieve = "Workspace/ExamSection/Retrieve",
-            List = "Workspace/ExamSection/List"
         }
     }
 }
@@ -1300,6 +1159,94 @@ declare namespace Rio.Workspace {
             Delete = "Workspace/SheetType/Delete",
             Retrieve = "Workspace/SheetType/Retrieve",
             List = "Workspace/SheetType/List"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    class StudentColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace Rio.Workspace {
+    interface StudentForm {
+        RollNo: Serenity.StringEditor;
+        FullName: Serenity.StringEditor;
+        Email: Serenity.StringEditor;
+        Mobile: Serenity.StringEditor;
+        Dob: Serenity.DateEditor;
+        Gender: Serenity.IntegerEditor;
+        Note: Serenity.TextAreaEditor;
+    }
+    class StudentForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace Rio.Workspace {
+    interface StudentRow {
+        Id?: number;
+        RollNo?: number;
+        FirstName?: string;
+        MiddleName?: string;
+        LastName?: string;
+        FullName?: string;
+        Email?: string;
+        Mobile?: string;
+        Dob?: string;
+        Gender?: number;
+        Note?: string;
+        IsActive?: number;
+        TenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
+    }
+    namespace StudentRow {
+        const idProperty = "Id";
+        const isActiveProperty = "IsActive";
+        const nameProperty = "FullName";
+        const localTextPrefix = "Workspace.Student";
+        const deletePermission = "Administration:General";
+        const insertPermission = "Administration:General";
+        const readPermission = "Administration:General";
+        const updatePermission = "Administration:General";
+        const enum Fields {
+            Id = "Id",
+            RollNo = "RollNo",
+            FirstName = "FirstName",
+            MiddleName = "MiddleName",
+            LastName = "LastName",
+            FullName = "FullName",
+            Email = "Email",
+            Mobile = "Mobile",
+            Dob = "Dob",
+            Gender = "Gender",
+            Note = "Note",
+            IsActive = "IsActive",
+            TenantId = "TenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    namespace StudentService {
+        const baseUrl = "Workspace/Student";
+        function Create(request: Serenity.SaveRequest<StudentRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<StudentRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<StudentRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<StudentRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Workspace/Student/Create",
+            Update = "Workspace/Student/Update",
+            Delete = "Workspace/Student/Delete",
+            Retrieve = "Workspace/Student/Retrieve",
+            List = "Workspace/Student/List"
         }
     }
 }
