@@ -33,6 +33,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.Students",
+          "Identifier": "Student",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.Tenants",
           "Identifier": "Tenant",
           "Module": "Administration",

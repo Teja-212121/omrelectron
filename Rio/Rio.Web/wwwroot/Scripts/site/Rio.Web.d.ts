@@ -723,6 +723,25 @@ declare namespace Rio.Texts {
                 const UpdateUserId: string;
                 const WidthInPixel: string;
             }
+            namespace Student {
+                const Dob: string;
+                const Email: string;
+                const FirstName: string;
+                const FullName: string;
+                const Gender: string;
+                const Id: string;
+                const InsertDate: string;
+                const InsertUserId: string;
+                const IsActive: string;
+                const LastName: string;
+                const MiddleName: string;
+                const Mobile: string;
+                const Note: string;
+                const RollNo: string;
+                const TenantId: string;
+                const UpdateDate: string;
+                const UpdateUserId: string;
+            }
         }
     }
     namespace Forms {
@@ -882,16 +901,11 @@ declare namespace Rio.Workspace {
     interface ExamForm {
         Code: Serenity.StringEditor;
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
+        Description: Serenity.TextAreaEditor;
         TotalMarks: Serenity.IntegerEditor;
         NegativeMarks: Serenity.DecimalEditor;
         OptionsAvailable: Serenity.IntegerEditor;
         ResultCriteria: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
         TenantId: Serenity.IntegerEditor;
     }
     class ExamForm extends Serenity.PrefixedContext {
@@ -910,16 +924,17 @@ declare namespace Rio.Workspace {
         NegativeMarks?: number;
         OptionsAvailable?: number;
         ResultCriteria?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace ExamRow {
         const idProperty = "Id";
-        const nameProperty = "Code";
+        const isActiveProperty = "IsActive";
+        const nameProperty = "Name";
         const localTextPrefix = "Workspace.Exam";
         const deletePermission = "Administration:General";
         const insertPermission = "Administration:General";
@@ -934,12 +949,12 @@ declare namespace Rio.Workspace {
             NegativeMarks = "NegativeMarks",
             OptionsAvailable = "OptionsAvailable",
             ResultCriteria = "ResultCriteria",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
-            TenantId = "TenantId"
+            TenantId = "TenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -1144,6 +1159,94 @@ declare namespace Rio.Workspace {
             Delete = "Workspace/SheetType/Delete",
             Retrieve = "Workspace/SheetType/Retrieve",
             List = "Workspace/SheetType/List"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    class StudentColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace Rio.Workspace {
+    interface StudentForm {
+        RollNo: Serenity.StringEditor;
+        FullName: Serenity.StringEditor;
+        Email: Serenity.StringEditor;
+        Mobile: Serenity.StringEditor;
+        Dob: Serenity.DateEditor;
+        Gender: Serenity.IntegerEditor;
+        Note: Serenity.TextAreaEditor;
+    }
+    class StudentForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace Rio.Workspace {
+    interface StudentRow {
+        Id?: number;
+        RollNo?: number;
+        FirstName?: string;
+        MiddleName?: string;
+        LastName?: string;
+        FullName?: string;
+        Email?: string;
+        Mobile?: string;
+        Dob?: string;
+        Gender?: number;
+        Note?: string;
+        IsActive?: number;
+        TenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
+    }
+    namespace StudentRow {
+        const idProperty = "Id";
+        const isActiveProperty = "IsActive";
+        const nameProperty = "FullName";
+        const localTextPrefix = "Workspace.Student";
+        const deletePermission = "Administration:General";
+        const insertPermission = "Administration:General";
+        const readPermission = "Administration:General";
+        const updatePermission = "Administration:General";
+        const enum Fields {
+            Id = "Id",
+            RollNo = "RollNo",
+            FirstName = "FirstName",
+            MiddleName = "MiddleName",
+            LastName = "LastName",
+            FullName = "FullName",
+            Email = "Email",
+            Mobile = "Mobile",
+            Dob = "Dob",
+            Gender = "Gender",
+            Note = "Note",
+            IsActive = "IsActive",
+            TenantId = "TenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
+        }
+    }
+}
+declare namespace Rio.Workspace {
+    namespace StudentService {
+        const baseUrl = "Workspace/Student";
+        function Create(request: Serenity.SaveRequest<StudentRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<StudentRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<StudentRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<StudentRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Workspace/Student/Create",
+            Update = "Workspace/Student/Update",
+            Delete = "Workspace/Student/Delete",
+            Retrieve = "Workspace/Student/Retrieve",
+            List = "Workspace/Student/List"
         }
     }
 }
