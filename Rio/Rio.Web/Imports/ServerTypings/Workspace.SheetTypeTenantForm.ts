@@ -1,9 +1,8 @@
 ﻿namespace Rio.Workspace {
     export interface SheetTypeTenantForm {
         SheetTypeId: Serenity.LookupEditor;
-        TenantId: Serenity.IntegerEditor;
-        SheetDesignPdf: Serenity.ImageUploadEditor;
         IsDefault: Serenity.BooleanEditor;
+        SheetDesignPdf: Serenity.ImageUploadEditor;
     }
 
     export class SheetTypeTenantForm extends Serenity.PrefixedContext {
@@ -18,15 +17,13 @@
 
                 var s = Serenity;
                 var w0 = s.LookupEditor;
-                var w1 = s.IntegerEditor;
+                var w1 = s.BooleanEditor;
                 var w2 = s.ImageUploadEditor;
-                var w3 = s.BooleanEditor;
 
                 Q.initFormType(SheetTypeTenantForm, [
                     'SheetTypeId', w0,
-                    'TenantId', w1,
-                    'SheetDesignPdf', w2,
-                    'IsDefault', w3
+                    'IsDefault', w1,
+                    'SheetDesignPdf', w2
                 ]);
             }
         }
