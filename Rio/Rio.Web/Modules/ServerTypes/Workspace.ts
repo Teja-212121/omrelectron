@@ -1,4 +1,5 @@
-﻿export * from "./Workspace/ExamColumns"
+﻿export * from "./Workspace/EPaperSize"
+export * from "./Workspace/ExamColumns"
 export * from "./Workspace/ExamForm"
 export * from "./Workspace/ExamRow"
 export * from "./Workspace/ExamService"

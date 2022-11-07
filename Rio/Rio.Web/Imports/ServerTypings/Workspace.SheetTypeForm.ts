@@ -1,23 +1,18 @@
 ﻿namespace Rio.Workspace {
     export interface SheetTypeForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
+        Description: Serenity.TextAreaEditor;
         TotalQuestions: Serenity.IntegerEditor;
-        EPaperSize: Serenity.IntegerEditor;
+        EPaperSize: Serenity.EnumEditor;
         HeightInPixel: Serenity.IntegerEditor;
         WidthInPixel: Serenity.IntegerEditor;
-        SheetData: Serenity.StringEditor;
-        SheetImage: Serenity.StringEditor;
-        OverlayImage: Serenity.StringEditor;
+        SheetData: Serenity.TextAreaEditor;
+        SheetImage: Serenity.ImageUploadEditor;
+        OverlayImage: Serenity.ImageUploadEditor;
         Synced: Serenity.BooleanEditor;
         IsPrivate: Serenity.BooleanEditor;
-        PdfTemplate: Serenity.StringEditor;
         SheetNumber: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
+        PdfTemplate: Serenity.ImageUploadEditor;
     }
 
     export class SheetTypeForm extends Serenity.PrefixedContext {
@@ -32,29 +27,26 @@
 
                 var s = Serenity;
                 var w0 = s.StringEditor;
-                var w1 = s.IntegerEditor;
-                var w2 = s.BooleanEditor;
-                var w3 = s.DateEditor;
+                var w1 = s.TextAreaEditor;
+                var w2 = s.IntegerEditor;
+                var w3 = s.EnumEditor;
+                var w4 = s.ImageUploadEditor;
+                var w5 = s.BooleanEditor;
 
                 Q.initFormType(SheetTypeForm, [
                     'Name', w0,
-                    'Description', w0,
-                    'TotalQuestions', w1,
-                    'EPaperSize', w1,
-                    'HeightInPixel', w1,
-                    'WidthInPixel', w1,
-                    'SheetData', w0,
-                    'SheetImage', w0,
-                    'OverlayImage', w0,
-                    'Synced', w2,
-                    'IsPrivate', w2,
-                    'PdfTemplate', w0,
+                    'Description', w1,
+                    'TotalQuestions', w2,
+                    'EPaperSize', w3,
+                    'HeightInPixel', w2,
+                    'WidthInPixel', w2,
+                    'SheetData', w1,
+                    'SheetImage', w4,
+                    'OverlayImage', w4,
+                    'Synced', w5,
+                    'IsPrivate', w5,
                     'SheetNumber', w0,
-                    'InsertDate', w3,
-                    'InsertUserId', w1,
-                    'UpdateDate', w3,
-                    'UpdateUserId', w1,
-                    'IsActive', w1
+                    'PdfTemplate', w4
                 ]);
             }
         }

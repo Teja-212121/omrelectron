@@ -582,6 +582,18 @@ var Rio;
 (function (Rio) {
     var Workspace;
     (function (Workspace) {
+        let EPaperSize;
+        (function (EPaperSize) {
+            EPaperSize[EPaperSize["A4"] = 4] = "A4";
+            EPaperSize[EPaperSize["A5"] = 5] = "A5";
+        })(EPaperSize = Workspace.EPaperSize || (Workspace.EPaperSize = {}));
+        Serenity.Decorators.registerEnumType(EPaperSize, 'Rio.Workspace.EPaperSize', 'Workspace.EPaperSize');
+    })(Workspace = Rio.Workspace || (Rio.Workspace = {}));
+})(Rio || (Rio = {}));
+var Rio;
+(function (Rio) {
+    var Workspace;
+    (function (Workspace) {
         class ExamColumns {
         }
         ExamColumns.columnsKey = 'Workspace.Exam';
@@ -760,28 +772,25 @@ var Rio;
                     SheetTypeForm.init = true;
                     var s = Serenity;
                     var w0 = s.StringEditor;
-                    var w1 = s.IntegerEditor;
-                    var w2 = s.BooleanEditor;
-                    var w3 = s.DateEditor;
+                    var w1 = s.TextAreaEditor;
+                    var w2 = s.IntegerEditor;
+                    var w3 = s.EnumEditor;
+                    var w4 = s.ImageUploadEditor;
+                    var w5 = s.BooleanEditor;
                     Q.initFormType(SheetTypeForm, [
                         'Name', w0,
-                        'Description', w0,
-                        'TotalQuestions', w1,
-                        'EPaperSize', w1,
-                        'HeightInPixel', w1,
-                        'WidthInPixel', w1,
-                        'SheetData', w0,
-                        'SheetImage', w0,
-                        'OverlayImage', w0,
-                        'Synced', w2,
-                        'IsPrivate', w2,
-                        'PdfTemplate', w0,
+                        'Description', w1,
+                        'TotalQuestions', w2,
+                        'EPaperSize', w3,
+                        'HeightInPixel', w2,
+                        'WidthInPixel', w2,
+                        'SheetData', w1,
+                        'SheetImage', w4,
+                        'OverlayImage', w4,
+                        'Synced', w5,
+                        'IsPrivate', w5,
                         'SheetNumber', w0,
-                        'InsertDate', w3,
-                        'InsertUserId', w1,
-                        'UpdateDate', w3,
-                        'UpdateUserId', w1,
-                        'IsActive', w1
+                        'PdfTemplate', w4
                     ]);
                 }
             }
