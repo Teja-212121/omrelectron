@@ -1,5 +1,5 @@
 ﻿import { EPaperSize } from "./EPaperSize";
-import { fieldsProxy } from "@serenity-is/corelib/q";
+import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
 
 export interface SheetTypeRow {
     Id?: number;
@@ -27,6 +27,12 @@ export abstract class SheetTypeRow {
     static readonly idProperty = 'Id';
     static readonly nameProperty = 'Name';
     static readonly localTextPrefix = 'Workspace.SheetType';
+    static readonly lookupKey = 'Workspace.SheetTypes';
+
+    /** @deprecated use getLookupAsync instead */
+    static getLookup() { return getLookup<SheetTypeRow>('Workspace.SheetTypes') }
+    static async getLookupAsync() { return getLookupAsync<SheetTypeRow>('Workspace.SheetTypes') }
+
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';
     static readonly readPermission = 'Administration:General';

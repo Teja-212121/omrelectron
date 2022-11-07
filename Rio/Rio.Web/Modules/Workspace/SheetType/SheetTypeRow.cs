@@ -11,6 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Sheet Type"), InstanceName("Sheet Type")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("Workspace.SheetTypes")]
     public sealed class SheetTypeRow : LoggingRow<SheetTypeRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty,QuickSearch]

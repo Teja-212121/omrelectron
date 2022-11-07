@@ -368,3 +368,7 @@ FodyWeavers.xsd
 /Rio/Rio.Web/wwwroot/Scripts/serenity/texts/serenity.texts.bn.json
 /Rio/Rio.Web/wwwroot/Scripts/site/Rio.Web.js.map
 /Rio/Rio.Web/wwwroot/Scripts/site/Rio.Web.tsbuildinfo
+/Rio/Rio.Web/typings/serenity.corelib/_trigger.ts
+/Rio/Rio.Web/wwwroot/Scripts/site/Rio.Web.d.ts
+/Rio/Rio.Web/wwwroot/Scripts/site/Rio.Web.js
+*.ts

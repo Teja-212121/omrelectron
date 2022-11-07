@@ -25,6 +25,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.SheetType';
+        export const lookupKey = 'Workspace.SheetTypes';
+
+        export function getLookup(): Q.Lookup<SheetTypeRow> {
+            return Q.getLookup<SheetTypeRow>('Workspace.SheetTypes');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
