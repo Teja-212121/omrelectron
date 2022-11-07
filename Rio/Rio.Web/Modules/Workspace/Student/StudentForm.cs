@@ -15,7 +15,7 @@ namespace Rio.Workspace.Forms
         public string LastName { get; set; }*/
         [HalfWidth]
         public string FullName { get; set; }
-        [HalfWidth]
+        [EmailEditor]
         public string Email { get; set; }
         [HalfWidth]
         public string Mobile { get; set; }

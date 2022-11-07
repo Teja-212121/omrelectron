@@ -24,6 +24,11 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'FullName';
         export const localTextPrefix = 'Workspace.Student';
+        export const lookupKey = 'Workspace.Student';
+
+        export function getLookup(): Q.Lookup<StudentRow> {
+            return Q.getLookup<StudentRow>('Workspace.Student');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';

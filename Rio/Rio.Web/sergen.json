@@ -33,6 +33,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.GroupStudents",
+          "Identifier": "GroupStudent",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.SheetTypes",
           "Identifier": "SheetType",
           "Module": "Workspace",
