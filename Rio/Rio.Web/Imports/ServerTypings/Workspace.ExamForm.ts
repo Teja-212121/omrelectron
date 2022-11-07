@@ -7,7 +7,6 @@
         NegativeMarks: Serenity.DecimalEditor;
         OptionsAvailable: Serenity.IntegerEditor;
         ResultCriteria: Serenity.StringEditor;
-        TenantId: Serenity.IntegerEditor;
     }
 
     export class ExamForm extends Serenity.PrefixedContext {
@@ -33,8 +32,7 @@
                     'TotalMarks', w2,
                     'NegativeMarks', w3,
                     'OptionsAvailable', w2,
-                    'ResultCriteria', w0,
-                    'TenantId', w2
+                    'ResultCriteria', w0
                 ]);
             }
         }

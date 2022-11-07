@@ -9,7 +9,6 @@ export interface ExamForm {
     NegativeMarks: DecimalEditor;
     OptionsAvailable: IntegerEditor;
     ResultCriteria: StringEditor;
-    TenantId: IntegerEditor;
 }
 
 export class ExamForm extends PrefixedContext {
@@ -34,8 +33,7 @@ export class ExamForm extends PrefixedContext {
                 'TotalMarks', w2,
                 'NegativeMarks', w3,
                 'OptionsAvailable', w2,
-                'ResultCriteria', w0,
-                'TenantId', w2
+                'ResultCriteria', w0
             ]);
         }
     }

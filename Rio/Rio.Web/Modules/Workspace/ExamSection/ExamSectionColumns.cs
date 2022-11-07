@@ -19,6 +19,6 @@ namespace Rio.Workspace.Columns
         public string ExamName { get; set; }
         [QuickFilter]
         public DateTime ExamInsertDate { get; set; }
-        public int TenantId { get; set; }
+        
     }
 }

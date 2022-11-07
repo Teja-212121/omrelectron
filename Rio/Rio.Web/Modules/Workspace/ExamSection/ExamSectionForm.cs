@@ -17,8 +17,6 @@ namespace Rio.Workspace.Forms
         public long ExamId { get; set; }
         [HalfWidth]
         public int ParentId { get; set; }
-        [HalfWidth]
-
-        public int TenantId { get; set; }
+        
     }
 }
