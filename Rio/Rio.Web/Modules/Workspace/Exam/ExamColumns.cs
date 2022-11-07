@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
 
@@ -19,6 +19,6 @@ namespace Rio.Workspace.Columns
         public short OptionsAvailable { get; set; }
         public string ResultCriteria { get; set; }
         
-        public int TenantId { get; set; }
+        
     }
 }

@@ -11,11 +11,11 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public int SheetTypeId { get; set; }
         [HalfWidth]
-        public int TenantId { get; set; }
-        [HalfWidth]
-        public string SheetDesignPdf { get; set; }
-        [HalfWidth]
         public bool IsDefault { get; set; }
+        public string SheetDesignPdf { get; set; }
+       
+        //[HalfWidth]
+        //public int TenantId { get; set; }
         // public float DisplayOrder { get; set; }
         /*public DateTime InsertDate { get; set; }
         public int InsertUserId { get; set; }

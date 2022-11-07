@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
 
@@ -23,8 +23,6 @@ namespace Rio.Workspace.Forms
         public short OptionsAvailable { get; set; }
         [HalfWidth]
         public string ResultCriteria { get; set; }
-        [HalfWidth]
-
-        public int TenantId { get; set; }
+        
     }
 }

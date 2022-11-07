@@ -21,6 +21,11 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.Exam';
+        export const lookupKey = 'Workspace.Exam';
+
+        export function getLookup(): Q.Lookup<ExamRow> {
+            return Q.getLookup<ExamRow>('Workspace.Exam');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
