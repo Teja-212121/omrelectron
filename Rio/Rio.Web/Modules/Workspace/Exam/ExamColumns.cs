@@ -18,11 +18,7 @@ namespace Rio.Workspace.Columns
         public float NegativeMarks { get; set; }
         public short OptionsAvailable { get; set; }
         public string ResultCriteria { get; set; }
-        public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
-        public short IsActive { get; set; }
+        
         public int TenantId { get; set; }
     }
 }

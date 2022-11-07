@@ -8,18 +8,23 @@ namespace Rio.Workspace.Forms
     [BasedOnRow(typeof(ExamRow), CheckNames = true)]
     public class ExamForm
     {
+        [HalfWidth]
         public string Code { get; set; }
+        [HalfWidth]
         public string Name { get; set; }
+        [TextAreaEditor(Rows = 5)]
+        [HalfWidth]
         public string Description { get; set; }
+        [HalfWidth]
         public int TotalMarks { get; set; }
+        [HalfWidth]
         public float NegativeMarks { get; set; }
+        [HalfWidth]
         public short OptionsAvailable { get; set; }
+        [HalfWidth]
         public string ResultCriteria { get; set; }
-        public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
-        public short IsActive { get; set; }
+        [HalfWidth]
+
         public int TenantId { get; set; }
     }
 }

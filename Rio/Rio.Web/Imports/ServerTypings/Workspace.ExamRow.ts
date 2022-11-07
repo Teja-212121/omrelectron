@@ -8,17 +8,18 @@
         NegativeMarks?: number;
         OptionsAvailable?: number;
         ResultCriteria?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace ExamRow {
         export const idProperty = 'Id';
-        export const nameProperty = 'Code';
+        export const isActiveProperty = 'IsActive';
+        export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.Exam';
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
@@ -34,12 +35,12 @@
             NegativeMarks = "NegativeMarks",
             OptionsAvailable = "OptionsAvailable",
             ResultCriteria = "ResultCriteria",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
-            TenantId = "TenantId"
+            TenantId = "TenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

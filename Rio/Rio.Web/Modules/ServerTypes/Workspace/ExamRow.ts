@@ -9,17 +9,18 @@ export interface ExamRow {
     NegativeMarks?: number;
     OptionsAvailable?: number;
     ResultCriteria?: string;
-    InsertDate?: string;
-    InsertUserId?: number;
-    UpdateDate?: string;
-    UpdateUserId?: number;
     IsActive?: number;
     TenantId?: number;
+    InsertUserId?: number;
+    InsertDate?: string;
+    UpdateUserId?: number;
+    UpdateDate?: string;
 }
 
 export abstract class ExamRow {
     static readonly idProperty = 'Id';
-    static readonly nameProperty = 'Code';
+    static readonly isActiveProperty = 'IsActive';
+    static readonly nameProperty = 'Name';
     static readonly localTextPrefix = 'Workspace.Exam';
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';

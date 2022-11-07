@@ -599,23 +599,18 @@ var Rio;
                     ExamForm.init = true;
                     var s = Serenity;
                     var w0 = s.StringEditor;
-                    var w1 = s.IntegerEditor;
-                    var w2 = s.DecimalEditor;
-                    var w3 = s.DateEditor;
+                    var w1 = s.TextAreaEditor;
+                    var w2 = s.IntegerEditor;
+                    var w3 = s.DecimalEditor;
                     Q.initFormType(ExamForm, [
                         'Code', w0,
                         'Name', w0,
-                        'Description', w0,
-                        'TotalMarks', w1,
-                        'NegativeMarks', w2,
-                        'OptionsAvailable', w1,
+                        'Description', w1,
+                        'TotalMarks', w2,
+                        'NegativeMarks', w3,
+                        'OptionsAvailable', w2,
                         'ResultCriteria', w0,
-                        'InsertDate', w3,
-                        'InsertUserId', w1,
-                        'UpdateDate', w3,
-                        'UpdateUserId', w1,
-                        'IsActive', w1,
-                        'TenantId', w1
+                        'TenantId', w2
                     ]);
                 }
             }
@@ -631,7 +626,8 @@ var Rio;
         let ExamRow;
         (function (ExamRow) {
             ExamRow.idProperty = 'Id';
-            ExamRow.nameProperty = 'Code';
+            ExamRow.isActiveProperty = 'IsActive';
+            ExamRow.nameProperty = 'Name';
             ExamRow.localTextPrefix = 'Workspace.Exam';
             ExamRow.deletePermission = 'Administration:General';
             ExamRow.insertPermission = 'Administration:General';
