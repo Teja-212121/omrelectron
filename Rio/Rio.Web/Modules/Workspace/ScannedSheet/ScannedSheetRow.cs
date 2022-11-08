@@ -11,6 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Scanned Sheet"), InstanceName("Scanned Sheet")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("Workspace.ScannedSheets")]
     public sealed class ScannedSheetRow :LoggingRow<ScannedSheetRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false),QuickSearch]

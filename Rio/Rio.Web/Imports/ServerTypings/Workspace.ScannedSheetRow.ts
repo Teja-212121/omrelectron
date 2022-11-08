@@ -56,6 +56,11 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'SheetNumber';
         export const localTextPrefix = 'Workspace.ScannedSheet';
+        export const lookupKey = 'Workspace.ScannedSheets';
+
+        export function getLookup(): Q.Lookup<ScannedSheetRow> {
+            return Q.getLookup<ScannedSheetRow>('Workspace.ScannedSheets');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
