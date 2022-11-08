@@ -25,7 +25,7 @@ namespace Rio.Membership.Pages
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [JsonRequest, IgnoreAntiforgeryToken]
-    [Route("Account/Api/[action]")]
+    [Route("Api/Account/[action]")]
     public partial class AccountApiController : Controller
     {
         protected ITwoLevelCache Cache { get; }
