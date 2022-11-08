@@ -1,4 +1,4 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 using MyPages = Rio.Workspace.Pages;
 
 
@@ -18,5 +18,6 @@ using MyPages = Rio.Workspace.Pages;
 
 [assembly: NavigationMenu(5000, "Scanned Data", icon: "fa-files-o")]
 [assembly: NavigationLink(5001, "Scanned Data/Scanned Batches", typeof(MyPages.ScannedBatchController), icon: "fa-circle-o")]
+[assembly: NavigationLink(5002, "Scanned Data/Scanned Sheet", typeof(MyPages.ScannedSheetController), icon: "fa-circle-o")]
 
 

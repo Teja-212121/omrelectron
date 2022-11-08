@@ -51,6 +51,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ScannedSheets",
+          "Identifier": "ScannedSheet",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.SheetTypes",
           "Identifier": "SheetType",
           "Module": "Workspace",
