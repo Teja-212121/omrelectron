@@ -7,13 +7,15 @@
         export declare function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ExamRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ExamRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function DeleteExam(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export declare const enum Methods {
             Create = "Workspace/Exam/Create",
             Update = "Workspace/Exam/Update",
             Delete = "Workspace/Exam/Delete",
             Retrieve = "Workspace/Exam/Retrieve",
-            List = "Workspace/Exam/List"
+            List = "Workspace/Exam/List",
+            DeleteExam = "Workspace/Exam/DeleteExam"
         }
 
         [
@@ -21,7 +23,8 @@
             'Update', 
             'Delete', 
             'Retrieve', 
-            'List'
+            'List', 
+            'DeleteExam'
         ].forEach(x => {
             (<any>ExamService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
