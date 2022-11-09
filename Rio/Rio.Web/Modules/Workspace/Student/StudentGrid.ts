@@ -1,7 +1,9 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { ExcelExportHelper } from '@serenity-is/extensions';
 import { StudentColumns, StudentRow, StudentService } from '../../ServerTypes/Workspace';
 import { GroupStudentsForStudentsDialog } from '../GroupStudent/GroupStudentsForStudentsDialog';
 import { StudentDialog } from './StudentDialog';
+import { StudentExcelImportDialog } from './StudentExcelImportDialog';
 
 @Decorators.registerClass()
 export class StudentGrid extends EntityGrid<StudentRow, any> {
@@ -59,7 +61,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
             },
             separator: true
         });
-        /*buttons.push({
+        buttons.push({
             title: 'Import From Excel',
             cssClass: 'export-xlsx-button',
             onClick: () => {
@@ -72,7 +74,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
                 dialog.dialogOpen();
             },
             separator: true
-        });*/
+        });
 
         buttons.push({
             title: 'Download  Sample',
@@ -85,13 +87,13 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
             separator: true
         });
 
-        /*buttons.push(ExcelExportHelper.createToolButton({
+        buttons.push(ExcelExportHelper.createToolButton({
             grid: this,
             title: 'Export',
             service: StudentService.baseUrl + '/ListExcel',
             onViewSubmit: () => this.onViewSubmit(),
             separator: true
-        }));*/
+        }));
 
         buttons.push({
             title: 'Delete Student', cssClass: 'delete-button',

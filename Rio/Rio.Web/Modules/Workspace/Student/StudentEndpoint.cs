@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
+using Serenity;
 using Serenity.Data;
+using Serenity.Extensions;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using MyRow = Rio.Workspace.StudentRow;
@@ -58,6 +62,107 @@ namespace Rio.Workspace.Endpoints
             var bytes = exporter.Export(data, typeof(Columns.StudentColumns), request.ExportColumns);
             return ExcelContentResult.Create(bytes, "StudentList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
+        }
+
+        [HttpPost]
+        public ExcelImportResponse InsertStudentSelectedDetail(IUnitOfWork uow, ExcelImportRequest request)
+        {
+            request.CheckNotNull();
+            var response = new ExcelImportResponse();
+            response.ErrorList = new List<string>();
+
+            return response;
+        }
+        [HttpPost]
+        public ExcelImportResponse ExcelImport(IUnitOfWork uow, ExcelImportRequest request,
+            [FromServices] IUploadStorage uploadStorage,
+            [FromServices] IStudentSaveHandler handler)
+        {
+
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.FileName))
+                throw new ArgumentNullException(nameof(request.FileName));
+
+            if (uploadStorage is null)
+                throw new ArgumentNullException(nameof(uploadStorage));
+
+            UploadPathHelper.CheckFileNameSecurity(request.FileName);
+
+            if (!request.FileName.StartsWith("temporary/", StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentOutOfRangeException(nameof(request.FileName));
+
+            ExcelPackage ep = new();
+            using (var fs = uploadStorage.OpenFile(request.FileName))
+                ep.Load(fs);
+
+            var p = MyRow.Fields;
+            //var p = ProductsRow.Fields;
+
+            var response = new ExcelImportResponse
+            {
+                ErrorList = new List<string>()
+            };
+
+            var worksheet = ep.Workbook.Worksheets[0];
+
+            for (var row = 2; row <= worksheet.Dimension.End.Row; row++)
+            {
+                try
+                {
+                    MyRow Row = new MyRow();
+
+                    /*Row.Id = Convert.ToInt32(worksheet.Cells[row, 1].Value ?? null);
+                    if (Row.Id == null)
+                    {
+                        response.ErrorList.Add("Error On Row " + row + ": Id Not found");
+                        continue;
+                    }*/
+                    Row.RollNo = Convert.ToInt32(worksheet.Cells[row, 1].Value ?? null);
+                    if (Row.RollNo == null)
+                    {
+                        response.ErrorList.Add("Error On Row " + row + ": RollNo Not found");
+                        continue;
+                    }
+                    Row.FullName = Convert.ToString(worksheet.Cells[row, 2].Value ?? "").Trim();
+                    Row.Email = Convert.ToString(worksheet.Cells[row, 3].Value ?? "").Trim();
+                    Row.Mobile = Convert.ToString(worksheet.Cells[row, 4].Value ?? "").Trim();
+                    Row.Dob = Convert.ToDateTime(worksheet.Cells[row, 5].Value ?? null);
+                    Int16? Gender = Convert.ToInt16(worksheet.Cells[row, 6].Value ?? null);
+                    if (Gender != null)
+                    {
+
+                        if (Gender == 1)
+                        {
+                            Row.Gender = Web.Enums.Gender.Male;
+                        }
+                        else if (Gender == 2)
+                            Row.Gender = Web.Enums.Gender.Female;
+                        else if (Gender == 3)
+                            Row.Gender = Web.Enums.Gender.Other;
+                        else
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Invalid Gender");
+                            continue;
+                        }
+                    }
+
+                    Row.Note = Convert.ToString(worksheet.Cells[row, 7].Value ?? "").Trim();
+                    Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 8].Value ?? null);
+                    Row.InsertDate = DateTime.UtcNow;
+                    Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
+
+                    uow.Connection.Insert<StudentRow>(Row);
+                    response.Inserted = response.Inserted + 1;
+
+                }
+                catch (Exception)
+                {
+                    //response.ErrorList.Add("Exception on Row " + row + ": " + ex.Message);
+                    throw;
+                }
+            }
+            return response;
         }
 
         [AuthorizeUpdate(typeof(MyRow))]
