@@ -10,13 +10,15 @@ export namespace GroupService {
     export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<GroupRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<GroupRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function DeleteGroup(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
     export declare const enum Methods {
         Create = "Workspace/Group/Create",
         Update = "Workspace/Group/Update",
         Delete = "Workspace/Group/Delete",
         Retrieve = "Workspace/Group/Retrieve",
-        List = "Workspace/Group/List"
+        List = "Workspace/Group/List",
+        DeleteGroup = "Workspace/Group/DeleteGroup"
     }
 
     [
@@ -24,7 +26,8 @@ export namespace GroupService {
         'Update', 
         'Delete', 
         'Retrieve', 
-        'List'
+        'List', 
+        'DeleteGroup'
     ].forEach(x => {
         (<any>GroupService)[x] = function (r, s, o) {
             return serviceRequest(baseUrl + '/' + x, r, s, o);
