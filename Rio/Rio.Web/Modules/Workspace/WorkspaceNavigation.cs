@@ -10,6 +10,8 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(3001, "Exams/Exam", typeof(MyPages.ExamController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3002, "Exams/Exam Section", typeof(MyPages.ExamSectionController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3003, "Exams/Exam Question", typeof(MyPages.ExamQuestionController), icon: "fa-circle-o")]
+[assembly: NavigationLink(3004, "Exams/Exam Result", typeof(MyPages.ExamResultController), icon: "fa-circle-o")]
+
 
 [assembly: NavigationMenu(4000, "Students", icon: "fa-users")]
 [assembly: NavigationLink(4001, "Students/Student", typeof(MyPages.StudentController), icon: "fa-circle-o")]

@@ -21,6 +21,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ExamResults",
+          "Identifier": "ExamResult",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.Exams",
           "Identifier": "Exam",
           "Module": "Workspace",
