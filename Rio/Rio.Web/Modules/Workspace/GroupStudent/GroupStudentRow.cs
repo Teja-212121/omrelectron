@@ -21,6 +21,13 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
+        [NotMapped]
+        public String RowIds
+        {
+            get { return Fields.RowIds[this]; }
+            set { Fields.RowIds[this] = value; }
+        }
+
         [DisplayName("Group"), NotNull, ForeignKey("[dbo].[Groups]", "Id"), LeftJoin("jGroup"), TextualField("GroupName")]
         [LookupEditor("Workspace.Group")]
         public int? GroupId
@@ -281,6 +288,8 @@ namespace Rio.Workspace
             public Int32Field StudentUpdateUserId;
             public Int16Field StudentIsActive;
             public Int32Field StudentTenantId;
+
+            public StringField RowIds;
         }
     }
 }
