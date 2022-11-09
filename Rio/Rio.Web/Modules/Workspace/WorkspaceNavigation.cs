@@ -11,6 +11,8 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(3002, "Exams/Exam Section", typeof(MyPages.ExamSectionController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3003, "Exams/Exam Question", typeof(MyPages.ExamQuestionController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3004, "Exams/Exam Result", typeof(MyPages.ExamResultController), icon: "fa-circle-o")]
+[assembly: NavigationLink(3005, "Exams/Rule Type", typeof(MyPages.RuleTypeController), icon: "fa-circle-o")]
+
 
 
 [assembly: NavigationMenu(4000, "Students", icon: "fa-users")]

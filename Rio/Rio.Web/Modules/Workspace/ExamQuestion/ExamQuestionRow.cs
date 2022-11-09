@@ -58,7 +58,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Rule Type"), NotNull, ForeignKey("[dbo].[RuleTypes]", "Id"), LeftJoin("jRuleType"), TextualField("RuleTypeName")]
-        //[LookupEditor("Workspace.RuleType")]
+        [LookupEditor("Workspace.RuleType")]
         public int? RuleTypeId
         {
             get => fields.RuleTypeId[this];

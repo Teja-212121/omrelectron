@@ -5,7 +5,7 @@
         RightOptions: Serenity.IntegerEditor;
         Score: Serenity.DecimalEditor;
         Tags: Serenity.StringEditor;
-        RuleTypeId: Serenity.IntegerEditor;
+        RuleTypeId: Serenity.LookupEditor;
         ExamSectionId: Serenity.LookupEditor;
     }
 
@@ -31,7 +31,7 @@
                     'RightOptions', w1,
                     'Score', w2,
                     'Tags', w3,
-                    'RuleTypeId', w1,
+                    'RuleTypeId', w0,
                     'ExamSectionId', w0
                 ]);
             }
