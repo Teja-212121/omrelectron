@@ -10,13 +10,15 @@ export namespace ExamService {
     export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<ExamRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<ExamRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function DeleteExam(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
     export declare const enum Methods {
         Create = "Workspace/Exam/Create",
         Update = "Workspace/Exam/Update",
         Delete = "Workspace/Exam/Delete",
         Retrieve = "Workspace/Exam/Retrieve",
-        List = "Workspace/Exam/List"
+        List = "Workspace/Exam/List",
+        DeleteExam = "Workspace/Exam/DeleteExam"
     }
 
     [
@@ -24,7 +26,8 @@ export namespace ExamService {
         'Update', 
         'Delete', 
         'Retrieve', 
-        'List'
+        'List', 
+        'DeleteExam'
     ].forEach(x => {
         (<any>ExamService)[x] = function (r, s, o) {
             return serviceRequest(baseUrl + '/' + x, r, s, o);
