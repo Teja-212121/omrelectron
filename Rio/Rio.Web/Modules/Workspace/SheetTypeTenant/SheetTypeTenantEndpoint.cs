@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -58,6 +58,17 @@ namespace Rio.Workspace.Endpoints
             var bytes = exporter.Export(data, typeof(Columns.SheetTypeTenantColumns), request.ExportColumns);
             return ExcelContentResult.Create(bytes, "SheetTypeTenantList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
+        }
+        [AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse DeleteSheetTypeTenant(string[] ids, IUnitOfWork uow, [FromServices] ISheetTypeTenantDeleteHandler handler)
+        {
+            foreach (var id in ids)
+            {
+                DeleteRequest deleteRequest = new DeleteRequest();
+                deleteRequest.EntityId = id;
+                DeleteResponse del = handler.Delete(uow, deleteRequest);
+            }
+            return new SaveResponse();
         }
     }
 }
