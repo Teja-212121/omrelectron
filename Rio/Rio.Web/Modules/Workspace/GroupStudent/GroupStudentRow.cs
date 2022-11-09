@@ -14,6 +14,7 @@ namespace Rio.Workspace
     public sealed class GroupStudentRow : LoggingRow<GroupStudentRow.RowFields>, IIdRow, IMultiTenantRow, IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty]
+        [SortOrder(1, descending: true)]
         public long? Id
         {
             get => fields.Id[this];
