@@ -1,4 +1,4 @@
-﻿import { EPaperSize } from "./EPaperSize";
+﻿import { EPaperSize } from "./enums.EPaperSize";
 import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
 
 export interface SheetTypeRow {

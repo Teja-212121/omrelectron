@@ -11,8 +11,6 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         [QuickFilter]
         public long Id { get; set; }
-        [QuickFilter]
-        public Guid ScannedSheetId { get; set; }
         public string ScannedSheetSheetNumber { get; set; }
         public int QuestionIndex { get; set; }
         public long ScannedOptions { get; set; }

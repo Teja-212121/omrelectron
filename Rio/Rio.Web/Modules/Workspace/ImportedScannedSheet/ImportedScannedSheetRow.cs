@@ -1,4 +1,3 @@
-using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -8,14 +7,13 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ScannedSheets]")]
-    [DisplayName("Scanned Sheet"), InstanceName("Scanned Sheet")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ImportedScannedSheets]")]
+    [DisplayName("Imported Scanned Sheet"), InstanceName("Imported Scanned Sheet")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
-    [LookupScript("Workspace.ScannedSheets")]
-    public sealed class ScannedSheetRow :LoggingRow<ScannedSheetRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
+    public sealed class ImportedScannedSheetRow : LoggingRow<ImportedScannedSheetRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {
-        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false),QuickSearch]
+        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false)]
         public Guid? Id
         {
             get => fields.Id[this];
@@ -43,6 +41,7 @@ namespace Rio.Workspace
             get => fields.SheetNumber[this];
             set => fields.SheetNumber[this] = value;
         }
+
 
         [DisplayName("Scanned Roll No")]
         public long? ScannedRollNo
@@ -86,15 +85,15 @@ namespace Rio.Workspace
             set => fields.ScannedImageSourcePath[this] = value;
         }
 
-        [DisplayName("Scanned Image"), Size(2000), ImageUploadEditor(FilenameFormat = "ScannedSheet/ScannedImage/~")]
+        [DisplayName("Scanned Image"), Size(2000)]
         public string ScannedImage
         {
             get => fields.ScannedImage[this];
             set => fields.ScannedImage[this] = value;
         }
 
-        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[dbo].[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
-        [LookupEditor("Workspace.ScannedBatchs")]
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[dbo].[ImportedScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [LookupEditor("Workspace.ImportedScannedBatches")]
         public Guid? ScannedBatchId
         {
             get => fields.ScannedBatchId[this];
@@ -102,10 +101,10 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Scanned Status")]
-        public EScannedStatus? ScannedStatus
+        public short? ScannedStatus
         {
-            get => (EScannedStatus?)fields.ScannedStatus[this];
-            set => fields.ScannedStatus[this] = (short?)value;
+            get => fields.ScannedStatus[this];
+            set => fields.ScannedStatus[this] = value;
         }
 
         [DisplayName("Scanned System Errors"), Size(1000)]
@@ -136,15 +135,16 @@ namespace Rio.Workspace
             set => fields.ResultProcessed[this] = value;
         }
 
+       
 
-        [DisplayName("Is Active"), NotNull,Insertable(false), Updatable(true )]
+        [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(false)]
         public short? IsActive
         {
             get => fields.IsActive[this];
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant Id"), NotNull ,Insertable(false), Updatable(false)]
+        [DisplayName("Tenant Id"), NotNull, Insertable(false), Updatable(false)]
         public int? TenantId
         {
             get => fields.TenantId[this];
@@ -340,12 +340,12 @@ namespace Rio.Workspace
         {
             get => fields.IsActive;
         }
-        public ScannedSheetRow()
+        public ImportedScannedSheetRow()
             : base()
         {
         }
 
-        public ScannedSheetRow(RowFields fields)
+        public ImportedScannedSheetRow(RowFields fields)
             : base(fields)
         {
         }

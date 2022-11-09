@@ -99,7 +99,6 @@ namespace Rio.Migrations.DefaultDB
                     .ForeignKey("SheetTypes", "Id")
                 .WithColumn("ScannedAt").AsDateTime().NotNullable()
                 .WithColumn("SheetNumber").AsString(50).Nullable()
-                .WithColumn("SheetGuid").AsGuid().NotNullable()
                 .WithColumn("ScannedRollNo").AsInt64().Nullable()
                 .WithColumn("ScannedExamNo").AsInt64().Nullable()
                 .WithColumn("CorrectedRollNo").AsInt64().Nullable()

@@ -1,5 +1,5 @@
 ﻿namespace Rio.Workspace {
-    export interface ScannedSheetRow {
+    export interface ImportedScannedSheetRow {
         Id?: string;
         SheetTypeId?: number;
         ScannedAt?: string;
@@ -12,7 +12,7 @@
         ScannedImageSourcePath?: string;
         ScannedImage?: string;
         ScannedBatchId?: string;
-        ScannedStatus?: Workspace.enums.EScannedStatus;
+        ScannedStatus?: number;
         ScannedSystemErrors?: string;
         ScannedUserErrors?: string;
         ScannedComments?: string;
@@ -51,16 +51,11 @@
         UpdateDate?: string;
     }
 
-    export namespace ScannedSheetRow {
+    export namespace ImportedScannedSheetRow {
         export const idProperty = 'Id';
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'SheetNumber';
-        export const localTextPrefix = 'Workspace.ScannedSheet';
-        export const lookupKey = 'Workspace.ScannedSheets';
-
-        export function getLookup(): Q.Lookup<ScannedSheetRow> {
-            return Q.getLookup<ScannedSheetRow>('Workspace.ScannedSheets');
-        }
+        export const localTextPrefix = 'Workspace.ImportedScannedSheet';
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';

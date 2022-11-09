@@ -4,7 +4,7 @@
         Name?: string;
         Description?: string;
         TotalQuestions?: number;
-        EPaperSize?: EPaperSize;
+        EPaperSize?: Workspace.enums.EPaperSize;
         HeightInPixel?: number;
         WidthInPixel?: number;
         SheetData?: string;

@@ -16,6 +16,11 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.ImportedScannedBatch';
+        export const lookupKey = 'Workspace.ImportedScannedBatches';
+
+        export function getLookup(): Q.Lookup<ImportedScannedBatchRow> {
+            return Q.getLookup<ImportedScannedBatchRow>('Workspace.ImportedScannedBatches');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';

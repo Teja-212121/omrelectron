@@ -1,13 +1,12 @@
-using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
 
 namespace Rio.Workspace.Forms
 {
-    [FormScript("Workspace.ScannedSheet")]
-    [BasedOnRow(typeof(ScannedSheetRow), CheckNames = true)]
-    public class ScannedSheetForm
+    [FormScript("Workspace.ImportedScannedSheet")]
+    [BasedOnRow(typeof(ImportedScannedSheetRow), CheckNames = true)]
+    public class ImportedScannedSheetForm
     {
         [HalfWidth]
         public int SheetTypeId { get; set; }
@@ -15,6 +14,7 @@ namespace Rio.Workspace.Forms
         public DateTime ScannedAt { get; set; }
         [HalfWidth]
         public string SheetNumber { get; set; }
+
         [HalfWidth]
         public long ScannedRollNo { get; set; }
         [HalfWidth]
@@ -25,14 +25,14 @@ namespace Rio.Workspace.Forms
         public long CorrectedExamNo { get; set; }
         [HalfWidth]
         public int ExamSetNo { get; set; }
-        [TextAreaEditor(Rows =3)]
+        [TextAreaEditor(Rows = 3)]
         public string ScannedImageSourcePath { get; set; }
-        
+        [HalfWidth]
         public string ScannedImage { get; set; }
         [HalfWidth]
         public Guid ScannedBatchId { get; set; }
         [HalfWidth]
-        public EScannedStatus ScannedStatus { get; set; }
+        public short ScannedStatus { get; set; }
         [TextAreaEditor(Rows = 3)]
         public string ScannedSystemErrors { get; set; }
         [TextAreaEditor(Rows = 3)]
@@ -41,6 +41,11 @@ namespace Rio.Workspace.Forms
         public string ScannedComments { get; set; }
         [HalfWidth]
         public bool ResultProcessed { get; set; }
-       // public int TenantId { get; set; }
+       /* public DateTime InsertDate { get; set; }
+        public int InsertUserId { get; set; }
+        public DateTime UpdateDate { get; set; }
+        public int UpdateUserId { get; set; }
+        public short IsActive { get; set; }
+        public int TenantId { get; set; }*/
     }
 }

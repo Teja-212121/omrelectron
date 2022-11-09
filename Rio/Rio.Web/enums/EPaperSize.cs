@@ -1,7 +1,7 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System.ComponentModel;
 
-namespace Rio.Workspace
+namespace Rio.Workspace.enums
 {
     [EnumKey("Workspace.EPaperSize")]
     public enum EPaperSize

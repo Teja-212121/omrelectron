@@ -1,9 +1,9 @@
 using Serenity.ComponentModel;
 using System.ComponentModel;
 
-namespace Rio.Workspace
+namespace Rio.Workspace.enums
 {
-    [EnumKey("Workspace.EPaperSize")]
+    [EnumKey("Workspace.EScannedStatus")]
     public enum EScannedStatus
     {
         [Description("Successful Sheet")]

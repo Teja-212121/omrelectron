@@ -21,5 +21,6 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(5002, "Scanned Data/Scanned Sheet", typeof(MyPages.ScannedSheetController), icon: "fa-circle-o")]
 [assembly: NavigationLink(5003, "Scanned Data/Scanned Question", typeof(MyPages.ScannedQuestionController), icon: "fa-circle-o")]
 [assembly: NavigationLink(5004, "Scanned Data/Imported Batch", typeof(MyPages.ImportedScannedBatchController), icon: "fa-circle-o")]
+[assembly: NavigationLink(5005, "Scanned Data/Imported Sheet", typeof(MyPages.ImportedScannedSheetController), icon: "fa-circle-o")]
 
 

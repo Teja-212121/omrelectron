@@ -11,6 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Imported Scanned Batch"), InstanceName("Imported Scanned Batch")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("Workspace.ImportedScannedBatches")]
     public sealed class ImportedScannedBatchRow :LoggingRow<ImportedScannedBatchRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false)]
