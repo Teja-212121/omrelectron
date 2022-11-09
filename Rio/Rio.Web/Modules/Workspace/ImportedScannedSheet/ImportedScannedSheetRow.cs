@@ -11,9 +11,11 @@ namespace Rio.Workspace
     [DisplayName("Imported Scanned Sheet"), InstanceName("Imported Scanned Sheet")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("Workspace.ImportedScannedSheets")]
     public sealed class ImportedScannedSheetRow : LoggingRow<ImportedScannedSheetRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false)]
+        [SortOrder(1, descending: true)]
         public Guid? Id
         {
             get => fields.Id[this];

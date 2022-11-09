@@ -7,13 +7,13 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ScannedQuestions]")]
-    [DisplayName("Scanned Question"), InstanceName("Scanned Question")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ImportedScannedQuestions]")]
+    [DisplayName("Imported Scanned Question"), InstanceName("Imported Scanned Question")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
-    public sealed class ScannedQuestionRow :LoggingRow<ScannedQuestionRow.RowFields>, IIdRow,IMultiTenantRow,IIsActiveRow
+    public sealed class ImportedScannedQuestionRow :LoggingRow<ImportedScannedQuestionRow.RowFields>, IIdRow,IMultiTenantRow, IIsActiveRow
     {
-        [DisplayName("Id"), Identity, IdProperty]
+        [DisplayName("Id"), Identity, IdProperty,QuickSearch]
         [SortOrder(1, descending: true)]
         public long? Id
         {
@@ -21,8 +21,8 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[dbo].[ScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
-        [LookupEditor("Workspace.ScannedSheets")]
+        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[dbo].[ImportedScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
+        [LookupEditor("Workspace.ImportedScannedSheets")]
         public Guid? ScannedSheetId
         {
             get => fields.ScannedSheetId[this];
@@ -51,7 +51,7 @@ namespace Rio.Workspace
         }
 
        
-        [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(false)]
+        [DisplayName("Is Active"), NotNull, Insertable(false), Updatable(false)]
         public short? IsActive
         {
             get => fields.IsActive[this];
@@ -226,17 +226,17 @@ namespace Rio.Workspace
         {
             get => fields.IsActive;
         }
-        public ScannedQuestionRow()
+        public ImportedScannedQuestionRow()
             : base()
         {
         }
 
-        public ScannedQuestionRow(RowFields fields)
+        public ImportedScannedQuestionRow(RowFields fields)
             : base(fields)
         {
         }
 
-        public class RowFields :LoggingRowFields
+        public class RowFields : LoggingRowFields
         {
             public Int64Field Id;
             public GuidField ScannedSheetId;

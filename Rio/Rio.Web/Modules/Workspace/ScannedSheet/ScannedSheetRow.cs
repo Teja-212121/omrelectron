@@ -16,6 +16,7 @@ namespace Rio.Workspace
     public sealed class ScannedSheetRow :LoggingRow<ScannedSheetRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false),QuickSearch]
+        [SortOrder(1, descending: true)]
         public Guid? Id
         {
             get => fields.Id[this];

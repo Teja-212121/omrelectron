@@ -51,6 +51,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ImportedScannedQuestions",
+          "Identifier": "ImportedScannedQuestion",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.ImportedScannedSheets",
           "Identifier": "ImportedScannedSheet",
           "Module": "Workspace",
