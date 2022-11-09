@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -58,6 +58,18 @@ namespace Rio.Workspace.Endpoints
             var bytes = exporter.Export(data, typeof(Columns.StudentColumns), request.ExportColumns);
             return ExcelContentResult.Create(bytes, "StudentList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
+        }
+
+        [AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse DeleteStudent(string[] ids, IUnitOfWork uow, [FromServices] IStudentDeleteHandler handler)
+        {
+            foreach (var id in ids)
+            {
+                DeleteRequest deleteRequest = new DeleteRequest();
+                deleteRequest.EntityId = id;
+                DeleteResponse del = handler.Delete(uow, deleteRequest);
+            }
+            return new SaveResponse();
         }
     }
 }

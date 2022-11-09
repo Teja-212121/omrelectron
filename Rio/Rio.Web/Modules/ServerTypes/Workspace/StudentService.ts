@@ -10,13 +10,15 @@ export namespace StudentService {
     export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<StudentRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<StudentRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function DeleteStudent(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
     export declare const enum Methods {
         Create = "Workspace/Student/Create",
         Update = "Workspace/Student/Update",
         Delete = "Workspace/Student/Delete",
         Retrieve = "Workspace/Student/Retrieve",
-        List = "Workspace/Student/List"
+        List = "Workspace/Student/List",
+        DeleteStudent = "Workspace/Student/DeleteStudent"
     }
 
     [
@@ -24,7 +26,8 @@ export namespace StudentService {
         'Update', 
         'Delete', 
         'Retrieve', 
-        'List'
+        'List', 
+        'DeleteStudent'
     ].forEach(x => {
         (<any>StudentService)[x] = function (r, s, o) {
             return serviceRequest(baseUrl + '/' + x, r, s, o);

@@ -72,13 +72,12 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
                 dialog.dialogOpen();
             },
             separator: true
-        });
+        });*/
 
         buttons.push({
             title: 'Download  Sample',
             cssClass: 'export-xlsx-button',
             onClick: () => {
-                *//*  debugger;*//*
                 var url = "~/Workspace/Student/StudentSample";
 
                 Q.postToService({ url: Q.resolveUrl(url), request: '', target: '_blank' });
@@ -86,13 +85,13 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
             separator: true
         });
 
-        buttons.push(ExcelExportHelper.createToolButton({
+        /*buttons.push(ExcelExportHelper.createToolButton({
             grid: this,
             title: 'Export',
             service: StudentService.baseUrl + '/ListExcel',
             onViewSubmit: () => this.onViewSubmit(),
             separator: true
-        }));
+        }));*/
 
         buttons.push({
             title: 'Delete Student', cssClass: 'delete-button',
@@ -112,7 +111,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
                 }
             },
             separator: true
-        });*/
+        });
 
         return buttons;
     }
