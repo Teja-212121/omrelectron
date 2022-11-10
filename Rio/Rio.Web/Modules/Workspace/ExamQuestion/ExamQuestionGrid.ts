@@ -1,6 +1,7 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { ExamQuestionColumns, ExamQuestionRow, ExamQuestionService } from '../../ServerTypes/Workspace';
 import { ExamQuestionDialog } from './ExamQuestionDialog';
+import { ExamQuestionImportDialog } from './ExamQuestionImportDialog';
 
 @Decorators.registerClass()
 export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
@@ -39,17 +40,33 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
                     Q.alert("Please select atleast one Exam Question!");
                     return;
                 }
-                new ExamQuestionUpdateDialog(this, true, SelectedKeys).loadNewAndOpenDialog();
+              /*  new ExamQuestionUpdateDialog(this, true, SelectedKeys).loadNewAndOpenDialog();*/
 
             }
         });
+
+        buttons.push({
+            title: 'Import From Excel',
+            cssClass: 'export-xlsx-button',
+            onClick: () => {
+                // open import dialog, let it handle rest
+                var dialog = new ExamQuestionImportDialog();
+                dialog.element.on('dialogclose', () => {
+                    this.refresh();
+                    dialog = null;
+                });
+                dialog.dialogOpen();
+            },
+            separator: true
+        });
+
 
         buttons.push({
             title: 'Download Sample',
             cssClass: 'export-xlsx-button',
             onClick: () => {
                 /*  debugger;*/
-                var url = "~/Workspace/ExamQuestion/ExamQuestionImportSample";
+                var url = "~/Workspace/ExamQuestion/ExamQuestionSample";
                 /*var url = "~/Uploads/ProductsImportSample.xlsx";*/
 
                 Q.postToService({ url: Q.resolveUrl(url), request: '', target: '_blank' });
