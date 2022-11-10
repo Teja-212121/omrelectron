@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ImportedScannedSheets]")]
     [DisplayName("Imported Scanned Sheet"), InstanceName("Imported Scanned Sheet")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.ScannedData)]
+    [ModifyPermission(PermissionKeys.ScannedData)]
     [LookupScript("Workspace.ImportedScannedSheets")]
     public sealed class ImportedScannedSheetRow : LoggingRow<ImportedScannedSheetRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {

@@ -37,10 +37,10 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'SheetDesignPdf';
         export const localTextPrefix = 'Workspace.SheetTypeTenant';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const deletePermission = 'Workspace:Sheets';
+        export const insertPermission = 'Workspace:Sheets';
+        export const readPermission = 'Workspace:Sheets';
+        export const updatePermission = 'Workspace:Sheets';
 
         export declare const enum Fields {
             Id = "Id",

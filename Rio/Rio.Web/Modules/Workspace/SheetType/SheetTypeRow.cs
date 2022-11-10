@@ -10,8 +10,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[SheetTypes]")]
     [DisplayName("Sheet Type"), InstanceName("Sheet Type")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.Sheets)]
+    [ModifyPermission(PermissionKeys.Sheets)]
     [LookupScript("Workspace.SheetTypes")]
     public sealed class SheetTypeRow : LoggingRow<SheetTypeRow.RowFields>, IIdRow, INameRow
     {

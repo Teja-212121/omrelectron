@@ -33,10 +33,10 @@ export abstract class SheetTypeRow {
     static getLookup() { return getLookup<SheetTypeRow>('Workspace.SheetTypes') }
     static async getLookupAsync() { return getLookupAsync<SheetTypeRow>('Workspace.SheetTypes') }
 
-    static readonly deletePermission = 'Administration:General';
-    static readonly insertPermission = 'Administration:General';
-    static readonly readPermission = 'Administration:General';
-    static readonly updatePermission = 'Administration:General';
+    static readonly deletePermission = 'Workspace:Sheets';
+    static readonly insertPermission = 'Workspace:Sheets';
+    static readonly readPermission = 'Workspace:Sheets';
+    static readonly updatePermission = 'Workspace:Sheets';
 
     static readonly Fields = fieldsProxy<SheetTypeRow>();
 }

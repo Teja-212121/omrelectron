@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ExamSections]")]
     [DisplayName("Exam Section"), InstanceName("Exam Section")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.Exams)]
+    [ModifyPermission(PermissionKeys.Exams)]
     [LookupScript("Workspace.ExamSection")]
     public sealed class ExamSectionRow : LoggingRow<ExamSectionRow.RowFields>, IIdRow, INameRow, IIsActiveRow, IMultiTenantRow
     {
