@@ -1,4 +1,4 @@
-﻿@model Rio.Common.DashboardPageModel
+@model Rio.Common.DashboardPageModel
 @inject Serenity.ITextLocalizer Localizer
 @{
     ViewData["Title"] = "Dashboard";
@@ -6,8 +6,8 @@
 }
 
 @section Head {
-@Html.StyleBundle("Pages/Dashboard")
-@Html.ScriptBundle("Pages/Dashboard")
+    @Html.StyleBundle("Pages/Dashboard")
+    @Html.ScriptBundle("Pages/Dashboard")
 }
 
 @section ContentHeader {
@@ -18,8 +18,8 @@
     <div class="col-lg-3 col-sm-6">
         <div class="card s-dashboard-card-sm">
             <div class="card-body">
-                <h3>@Model.OpenOrders</h3>
-                <p>Open Orders</p>
+                <h3>@Model.TotalStudents</h3>
+                <p>Total Student</p>
             </div>
             <div class="icon">
                 <i class="fa fa-shopping-cart"></i>
@@ -30,8 +30,8 @@
     <div class="col-lg-3 col-sm-6">
         <div class="card s-dashboard-card-sm s-alt">
             <div class="card-body">
-                <h3>@Model.ClosedOrderPercent<sup style="font-size: 20px">%</sup></h3>
-                <p>Closed Orders</p>
+                <h3>@Model.TotalScannedSheets</h3>
+                <p>Total Scanned Sheet</p>
             </div>
             <div class="icon">
                 <i class="fa fa-truck"></i>
@@ -42,8 +42,8 @@
     <div class="col-lg-3 col-sm-6">
         <div class="card s-dashboard-card-sm">
             <div class="card-body">
-                <h3>@Model.CustomerCount</h3>
-                <p>Total Customers</p>
+                <h3>@Model.TotalTests</h3>
+                <p>Total Test</p>
             </div>
             <div class="icon">
                 <i class="fa fa-user-plus"></i>
@@ -54,8 +54,20 @@
     <div class="col-lg-3 col-sm-6">
         <div class="card s-dashboard-card-sm s-alt">
             <div class="card-body">
-                <h3>@Model.ProductCount</h3>
-                <p>Product Types</p>
+                <h3>@Model.TotalAssignedSheet</h3>
+                <p>Total Assigned Sheet</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-tag"></i>
+            </div>
+            <a href="" class="card-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card s-dashboard-card-sm s-alt">
+            <div class="card-body">
+                <h3>@Model.BalanceSheet</h3>
+                <p>Balance sheet</p>
             </div>
             <div class="icon">
                 <i class="fa fa-tag"></i>
@@ -65,7 +77,7 @@
     </div>
 </div>
 
-<div class="row">
+@*<div class="row">
     <section class="col-lg-7">
         <div class="card s-dashboard-card">
             <div class="card-body">
@@ -196,7 +208,7 @@
                                     <div class="text-muted small text-nowrap mt-2">2:34 am</div>
                                 </div>
                                 <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 ms-3">
-                                    
+
                                     Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
                                 </div>
                             </div>
@@ -228,7 +240,7 @@
                                     <div class="text-muted small text-nowrap mt-2">2:37 am</div>
                                 </div>
                                 <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 ms-3">
-                                    
+
                                     Cras pulvinar, sapien id vehicula aliquet, diam velit elementum orci.
                                 </div>
                             </div>
@@ -249,7 +261,7 @@
                                     <div class="text-muted small text-nowrap mt-2">2:39 am</div>
                                 </div>
                                 <div class="s-chat-message-body flex-shrink-1 rounded py-2 px-3 ms-3">
-                                    
+
                                     Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
                                 </div>
                             </div>
@@ -276,7 +288,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card s-dashboard-card s-dashboard-todo">
             <div class="card-header pb-0">
                 <h3 class="card-title">Tasks</h3>
@@ -456,13 +468,13 @@
             </div>
         </div>
     </section>
-</div>
+</div>*@
 
-<script>
+@*<script>
 
     $(function () {
 
-        
+
         $('.daterange').daterangepicker({
             ranges: {
                 'Today': [moment(), moment()],
@@ -574,7 +586,7 @@
                 }
             }
         });
-      
+
         var salesByTypeChart = new Chart(document.getElementById('orders-by-type-chart'), {
             type: 'doughnut',
             data: {
@@ -602,7 +614,7 @@
                 datasets: [
                     {
                         label: 'Search',
-                        backgroundColor: "#206bc4", 
+                        backgroundColor: "#206bc4",
                         barPercentage: 0.7,
                         data: [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 2, 12, 5, 8, 22, 6, 8, 6, 4, 1, 8, 24, 29, 51, 40, 47, 23, 26, 50, 26, 41, 22, 46, 47, 81, 46, 6]
                     },
@@ -655,7 +667,7 @@
                 }
             }
         });
-            
+
 
         var sparklineOpt = {
             type: 'bar',
@@ -690,4 +702,4 @@
             });
         }
     });
-</script>
+</script>*@
