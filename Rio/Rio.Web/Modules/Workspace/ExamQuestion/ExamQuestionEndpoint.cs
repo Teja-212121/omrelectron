@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -58,6 +58,18 @@ namespace Rio.Workspace.Endpoints
             var bytes = exporter.Export(data, typeof(Columns.ExamQuestionColumns), request.ExportColumns);
             return ExcelContentResult.Create(bytes, "ExamQuestionList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
+        }
+
+        [AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse DeleteExamQuestion(string[] ids, IUnitOfWork uow, [FromServices] IExamQuestionDeleteHandler handler)
+        {
+            foreach (var id in ids)
+            {
+                DeleteRequest deleteRequest = new DeleteRequest();
+                deleteRequest.EntityId = id;
+                DeleteResponse del = handler.Delete(uow, deleteRequest);
+            }
+            return new SaveResponse();
         }
     }
 }
