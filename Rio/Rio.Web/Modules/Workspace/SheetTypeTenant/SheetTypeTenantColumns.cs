@@ -12,6 +12,7 @@ namespace Rio.Workspace.Columns
         public int Id { get; set; }
         public string SheetTypeName { get; set; }
         public string TenantTenantName { get; set; }
+        public int SheetTypeTotalQuestions { get; set; }
         public int SheetTypeEPaperSize { get; set; }
         public int SheetTypeHeightInPixel { get; set; }
         public int SheetTypeWidthInPixel { get; set; }
@@ -24,6 +25,8 @@ namespace Rio.Workspace.Columns
         [DisplayName("Date")]
         [QuickFilter]
         public DateTime InsertDate { get; set; }
+        [QuickFilter]
+        public int TenantId { get; set; }
 
         // public float DisplayOrder { get; set; }
         //  public bool IsDefault { get; set; }

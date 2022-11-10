@@ -81,7 +81,7 @@ namespace Rio.Workspace
             set => fields.SheetTypeDescription[this] = value;
         }
 
-        [DisplayName("Sheet Type Total Questions"), Expression("jSheetType.[TotalQuestions]")]
+        [DisplayName(" Total Questions"), Expression("jSheetType.[TotalQuestions]")]
         public int? SheetTypeTotalQuestions
         {
             get => fields.SheetTypeTotalQuestions[this];
@@ -193,7 +193,7 @@ namespace Rio.Workspace
             set => fields.SheetTypeIsActive[this] = value;
         }
 
-        [DisplayName("Tenant Tenant Name"), Expression("jTenant.[TenantName]")]
+        [DisplayName("Tenant  Name"), Expression("jTenant.[TenantName]")]
         public string TenantTenantName
         {
             get => fields.TenantTenantName[this];
