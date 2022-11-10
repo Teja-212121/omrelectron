@@ -8,7 +8,7 @@ using System.ComponentModel;
 namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[SheetTypesTenants]")]
-    [DisplayName("Sheet Type Tenant"), InstanceName("Sheet Type Tenant")]
+    [DisplayName("My Sheet Types"), InstanceName("My Sheet Types")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     public sealed class SheetTypeTenantRow : LoggingRow<SheetTypeTenantRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
