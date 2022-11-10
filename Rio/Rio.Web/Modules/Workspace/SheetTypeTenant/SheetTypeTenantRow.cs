@@ -8,7 +8,7 @@ using System.ComponentModel;
 namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[SheetTypesTenants]")]
-    [DisplayName("Sheet Type Tenant"), InstanceName("Sheet Type Tenant")]
+    [DisplayName("My Sheet Types"), InstanceName("My Sheet Types")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     public sealed class SheetTypeTenantRow : LoggingRow<SheetTypeTenantRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
@@ -81,7 +81,7 @@ namespace Rio.Workspace
             set => fields.SheetTypeDescription[this] = value;
         }
 
-        [DisplayName("Sheet Type Total Questions"), Expression("jSheetType.[TotalQuestions]")]
+        [DisplayName(" Total Questions"), Expression("jSheetType.[TotalQuestions]")]
         public int? SheetTypeTotalQuestions
         {
             get => fields.SheetTypeTotalQuestions[this];
@@ -193,7 +193,7 @@ namespace Rio.Workspace
             set => fields.SheetTypeIsActive[this] = value;
         }
 
-        [DisplayName("Tenant Tenant Name"), Expression("jTenant.[TenantName]")]
+        [DisplayName("Tenant  Name"), Expression("jTenant.[TenantName]")]
         public string TenantTenantName
         {
             get => fields.TenantTenantName[this];

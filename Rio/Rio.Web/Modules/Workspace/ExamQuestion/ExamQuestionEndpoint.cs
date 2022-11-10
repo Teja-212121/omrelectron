@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
+using Serenity;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using MyRow = Rio.Workspace.ExamQuestionRow;
@@ -71,5 +74,107 @@ namespace Rio.Workspace.Endpoints
             }
             return new SaveResponse();
         }
+
+        [HttpPost]
+        public ExcelImportResponse ExcelImport(IUnitOfWork uow, ExcelImportRequest request,
+            [FromServices] IUploadStorage uploadStorage,
+            [FromServices] IExamQuestionSaveHandler handler)
+        {
+
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.FileName))
+                throw new ArgumentNullException(nameof(request.FileName));
+
+            if (uploadStorage is null)
+                throw new ArgumentNullException(nameof(uploadStorage));
+
+            UploadPathHelper.CheckFileNameSecurity(request.FileName);
+
+            if (!request.FileName.StartsWith("temporary/", StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentOutOfRangeException(nameof(request.FileName));
+
+            ExcelPackage ep = new();
+            using (var fs = uploadStorage.OpenFile(request.FileName))
+                ep.Load(fs);
+
+            var p = MyRow.Fields;
+            //var p = ProductsRow.Fields;*/
+
+            var response = new ExcelImportResponse
+            {
+                ErrorList = new List<string>()
+            };
+
+            var worksheet = ep.Workbook.Worksheets[0];
+
+            for (var row = 2; row <= worksheet.Dimension.End.Row; row++)
+            {
+                try
+                {
+                    MyRow Row = new MyRow();
+
+                        Row.ExamId = Convert.ToInt32(worksheet.Cells[row, 1].Value ?? null);
+                    if (Row.ExamId == null)
+                    {
+                        response.ErrorList.Add("Error On Row " + row + ": ExamId Not found");
+                        continue;
+                    }
+                    Row.QuestionIndex = Convert.ToInt32(worksheet.Cells[row, 2].Value ?? null);
+                    Row.RightOptions = Convert.ToInt16(worksheet.Cells[row, 3].Value ?? null);
+                    Row.Score = Convert.ToInt32(worksheet.Cells[row, 4].Value ?? null);
+                    Row.ExamSectionId = Convert.ToInt32(worksheet.Cells[row, 5].Value ?? null);
+                    if (Row.ExamSectionId == null)
+                    {
+                        response.ErrorList.Add("Error On Row " + row + ": Exam Section Id Not found");
+                        continue;
+                    }
+                    else
+                    {
+                        var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(MyRow.Fields.Id == Row.ExamSectionId.Value);
+                        if (examsectionid == null)
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
+                            continue;
+                        }
+                        else
+                            Row.ExamSectionId = examsectionid.Id;
+                    }
+                    Row.RuleTypeId = Convert.ToInt32(worksheet.Cells[row, 6].Value ?? null);
+                    if (Row.RuleTypeId == null)
+                    {
+                        response.ErrorList.Add("Error On Row " + row + ": Rule Type Id Not found");
+                        continue;
+                    }
+                    else
+                    {
+                        var ruletypeid = uow.Connection.TryFirst<RuleTypeRow>(MyRow.Fields.Id == Row.RuleTypeId.Value);
+                        if (ruletypeid == null)
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Invalid Rule Type Id!!!");
+                            continue;
+                        }
+                        else
+                            Row.RuleTypeId = ruletypeid.Id;
+                    }
+                    Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 7].Value ?? null);
+                    Row.InsertDate = DateTime.UtcNow;
+                    Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
+
+                    uow.Connection.Insert<ExamQuestionRow>(Row);
+
+                    response.Inserted = response.Inserted + 1;
+
+                }
+                catch (Exception)/*(Exception ex)*/
+                {
+                    //response.ErrorList.Add("Exception on Row " + row + ": " + ex.Message);
+                    throw;
+                }
+            }
+            return response;
+
+        }
     }
 }
+    
