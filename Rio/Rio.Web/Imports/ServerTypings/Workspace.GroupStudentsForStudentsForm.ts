@@ -3,7 +3,7 @@
         RowIds: Serenity.StringEditor;
         Id: Serenity.StringEditor;
         GroupId: Serenity.LookupEditor;
-        StudentId: Serenity.LookupEditor;
+        StudentId: Serenity.StringEditor;
     }
 
     export class GroupStudentsForStudentsForm extends Serenity.PrefixedContext {
@@ -24,7 +24,7 @@
                     'RowIds', w0,
                     'Id', w0,
                     'GroupId', w1,
-                    'StudentId', w1
+                    'StudentId', w0
                 ]);
             }
         }

@@ -6,9 +6,6 @@ import { StudentGrid } from '../Student/StudentGrid';
 export class GroupStudentsForStudentsDialog extends EntityDialog<GroupStudentRow, any> {
     protected getFormKey() { return GroupStudentsForStudentsForm.formKey; }
     protected getService() { return GroupStudentService.baseUrl; }
-        /*protected getDeletePermission() { return GroupRow.deletePermission; }
-        protected getInsertPermission() { return GroupRow.insertPermission; }
-        protected getUpdatePermission() { return GroupRow.updatePermission; }*/
 
     protected form = new GroupStudentsForStudentsForm(this.idPrefix);
         public rowids: string;
@@ -20,9 +17,9 @@ export class GroupStudentsForStudentsDialog extends EntityDialog<GroupStudentRow
 
             this.form = new GroupStudentsForStudentsForm(this.idPrefix);
             //debugger;
-            this.rowids = selectedids;
+            /*this.rowids = selectedids;
 
-            /*this.form.Id.changeSelect2(e => {
+            this.form.Id.changeSelect2(e => {
                 var groupId = Q.toId(this.form.Id.value);
                 if (groupId != null) {
                     this.form.Name.value = Workspace.GroupRow.getLookup().itemById[groupId].Name;
@@ -36,7 +33,6 @@ export class GroupStudentsForStudentsDialog extends EntityDialog<GroupStudentRow
             //debugger;
             this.form.RowIds.value = this.rowids;
             this.form.RowIds.getGridField().toggle(false);
-
         }
 
         onSaveSuccess(response) {

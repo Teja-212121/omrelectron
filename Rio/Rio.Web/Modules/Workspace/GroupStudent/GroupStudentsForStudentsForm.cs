@@ -19,7 +19,6 @@ namespace Rio.Workspace.Forms
         public Int32Field GroupId { get; set; }
         [HalfWidth]
         [DisplayName("Student Name"), QuickSearch, NameProperty]
-        [LookupEditor("Workspace.Student")]
         public Int32Field StudentId { get; set; }
     }
 }
