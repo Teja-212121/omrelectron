@@ -21,6 +21,13 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
+        [NotMapped]
+        public String RowIds
+        {
+            get { return Fields.RowIds[this]; }
+            set { Fields.RowIds[this] = value; }
+        }
+
         [DisplayName("Exam"), NotNull, ForeignKey("[dbo].[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
         [LookupEditor("Workspace.Exam")]
         public long? ExamId
@@ -29,21 +36,21 @@ namespace Rio.Workspace
             set => fields.ExamId[this] = value;
         }
 
-        [DisplayName("Question Index"), NotNull]
+        [DisplayName("Question Index")]
         public int? QuestionIndex
         {
             get => fields.QuestionIndex[this];
             set => fields.QuestionIndex[this] = value;
         }
 
-        [DisplayName("Right Options"), NotNull]
+        [DisplayName("Right Options")]
         public short? RightOptions
         {
             get => fields.RightOptions[this];
             set => fields.RightOptions[this] = value;
         }
 
-        [DisplayName("Score"), NotNull]
+        [DisplayName("Score")]
         public float? Score
         {
             get => fields.Score[this];
@@ -57,7 +64,7 @@ namespace Rio.Workspace
             set => fields.Tags[this] = value;
         }
 
-        [DisplayName("Rule Type"), NotNull, ForeignKey("[dbo].[RuleTypes]", "Id"), LeftJoin("jRuleType"), TextualField("RuleTypeName")]
+        [DisplayName("Rule Type"), ForeignKey("[dbo].[RuleTypes]", "Id"), LeftJoin("jRuleType"), TextualField("RuleTypeName")]
         [LookupEditor("Workspace.RuleType")]
         public int? RuleTypeId
         {
@@ -322,6 +329,7 @@ namespace Rio.Workspace
             public Int32Field ExamSectionUpdateUserId;
             public Int16Field ExamSectionIsActive;
             public Int32Field ExamSectionTenantId;
+            public StringField RowIds;
         }
     }
 }

@@ -35,6 +35,7 @@
         ExamSectionUpdateUserId?: number;
         ExamSectionIsActive?: number;
         ExamSectionTenantId?: number;
+        RowIds?: string;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -87,6 +88,7 @@
             ExamSectionUpdateUserId = "ExamSectionUpdateUserId",
             ExamSectionIsActive = "ExamSectionIsActive",
             ExamSectionTenantId = "ExamSectionTenantId",
+            RowIds = "RowIds",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

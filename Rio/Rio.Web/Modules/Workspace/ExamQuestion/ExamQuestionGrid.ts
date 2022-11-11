@@ -2,6 +2,7 @@ import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/core
 import { ExamQuestionColumns, ExamQuestionRow, ExamQuestionService } from '../../ServerTypes/Workspace';
 import { ExamQuestionDialog } from './ExamQuestionDialog';
 import { ExamQuestionImportDialog } from './ExamQuestionImportDialog';
+import { ExamQuestionUpdateDialog } from './ExamQuestionUpdateDialog';
 
 @Decorators.registerClass()
 export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
@@ -40,7 +41,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
                     Q.alert("Please select atleast one Exam Question!");
                     return;
                 }
-              /*  new ExamQuestionUpdateDialog(this, true, SelectedKeys).loadNewAndOpenDialog();*/
+                new ExamQuestionUpdateDialog(this, true, SelectedKeys).loadNewAndOpenDialog();
 
             }
         });
