@@ -33,6 +33,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ExamRankWiseResults",
+          "Identifier": "ExamRankWiseResult",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.ExamResults",
           "Identifier": "ExamResult",
           "Module": "Workspace",
