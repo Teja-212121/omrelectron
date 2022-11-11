@@ -16,7 +16,7 @@ namespace Rio.Workspace.Columns
         public string ExamCode { get; set; }
         public string ParentName { get; set; }
         [QuickFilter]
-        public string ExamName { get; set; }
+        public string ExamId { get; set; }
         [QuickFilter]
         public DateTime ExamInsertDate { get; set; }
         
