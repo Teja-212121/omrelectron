@@ -5,6 +5,7 @@ export interface ExamForm {
     Code: StringEditor;
     Name: StringEditor;
     Description: TextAreaEditor;
+    TotalQuestions: IntegerEditor;
     TotalMarks: IntegerEditor;
     NegativeMarks: DecimalEditor;
     OptionsAvailable: IntegerEditor;
@@ -30,6 +31,7 @@ export class ExamForm extends PrefixedContext {
                 'Code', w0,
                 'Name', w0,
                 'Description', w1,
+                'TotalQuestions', w2,
                 'TotalMarks', w2,
                 'NegativeMarks', w3,
                 'OptionsAvailable', w2,

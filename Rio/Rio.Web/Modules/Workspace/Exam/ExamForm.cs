@@ -16,6 +16,8 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public string Description { get; set; }
         [HalfWidth]
+        public int TotalQuestions { get; set; }
+        [HalfWidth]
         public int TotalMarks { get; set; }
         [HalfWidth]
         public float NegativeMarks { get; set; }

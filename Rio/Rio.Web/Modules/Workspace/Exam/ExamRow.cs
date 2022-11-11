@@ -43,6 +43,13 @@ namespace Rio.Workspace
             set => fields.Description[this] = value;
         }
 
+        [DisplayName("Total Questions"), NotNull]
+        public int? TotalQuestions
+        {
+            get => fields.TotalQuestions[this];
+            set => fields.TotalQuestions[this] = value;
+        }
+
         [DisplayName("Total Marks"), NotNull]
         public int? TotalMarks
         {
@@ -110,6 +117,7 @@ namespace Rio.Workspace
             public StringField Code;
             public StringField Name;
             public StringField Description;
+            public Int32Field TotalQuestions;
             public Int32Field TotalMarks;
             public SingleField NegativeMarks;
             public Int16Field OptionsAvailable;

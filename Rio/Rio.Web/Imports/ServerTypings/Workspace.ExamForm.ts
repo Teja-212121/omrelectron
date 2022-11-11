@@ -3,6 +3,7 @@
         Code: Serenity.StringEditor;
         Name: Serenity.StringEditor;
         Description: Serenity.TextAreaEditor;
+        TotalQuestions: Serenity.IntegerEditor;
         TotalMarks: Serenity.IntegerEditor;
         NegativeMarks: Serenity.DecimalEditor;
         OptionsAvailable: Serenity.IntegerEditor;
@@ -29,6 +30,7 @@
                     'Code', w0,
                     'Name', w0,
                     'Description', w1,
+                    'TotalQuestions', w2,
                     'TotalMarks', w2,
                     'NegativeMarks', w3,
                     'OptionsAvailable', w2,
