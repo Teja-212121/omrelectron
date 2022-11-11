@@ -33,6 +33,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ExamSectionResults",
+          "Identifier": "ExamSectionResult",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.ExamSections",
           "Identifier": "ExamSection",
           "Module": "Workspace",
