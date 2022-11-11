@@ -12,36 +12,20 @@ export class GroupStudentsForStudentsDialog extends EntityDialog<GroupStudentRow
 
         private checkGrid: StudentGrid;
         constructor(gridToRefresh, FormMode, selectedids) {
-
             super();
-
             this.form = new GroupStudentsForStudentsForm(this.idPrefix);
-            //debugger;
-            /*this.rowids = selectedids;
-
-            this.form.Id.changeSelect2(e => {
-                var groupId = Q.toId(this.form.Id.value);
-                if (groupId != null) {
-                    this.form.Name.value = Workspace.GroupRow.getLookup().itemById[groupId].Name;
-                }
-            });*/
+            this.rowids = selectedids;
         }
 
         loadEntity(entity: StudentRow) {
-            //debugger;
             super.loadEntity(entity);
-            //debugger;
             this.form.RowIds.value = this.rowids;
-            this.form.RowIds.getGridField().toggle(false);
         }
 
         onSaveSuccess(response) {
             super.onSaveSuccess(response);
-            //debugger;
             if (this.form.RowIds.value != "") {
                 Q.notifySuccess("Added sucessfully");
-                //this.Questionsgrid.rowSelection.resetCheckedAndRefresh();
-                //this.Questionsgrid.refresh();
             }
         }
     }

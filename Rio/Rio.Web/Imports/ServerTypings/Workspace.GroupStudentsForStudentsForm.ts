@@ -1,9 +1,7 @@
 ﻿namespace Rio.Workspace {
     export interface GroupStudentsForStudentsForm {
         RowIds: Serenity.StringEditor;
-        Id: Serenity.StringEditor;
         GroupId: Serenity.LookupEditor;
-        StudentId: Serenity.StringEditor;
     }
 
     export class GroupStudentsForStudentsForm extends Serenity.PrefixedContext {
@@ -22,9 +20,7 @@
 
                 Q.initFormType(GroupStudentsForStudentsForm, [
                     'RowIds', w0,
-                    'Id', w0,
-                    'GroupId', w1,
-                    'StudentId', w0
+                    'GroupId', w1
                 ]);
             }
         }
