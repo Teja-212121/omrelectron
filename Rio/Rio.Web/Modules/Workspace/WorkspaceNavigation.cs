@@ -14,7 +14,7 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(3005, "Exams/Rule Types", typeof(MyPages.RuleTypeController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3006, "Exams/Exam Section Results", typeof(MyPages.ExamSectionResultController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3007, "Exams/Exam Question Results", typeof(MyPages.ExamQuestionResultController), icon: "fa-circle-o")]
-[assembly: NavigationLink(3008, "Exams/Exam Group Wise Result", typeof(MyPages.ExamGroupWiseResultController), icon: "fa-circle-o")]
+[assembly: NavigationLink(3008, "Exams/Exam Group Wise Results", typeof(MyPages.ExamGroupWiseResultController), icon: "fa-circle-o")]
 
 
 
