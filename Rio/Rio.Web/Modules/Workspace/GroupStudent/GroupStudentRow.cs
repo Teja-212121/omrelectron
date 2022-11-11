@@ -36,7 +36,7 @@ namespace Rio.Workspace
             set => fields.GroupId[this] = value;
         }
 
-        [DisplayName("Student"), NotNull, ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFullName")]
+        [DisplayName("Student"), ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFullName")]
         [LookupEditor("Workspace.Student")]
         public long? StudentId
         {
