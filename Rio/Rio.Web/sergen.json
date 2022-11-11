@@ -15,6 +15,12 @@
       "Key": "Default",
       "Tables": [
         {
+          "Tablename": "dbo.ExamQuestionResults",
+          "Identifier": "ExamQuestionResult",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.ExamQuestions",
           "Identifier": "ExamQuestion",
           "Module": "Workspace",

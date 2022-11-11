@@ -1,4 +1,4 @@
-using Serenity.Navigation;
+﻿using Serenity.Navigation;
 using MyPages = Rio.Workspace.Pages;
 
 
@@ -13,6 +13,7 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(3004, "Exams/Exam Results", typeof(MyPages.ExamResultController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3005, "Exams/Rule Types", typeof(MyPages.RuleTypeController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3006, "Exams/Exam Section Results", typeof(MyPages.ExamSectionResultController), icon: "fa-circle-o")]
+[assembly: NavigationLink(3007, "Exams/Exam Question Results", typeof(MyPages.ExamQuestionResultController), icon: "fa-circle-o")]
 
 
 
