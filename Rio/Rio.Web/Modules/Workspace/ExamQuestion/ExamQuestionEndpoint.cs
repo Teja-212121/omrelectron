@@ -114,11 +114,22 @@ namespace Rio.Workspace.Endpoints
                 {
                     MyRow Row = new MyRow();
 
-                        Row.ExamId = Convert.ToInt32(worksheet.Cells[row, 1].Value ?? null);
+                    Row.ExamId = Convert.ToInt32(worksheet.Cells[row, 1].Value ?? null);
                     if (Row.ExamId == null)
                     {
                         response.ErrorList.Add("Error On Row " + row + ": ExamId Not found");
                         continue;
+                    }
+                    else
+                    {
+                        var examId = uow.Connection.TryFirst<ExamRow>(ExamRow.Fields.Id == Row.ExamId.Value);
+                        if (examId == null)
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Id!!!");
+                            continue;
+                        }
+                        else
+                            Row.ExamId = examId.Id;
                     }
                     Row.QuestionIndex = Convert.ToInt32(worksheet.Cells[row, 2].Value ?? null);
                     Row.RightOptions = Convert.ToInt16(worksheet.Cells[row, 3].Value ?? null);
@@ -129,9 +140,9 @@ namespace Rio.Workspace.Endpoints
                         response.ErrorList.Add("Error On Row " + row + ": Exam Section Id Not found");
                         continue;
                     }
-                    else
+                    /*else
                     {
-                        var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(MyRow.Fields.Id == Row.ExamSectionId.Value);
+                        var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.Id == Row.ExamSectionId.Value);
                         if (examsectionid == null)
                         {
                             response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
@@ -139,16 +150,16 @@ namespace Rio.Workspace.Endpoints
                         }
                         else
                             Row.ExamSectionId = examsectionid.Id;
-                    }
+                    }*/
                     Row.RuleTypeId = Convert.ToInt32(worksheet.Cells[row, 6].Value ?? null);
                     if (Row.RuleTypeId == null)
                     {
                         response.ErrorList.Add("Error On Row " + row + ": Rule Type Id Not found");
                         continue;
                     }
-                    else
+                    /*else
                     {
-                        var ruletypeid = uow.Connection.TryFirst<RuleTypeRow>(MyRow.Fields.Id == Row.RuleTypeId.Value);
+                        var ruletypeid = uow.Connection.TryFirst<RuleTypeRow>(RuleTypeRow.Fields.Id == Row.RuleTypeId.Value);
                         if (ruletypeid == null)
                         {
                             response.ErrorList.Add("Error On Row " + row + ": Invalid Rule Type Id!!!");
@@ -156,14 +167,14 @@ namespace Rio.Workspace.Endpoints
                         }
                         else
                             Row.RuleTypeId = ruletypeid.Id;
-                    }
+                    }*/
                     Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 7].Value ?? null);
                     Row.InsertDate = DateTime.UtcNow;
                     Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
 
                     uow.Connection.Insert<ExamQuestionRow>(Row);
-
                     response.Inserted = response.Inserted + 1;
+
 
                 }
                 catch (Exception)/*(Exception ex)*/

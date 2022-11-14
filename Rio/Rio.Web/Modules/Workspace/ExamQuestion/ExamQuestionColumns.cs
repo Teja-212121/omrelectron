@@ -11,6 +11,7 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
         [QuickFilter]
+        public long ExamId { get; set; }
         public string ExamCode { get; set; }
         public int QuestionIndex { get; set; }
         public short RightOptions { get; set; }
