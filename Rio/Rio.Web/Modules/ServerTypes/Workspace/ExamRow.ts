@@ -5,6 +5,7 @@ export interface ExamRow {
     Code?: string;
     Name?: string;
     Description?: string;
+    TotalQuestions?: number;
     TotalMarks?: number;
     NegativeMarks?: number;
     OptionsAvailable?: number;

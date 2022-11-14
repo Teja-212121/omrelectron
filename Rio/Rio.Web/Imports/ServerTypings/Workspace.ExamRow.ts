@@ -4,6 +4,7 @@
         Code?: string;
         Name?: string;
         Description?: string;
+        TotalQuestions?: number;
         TotalMarks?: number;
         NegativeMarks?: number;
         OptionsAvailable?: number;
@@ -36,6 +37,7 @@
             Code = "Code",
             Name = "Name",
             Description = "Description",
+            TotalQuestions = "TotalQuestions",
             TotalMarks = "TotalMarks",
             NegativeMarks = "NegativeMarks",
             OptionsAvailable = "OptionsAvailable",
