@@ -11,10 +11,10 @@ namespace Rio.Workspace
     [DisplayName("Exam Section"), InstanceName("Exam Section")]
     [ReadPermission(PermissionKeys.Exams)]
     [ModifyPermission(PermissionKeys.Exams)]
-    [LookupScript("Workspace.ExamSection")]
+    [LookupScript(typeof(Lookups.ExamSectionLookup))]
     public sealed class ExamSectionRow : LoggingRow<ExamSectionRow.RowFields>, IIdRow, INameRow, IIsActiveRow, IMultiTenantRow
     {
-        [DisplayName("Id"), Identity, IdProperty]
+        [DisplayName("Id"), Identity, IdProperty, LookupInclude]
         [SortOrder(1, descending: true)]
         public int? Id
         {
@@ -37,8 +37,8 @@ namespace Rio.Workspace
             set => fields.Description[this] = value;
         }
 
-        [DisplayName("Exam"), NotNull, ForeignKey("[dbo].[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
-        [LookupEditor("Workspace.Exam")]
+        [DisplayName("Exam"), NotNull, ForeignKey("[dbo].[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode"), LookupInclude]
+        [LookupEditor(typeof(ExamRow))]
         public long? ExamId
         {
             get => fields.ExamId[this];
@@ -46,7 +46,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Parent"), ForeignKey("[dbo].[ExamSections]", "Id"), LeftJoin("jParent"), TextualField("ParentName")]
-        [LookupEditor("Workspace.ExamSection")]
+        [LookupEditor(typeof(Lookups.ExamSectionLookup), CascadeFrom = "ExamId")]
         public int? ParentId
         {
             get => fields.ParentId[this];
@@ -75,7 +75,7 @@ namespace Rio.Workspace
             set => fields.ExamCode[this] = value;
         }
 
-        [DisplayName("Exam Name"), Expression("jExam.[Name]")]
+        [DisplayName("Exam Name"), Expression("jExam.[Name]"), LookupInclude]
         public string ExamName
         {
             get => fields.ExamName[this];
