@@ -1,4 +1,5 @@
-﻿using Serenity.Services;
+using Serenity.Services;
+using Serenity.Web;
 using MyRequest = Serenity.Services.ListRequest;
 using MyResponse = Serenity.Services.ListResponse<Rio.Workspace.SheetTypeRow>;
 using MyRow = Rio.Workspace.SheetTypeRow;
@@ -12,6 +13,11 @@ namespace Rio.Workspace
         public SheetTypeListHandler(IRequestContext context)
              : base(context)
         {
+        }
+        protected override MyRow ProcessEntity(MyRow row)
+        {
+            Row.OverlayImage = VirtualPathUtility.ToAbsolute("","~/upload/" + Row.OverlayImage);
+            return base.ProcessEntity(row);
         }
     }
 }
