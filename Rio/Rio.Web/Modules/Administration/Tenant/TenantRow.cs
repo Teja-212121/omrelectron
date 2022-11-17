@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace Rio.Administration
 {
-    [ConnectionKey("Default"), Module("Administration"), TableName("[dbo].[Tenants]")]
+    [ConnectionKey("Default"), Module("Administration"), TableName("[Tenants]")]
     [DisplayName("Tenant"), InstanceName("Tenant")]
     [ReadPermission(PermissionKeys.Tenants)]
     [ModifyPermission(PermissionKeys.Tenants)]

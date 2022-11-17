@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[SheetTypesTenants]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[SheetTypesTenants]")]
     [DisplayName("My Sheet Types"), InstanceName("My Sheet Types")]
     [ReadPermission(PermissionKeys.Sheets)]
     [ModifyPermission(PermissionKeys.Sheets)]
@@ -21,7 +21,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Sheet Type"), NotNull, ForeignKey("[dbo].[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
+        [DisplayName("Sheet Type"), NotNull, ForeignKey("[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
         [LookupEditor("Workspace.SheetTypes")]
         public int? SheetTypeId
         {
@@ -29,7 +29,7 @@ namespace Rio.Workspace
             set => fields.SheetTypeId[this] = value;
         }
 
-        [DisplayName("Tenant"), NotNull, ForeignKey("[dbo].[Tenants]", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
+        [DisplayName("Tenant"), NotNull, ForeignKey("[Tenants]", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
         [Insertable(false), Updatable(false)]
         [LookupEditor("Administration.Tenant")]
         public int? TenantId

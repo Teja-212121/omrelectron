@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ExamSectionResults]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ExamSectionResults]")]
     [DisplayName("Exam Section Result"), InstanceName("Exam Section Result")]
     [ReadPermission(PermissionKeys.Exams)]
     [ModifyPermission(PermissionKeys.Exams)]
@@ -22,7 +22,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Student"), NotNull, ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
+        [DisplayName("Student"), NotNull, ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
         [LookupEditor("Workspace.Student")]
         public long? StudentId
         {
@@ -51,7 +51,7 @@ namespace Rio.Workspace
             set => fields.SheetGuid[this] = value;
         }
 
-        [DisplayName("Exam"), NotNull, ForeignKey("[dbo].[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
+        [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
         [LookupEditor(typeof(ExamRow))]
         public long? ExamId
         {
@@ -59,7 +59,7 @@ namespace Rio.Workspace
             set => fields.ExamId[this] = value;
         }
 
-        [DisplayName("Exam Section"), NotNull, ForeignKey("[dbo].[ExamSections]", "Id"), LeftJoin("jExamSection"), TextualField("ExamSectionName")]
+        [DisplayName("Exam Section"), NotNull, ForeignKey("[ExamSections]", "Id"), LeftJoin("jExamSection"), TextualField("ExamSectionName")]
         [LookupEditor("Workspace.ExamSection", CascadeFrom = "ExamId")]
         public int? ExamSectionId
         {

@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[SheetTypes]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[SheetTypes]")]
     [DisplayName("Sheet Type"), InstanceName("Sheet Type")]
     [ReadPermission(PermissionKeys.Sheets)]
     [ModifyPermission(PermissionKeys.Sheets)]

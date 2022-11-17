@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ImportedScannedSheets]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ImportedScannedSheets]")]
     [DisplayName("Imported Scanned Sheet"), InstanceName("Imported Scanned Sheet")]
     [ReadPermission(PermissionKeys.ScannedData)]
     [ModifyPermission(PermissionKeys.ScannedData)]
@@ -22,7 +22,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Sheet Type"), NotNull, ForeignKey("[dbo].[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
+        [DisplayName("Sheet Type"), NotNull, ForeignKey("[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
         [LookupEditor("Workspace.SheetTypes")]
         public int? SheetTypeId
         {
@@ -94,7 +94,7 @@ namespace Rio.Workspace
             set => fields.ScannedImage[this] = value;
         }
 
-        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[dbo].[ImportedScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ImportedScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
         [LookupEditor("Workspace.ImportedScannedBatches")]
         public Guid? ScannedBatchId
         {

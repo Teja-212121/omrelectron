@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[RuleTypes]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[RuleTypes]")]
     [DisplayName("Rule Type"), InstanceName("Rule Type")]
     [ReadPermission(PermissionKeys.Exams)]
     [ModifyPermission(PermissionKeys.Exams)]

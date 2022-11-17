@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ExamRankWiseResults]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ExamRankWiseResults]")]
     [DisplayName("Exam Rank Wise Result"), InstanceName("Exam Rank Wise Result")]
     [ReadPermission(PermissionKeys.Exams)]
     [ModifyPermission(PermissionKeys.Exams)]
@@ -20,7 +20,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Student"), NotNull, ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
+        [DisplayName("Student"), NotNull, ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
         [LookupEditor("Workspace.Student")]
         public long? StudentId
         {
@@ -49,7 +49,7 @@ namespace Rio.Workspace
             set => fields.SheetGuid[this] = value;
         }
 
-        [DisplayName("Exam"), NotNull, ForeignKey("[dbo].[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
+        [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
         [LookupEditor(typeof(ExamRow))]
         public long? ExamId
         {

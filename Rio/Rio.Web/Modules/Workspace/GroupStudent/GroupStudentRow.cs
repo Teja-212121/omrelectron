@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[GroupStudents]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[GroupStudents]")]
     [DisplayName("Group Student"), InstanceName("Group Student")]
     [ReadPermission(PermissionKeys.GroupStudents)]
     [ModifyPermission(PermissionKeys.GroupStudents)]
@@ -28,7 +28,7 @@ namespace Rio.Workspace
             set { Fields.RowIds[this] = value; }
         }
 
-        [DisplayName("Group"), NotNull, ForeignKey("[dbo].[Groups]", "Id"), LeftJoin("jGroup"), TextualField("GroupName")]
+        [DisplayName("Group"), NotNull, ForeignKey("[Groups]", "Id"), LeftJoin("jGroup"), TextualField("GroupName")]
         [LookupEditor("Workspace.Group")]
         public int? GroupId
         {
@@ -36,7 +36,7 @@ namespace Rio.Workspace
             set => fields.GroupId[this] = value;
         }
 
-        [DisplayName("Student"), ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFullName")]
+        [DisplayName("Student"), ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFullName")]
         [LookupEditor("Workspace.Student")]
         public long? StudentId
         {

@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[Groups]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[Groups]")]
     [DisplayName("Group"), InstanceName("Group")]
     [ReadPermission(PermissionKeys.GroupStudents)]
     [ModifyPermission(PermissionKeys.GroupStudents)]
@@ -36,7 +36,7 @@ namespace Rio.Workspace
             set => fields.Description[this] = value;
         }
 
-        [DisplayName("Parent"), ForeignKey("[dbo].[Groups]", "Id"), LeftJoin("jParent"), TextualField("ParentName")]
+        [DisplayName("Parent"), ForeignKey("[Groups]", "Id"), LeftJoin("jParent"), TextualField("ParentName")]
         [LookupEditor("Workspace.Group")]
         public int? ParentId
         {

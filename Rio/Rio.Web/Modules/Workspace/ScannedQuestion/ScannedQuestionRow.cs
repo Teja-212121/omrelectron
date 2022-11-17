@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ScannedQuestions]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ScannedQuestions]")]
     [DisplayName("Scanned Question"), InstanceName("Scanned Question")]
     [ReadPermission(PermissionKeys.ScannedData)]
     [ModifyPermission(PermissionKeys.ScannedData)]
@@ -21,7 +21,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[dbo].[ScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
+        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[ScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
         [LookupEditor("Workspace.ScannedSheets")]
         public Guid? ScannedSheetId
         {

@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ScannedSheets]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ScannedSheets]")]
     [DisplayName("Scanned Sheet"), InstanceName("Scanned Sheet")]
     [ReadPermission(PermissionKeys.ScannedData)]
     [ModifyPermission(PermissionKeys.ScannedData)]
@@ -23,7 +23,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Sheet Type"), NotNull, ForeignKey("[dbo].[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
+        [DisplayName("Sheet Type"), NotNull, ForeignKey("[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
         [LookupEditor("Workspace.SheetTypes")]
         public int? SheetTypeId
         {
@@ -94,7 +94,7 @@ namespace Rio.Workspace
             set => fields.ScannedImage[this] = value;
         }
 
-        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[dbo].[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
         [LookupEditor("Workspace.ScannedBatchs")]
         public Guid? ScannedBatchId
         {

@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ImportedScannedBatches]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ImportedScannedBatches]")]
     [DisplayName("Imported Scanned Batch"), InstanceName("Imported Scanned Batch")]
     [ReadPermission(PermissionKeys.ScannedData)]
     [ModifyPermission(PermissionKeys.ScannedData)]

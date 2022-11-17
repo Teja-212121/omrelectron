@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ExamGroupWiseResults]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ExamGroupWiseResults]")]
     [DisplayName("Exam Group Wise Result"), InstanceName("Exam Group Wise Result")]
     [ReadPermission(PermissionKeys.Exams)]
     [ModifyPermission(PermissionKeys.Exams)]
@@ -20,7 +20,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Student"), NotNull, ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
+        [DisplayName("Student"), NotNull, ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
         [LookupEditor("Workspace.Student")]
         public long? StudentId
         {
@@ -49,7 +49,7 @@ namespace Rio.Workspace
             set => fields.SheetGuid[this] = value;
         }
 
-        [DisplayName("Exam"), NotNull, ForeignKey("[dbo].[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
+        [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
         [LookupEditor("Workspace.Exam")]
         public long? ExamId
         {
@@ -64,7 +64,7 @@ namespace Rio.Workspace
             set => fields.Rank[this] = value;
         }
 
-        [DisplayName("Group"), NotNull, ForeignKey("[dbo].[Groups]", "Id"), LeftJoin("jGroup"), TextualField("GroupName")]
+        [DisplayName("Group"), NotNull, ForeignKey("[Groups]", "Id"), LeftJoin("jGroup"), TextualField("GroupName")]
         [LookupEditor("Workspace.Group")]
         public int? GroupId
         {
