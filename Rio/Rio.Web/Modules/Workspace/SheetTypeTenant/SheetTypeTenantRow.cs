@@ -31,6 +31,7 @@ namespace Rio.Workspace
 
         [DisplayName("Tenant"), NotNull, ForeignKey("[dbo].[Tenants]", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
         [Insertable(false), Updatable(false)]
+        [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {
             get => fields.TenantId[this];
