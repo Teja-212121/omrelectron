@@ -17,28 +17,33 @@ namespace Rio.Workspace
         {
         }
 
-            //protected override void BeforeSave()
-            //{
-            //    base.BeforeSave();
-            //    if (Row.RowIds != null)
-            //    {
-            //        string[] rowIds = Row.RowIds.Split(',');
-            //        if (rowIds.Length > 0)
-            //        {
-            //            foreach (var id in rowIds)
-            //            {
-            //                ExamQuestionRow examQuestionRow = Connection.ById<ExamQuestionRow>(id);
-            //                examQuestionRow.ExamSectionId = Request.Entity.ExamSectionId;
-            //                Connection.UpdateById<ExamQuestionRow>(examQuestionRow);
-            //            }
-            //        }
-            //    }
-            //}
+            protected override void BeforeSave()
+        {
+            base.BeforeSave();
+            if (Row.RowIds != null)
+            {
+                string[] rowIds = Row.RowIds.Split(',');
+                if (rowIds.Length > 0)
+                {
+                    foreach (var id in rowIds)
+                    {
+                        ExamQuestionRow examQuestionRow = Connection.ById<ExamQuestionRow>(id);
+                        if (examQuestionRow.ExamSectionId == null)
+                        {
+                            examQuestionRow.ExamSectionId = Request.Entity.ExamSectionId;
+                            Connection.UpdateById<ExamQuestionRow>(examQuestionRow);
+                        }
+                    }
+                }
+            }
+        }
 
-            //protected override void ExecuteSave()
-            //{
-
-            //}
-       // }
+        protected override void ExecuteSave()
+        {
+            if (Row.RowIds == null)
+            {
+                base.ExecuteSave();
+            }
+        }
     }
 }

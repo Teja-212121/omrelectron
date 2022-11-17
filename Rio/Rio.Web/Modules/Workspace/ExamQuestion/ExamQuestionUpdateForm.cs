@@ -19,7 +19,7 @@ namespace Rio.Workspace.Forms
         [DisplayName("Exam")]
         public int ExamId { get; set; }
         [HalfWidth]
-        [LookupEditor("Workspace.ExamSection")]
+        [LookupEditor("Workspace.ExamSection", CascadeFrom = "ExamId", CascadeField = "ExamId")]
         [DisplayName("ExamSection")]
         public int ExamSectionId { get; set; }
     }
