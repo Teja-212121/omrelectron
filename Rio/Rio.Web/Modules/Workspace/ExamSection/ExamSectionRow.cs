@@ -11,7 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Exam Section"), InstanceName("Exam Section")]
     [ReadPermission(PermissionKeys.Exams)]
     [ModifyPermission(PermissionKeys.Exams)]
-    [LookupScript(typeof(Lookups.ExamSectionLookup))]
+    [LookupScript("Workspace.ExamSection")]
     public sealed class ExamSectionRow : LoggingRow<ExamSectionRow.RowFields>, IIdRow, INameRow, IIsActiveRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty, LookupInclude]
@@ -46,7 +46,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Parent"), ForeignKey("[dbo].[ExamSections]", "Id"), LeftJoin("jParent"), TextualField("ParentName")]
-        [LookupEditor(typeof(Lookups.ExamSectionLookup), CascadeFrom = "ExamId")]
+        [LookupEditor("Workspace.ExamSection", CascadeFrom = "ExamId")]
         public int? ParentId
         {
             get => fields.ParentId[this];

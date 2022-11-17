@@ -19,7 +19,7 @@ namespace Rio.Workspace.Columns
         [EditLink]
         public string Tags { get; set; }
         public string RuleTypeName { get; set; }
-        [Width(120), LookupEditor(typeof(Lookups.ExamSectionLookup))]
+        [Width(120), LookupEditor("Workspace.ExamSection")]
         [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ExamId")]
         public int ExamSectionId { get; set; }
         public string ExamSectionName { get; set; }

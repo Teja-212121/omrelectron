@@ -60,7 +60,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Exam Section"), NotNull, ForeignKey("[dbo].[ExamSections]", "Id"), LeftJoin("jExamSection"), TextualField("ExamSectionName")]
-        [LookupEditor(typeof(Lookups.ExamSectionLookup), CascadeFrom = "ExamId")]
+        [LookupEditor("Workspace.ExamSection", CascadeFrom = "ExamId")]
         public int? ExamSectionId
         {
             get => fields.ExamSectionId[this];
