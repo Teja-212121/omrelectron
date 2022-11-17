@@ -50,7 +50,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Exam"), NotNull, ForeignKey("[dbo].[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
-        [LookupEditor("Workspace.Exam")]
+        [LookupEditor(typeof(ExamRow))]
         public long? ExamId
         {
             get => fields.ExamId[this];

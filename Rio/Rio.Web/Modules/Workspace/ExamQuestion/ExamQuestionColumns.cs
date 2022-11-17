@@ -10,16 +10,18 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
-        [QuickFilter]
+        [Width(130), LookupEditor(typeof(ExamRow)), QuickFilter(CssClass = "hidden-xs")]
         public long ExamId { get; set; }
-        public string ExamCode { get; set; }
+        public string ExamName { get; set; }
         public int QuestionIndex { get; set; }
         public short RightOptions { get; set; }
         public float Score { get; set; }
         [EditLink]
         public string Tags { get; set; }
         public string RuleTypeName { get; set; }
-        [QuickFilter]
+        [Width(120), LookupEditor(typeof(Lookups.ExamSectionLookup))]
+        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ExamId")]
+        public int ExamSectionId { get; set; }
         public string ExamSectionName { get; set; }
         [QuickFilter]
         [DisplayName("Date")]
