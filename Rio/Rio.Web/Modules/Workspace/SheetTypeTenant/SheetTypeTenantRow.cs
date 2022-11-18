@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[SheetTypesTenants]")]
     [DisplayName("My Sheet Types"), InstanceName("My Sheet Types")]
-    [ReadPermission(PermissionKeys.Sheets)]
-    [ModifyPermission(PermissionKeys.Sheets)]
+    [ReadPermission(PermissionKeys.Sheets_SheetTypesTenant_Read)]
+    [ModifyPermission(PermissionKeys.Sheets_SheetTypesTenant_Modify)]
     public sealed class SheetTypeTenantRow : LoggingRow<SheetTypeTenantRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty,QuickSearch]

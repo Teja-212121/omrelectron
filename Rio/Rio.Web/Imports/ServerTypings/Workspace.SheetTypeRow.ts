@@ -30,10 +30,10 @@
         export function getLookup(): Q.Lookup<SheetTypeRow> {
             return Q.getLookup<SheetTypeRow>('Workspace.SheetTypes');
         }
-        export const deletePermission = 'Workspace:Sheets';
-        export const insertPermission = 'Workspace:Sheets';
-        export const readPermission = 'Workspace:Sheets';
-        export const updatePermission = 'Workspace:Sheets';
+        export const deletePermission = 'Workspace:Sheets:SheetType:Modify';
+        export const insertPermission = 'Workspace:Sheets:SheetType:Modify';
+        export const readPermission = 'Workspace:Sheets:SheetType:Read';
+        export const updatePermission = 'Workspace:Sheets:SheetType:Modify';
 
         export declare const enum Fields {
             Id = "Id",
