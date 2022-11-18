@@ -1,10 +1,11 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 using MyPages = Rio.Workspace.Pages;
 
 
 [assembly: NavigationMenu(2000, "Sheets", icon: "fa-files-o")]
 [assembly: NavigationLink(2001, "Sheets/Sheet Types", typeof(MyPages.SheetTypeController), icon: "fa-circle-o")]
-[assembly: NavigationLink(2002, "Sheets/My Sheet Types", typeof(MyPages.SheetTypeTenantController), icon: "fa-circle-o")]
+[assembly: NavigationLink(2002, "Sheets/Select Sheet Type", typeof(MyPages.SelectSheetTypeController), icon: "fa-circle-o")]
+[assembly: NavigationLink(2003, "Sheets/My Sheet Types", typeof(MyPages.SheetTypeTenantController), icon: "fa-circle-o")]
 
 [assembly: NavigationMenu(3000, "Exams", icon: "fa-pencil-square-o")]
 [assembly: NavigationLink(3001, "Exams/Exams", typeof(MyPages.ExamController), icon: "fa-circle-o")]
@@ -31,6 +32,7 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(5004, "Scanned Data/Imported Batches", typeof(MyPages.ImportedScannedBatchController), icon: "fa-circle-o")]
 [assembly: NavigationLink(5005, "Scanned Data/Imported Sheets", typeof(MyPages.ImportedScannedSheetController), icon: "fa-circle-o")]
 [assembly: NavigationLink(5006, "Scanned Data/Imported  Questions", typeof(MyPages.ImportedScannedQuestionController), icon: "fa-circle-o")]
+
 
 
 

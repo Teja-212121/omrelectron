@@ -21,6 +21,13 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
+        [NotMapped]
+        public String RowIds
+        {
+            get { return Fields.RowIds[this]; }
+            set { Fields.RowIds[this] = value; }
+        }
+
         [DisplayName("Sheet Type"), NotNull, ForeignKey("[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
         [LookupEditor("Workspace.SheetTypes")]
         public int? SheetTypeId
@@ -248,6 +255,8 @@ namespace Rio.Workspace
             public Int16Field SheetTypeIsActive;
 
             public StringField TenantTenantName;
+
+            public StringField RowIds;
         }
     }
 }

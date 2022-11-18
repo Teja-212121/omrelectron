@@ -26,6 +26,7 @@
         SheetTypeUpdateUserId?: number;
         SheetTypeIsActive?: number;
         TenantTenantName?: string;
+        RowIds?: string;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -69,6 +70,7 @@
             SheetTypeUpdateUserId = "SheetTypeUpdateUserId",
             SheetTypeIsActive = "SheetTypeIsActive",
             TenantTenantName = "TenantTenantName",
+            RowIds = "RowIds",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
