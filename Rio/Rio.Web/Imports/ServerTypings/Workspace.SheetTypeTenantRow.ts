@@ -26,6 +26,7 @@
         SheetTypeUpdateUserId?: number;
         SheetTypeIsActive?: number;
         TenantTenantName?: string;
+        RowIds?: string;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -37,10 +38,10 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'SheetDesignPdf';
         export const localTextPrefix = 'Workspace.SheetTypeTenant';
-        export const deletePermission = 'Workspace:Sheets';
-        export const insertPermission = 'Workspace:Sheets';
-        export const readPermission = 'Workspace:Sheets';
-        export const updatePermission = 'Workspace:Sheets';
+        export const deletePermission = 'Workspace:Sheets:SheetTypesTenant:Modify';
+        export const insertPermission = 'Workspace:Sheets:SheetTypesTenant:Modify';
+        export const readPermission = 'Workspace:Sheets:SheetTypesTenant:Read';
+        export const updatePermission = 'Workspace:Sheets:SheetTypesTenant:Modify';
 
         export declare const enum Fields {
             Id = "Id",
@@ -69,6 +70,7 @@
             SheetTypeUpdateUserId = "SheetTypeUpdateUserId",
             SheetTypeIsActive = "SheetTypeIsActive",
             TenantTenantName = "TenantTenantName",
+            RowIds = "RowIds",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

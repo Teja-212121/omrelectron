@@ -70,5 +70,63 @@ namespace Rio.Workspace.Endpoints
             }
             return new SaveResponse();
         }
+
+        [HttpPost, AuthorizeCreate(typeof(MyRow))]
+        public SaveResponse Assign(IUnitOfWork uow, SaveRequest<MyRow> request)
+        {
+            SaveResponse saveResponse = new SaveResponse();
+
+            if (request.Entity.RowIds != null)
+            {
+
+                //var Exam = Connection.TryFirst<ExamsRow>(ExamsRow.Fields.Id ==(Int32) Row.ExamId);
+                //if (Exam.ExamGroup != Row.ExamGroup)
+                //    throw new ValidationError("Group Selected and Group in Exam Mismatched");
+
+                string[] rowIds = request.Entity.RowIds.Split(',');
+                string erromsg = null;
+                if (rowIds.Length > 0)
+                {
+                    if (rowIds.Length > 4)
+                        throw new ValidationError("Maximum 4 SheetTypes are allowed!!!");
+
+                    long tenantId = (long)request.Entity.TenantId;
+                    int alreadyAssignedCount = uow.Connection.Count<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId);
+                    if ((5 - (alreadyAssignedCount + rowIds.Length)) < 0)
+                    {
+                        throw new ValidationError("You can have maximum of 5 Sheets Assinged to your account!!!");
+                    }
+                    foreach (var id in rowIds)
+                    {
+                        if (uow.Connection.Exists<MyRow>
+                                    (MyRow.Fields.TenantId == (Int64)request.Entity.TenantId &&
+                                        MyRow.Fields.SheetTypeId == Convert.ToInt32(id)))
+                        {
+                            erromsg = erromsg + id + ",";
+                        }
+                        else
+                        {
+                            var Id = uow.Connection.InsertAndGetID(new MyRow
+                            {
+                                TenantId = request.Entity.TenantId,
+                                SheetTypeId = Convert.ToInt32(id),
+                                DisplayOrder = 0,
+                                IsDefault = false,
+                                IsActive = 1,
+                                InsertDate = DateTime.Now,
+                                InsertUserId = 1
+                            });
+                        }
+                    }
+                    if (erromsg != null)
+                    {
+                        erromsg = "Sheets with Id " + erromsg + " already Mapped To Selected Tenants. No Sheets Mapped To Selected Tenants";
+
+                        throw new ValidationError(erromsg);
+                    }
+                }
+            }
+            return saveResponse;
+        }
     }
 }

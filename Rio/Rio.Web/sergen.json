@@ -118,7 +118,7 @@
         },
         {
           "Tablename": "dbo.SheetTypes",
-          "Identifier": "SheetType",
+          "Identifier": "SelectSheetType",
           "Module": "Workspace",
           "PermissionKey": "Administration:General"
         },

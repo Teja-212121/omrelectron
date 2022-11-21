@@ -1,10 +1,10 @@
 ﻿namespace Rio.Workspace {
-    export interface SheetTypeRow {
+    export interface SelectSheetTypeRow {
         Id?: number;
         Name?: string;
         Description?: string;
         TotalQuestions?: number;
-        EPaperSize?: Workspace.enums.EPaperSize;
+        EPaperSize?: number;
         HeightInPixel?: number;
         WidthInPixel?: number;
         SheetData?: string;
@@ -21,19 +21,15 @@
         UpdateDate?: string;
     }
 
-    export namespace SheetTypeRow {
+    export namespace SelectSheetTypeRow {
         export const idProperty = 'Id';
+        export const isActiveProperty = 'IsActive';
         export const nameProperty = 'Name';
-        export const localTextPrefix = 'Workspace.SheetType';
-        export const lookupKey = 'Workspace.SheetTypes';
-
-        export function getLookup(): Q.Lookup<SheetTypeRow> {
-            return Q.getLookup<SheetTypeRow>('Workspace.SheetTypes');
-        }
-        export const deletePermission = 'Workspace:Sheets:SheetType:Modify';
-        export const insertPermission = 'Workspace:Sheets:SheetType:Modify';
-        export const readPermission = 'Workspace:Sheets:SheetType:Read';
-        export const updatePermission = 'Workspace:Sheets:SheetType:Modify';
+        export const localTextPrefix = 'Workspace.SelectSheetType';
+        export const deletePermission = 'Administration:General';
+        export const insertPermission = 'Administration:General';
+        export const readPermission = 'Administration:General';
+        export const updatePermission = 'Administration:General';
 
         export declare const enum Fields {
             Id = "Id",

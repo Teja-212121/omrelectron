@@ -1,4 +1,3 @@
-using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -8,15 +7,13 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[SheetTypes]")]
-    [DisplayName("Sheet Type"), InstanceName("Sheet Type")]
-    [ReadPermission(PermissionKeys.Sheets_SheetType_Read)]
-    [ModifyPermission(PermissionKeys.Sheets_SheetType_Modify)]
-    [LookupScript("Workspace.SheetTypes")]
-    public sealed class SheetTypeRow : LoggingRow<SheetTypeRow.RowFields>, IIdRow, INameRow
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[SheetTypes]")]
+    [DisplayName("Select Sheet Type"), InstanceName("Select Sheet Type")]
+    [ReadPermission("Administration:General")]
+    [ModifyPermission("Administration:General")]
+    public sealed class SelectSheetTypeRow : LoggingRow<SelectSheetTypeRow.RowFields>, IIdRow, INameRow ,IIsActiveRow
     {
-        [DisplayName("Id"), Identity, IdProperty,QuickSearch]
-        [SortOrder(1, descending: true)]
+        [DisplayName("Id"), Identity, IdProperty]
         public int? Id
         {
             get => fields.Id[this];
@@ -30,7 +27,7 @@ namespace Rio.Workspace
             set => fields.Name[this] = value;
         }
 
-        [DisplayName("Description"), Size(1000)]
+        [DisplayName("Description"), Size(1000), TextAreaEditor]
         public string Description
         {
             get => fields.Description[this];
@@ -45,10 +42,10 @@ namespace Rio.Workspace
         }
 
         [DisplayName("E Paper Size"), NotNull]
-        public EPaperSize? EPaperSize
+        public int? EPaperSize
         {
-            get => (EPaperSize?)fields.EPaperSize[this];
-            set => fields.EPaperSize[this] = (short?)value;
+            get => fields.EPaperSize[this];
+            set => fields.EPaperSize[this] = value;
         }
 
         [DisplayName("Height In Pixel")]
@@ -65,21 +62,21 @@ namespace Rio.Workspace
             set => fields.WidthInPixel[this] = value;
         }
 
-        [DisplayName("Sheet Data"), NotNull]
+        [DisplayName("Sheet Data"), NotNull, TextAreaEditor]
         public string SheetData
         {
             get => fields.SheetData[this];
             set => fields.SheetData[this] = value;
         }
 
-        [DisplayName("Sheet Image"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/SheetImage/~")]
+        [DisplayName("Sheet Image"), NotNull, Size(1000), ImageUploadEditor]
         public string SheetImage
         {
             get => fields.SheetImage[this];
             set => fields.SheetImage[this] = value;
         }
 
-        [DisplayName("Overlay Image"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/OverlayImageImage/~")]
+        [DisplayName("Overlay Image"), NotNull, Size(1000), ImageUploadEditor]
         public string OverlayImage
         {
             get => fields.OverlayImage[this];
@@ -100,7 +97,7 @@ namespace Rio.Workspace
             set => fields.IsPrivate[this] = value;
         }
 
-        [DisplayName("Pdf Template"), Size(1000), FileUploadEditor(FilenameFormat = "SheetType/PdfTemplate/~")]
+        [DisplayName("Pdf Template"), NotNull, Size(1000), FileUploadEditor]
         public string PdfTemplate
         {
             get => fields.PdfTemplate[this];
@@ -114,21 +111,24 @@ namespace Rio.Workspace
             set => fields.SheetNumber[this] = value;
         }
 
-        
-
-        [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(true)]
+        [DisplayName("Is Active"), NotNull, Insertable(false), Updatable(true)]
         public short? IsActive
         {
             get => fields.IsActive[this];
             set => fields.IsActive[this] = value;
         }
 
-        public SheetTypeRow()
+        Int16Field IIsActiveRow.IsActiveField
+        {
+            get => fields.IsActive;
+        }
+
+        public SelectSheetTypeRow()
             : base()
         {
         }
 
-        public SheetTypeRow(RowFields fields)
+        public SelectSheetTypeRow(RowFields fields)
             : base(fields)
         {
         }
