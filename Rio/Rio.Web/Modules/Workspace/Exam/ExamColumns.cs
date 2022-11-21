@@ -19,7 +19,10 @@ namespace Rio.Workspace.Columns
         public float NegativeMarks { get; set; }
         public short OptionsAvailable { get; set; }
         public string ResultCriteria { get; set; }
-        
-        
+        [QuickFilter]
+        [DisplayName("Date")]
+        public DateTime InsertDate { get; set; }
+
+
     }
 }
