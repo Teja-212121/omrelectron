@@ -20,9 +20,11 @@ namespace Rio.Workspace.Columns
         public short OptionsAvailable { get; set; }
         public string ResultCriteria { get; set; }
         [QuickFilter]
-        [DisplayName("Date")]
+        [DisplayName("Insert Date")]
         public DateTime InsertDate { get; set; }
-
+        [QuickFilter]
+        [DisplayName("Tenant")]
+        public int TenantId { get; set; }
 
     }
 }
