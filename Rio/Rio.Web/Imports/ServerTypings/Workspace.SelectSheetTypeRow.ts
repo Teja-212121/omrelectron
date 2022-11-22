@@ -26,10 +26,10 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.SelectSheetType';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const deletePermission = 'Workspace:Sheets:SheetType:Modify';
+        export const insertPermission = 'Workspace:Sheets:SheetType:Modify';
+        export const readPermission = 'Workspace:Sheets:SheetType:Read';
+        export const updatePermission = 'Workspace:Sheets:SheetType:Modify';
 
         export declare const enum Fields {
             Id = "Id",
