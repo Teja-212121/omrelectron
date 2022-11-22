@@ -86,6 +86,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Tenant Id"), NotNull, Insertable(false), Updatable(true)]
+        [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {
             get => fields.TenantId[this];

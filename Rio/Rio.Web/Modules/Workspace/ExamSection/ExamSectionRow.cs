@@ -46,7 +46,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Parent"), ForeignKey("[ExamSections]", "Id"), LeftJoin("jParent"), TextualField("ParentName")]
-        [LookupEditor("Workspace.ExamSection", CascadeFrom = "ExamId")]
+        [LookupEditor("Workspace.ExamSection", CascadeFrom = "ExamId", CascadeField ="ExamId")]
         public int? ParentId
         {
             get => fields.ParentId[this];

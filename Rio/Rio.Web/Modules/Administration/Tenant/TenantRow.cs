@@ -9,7 +9,7 @@ namespace Rio.Administration
     [DisplayName("Tenant"), InstanceName("Tenant")]
     [ReadPermission(PermissionKeys.Tenants)]
     [ModifyPermission(PermissionKeys.Tenants)]
-    [LookupScript("Administration.Tenant")]
+    [LookupScript("Administration.Tenant", Permission = "*", Expiration = 1)]
     public sealed class TenantRow : Row<TenantRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Tenant Id"), Identity, IdProperty]

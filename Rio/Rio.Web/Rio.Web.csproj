@@ -16,14 +16,8 @@
   <ItemGroup>
     <TypeScriptCompile Remove="node_modules\**"></TypeScriptCompile>
     <EmbeddedResource Include="Migrations\**\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
-    <None Remove="Uploads\ExamQuestionSample.xls" />
-    <None Remove="Uploads\StudentSample.xls" />
-    <Content Include="Uploads\ExamQuestionSample.xls">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Uploads\StudentSample.xls">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Remove="Uploads\ExamQuestionSample.xlsx" />
+    <None Remove="Uploads\StudentSample.xlsx" />
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
