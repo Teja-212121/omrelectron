@@ -118,42 +118,62 @@ namespace Rio.Workspace.Endpoints
                         response.ErrorList.Add("Error On Row " + row + ": Id Not found");
                         continue;
                     }*/
-                    Row.RollNo = Convert.ToInt32(worksheet.Cells[row, 1].Value ?? null);
+                    Row.RollNo = Convert.ToInt64(worksheet.Cells[row, 1].Value ?? null);
                     if (Row.RollNo == null)
                     {
                         response.ErrorList.Add("Error On Row " + row + ": RollNo Not found");
                         continue;
                     }
-                    Row.FullName = Convert.ToString(worksheet.Cells[row, 2].Value ?? "").Trim();
-                    Row.Email = Convert.ToString(worksheet.Cells[row, 3].Value ?? "").Trim();
-                    Row.Mobile = Convert.ToString(worksheet.Cells[row, 4].Value ?? "").Trim();
-                    Row.Dob = Convert.ToDateTime(worksheet.Cells[row, 5].Value ?? null);
-                    Int16? Gender = Convert.ToInt16(worksheet.Cells[row, 6].Value ?? null);
-                    if (Gender != null)
+                    if (Row.RollNo != 0)
                     {
 
-                        if (Gender == 1)
+
+                        Row.FullName = Convert.ToString(worksheet.Cells[row, 2].Value ?? "").Trim();
+                        if (string.IsNullOrEmpty(Row.FullName))
                         {
-                            Row.Gender = Web.Enums.Gender.Male;
-                        }
-                        else if (Gender == 2)
-                            Row.Gender = Web.Enums.Gender.Female;
-                        else if (Gender == 3)
-                            Row.Gender = Web.Enums.Gender.Other;
-                        else
-                        {
-                            response.ErrorList.Add("Error On Row " + row + ": Invalid Gender");
+                            response.ErrorList.Add("Error On Row " + row + ": FullName Not found");
                             continue;
                         }
+                        Row.Email = Convert.ToString(worksheet.Cells[row, 3].Value ?? "").Trim();
+                        if (string.IsNullOrEmpty(Row.Email))
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Email Not found");
+                            continue;
+                        }
+                        Row.Mobile = Convert.ToString(worksheet.Cells[row, 4].Value ?? "").Trim();
+                        if (string.IsNullOrEmpty(Row.Mobile))
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Mobile Not found");
+                            continue;
+                        }
+                        Row.Dob = Convert.ToDateTime(worksheet.Cells[row, 5].Value ?? null);
+                        Int16? Gender = Convert.ToInt16(worksheet.Cells[row, 6].Value ?? null);
+                        if (Gender != null)
+                        {
+
+                            if (Gender == 1)
+                            {
+                                Row.Gender = Web.Enums.Gender.Male;
+                            }
+                            else if (Gender == 2)
+                                Row.Gender = Web.Enums.Gender.Female;
+                            else if (Gender == 3)
+                                Row.Gender = Web.Enums.Gender.Other;
+                            else
+                            {
+                                response.ErrorList.Add("Error On Row " + row + ": Invalid Gender");
+                                continue;
+                            }
+                        }
+
+                        Row.Note = Convert.ToString(worksheet.Cells[row, 7].Value ?? "").Trim();
+                        Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 8].Value ?? null);
+                        Row.InsertDate = DateTime.UtcNow;
+                        Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
+
+                        uow.Connection.Insert<StudentRow>(Row);
+                        response.Inserted = response.Inserted + 1;
                     }
-
-                    Row.Note = Convert.ToString(worksheet.Cells[row, 7].Value ?? "").Trim();
-                    Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 8].Value ?? null);
-                    Row.InsertDate = DateTime.UtcNow;
-                    Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
-
-                    uow.Connection.Insert<StudentRow>(Row);
-                    response.Inserted = response.Inserted + 1;
 
                 }
                 catch (Exception)
