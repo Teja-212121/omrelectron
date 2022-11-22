@@ -22,7 +22,7 @@ import { AssignSheetTypesForm, SheetTypeTenantRow, SheetTypeTenantService } from
         }
         protected getToolbarButtons(): ToolButton[] {
             let buttons = super.getToolbarButtons();
-            debugger;
+            //debugger;
             buttons.splice(0, 6);
             buttons.push({
                 title: "Assign",
@@ -32,7 +32,7 @@ import { AssignSheetTypesForm, SheetTypeTenantRow, SheetTypeTenantService } from
 
                     if (!this.validateBeforeSave())
                         return;
-                    debugger;
+                    //debugger;
                     this.entity.TenantId = Number(this.form.Tenants.value);
                     this.entity.RowIds = this.rowids.toString();
 
