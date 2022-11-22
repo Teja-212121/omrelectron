@@ -179,7 +179,7 @@ namespace Rio.Membership {
     </div>
 
     <div class="text-center mt-2">
-        <a class="text-decoration-none" href="${Q.resolveUrl('~/Account/SignUp')}">${Q.text("Forms.Membership.Login.SignUpButton")}</a>
+        <a class="text-decoration-none" href="${Q.resolveUrl('~/Publisher/SignUp')}">${Q.text("Forms.Membership.Login.SignUpButton")}</a>
     </div>   
 `;
         }

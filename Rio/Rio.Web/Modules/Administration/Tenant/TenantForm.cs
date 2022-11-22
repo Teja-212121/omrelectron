@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Web;
 
 namespace Rio.Administration.Forms
@@ -8,5 +8,6 @@ namespace Rio.Administration.Forms
     public class TenantForm
     {
         public string TenantName { get; set; }
+        public int EApprovalStatus { get; set; }
     }
 }

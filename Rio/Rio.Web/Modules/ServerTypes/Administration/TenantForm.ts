@@ -1,8 +1,9 @@
-﻿import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, EnumEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface TenantForm {
     TenantName: StringEditor;
+    EApprovalStatus: EnumEditor;
 }
 
 export class TenantForm extends PrefixedContext {
@@ -16,9 +17,11 @@ export class TenantForm extends PrefixedContext {
             TenantForm.init = true;
 
             var w0 = StringEditor;
+            var w1 = EnumEditor;
 
             initFormType(TenantForm, [
-                'TenantName', w0
+                'TenantName', w0,
+                'EApprovalStatus', w1
             ]);
         }
     }

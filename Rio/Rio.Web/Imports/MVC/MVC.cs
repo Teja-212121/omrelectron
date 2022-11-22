@@ -42,6 +42,8 @@ namespace MVC
                 {
                     public const string AccountActivateEmail = "~/Modules/Membership/Account/SignUp/AccountActivateEmail.cshtml";
                     public const string AccountSignUp = "~/Modules/Membership/Account/SignUp/AccountSignUp.cshtml";
+                    public const string PublisherActivateEmail = "~/Modules/Membership/Publisher/SignUp/PublisherActivateEmail.cshtml";
+                    public const string PublisherSignUp = "~/Modules/Membership/Publisher/SignUp/PublisherSignUp.cshtml";
                 }
             }
         }

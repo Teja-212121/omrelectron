@@ -10,13 +10,15 @@ export namespace TenantService {
     export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<TenantRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<TenantRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function ApproveTenants(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
     export declare const enum Methods {
         Create = "Administration/Tenant/Create",
         Update = "Administration/Tenant/Update",
         Delete = "Administration/Tenant/Delete",
         Retrieve = "Administration/Tenant/Retrieve",
-        List = "Administration/Tenant/List"
+        List = "Administration/Tenant/List",
+        ApproveTenants = "Administration/Tenant/ApproveTenants"
     }
 
     [
@@ -24,7 +26,8 @@ export namespace TenantService {
         'Update', 
         'Delete', 
         'Retrieve', 
-        'List'
+        'List', 
+        'ApproveTenants'
     ].forEach(x => {
         (<any>TenantService)[x] = function (r, s, o) {
             return serviceRequest(baseUrl + '/' + x, r, s, o);

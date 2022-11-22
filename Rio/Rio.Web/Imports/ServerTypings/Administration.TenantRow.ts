@@ -2,6 +2,8 @@
     export interface TenantRow {
         TenantId?: number;
         TenantName?: string;
+        EApprovalStatus?: Web.Enums.EApprovalStatus;
+        IsActive?: number;
     }
 
     export namespace TenantRow {
@@ -20,7 +22,9 @@
 
         export declare const enum Fields {
             TenantId = "TenantId",
-            TenantName = "TenantName"
+            TenantName = "TenantName",
+            EApprovalStatus = "EApprovalStatus",
+            IsActive = "IsActive"
         }
     }
 }

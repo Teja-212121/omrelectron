@@ -1,6 +1,7 @@
 ﻿namespace Rio.Administration {
     export interface TenantForm {
         TenantName: Serenity.StringEditor;
+        EApprovalStatus: Serenity.EnumEditor;
     }
 
     export class TenantForm extends Serenity.PrefixedContext {
@@ -15,9 +16,11 @@
 
                 var s = Serenity;
                 var w0 = s.StringEditor;
+                var w1 = s.EnumEditor;
 
                 Q.initFormType(TenantForm, [
-                    'TenantName', w0
+                    'TenantName', w0,
+                    'EApprovalStatus', w1
                 ]);
             }
         }

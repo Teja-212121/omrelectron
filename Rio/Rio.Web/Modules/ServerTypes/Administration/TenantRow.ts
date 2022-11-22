@@ -1,8 +1,11 @@
-﻿import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { EApprovalStatus } from "../Web/Enums.EApprovalStatus";
+import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
 
 export interface TenantRow {
     TenantId?: number;
     TenantName?: string;
+    EApprovalStatus?: EApprovalStatus;
+    IsActive?: number;
 }
 
 export abstract class TenantRow {

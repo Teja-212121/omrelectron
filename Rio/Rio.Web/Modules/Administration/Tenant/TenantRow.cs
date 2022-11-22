@@ -2,6 +2,7 @@ using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System.ComponentModel;
+using Rio.Web.Enums;
 
 namespace Rio.Administration
 {
@@ -26,6 +27,20 @@ namespace Rio.Administration
             set => fields.TenantName[this] = value;
         }
 
+        [DisplayName("ApprovalStatus")]
+        public EApprovalStatus? EApprovalStatus
+        {
+            get => (EApprovalStatus?)fields.EApprovalStatus[this];
+            set => fields.EApprovalStatus[this] = (short?)value;
+        }
+
+        [DisplayName("Is Active"), NotNull]
+        public short? IsActive
+        {
+            get => fields.IsActive[this];
+            set => fields.IsActive[this] = value;
+        }
+
         public TenantRow()
             : base()
         {
@@ -40,6 +55,8 @@ namespace Rio.Administration
         {
             public Int32Field TenantId;
             public StringField TenantName;
+            public Int16Field EApprovalStatus;
+            public Int16Field IsActive;
         }
     }
 }

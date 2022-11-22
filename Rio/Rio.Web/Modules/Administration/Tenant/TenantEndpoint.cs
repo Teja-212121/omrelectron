@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Rio.Web.Enums;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -58,6 +59,50 @@ namespace Rio.Administration.Endpoints
             var bytes = exporter.Export(data, typeof(Columns.TenantColumns), request.ExportColumns);
             return ExcelContentResult.Create(bytes, "TenantList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
+        }
+
+        [HttpPost]
+        public SaveResponse ApproveTenants(string[] ids, [FromServices] ISqlConnections SqlConnections)
+        {
+            //var http = Dependency.Resolve<IHttpContextAccessor>().HttpContext;
+            using (var Connection = SqlConnections.NewByKey("Default"))
+            {
+                string ApprovedTenants = null;
+                foreach (var id in ids)
+                {
+                    var et = Connection.TryFirst<MyRow>(MyRow.Fields.TenantId == Convert.ToInt32(id));
+
+                    if (et.EApprovalStatus != EApprovalStatus.Approved)
+                    {
+                        et.EApprovalStatus = EApprovalStatus.Approved;
+                        et.IsActive = 1;
+                        Connection.UpdateById<MyRow>(et);
+                        var user = Connection.TryFirst<UserRow>(UserRow.Fields.TenantId == Convert.ToInt32(id));
+                        if (user != null)
+                        {
+                            user.IsActive = 1;
+                            Connection.UpdateById<UserRow>(user);
+                            
+                        }
+
+                    }
+
+                    else
+                    {
+                        if (ApprovedTenants == null)
+                            ApprovedTenants = et.TenantId.ToString();
+                        else
+                            ApprovedTenants = ApprovedTenants + "," + et.TenantId.ToString();
+
+                    }
+
+                    if (!string.IsNullOrEmpty(ApprovedTenants))
+                    {
+                        throw new ValidationError("Tenant with Id Already Approved:" + ApprovedTenants + ",other tenants approved successfully");
+                    }
+                }
+            }
+            return new SaveResponse();
         }
     }
 }
