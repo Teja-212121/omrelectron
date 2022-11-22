@@ -41,6 +41,7 @@ export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
 
                         ExamQuestionService.ExcelImport({
                             FileName: this.form.FileName.value.Filename,
+                            ExamId: this.form.ExamId.value
                         }, response => {
                             Q.notifyInfo(
                                 'Inserted: ' + (response.Inserted || 0));

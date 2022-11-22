@@ -1,5 +1,6 @@
 ﻿namespace Rio.Workspace {
     export interface ExamQuestionImportForm {
+        ExamId: Serenity.LookupEditor;
         FileName: Serenity.ImageUploadEditor;
     }
 
@@ -14,10 +15,12 @@
                 ExamQuestionImportForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.ImageUploadEditor;
+                var w0 = s.LookupEditor;
+                var w1 = s.ImageUploadEditor;
 
                 Q.initFormType(ExamQuestionImportForm, [
-                    'FileName', w0
+                    'ExamId', w0,
+                    'FileName', w1
                 ]);
             }
         }

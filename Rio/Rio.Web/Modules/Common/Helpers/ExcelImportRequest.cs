@@ -1,4 +1,4 @@
-﻿
+
 namespace Rio
 {
     using Serenity.Services;
@@ -8,6 +8,7 @@ namespace Rio
     public class ExcelImportRequest : ServiceRequest
     {
         public String FileName { get; set; }
+        public Int32 ExamId { get; set; }
 
         /*public String ProductId { get; set; }
 
@@ -22,6 +23,8 @@ namespace Rio
             throw new NotImplementedException();
         }
     }
+
+   
 
     public class ExcelImportResponse : ServiceResponse
     {

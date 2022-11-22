@@ -9,10 +9,9 @@ namespace Rio.Workspace.Forms
     [FormScript("Workspace.ExamQuestionImportForm")]
     public class ExamQuestionImportForm
     {
-        /*[DisplayName("Exam")]
-        [LookupEditor("Workspace.Exam")]
-        //[ChangingLookupTextEditorForExam]
-        public int ExamId { get; set; }*/
+        [DisplayName("Exam")]
+        [LookupEditor("Workspace.Exam"),Required]
+        public int ExamId { get; set; }
 
         [FileUploadEditor, Required]
         public String FileName { get; set; }
