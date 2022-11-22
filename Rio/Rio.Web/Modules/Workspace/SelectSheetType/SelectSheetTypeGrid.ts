@@ -49,7 +49,7 @@ export class SelectSheetTypeGrid extends EntityGrid<SelectSheetTypeRow, any> {
                         return;
                     }
 
-                    Q.serviceRequest('/Services/Workspace/SelectSheetTypes/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
+                    Q.serviceRequest('/Services/Workspace/SelectSheetType/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
                 }
             });
         if (Authorization.hasPermission("Administration:Security")) {

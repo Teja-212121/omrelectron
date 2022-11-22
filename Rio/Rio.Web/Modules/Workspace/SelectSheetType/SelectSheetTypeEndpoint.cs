@@ -62,14 +62,13 @@ namespace Rio.Workspace.Endpoints
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
         }
 
-        /*[HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse UpdateSheetTypeTenants(string[] ids)
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse UpdateSheetTypeTenants(string[] ids, IUnitOfWork uow)
         {
-            var conn = Connection.NewByKey("Default");
             if (ids.Length > 4)
                 throw new ValidationError("Maximum 4 SheetTypes are allowed!!!");
             int tenantId = User.GetTenantId();
-            int alreadyAssignedCount = conn.Count<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId);
+            int alreadyAssignedCount = uow.Connection.Count<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId);
             if ((5 - (alreadyAssignedCount + ids.Length)) < 0)
             {
                 throw new ValidationError("You can have maximum of 5 Sheets Assinged to your account!!!");
@@ -77,7 +76,7 @@ namespace Rio.Workspace.Endpoints
             foreach (string sheetId in ids)
             {
 
-                if (!conn.Exists<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.SheetTypeId) == sheetId && new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId))
+                if (!uow.Connection.Exists<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.SheetTypeId) == sheetId && new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId))
                 {
                     SheetTypeTenantRow mySheetType = new SheetTypeTenantRow()
                     {
@@ -87,12 +86,16 @@ namespace Rio.Workspace.Endpoints
                         InsertUserId = Convert.ToInt32(User.GetIdentifier()),
                         IsActive = 1
                     };
-                    conn.Insert<SheetTypeTenantRow>(mySheetType);
+                    uow.Connection.Insert<SheetTypeTenantRow>(mySheetType);
+                }
+                else
+                {
+                    throw new ValidationError("Sheet Types already assigned.");
                 }
             }
-          
+
             return new SaveResponse();
 
-        }*/
+        }
     }
 }
