@@ -33,6 +33,10 @@ namespace Rio.Workspace
                             examQuestionRow.ExamSectionId = Request.Entity.ExamSectionId;
                             Connection.UpdateById<ExamQuestionRow>(examQuestionRow);
                         }
+                        else
+                        {
+                            throw new ValidationError("Exam Question already assigned to Exam Section");
+                        }
                     }
                 }
             }
