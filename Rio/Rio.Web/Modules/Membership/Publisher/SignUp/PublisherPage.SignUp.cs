@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Rio.Administration;
 using Rio.Administration.Repositories;
+using Rio.Common;
 using Rio.Web.Enums;
 using Serenity;
 using Serenity.Abstractions;
@@ -109,21 +110,44 @@ namespace Rio.Membership.Pages
                 var activateLink = UriHelper.Combine(externalUrl, "Account/Activate?t=");
                 activateLink += Uri.EscapeDataString(token);
 
-                var emailModel = new ActivateEmailModel
-                {
-                    Username = username,
-                    DisplayName = displayName,
-                    ActivateLink = activateLink
-                };
+                var emailModel = new ActivateEmailModel();
+                emailModel.Username = username;
+                emailModel.Organization = request.Organization;
+                emailModel.DisplayName = displayName;
+                //emailModel.ActivateLink = activateLink;
+                //emailModel.LoginLink = LoginLink;
 
-                var emailSubject = Texts.Forms.Membership.SignUp.ActivateEmailSubject.ToString(Localizer);
+                var emailSubject = "OMR Registration Successful";
                 var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
-                    MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
+                    MVC.Views.Membership.Account.SignUp.TenantSignupEmail, emailModel);
 
-                if (emailSender is null)
-                    throw new ArgumentNullException(nameof(emailSender));
+                #region Email                   
 
-                emailSender.Send(subject: emailSubject, body: emailBody, mailTo: email);
+                var mail = new MailRow();
+                mail.Uid = Guid.NewGuid();
+                mail.Subject = emailSubject;
+                mail.Body = emailBody;
+                mail.Priority = MailQueuePriority.High;
+                mail.Status = MailStatus.InQueue;
+                mail.LockExpiration = DateTime.Now.AddDays(-1);
+                mail.InsertDate = DateTime.Now;
+                mail.InsertUserId = 1;
+                mail.RetryCount = 0;
+                var AwsuserId = "AKIAJRD5ISHDUSMDQY3A";
+                var AwsPassword = "AiT6XWNew81FxpC2bFlG03qXtICsATCofb7buTYE1rwg";
+                var FromEmail = "hello@antargyan.com";
+                mail.MailFrom = FromEmail;
+                mail.AwsUserId = AwsuserId;
+                mail.AwsPassword = AwsPassword;
+                mail.MailTo = email;
+                //if (message.CC.Count > 0)
+                //    mail.Cc = string.Join(";", message.CC.Select(x => x.ToString()));
+                //if (message.Bcc.Count > 0)
+                //    mail.Bcc = string.Join(";", message.Bcc.Select(x => x.ToString()));
+                //if (message.ReplyToList.Count > 0)
+                //    mail.ReplyTo = string.Join(";", message.ReplyToList.Select(x => x.ToString()));
+                connection.Insert<MailRow>(mail);
+                #endregion
 
                 uow.Commit();
                 

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Rio.Common;
 using Rio.Web.Enums;
 using Serenity.Data;
 using Serenity.Reporting;
@@ -84,6 +85,46 @@ namespace Rio.Administration.Endpoints
                             Connection.UpdateById<UserRow>(user);
                             
                         }
+
+                       
+                        var LoginLink = "https://omrapp.azurewebsites.net/Account/Login";
+                       
+
+                        var emailModel = new Rio.Membership.ActivateEmailModel();
+                        emailModel.Username = user.Username;
+                        emailModel.DisplayName = user.DisplayName;
+                        //emailModel.ActivateLink = activateLink;
+                        emailModel.LoginLink = LoginLink;
+
+                        var emailSubject = "OMR Account Approved Successfully";
+                        var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
+                            MVC.Views.Membership.Account.SignUp.TenantApprovedEmail, emailModel);
+                        #region Email
+                        var mail = new MailRow();
+                        mail.Uid = Guid.NewGuid();
+                        mail.Subject = emailSubject;
+                        mail.Body = emailBody;
+                        mail.Priority = MailQueuePriority.High;
+                        mail.Status = MailStatus.InQueue;
+                        mail.LockExpiration = DateTime.Now.AddDays(-1);
+                        mail.InsertDate = DateTime.Now;
+                        mail.InsertUserId = 1;
+                        mail.RetryCount = 0;
+                        var AwsuserId = "AKIAJRD5ISHDUSMDQY3A";
+                        var AwsPassword = "AiT6XWNew81FxpC2bFlG03qXtICsATCofb7buTYE1rwg";
+                        var FromEmail = "hello@antargyan.com";
+                        mail.MailFrom = FromEmail;
+                        mail.AwsUserId = AwsuserId;
+                        mail.AwsPassword = AwsPassword;
+                        mail.MailTo = user.Email;
+                        //if (message.CC.Count > 0)
+                        //    mail.Cc = string.Join(";", message.CC.Select(x => x.ToString()));
+                        //if (message.Bcc.Count > 0)
+                        //    mail.Bcc = string.Join(";", message.Bcc.Select(x => x.ToString()));
+                        //if (message.ReplyToList.Count > 0)
+                        //    mail.ReplyTo = string.Join(";", message.ReplyToList.Select(x => x.ToString()));
+                        Connection.Insert<MailRow>(mail);
+                        #endregion
 
                     }
 
