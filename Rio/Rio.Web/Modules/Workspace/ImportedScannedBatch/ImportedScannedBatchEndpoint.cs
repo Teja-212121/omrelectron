@@ -106,13 +106,14 @@ namespace Rio.Workspace.Endpoints
             };
 
             var worksheet = ep.Workbook.Worksheets[0];
+            var scanbatchid = new Guid();
+            var scansheetid = new Guid();
 
             for (var row = 2; row <= worksheet.Dimension.End.Row; row++)
             {
                 try
                 {
-                    var scanbatchid=new Guid();
-                    var scansheetid=new Guid();
+                   
                     MyRow Row = new MyRow();
                     MyScannedSheetRow sheetRow = new MyScannedSheetRow();
                     MyScannedQuestionRow questionRow = new MyScannedQuestionRow();
@@ -126,7 +127,7 @@ namespace Rio.Workspace.Endpoints
                     if (scanbatchid != new Guid(guidString))
                     {
                         Row.Id = new Guid(guidString);
-                        /*scanbatchid = new Guid(guidString);*/
+                        scanbatchid = new Guid(guidString);
                         Row.Name = Convert.ToString(worksheet.Cells[row, 2].Value ?? "").Trim();
                         Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 19].Value ?? null);
                         Row.InsertDate = DateTime.UtcNow;
@@ -143,7 +144,7 @@ namespace Rio.Workspace.Endpoints
                     if (scansheetid != new Guid(guidSheetString))
                     {
                         sheetRow.Id = new Guid(guidSheetString);
-                        /*scansheetid = new Guid(guidSheetString);*/
+                        scansheetid = new Guid(guidSheetString);
                         sheetRow.SheetNumber = Convert.ToString(worksheet.Cells[row, 5].Value ?? "").Trim();
                         sheetRow.ScannedRollNo = Convert.ToInt32(worksheet.Cells[row, 6].Value ?? null);
                         sheetRow.CorrectedRollNo = Convert.ToInt32(worksheet.Cells[row, 7].Value ?? null);
