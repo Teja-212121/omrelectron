@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
@@ -65,6 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Namespaces\Administration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Uploads\ExamQuestionSample.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Uploads\StudentSample.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(ProSrc)Serenity.Pro.Coder\Serenity.Pro.Coder.targets" Condition="Exists('$(ProSrc)pro-features.sln')" />
   <Import Project="$(SolutionDir)Serenity\build\submodule.targets" Condition="Exists('$(SolutionDir)Serenity\build\submodule.targets')" />
