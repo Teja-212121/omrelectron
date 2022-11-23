@@ -47,6 +47,17 @@ export class ImportedScannedBatchGrid extends EntityGrid<ImportedScannedBatchRow
             separator: true
         });
 
+        buttons.push({
+            title: 'Download  Sample',
+            cssClass: 'export-xlsx-button',
+            onClick: () => {
+                var url = "~/Workspace/ImportedScannedBatch/ImportedScannedBatchSample";
+
+                Q.postToService({ url: Q.resolveUrl(url), request: '', target: '_blank' });
+            },
+            separator: true
+        });
+
         return buttons;
     }
 }
