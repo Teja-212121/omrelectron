@@ -31,29 +31,8 @@ export class SheetTypeGrid extends EntityGrid<SheetTypeRow, any> {
 
     protected getButtons() {
         var buttons = super.getButtons();
-        buttons.splice(0, 2);
+        buttons.splice(1, 2);
 
-        /*if (Authorization.hasPermission("Administration:Tenant")) {
-            buttons.push(
-                {
-                    title: 'Assign Sheets for Use',
-                    cssClass: 'send-button',
-                    onClick: () => {
-                        //debugger;
-                        var SelectedKeys = this.rowSelection.getSelectedKeys();
-                        if (SelectedKeys.length > 4) {
-                            Q.alert("Maximum 4 SheetTypes are allowed!!!");
-                            return;
-                        }
-
-                        if (!this.onViewSubmit()) {
-                            return;
-                        }
-
-                        Q.serviceRequest('/Services/Workspace/SelectSheetType/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
-                    }
-                });
-        }*/
         if (Authorization.hasPermission("Administration:Security")) {
             buttons.push({
                 title: 'Assign to Tenant',
@@ -71,7 +50,8 @@ export class SheetTypeGrid extends EntityGrid<SheetTypeRow, any> {
                     else {
                         new AssignSheetTypesDialog(this, true, rowKeys).loadNewAndOpenDialog();
                     }
-                }
+                },
+                separator: true
             });
         }
         else {
@@ -92,7 +72,8 @@ export class SheetTypeGrid extends EntityGrid<SheetTypeRow, any> {
                         }
 
                         Q.serviceRequest('/Services/Workspace/SelectSheetType/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
-                    }
+                    },
+                    separator: true
                 });
         }
         return buttons;
