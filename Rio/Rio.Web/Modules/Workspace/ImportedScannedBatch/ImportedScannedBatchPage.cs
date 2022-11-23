@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Web;
 
 namespace Rio.Workspace.Pages 
@@ -12,6 +12,14 @@ namespace Rio.Workspace.Pages
         {
             return this.GridPage("@/Workspace/ImportedScannedBatch/ImportedScannedBatchPage",
                 ImportedScannedBatchRow.Fields.PageTitle());
+        }
+
+        [Route("Workspace/ImportedScannedBatch/ImportedScannedBatchSample")]
+        public FileContentResult DownloadImportedScannedBatchSample()
+        {
+            string filePath = "Uploads/ImportedScannedBatchSample.xls";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return new FileContentResult(fileBytes, "application/vnd.ms-excel");
         }
     }
 }
