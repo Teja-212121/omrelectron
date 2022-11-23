@@ -11,7 +11,7 @@
         ScannedImageSourcePath: Serenity.TextAreaEditor;
         ScannedImage: Serenity.StringEditor;
         ScannedBatchId: Serenity.LookupEditor;
-        ScannedStatus: Serenity.IntegerEditor;
+        ScannedStatus: Serenity.EnumEditor;
         ScannedSystemErrors: Serenity.TextAreaEditor;
         ScannedUserErrors: Serenity.TextAreaEditor;
         ScannedComments: Serenity.TextAreaEditor;
@@ -34,7 +34,8 @@
                 var w2 = s.StringEditor;
                 var w3 = s.IntegerEditor;
                 var w4 = s.TextAreaEditor;
-                var w5 = s.BooleanEditor;
+                var w5 = s.EnumEditor;
+                var w6 = s.BooleanEditor;
 
                 Q.initFormType(ImportedScannedSheetForm, [
                     'SheetTypeId', w0,
@@ -48,11 +49,11 @@
                     'ScannedImageSourcePath', w4,
                     'ScannedImage', w2,
                     'ScannedBatchId', w0,
-                    'ScannedStatus', w3,
+                    'ScannedStatus', w5,
                     'ScannedSystemErrors', w4,
                     'ScannedUserErrors', w4,
                     'ScannedComments', w4,
-                    'ResultProcessed', w5
+                    'ResultProcessed', w6
                 ]);
             }
         }

@@ -12,7 +12,7 @@
         ScannedImageSourcePath?: string;
         ScannedImage?: string;
         ScannedBatchId?: string;
-        ScannedStatus?: number;
+        ScannedStatus?: Workspace.enums.EScannedStatus;
         ScannedSystemErrors?: string;
         ScannedUserErrors?: string;
         ScannedComments?: string;

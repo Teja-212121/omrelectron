@@ -1,3 +1,4 @@
+using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -30,7 +31,7 @@ namespace Rio.Workspace
             set => fields.SheetTypeId[this] = value;
         }
 
-        [DisplayName("Scanned At"), NotNull]
+        [DisplayName("Scanned At")]
         public DateTime? ScannedAt
         {
             get => fields.ScannedAt[this];
@@ -103,13 +104,13 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Scanned Status")]
-        public short? ScannedStatus
+        public EScannedStatus? ScannedStatus
         {
-            get => fields.ScannedStatus[this];
-            set => fields.ScannedStatus[this] = value;
+            get => (EScannedStatus?)fields.ScannedStatus[this];
+            set => fields.ScannedStatus[this] = (short?)value;
         }
 
-        [DisplayName("Scanned System Errors"), Size(1000)]
+       [DisplayName("Scanned System Errors"), Size(1000)]
         public string ScannedSystemErrors
         {
             get => fields.ScannedSystemErrors[this];
@@ -130,7 +131,7 @@ namespace Rio.Workspace
             set => fields.ScannedComments[this] = value;
         }
 
-        [DisplayName("Result Processed"), NotNull]
+        [DisplayName("Result Processed")]
         public bool? ResultProcessed
         {
             get => fields.ResultProcessed[this];
