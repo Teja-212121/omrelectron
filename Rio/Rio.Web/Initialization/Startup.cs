@@ -251,7 +251,7 @@ namespace Rio
             var backgroundJobManager = app.ApplicationServices
                 .GetRequiredService<Serenity.Pro.Extensions.IBackgroundJobManager>();
             backgroundJobManager.Register(ActivatorUtilities
-                .CreateInstance<Serenity.Pro.EmailQueue.EmailQueueJob>(app.ApplicationServices));
+                 .CreateInstance<Rio.Common.Services.MailingBackgroundJob>(app.ApplicationServices));
             backgroundJobManager.Initialize();
 
             app.ApplicationServices.GetRequiredService<IDataMigrations>().Initialize();

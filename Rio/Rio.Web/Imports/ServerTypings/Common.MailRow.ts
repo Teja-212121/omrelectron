@@ -9,8 +9,8 @@
         ReplyTo?: string;
         Cc?: string;
         Bcc?: string;
-        Priority?: number;
-        Status?: number;
+        Priority?: MailQueuePriority;
+        Status?: MailStatus;
         RetryCount?: number;
         ErrorMessage?: string;
         LockExpiration?: string;

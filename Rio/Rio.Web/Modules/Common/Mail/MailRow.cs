@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -75,18 +75,18 @@ namespace Rio.Common
             set => fields.Bcc[this] = value;
         }
 
-        [DisplayName("Priority"), NotNull]
-        public int? Priority
+        [DisplayName("Priority"), NotNull, ReadOnly(true)]
+        public MailQueuePriority? Priority
         {
-            get => fields.Priority[this];
-            set => fields.Priority[this] = value;
+            get { return (MailQueuePriority?)Fields.Priority[this]; }
+            set { Fields.Priority[this] = (Int16?)value; }
         }
 
         [DisplayName("Status"), NotNull]
-        public int? Status
+        public MailStatus? Status
         {
-            get => fields.Status[this];
-            set => fields.Status[this] = value;
+            get { return (MailStatus?)Fields.Status[this]; }
+            set { Fields.Status[this] = (Int16?)value; }
         }
 
         [DisplayName("Retry Count"), NotNull]
