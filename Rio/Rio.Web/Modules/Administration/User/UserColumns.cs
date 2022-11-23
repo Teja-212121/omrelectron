@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System;
 
 namespace Rio.Administration.Columns
@@ -7,7 +7,7 @@ namespace Rio.Administration.Columns
     [BasedOnRow(typeof(UserRow), CheckNames = true)]
     public class UserColumns
     {
-        [EditLink, AlignRight, Width(55)]
+        [EditLink, AlignRight, Width(55), SortOrder(1, true)]
         public String UserId { get; set; }
         [EditLink, Width(150)]
         public String Username { get; set; }
