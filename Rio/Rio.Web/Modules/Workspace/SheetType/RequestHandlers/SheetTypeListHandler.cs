@@ -1,3 +1,5 @@
+using Serenity.Abstractions;
+using Serenity.Data;
 using Serenity.Services;
 using Serenity.Web;
 using MyRequest = Serenity.Services.ListRequest;
@@ -10,7 +12,9 @@ namespace Rio.Workspace
 
     public class SheetTypeListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, ISheetTypeListHandler
     {
-        public SheetTypeListHandler(IRequestContext context)
+        private readonly IPermissionService permissions;
+
+        public SheetTypeListHandler(IRequestContext context, IPermissionService permissions)
              : base(context)
         {
         }
@@ -18,6 +22,15 @@ namespace Rio.Workspace
         {
             Row.OverlayImage = VirtualPathUtility.ToAbsolute("","~/upload/" + Row.OverlayImage);
             return base.ProcessEntity(row);
+        }
+        protected override void PrepareQuery(SqlQuery query)
+        {
+            base.PrepareQuery(query);
+            if (!permissions.HasPermission("Administration:Security"))
+            {
+                var fld = MyRow.Fields;
+                query.Where(fld.IsPrivate == 0);
+            }
         }
     }
 }

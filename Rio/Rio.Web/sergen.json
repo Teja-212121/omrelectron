@@ -93,6 +93,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.Mail",
+          "Identifier": "Mail",
+          "Module": "Common",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.RuleTypes",
           "Identifier": "RuleType",
           "Module": "Workspace",
