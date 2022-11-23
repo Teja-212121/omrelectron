@@ -2,6 +2,7 @@ using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Services;
 using Serenity.Web;
+using System;
 using MyRequest = Serenity.Services.ListRequest;
 using MyResponse = Serenity.Services.ListResponse<Rio.Workspace.SheetTypeRow>;
 using MyRow = Rio.Workspace.SheetTypeRow;
@@ -17,6 +18,7 @@ namespace Rio.Workspace
         public SheetTypeListHandler(IRequestContext context, IPermissionService permissions)
              : base(context)
         {
+            this.permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
         }
         protected override MyRow ProcessEntity(MyRow row)
         {
