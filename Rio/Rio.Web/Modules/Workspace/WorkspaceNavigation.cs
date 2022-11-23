@@ -4,7 +4,7 @@ using MyPages = Rio.Workspace.Pages;
 
 [assembly: NavigationMenu(2000, "Sheets", icon: "fa-files-o")]
 [assembly: NavigationLink(2001, "Sheets/Sheet Types", typeof(MyPages.SheetTypeController), icon: "fa-circle-o")]
-[assembly: NavigationLink(2002, "Sheets/Select Sheet Type", typeof(MyPages.SelectSheetTypeController), icon: "fa-circle-o")]
+//[assembly: NavigationLink(2002, "Sheets/Select Sheet Type", typeof(MyPages.SelectSheetTypeController), icon: "fa-circle-o")]
 [assembly: NavigationLink(2003, "Sheets/My Sheet Types", typeof(MyPages.SheetTypeTenantController), icon: "fa-circle-o")]
 
 [assembly: NavigationMenu(3000, "Exams", icon: "fa-pencil-square-o")]
