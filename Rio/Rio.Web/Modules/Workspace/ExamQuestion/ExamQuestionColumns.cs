@@ -24,7 +24,9 @@ namespace Rio.Workspace.Columns
         public int ExamSectionId { get; set; }
         public string ExamSectionName { get; set; }
         [QuickFilter]
-        [DisplayName("Date")]
+        [DisplayName("Insert Date")]
         public DateTime InsertDate { get; set; }
+        [DisplayName("Tenant")]
+        public int TenantId { get; set; }
     }
 }

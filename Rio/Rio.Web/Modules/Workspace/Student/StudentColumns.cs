@@ -25,5 +25,7 @@ namespace Rio.Workspace.Columns
         [QuickFilter]
         [DisplayName("Insert Date")]
         public DateTime InsertDate { get; set; }
+        [DisplayName("Tenant")]
+        public int TenantId { get; set; }
     }
 }

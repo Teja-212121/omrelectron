@@ -29,8 +29,11 @@ namespace Rio
 
         protected void AddTenantFilter(SqlQuery query)
         {
-            var r = new TRow();
-            query.Where(r.TenantIdField == UserAccessor.User.GetTenantId());
+            if (UserAccessor.User.Identity.Name.ToLower() != "admin")
+            {
+                var r = new TRow();
+                query.Where(r.TenantIdField == UserAccessor.User.GetTenantId());
+            }
         }
 
         public override string GetScript()
