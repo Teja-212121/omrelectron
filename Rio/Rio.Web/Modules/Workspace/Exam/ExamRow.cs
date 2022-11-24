@@ -11,7 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Exam"), InstanceName("Exam")]
     [ReadPermission(PermissionKeys.Exams)]
     [ModifyPermission(PermissionKeys.Exams)]
-    [LookupScript("Workspace.Exam", Permission = "*", Expiration = 1)]
+    [LookupScript("Workspace.Exam", Permission = "*", Expiration = 1, LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ExamRow : LoggingRow<ExamRow.RowFields>, IIdRow, INameRow, IIsActiveRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty, QuickSearch]

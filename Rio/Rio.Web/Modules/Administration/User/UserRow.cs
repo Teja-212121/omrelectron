@@ -15,6 +15,7 @@ namespace Rio.Administration
     public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.RowFields>, IIdRow, INameRow, IIsActiveRow
     {
         [DisplayName("User Id"), Identity, IdProperty]
+        [SortOrder(1, descending: true)]
         public int? UserId
         {
             get => fields.UserId[this];

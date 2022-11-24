@@ -11,7 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Scanned Batch"), InstanceName("Scanned Batch")]
     [ReadPermission(PermissionKeys.ScannedData)]
     [ModifyPermission(PermissionKeys.ScannedData)]
-    [LookupScript("Workspace.ScannedBatchs")]
+    [LookupScript("Workspace.ScannedBatchs", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ScannedBatchRow :LoggingRow<ScannedBatchRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), PrimaryKey, NotNull, IdProperty, Insertable(false), Updatable(false)]

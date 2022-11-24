@@ -11,7 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Group"), InstanceName("Group")]
     [ReadPermission(PermissionKeys.GroupStudents)]
     [ModifyPermission(PermissionKeys.GroupStudents)]
-    [LookupScript("Workspace.Group")]
+    [LookupScript("Workspace.Group", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class GroupRow : LoggingRow<GroupRow.RowFields>, IIdRow, INameRow, IMultiTenantRow, IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty]

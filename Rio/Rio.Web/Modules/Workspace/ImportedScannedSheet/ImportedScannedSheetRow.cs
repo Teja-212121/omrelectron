@@ -12,7 +12,7 @@ namespace Rio.Workspace
     [DisplayName("Imported Scanned Sheet"), InstanceName("Imported Scanned Sheet")]
     [ReadPermission(PermissionKeys.ScannedData)]
     [ModifyPermission(PermissionKeys.ScannedData)]
-    [LookupScript("Workspace.ImportedScannedSheets")]
+    [LookupScript("Workspace.ImportedScannedSheets", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ImportedScannedSheetRow : LoggingRow<ImportedScannedSheetRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false)]
