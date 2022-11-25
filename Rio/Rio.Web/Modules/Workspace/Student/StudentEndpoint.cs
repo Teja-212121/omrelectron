@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
+using Rio.Web;
 using Serenity;
 using Serenity.Data;
 using Serenity.Extensions;
@@ -167,12 +168,23 @@ namespace Rio.Workspace.Endpoints
                         }
 
                         Row.Note = Convert.ToString(worksheet.Cells[row, 7].Value ?? "").Trim();
-                        Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 8].Value ?? null);
                         Row.InsertDate = DateTime.UtcNow;
                         Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
+                        Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 8].Value ?? null);
+                        var tenantid = User.GetTenantId();
+                        /*Row.TenantId = student.TenantId;*/
+                        if (Row.TenantId != tenantid)
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": TenantId doest not belong to Student!!");
+                            continue;
+                        }
+                        else
+                        {
+                            uow.Connection.Insert<StudentRow>(Row);
+                            response.Inserted = response.Inserted + 1;
+                        }
 
-                        uow.Connection.Insert<StudentRow>(Row);
-                        response.Inserted = response.Inserted + 1;
+                        
                     }
 
                 }
