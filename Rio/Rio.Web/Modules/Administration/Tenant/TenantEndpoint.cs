@@ -124,6 +124,7 @@ namespace Rio.Administration.Endpoints
                         //if (message.ReplyToList.Count > 0)
                         //    mail.ReplyTo = string.Join(";", message.ReplyToList.Select(x => x.ToString()));
                         Connection.Insert<MailRow>(mail);
+                        UserRetrieveService.RemoveCachedUser(Cache, user.UserId, user.DisplayName);
                         #endregion
 
                     }
