@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using Serenity;
+using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -78,7 +79,7 @@ namespace Rio.Workspace.Endpoints
         [HttpPost]
         public ExcelImportResponse ExcelImport(IUnitOfWork uow, ExcelImportRequest request,
             [FromServices] IUploadStorage uploadStorage,
-            [FromServices] IExamQuestionSaveHandler handler)
+            [FromServices] IExamQuestionSaveHandler handler, [FromServices] IPermissionService permissions)
         {
 
             if (request is null)
@@ -113,7 +114,8 @@ namespace Rio.Workspace.Endpoints
                 try
                 {
                     MyRow Row = new MyRow();
-                    Row.ExamId = request.ExamId;                    
+                    Row.ExamId = request.ExamId;
+                    var Exam = uow.Connection.TryFirst<ExamRow>(ExamRow.Fields.Id == Row.ExamId.Value);
                     Row.QuestionIndex = Convert.ToInt32(worksheet.Cells[row, 1].Value ?? null);
                     if (Row.QuestionIndex == null || Row.QuestionIndex == 0)
                     {
@@ -138,13 +140,22 @@ namespace Rio.Workspace.Endpoints
                         if (Row.ExamSectionId != 0)
                         {
                         var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.Id == Row.ExamSectionId.Value);
-                        if (examsectionid == null)
-                        {
-                            response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
-                            continue;
-                        }
-                        else
-                            Row.ExamSectionId = examsectionid.Id;
+                            if (examsectionid == null)
+                            {
+                                response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
+                                continue;
+                            }
+                            else
+                            {
+                                Row.ExamSectionId = examsectionid.Id;
+                                if (examsectionid.TenantId != Exam.TenantId)
+                                {
+                                    response.ErrorList.Add("Error On Row " + row + ":  Exam Section not belong to Exam!!!");
+                                    continue;
+
+                                }
+                                
+                            }
                        
                     }
                    
@@ -165,7 +176,7 @@ namespace Rio.Workspace.Endpoints
                         else
                             Row.RuleTypeId = ruletypeid.Id;
                     }
-                    var Exam = uow.Connection.TryFirst<ExamRow>(ExamRow.Fields.Id == Row.ExamId.Value);
+                   
                     Row.TenantId = Exam.TenantId;
                     Row.InsertDate = DateTime.UtcNow;
                     Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
