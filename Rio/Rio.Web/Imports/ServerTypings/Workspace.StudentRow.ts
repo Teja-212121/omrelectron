@@ -29,10 +29,10 @@
         export function getLookup(): Q.Lookup<StudentRow> {
             return Q.getLookup<StudentRow>('Workspace.Student');
         }
-        export const deletePermission = 'Workspace:GroupStudents:Modify';
-        export const insertPermission = 'Workspace:GroupStudents:Modify';
-        export const readPermission = 'Workspace:GroupStudents:View';
-        export const updatePermission = 'Workspace:GroupStudents:Modify';
+        export const deletePermission = 'Workspace:StudentManagement:Modify';
+        export const insertPermission = 'Workspace:StudentManagement:Modify';
+        export const readPermission = 'Workspace:StudentManagement:View';
+        export const updatePermission = 'Workspace:StudentManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",

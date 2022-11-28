@@ -2,10 +2,16 @@
     export namespace PermissionKeys {
         export const General = "Workspace:General";
 
-        namespace GroupStudents {
-            export const Delete = "Workspace:GroupStudents:Delete";
-            export const Modify = "Workspace:GroupStudents:Modify";
-            export const View = "Workspace:GroupStudents:View";
+        namespace GroupManagement {
+            export const Delete = "Workspace:GroupManagement:Delete";
+            export const Modify = "Workspace:GroupManagement:Modify";
+            export const View = "Workspace:GroupManagement:View";
+        }
+
+        namespace StudentManagement {
+            export const Delete = "Workspace:StudentManagement:Delete";
+            export const Modify = "Workspace:StudentManagement:Modify";
+            export const View = "Workspace:StudentManagement:View";
         }
 
         namespace SheetType {

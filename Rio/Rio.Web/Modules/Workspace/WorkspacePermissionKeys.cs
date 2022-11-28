@@ -11,14 +11,24 @@ namespace Rio.Workspace
         [Description("[General]")]
         public const string General = "Workspace:General";
 
-        [Description("Groups and Students Management")]
-        public class GroupStudents
+        [DisplayName("Groups Management")]
+        public class GroupManagement
         {
             [ImplicitPermission(General), ImplicitPermission(View)]
-            public const string Delete = "Workspace:GroupStudents:Delete";
+            public const string Delete = "Workspace:GroupManagement:Delete";
             [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
-            public const string Modify = "Workspace:GroupStudents:Modify";
-            public const string View = "Workspace:GroupStudents:View";
+            public const string Modify = "Workspace:GroupManagement:Modify";
+            public const string View = "Workspace:GroupManagement:View";
+        }
+
+        [DisplayName("Students Management")]
+        public class StudentManagement
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:StudentManagement:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:StudentManagement:Modify";
+            public const string View = "Workspace:StudentManagement:View";
         }
 
         [DisplayName("Sheet Types")]

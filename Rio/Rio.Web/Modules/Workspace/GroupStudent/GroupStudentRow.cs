@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[GroupStudents]")]
     [DisplayName("Group Student"), InstanceName("Group Student")]
-    [ReadPermission(PermissionKeys.GroupStudents.View)]
-    [ModifyPermission(PermissionKeys.GroupStudents.Modify)]
+    [ReadPermission(PermissionKeys.GroupManagement.View)]
+    [ModifyPermission(PermissionKeys.GroupManagement.Modify)]
     public sealed class GroupStudentRow : LoggingRow<GroupStudentRow.RowFields>, IIdRow, IMultiTenantRow, IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty]

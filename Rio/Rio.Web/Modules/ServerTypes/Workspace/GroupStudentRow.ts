@@ -42,10 +42,10 @@ export abstract class GroupStudentRow {
     static readonly idProperty = 'Id';
     static readonly isActiveProperty = 'IsActive';
     static readonly localTextPrefix = 'Workspace.GroupStudent';
-    static readonly deletePermission = 'Workspace:GroupStudents:Modify';
-    static readonly insertPermission = 'Workspace:GroupStudents:Modify';
-    static readonly readPermission = 'Workspace:GroupStudents:View';
-    static readonly updatePermission = 'Workspace:GroupStudents:Modify';
+    static readonly deletePermission = 'Workspace:GroupManagement:Modify';
+    static readonly insertPermission = 'Workspace:GroupManagement:Modify';
+    static readonly readPermission = 'Workspace:GroupManagement:View';
+    static readonly updatePermission = 'Workspace:GroupManagement:Modify';
 
     static readonly Fields = fieldsProxy<GroupStudentRow>();
 }
