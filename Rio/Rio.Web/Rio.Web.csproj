@@ -46,22 +46,25 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serenity.Assets" Version="6.1.8" />
-    <PackageReference Include="Serenity.Scripts" Version="6.1.9" />
-    <PackageReference Include="Serenity.Net.Web" Version="6.1.9" />
+    <PackageReference Include="Serenity.Assets" Version="6.3.3" />
+    <PackageReference Include="Serenity.Scripts" Version="6.3.3" />
+    <PackageReference Include="Serenity.Net.Web" Version="6.3.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serenity.Extensions" Version="6.1.9" />
+    <PackageReference Include="Serenity.Extensions" Version="6.3.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serenity.Pro.Coder" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.Extensions" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.Theme" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.UI" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.DataAuditLog" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.DataExplorer" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.EmailClient" Version="6.1.9" />
-    <PackageReference Include="Serenity.Pro.EmailQueue" Version="6.1.9" />
+    <PackageReference Include="Serenity.Pro.Coder" Version="6.3.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serenity.Pro.Extensions" Version="6.3.3" />
+    <PackageReference Include="Serenity.Pro.Theme" Version="6.3.3" />
+    <PackageReference Include="Serenity.Pro.UI" Version="6.3.3" />
+    <PackageReference Include="Serenity.Pro.DataAuditLog" Version="6.3.3" />
+    <PackageReference Include="Serenity.Pro.DataExplorer" Version="6.3.3" />
+    <PackageReference Include="Serenity.Pro.EmailClient" Version="6.3.3" />
+    <PackageReference Include="Serenity.Pro.EmailQueue" Version="6.3.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Namespaces\Administration\" />

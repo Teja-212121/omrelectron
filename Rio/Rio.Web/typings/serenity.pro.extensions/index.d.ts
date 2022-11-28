@@ -172,6 +172,10 @@ declare namespace Serenity {
     }
     interface DraggableGroupingMixinOptions {
         grid: Serenity.DataGrid<any, any>;
+        onGroupChanged?: (info: Slick.Plugins.GroupChangeInfo) => void;
+        getCount?: (group: Slick.Group<any>) => number;
+        displayTotalsRow?: boolean;
+        collapsed?: boolean;
     }
     class DraggableGroupingMixin {
         readonly plugin: Slick.Plugins.DraggableGrouping;
@@ -190,6 +194,13 @@ declare namespace Slick.Plugins {
         dropPlaceHolderText?: string;
         getGroupingFor?: (column: Column) => GroupInfo<any>;
         getAllColumns?: () => Slick.Column[];
+        getCount?: (group: Group<any>) => number;
+        displayTotalsRow?: boolean;
+        collapsed?: boolean;
+    }
+    interface GroupChangeInfo {
+        groupingArray: any[];
+        userChange: boolean;
     }
     /**
      * Based on plugin at https://github.com/muthukumarse/Slickgrid
@@ -197,32 +208,30 @@ declare namespace Slick.Plugins {
     class DraggableGrouping {
         private grid;
         private gridUid;
-        private dataView;
         private dropbox;
         private dropboxPlaceholder;
         private expandAll;
         private collapseAll;
         private options;
         private columnsGroupBy;
-        onGroupChanged: Event<any, IEventData>;
+        readonly onGroupChanged: Event<GroupChangeInfo, IEventData>;
         constructor(options?: DraggableGroupingOptions);
         init(grid: Slick.Grid): void;
         private getColumns;
         destroy(): void;
         private setupColumnDropbox;
         getGroupingFor(column: Column): GroupInfo<any>;
-        handleGroupByDrop(container: JQuery, columnid: string): void;
-        private addColumnGroupBy;
+        private addGroupColumn;
         setDroppedGroups(idList: string[]): void;
-        private removeGroupBy;
+        private removeIconClick;
         private updateInterface;
-        private updateGroupBy;
+        private groupChanged;
         static setupColumnReorder(grid: Slick.Grid, $headers: JQuery, setupColumnResize: () => void, trigger: (ev: any, p: any) => void): void;
     }
 }
 declare namespace Serenity {
     /** Auto save types */
-    const enum AutoSaveOption {
+    enum AutoSaveOption {
         /** Never auto save */
         Never = 0,
         /** Automatically save pending changes without asking */
@@ -335,7 +344,7 @@ declare namespace Serenity {
         protected getLocalizationGridValue(): any;
         protected getPendingLocalizations(): any;
         protected initPropertyGrid(): void;
-        protected getFormPropertyItems(): Q.PropertyItem[];
+        protected getFormPropertyItems(): PropertyItem[];
         protected getPropertyGridOptions(): PropertyGridOptions;
         protected validateBeforeSave(): boolean;
         protected getSaveOptions(callback: (response: SaveResponse) => void): ServiceOptions<SaveResponse>;
@@ -396,7 +405,7 @@ declare namespace Serenity {
     }
 }
 declare namespace Serenity {
-    const enum HeaderFilterType {
+    enum HeaderFilterType {
         disabled = 0,
         value = 1,
         text = 2

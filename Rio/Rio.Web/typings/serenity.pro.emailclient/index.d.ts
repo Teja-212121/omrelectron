@@ -190,6 +190,9 @@ declare namespace Serenity.Pro.EmailClient {
 }
 declare namespace Serenity.Pro.EmailClient {
     namespace PermissionKeys {
+        namespace EmailClient {
+            const Mailbox = "EmailClient:Mailbox";
+        }
     }
 }
 declare namespace Serenity.Pro.EmailClient {
