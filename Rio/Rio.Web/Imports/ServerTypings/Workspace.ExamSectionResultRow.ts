@@ -67,10 +67,10 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'SheetNumber';
         export const localTextPrefix = 'Workspace.ExamSectionResult';
-        export const deletePermission = 'Workspace:Exams:Modify';
-        export const insertPermission = 'Workspace:Exams:Modify';
-        export const readPermission = 'Workspace:Exams:View';
-        export const updatePermission = 'Workspace:Exams:Modify';
+        export const deletePermission = 'Workspace:ExamResultManagement:View';
+        export const insertPermission = 'Workspace:ExamResultManagement:View';
+        export const readPermission = 'Workspace:ExamResultManagement:View';
+        export const updatePermission = 'Workspace:ExamResultManagement:View';
 
         export declare const enum Fields {
             Id = "Id",

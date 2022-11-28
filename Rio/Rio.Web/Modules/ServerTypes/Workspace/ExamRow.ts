@@ -29,10 +29,10 @@ export abstract class ExamRow {
     static getLookup() { return getLookup<ExamRow>('Workspace.Exam') }
     static async getLookupAsync() { return getLookupAsync<ExamRow>('Workspace.Exam') }
 
-    static readonly deletePermission = 'Workspace:Exams:Modify';
-    static readonly insertPermission = 'Workspace:Exams:Modify';
-    static readonly readPermission = 'Workspace:Exams:View';
-    static readonly updatePermission = 'Workspace:Exams:Modify';
+    static readonly deletePermission = 'Workspace:ExamsAndSectionManagement:Modify';
+    static readonly insertPermission = 'Workspace:ExamsAndSectionManagement:Modify';
+    static readonly readPermission = 'Workspace:ExamsAndSectionManagement:View';
+    static readonly updatePermission = 'Workspace:ExamsAndSectionManagement:Modify';
 
     static readonly Fields = fieldsProxy<ExamRow>();
 }

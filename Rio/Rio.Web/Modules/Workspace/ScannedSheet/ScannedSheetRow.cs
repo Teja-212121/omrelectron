@@ -10,8 +10,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[ScannedSheets]")]
     [DisplayName("Scanned Sheet"), InstanceName("Scanned Sheet")]
-    [ReadPermission(PermissionKeys.ScannedData.View)]
-    [ModifyPermission(PermissionKeys.ScannedData.Modify)]
+    [ReadPermission(PermissionKeys.ScannedDataManagement.View)]
+    [ModifyPermission(PermissionKeys.ScannedDataManagement.Modify)]
     [LookupScript("Workspace.ScannedSheets", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ScannedSheetRow :LoggingRow<ScannedSheetRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
     {

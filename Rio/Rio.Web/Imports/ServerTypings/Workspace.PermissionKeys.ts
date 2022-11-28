@@ -26,16 +26,36 @@
             export const View = "Workspace:SheetTypeTenant:View";
         }
 
-        namespace Exams {
-            export const Delete = "Workspace:Exams:Delete";
-            export const Modify = "Workspace:Exams:Modify";
-            export const View = "Workspace:Exams:View";
+        namespace ExamsAndSectionManagement {
+            export const Delete = "Workspace:ExamsAndSectionManagement:Delete";
+            export const Modify = "Workspace:ExamsAndSectionManagement:Modify";
+            export const View = "Workspace:ExamsAndSectionManagement:View";
         }
 
-        namespace ScannedData {
-            export const Delete = "Workspace:ScannedData:Delete";
-            export const Modify = "Workspace:ScannedData:Modify";
-            export const View = "Workspace:ScannedData:View";
+        namespace ExamQuestionManagement {
+            export const Delete = "Workspace:ExamQuestionManagement:Delete";
+            export const Modify = "Workspace:ExamQuestionManagement:Modify";
+            export const View = "Workspace:ExamQuestionManagement:View";
+        }
+
+        namespace ExamResultManagement {
+            export const View = "Workspace:ExamResultManagement:View";
+        }
+
+        namespace RuleTypeManagement {
+            export const View = "Workspace:RuleTypeManagement:View";
+        }
+
+        namespace ScannedDataManagement {
+            export const Delete = "Workspace:ScannedDataManagement:Delete";
+            export const Modify = "Workspace:ScannedDataManagement:Modify";
+            export const View = "Workspace:ScannedDataManagement:View";
+        }
+
+        namespace ImportedDataManagement {
+            export const Delete = "Workspace:ImportedDataManagement:Delete";
+            export const Modify = "Workspace:ImportedDataManagement:Modify";
+            export const View = "Workspace:ImportedDataManagement:View";
         }
     }
 }

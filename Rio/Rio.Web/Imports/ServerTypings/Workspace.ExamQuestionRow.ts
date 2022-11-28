@@ -47,10 +47,10 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'Tags';
         export const localTextPrefix = 'Workspace.ExamQuestion';
-        export const deletePermission = 'Workspace:Exams:Modify';
-        export const insertPermission = 'Workspace:Exams:Modify';
-        export const readPermission = 'Workspace:Exams:View';
-        export const updatePermission = 'Workspace:Exams:Modify';
+        export const deletePermission = 'Workspace:ExamQuestionManagement:Modify';
+        export const insertPermission = 'Workspace:ExamQuestionManagement:Modify';
+        export const readPermission = 'Workspace:ExamQuestionManagement:View';
+        export const updatePermission = 'Workspace:ExamQuestionManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",

@@ -14,10 +14,10 @@
         export function getLookup(): Q.Lookup<RuleTypeRow> {
             return Q.getLookup<RuleTypeRow>('Workspace.RuleType');
         }
-        export const deletePermission = 'Workspace:Exams:Modify';
-        export const insertPermission = 'Workspace:Exams:Modify';
-        export const readPermission = 'Workspace:Exams:View';
-        export const updatePermission = 'Workspace:Exams:Modify';
+        export const deletePermission = 'Administration.Security';
+        export const insertPermission = 'Administration.Security';
+        export const readPermission = 'Workspace:RuleTypeManagement:View';
+        export const updatePermission = 'Administration.Security';
 
         export declare const enum Fields {
             Id = "Id",

@@ -21,10 +21,10 @@
         export function getLookup(): Q.Lookup<ScannedBatchRow> {
             return Q.getLookup<ScannedBatchRow>('Workspace.ScannedBatchs');
         }
-        export const deletePermission = 'Workspace:ScannedData:Modify';
-        export const insertPermission = 'Workspace:ScannedData:Modify';
-        export const readPermission = 'Workspace:ScannedData:View';
-        export const updatePermission = 'Workspace:ScannedData:Modify';
+        export const deletePermission = 'Workspace:ScannedDataManagement:Modify';
+        export const insertPermission = 'Workspace:ScannedDataManagement:Modify';
+        export const readPermission = 'Workspace:ScannedDataManagement:View';
+        export const updatePermission = 'Workspace:ScannedDataManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",
