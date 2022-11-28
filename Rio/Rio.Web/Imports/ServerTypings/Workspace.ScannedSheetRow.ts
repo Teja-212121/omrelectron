@@ -61,10 +61,10 @@
         export function getLookup(): Q.Lookup<ScannedSheetRow> {
             return Q.getLookup<ScannedSheetRow>('Workspace.ScannedSheets');
         }
-        export const deletePermission = 'Workspace:ScannedData';
-        export const insertPermission = 'Workspace:ScannedData';
-        export const readPermission = 'Workspace:ScannedData';
-        export const updatePermission = 'Workspace:ScannedData';
+        export const deletePermission = 'Workspace:ScannedData:Modify';
+        export const insertPermission = 'Workspace:ScannedData:Modify';
+        export const readPermission = 'Workspace:ScannedData:View';
+        export const updatePermission = 'Workspace:ScannedData:Modify';
 
         export declare const enum Fields {
             Id = "Id",

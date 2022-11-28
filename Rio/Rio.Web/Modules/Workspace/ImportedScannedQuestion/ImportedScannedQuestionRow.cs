@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[ImportedScannedQuestions]")]
     [DisplayName("Imported Scanned Question"), InstanceName("Imported Scanned Question")]
-    [ReadPermission(PermissionKeys.ScannedData)]
-    [ModifyPermission(PermissionKeys.ScannedData)]
+    [ReadPermission(PermissionKeys.ScannedData.View)]
+    [ModifyPermission(PermissionKeys.ScannedData.Modify)]
     public sealed class ImportedScannedQuestionRow :LoggingRow<ImportedScannedQuestionRow.RowFields>, IIdRow,IMultiTenantRow, IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty,QuickSearch]

@@ -22,7 +22,7 @@ namespace Rio.Common.Pages
             DashboardPageModel model = new DashboardPageModel();
             using (var Connection = sqlConnections.NewByKey("Default"))
             {
-                if (permissions.HasPermission(""))
+                if (permissions.HasPermission("*"))
                 {
                     model.TotalStudents = Connection.List<StudentRow>().Count;
                     model.TotalScannedSheets = Connection.List<ScannedSheetRow>().Count;

@@ -10,8 +10,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[Students]")]
     [DisplayName("Student"), InstanceName("Student")]
-    [ReadPermission(PermissionKeys.GroupStudents)]
-    [ModifyPermission(PermissionKeys.GroupStudents)]
+    [ReadPermission(PermissionKeys.GroupStudents.View)]
+    [ModifyPermission(PermissionKeys.GroupStudents.Modify)]
     [LookupScript("Workspace.Student", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class StudentRow : LoggingRow<StudentRow.RowFields>, IIdRow, INameRow, IMultiTenantRow, IIsActiveRow
     {

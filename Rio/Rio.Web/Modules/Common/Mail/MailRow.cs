@@ -1,3 +1,4 @@
+using Rio.Administration;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -8,8 +9,8 @@ namespace Rio.Common
 {
     [ConnectionKey("Default"), Module("Common"), TableName("[dbo].[Mail]")]
     [DisplayName("Mail"), InstanceName("Mail")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.Security)]
+    [ModifyPermission(PermissionKeys.Security)]
     public sealed class MailRow : Row<MailRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Mail Id"), Identity, IdProperty]

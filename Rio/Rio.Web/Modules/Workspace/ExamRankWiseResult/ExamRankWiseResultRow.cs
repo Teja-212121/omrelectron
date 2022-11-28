@@ -8,8 +8,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[ExamRankWiseResults]")]
     [DisplayName("Exam Rank Wise Result"), InstanceName("Exam Rank Wise Result")]
-    [ReadPermission(PermissionKeys.Exams)]
-    [ModifyPermission(PermissionKeys.Exams)]
+    [ReadPermission(PermissionKeys.Exams.View)]
+    [ModifyPermission(PermissionKeys.Exams.Modify)]
     public sealed class ExamRankWiseResultRow : Row<ExamRankWiseResultRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]

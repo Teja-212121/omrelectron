@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[ScannedQuestions]")]
     [DisplayName("Scanned Question"), InstanceName("Scanned Question")]
-    [ReadPermission(PermissionKeys.ScannedData)]
-    [ModifyPermission(PermissionKeys.ScannedData)]
+    [ReadPermission(PermissionKeys.ScannedData.View)]
+    [ModifyPermission(PermissionKeys.ScannedData.Modify)]
     public sealed class ScannedQuestionRow :LoggingRow<ScannedQuestionRow.RowFields>, IIdRow,IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty]

@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[ImportedScannedBatches]")]
     [DisplayName("Imported Scanned Batch"), InstanceName("Imported Scanned Batch")]
-    [ReadPermission(PermissionKeys.ScannedData)]
-    [ModifyPermission(PermissionKeys.ScannedData)]
+    [ReadPermission(PermissionKeys.ScannedData.View)]
+    [ModifyPermission(PermissionKeys.ScannedData.Modify)]
     [LookupScript("Workspace.ImportedScannedBatches", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ImportedScannedBatchRow :LoggingRow<ImportedScannedBatchRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {

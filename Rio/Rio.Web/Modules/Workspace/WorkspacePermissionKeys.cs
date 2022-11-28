@@ -12,7 +12,14 @@ namespace Rio.Workspace
         public const string General = "Workspace:General";
 
         [Description("Groups and Students Management")]
-        public const string GroupStudents = "Workspace:GroupStudents";
+        public class GroupStudents
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:GroupStudents:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:GroupStudents:Modify";
+            public const string View = "Workspace:GroupStudents:View";
+        }
 
         [DisplayName("Sheet Types")]
         public class SheetType
@@ -35,9 +42,23 @@ namespace Rio.Workspace
         }
 
         [Description("Exam Management")]
-        public const string Exams = "Workspace:Exams";
+        public class Exams
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:Exams:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:Exams:Modify";
+            public const string View = "Workspace:Exams:View";
+        }
 
         [Description("Scanned Data Management")]
-        public const string ScannedData = "Workspace:ScannedData";
+        public class ScannedData
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:ScannedData:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:ScannedData:Modify";
+            public const string View = "Workspace:ScannedData:View";
+        }
     }
 }

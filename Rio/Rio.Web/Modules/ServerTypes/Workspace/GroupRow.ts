@@ -33,10 +33,10 @@ export abstract class GroupRow {
     static getLookup() { return getLookup<GroupRow>('Workspace.Group') }
     static async getLookupAsync() { return getLookupAsync<GroupRow>('Workspace.Group') }
 
-    static readonly deletePermission = 'Workspace:GroupStudents';
-    static readonly insertPermission = 'Workspace:GroupStudents';
-    static readonly readPermission = 'Workspace:GroupStudents';
-    static readonly updatePermission = 'Workspace:GroupStudents';
+    static readonly deletePermission = 'Workspace:GroupStudents:Modify';
+    static readonly insertPermission = 'Workspace:GroupStudents:Modify';
+    static readonly readPermission = 'Workspace:GroupStudents:View';
+    static readonly updatePermission = 'Workspace:GroupStudents:Modify';
 
     static readonly Fields = fieldsProxy<GroupRow>();
 }

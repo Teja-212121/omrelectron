@@ -7,8 +7,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[RuleTypes]")]
     [DisplayName("Rule Type"), InstanceName("Rule Type")]
-    [ReadPermission(PermissionKeys.Exams)]
-    [ModifyPermission(PermissionKeys.Exams)]
+    [ReadPermission(PermissionKeys.Exams.View)]
+    [ModifyPermission(PermissionKeys.Exams.Modify)]
     [LookupScript("Workspace.RuleType")]
     public sealed class RuleTypeRow : Row<RuleTypeRow.RowFields>, IIdRow, INameRow
     {

@@ -26,10 +26,10 @@
         export const idProperty = 'MailId';
         export const nameProperty = 'Subject';
         export const localTextPrefix = 'Common.Mail';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const deletePermission = 'Administration:Security';
+        export const insertPermission = 'Administration:Security';
+        export const readPermission = 'Administration:Security';
+        export const updatePermission = 'Administration:Security';
 
         export declare const enum Fields {
             MailId = "MailId",

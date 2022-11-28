@@ -39,10 +39,10 @@
         export const idProperty = 'Id';
         export const isActiveProperty = 'IsActive';
         export const localTextPrefix = 'Workspace.ScannedQuestion';
-        export const deletePermission = 'Workspace:ScannedData';
-        export const insertPermission = 'Workspace:ScannedData';
-        export const readPermission = 'Workspace:ScannedData';
-        export const updatePermission = 'Workspace:ScannedData';
+        export const deletePermission = 'Workspace:ScannedData:Modify';
+        export const insertPermission = 'Workspace:ScannedData:Modify';
+        export const readPermission = 'Workspace:ScannedData:View';
+        export const updatePermission = 'Workspace:ScannedData:Modify';
 
         export declare const enum Fields {
             Id = "Id",
