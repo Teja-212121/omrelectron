@@ -11,7 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Exam Section"), InstanceName("Exam Section")]
     [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
     [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]
-    [LookupScript("Workspace.ExamSection", LookupType = typeof(MultiTenantRowLookupScript<>))]
+    [LookupScript("Workspace.ExamSection", Permission = "*", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ExamSectionRow : LoggingRow<ExamSectionRow.RowFields>, IIdRow, INameRow, IIsActiveRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty, LookupInclude]

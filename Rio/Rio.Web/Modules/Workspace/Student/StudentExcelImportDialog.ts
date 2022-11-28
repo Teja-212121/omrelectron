@@ -1,4 +1,5 @@
 import { Decorators, PropertyDialog } from '@serenity-is/corelib';
+import { DialogButton } from '@serenity-is/corelib/q';
 import { StudentService } from '../../ServerTypes/Workspace';
 import { StudentExcelImportForm } from '../../ServerTypes/Workspace/StudentExcelImportForm';
 
@@ -24,7 +25,7 @@ import { StudentExcelImportForm } from '../../ServerTypes/Workspace/StudentExcel
             return "Excel Import";
         }
 
-        protected getDialogButtons(): Serenity.DialogButton[] {
+        protected getDialogButtons(): DialogButton[] {
             return [
                 {
                     text: 'Import',

@@ -12,7 +12,7 @@ namespace Rio.Workspace
     [DisplayName("Sheet Type"), InstanceName("Sheet Type")]
     [ReadPermission(PermissionKeys.SheetType.View)]
     [ModifyPermission(PermissionKeys.SheetType.Modify)]
-    [LookupScript("Workspace.SheetTypes")]
+    [LookupScript("Workspace.SheetTypes", Permission = "*")]
     public sealed class SheetTypeRow : LoggingRow<SheetTypeRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty,QuickSearch]

@@ -9,7 +9,7 @@ namespace Rio.Workspace
     [ConnectionKey("Default"), Module("Workspace"), TableName("[ExamGroupWiseResults]")]
     [DisplayName("Exam Group Wise Result"), InstanceName("Exam Group Wise Result")]
     [ReadPermission(PermissionKeys.ExamResultManagement.View)]
-    /*[ModifyPermission(PermissionKeys.Exams.Modify)]*/
+    [ModifyPermission("Administration.Security")]
     public sealed class ExamGroupWiseResultRow : Row<ExamGroupWiseResultRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]

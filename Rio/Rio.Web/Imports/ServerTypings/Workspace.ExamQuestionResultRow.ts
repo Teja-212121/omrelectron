@@ -46,10 +46,10 @@
         export const idProperty = 'Id';
         export const nameProperty = 'SheetNumber';
         export const localTextPrefix = 'Workspace.ExamQuestionResult';
-        export const deletePermission = 'Workspace:ExamResultManagement:View';
-        export const insertPermission = 'Workspace:ExamResultManagement:View';
+        export const deletePermission = 'Administration.Security';
+        export const insertPermission = 'Administration.Security';
         export const readPermission = 'Workspace:ExamResultManagement:View';
-        export const updatePermission = 'Workspace:ExamResultManagement:View';
+        export const updatePermission = 'Administration.Security';
 
         export declare const enum Fields {
             Id = "Id",

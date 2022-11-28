@@ -1,4 +1,5 @@
 import { Decorators, PropertyDialog } from "@serenity-is/corelib";
+import { DialogButton } from '@serenity-is/corelib/q';
 import { ExamQuestionImportForm, ExamQuestionService } from "../../ServerTypes/Workspace";
 
 @Decorators.registerClass()
@@ -24,7 +25,7 @@ export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
             return "Excel Import";
         }
 
-        protected getDialogButtons(): Serenity.DialogButton[] {
+        protected getDialogButtons(): DialogButton[] {
             return [
                 {
                     text: 'Import',
