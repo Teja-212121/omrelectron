@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[SheetTypes]")]
     [DisplayName("Select Sheet Type"), InstanceName("Select Sheet Type")]
-    [ReadPermission(PermissionKeys.Sheets_SheetType_Read)]
-    [ModifyPermission(PermissionKeys.Sheets_SheetType_Modify)]
+    [ReadPermission(PermissionKeys.SheetType.View)]
+    [ModifyPermission(PermissionKeys.SheetType.Modify)]
     public sealed class SelectSheetTypeRow : LoggingRow<SelectSheetTypeRow.RowFields>, IIdRow, INameRow ,IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty]

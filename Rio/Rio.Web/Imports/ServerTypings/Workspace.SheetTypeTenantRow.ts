@@ -38,10 +38,10 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'SheetDesignPdf';
         export const localTextPrefix = 'Workspace.SheetTypeTenant';
-        export const deletePermission = 'Workspace:Sheets:SheetTypesTenant:Modify';
-        export const insertPermission = 'Workspace:Sheets:SheetTypesTenant:Modify';
-        export const readPermission = 'Workspace:Sheets:SheetTypesTenant:Read';
-        export const updatePermission = 'Workspace:Sheets:SheetTypesTenant:Modify';
+        export const deletePermission = 'Workspace:SheetTypeTenant:Modify';
+        export const insertPermission = 'Workspace:SheetTypeTenant:Modify';
+        export const readPermission = 'Workspace:SheetTypeTenant:View';
+        export const updatePermission = 'Workspace:SheetTypeTenant:Modify';
 
         export declare const enum Fields {
             Id = "Id",

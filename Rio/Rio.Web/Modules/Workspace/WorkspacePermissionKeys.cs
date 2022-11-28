@@ -8,20 +8,31 @@ namespace Rio.Workspace
     [DisplayName("Workspace")]
     public class PermissionKeys
     {
+        [Description("[General]")]
+        public const string General = "Workspace:General";
+
         [Description("Groups and Students Management")]
         public const string GroupStudents = "Workspace:GroupStudents";
 
-        [Description("Read")]
-        public const string Sheets_SheetType_Read = "Workspace:Sheets:SheetType:Read";
+        [DisplayName("Sheet Types")]
+        public class SheetType
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:SheetType:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:SheetType:Modify";
+            public const string View = "Workspace:SheetType:View";
+        }
 
-        [Description("Modify")]
-        public const string Sheets_SheetType_Modify = "Workspace:Sheets:SheetType:Modify";
-
-        [Description("Read")]
-        public const string Sheets_SheetTypesTenant_Read = "Workspace:Sheets:SheetTypesTenant:Read";
-
-        [Description("Modify")]
-        public const string Sheets_SheetTypesTenant_Modify = "Workspace:Sheets:SheetTypesTenant:Modify";
+        [DisplayName("Sheet Types By Tenant")]
+        public class SheetTypeTenant
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:SheetTypeTenant:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:SheetTypeTenant:Modify";
+            public const string View = "Workspace:SheetTypeTenant:View";
+        }
 
         [Description("Exam Management")]
         public const string Exams = "Workspace:Exams";

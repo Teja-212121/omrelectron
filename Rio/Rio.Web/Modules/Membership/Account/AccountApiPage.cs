@@ -301,48 +301,50 @@ namespace Rio.Membership.Pages
                 });
                 if (loggedIn)
                 {
+                    UserDefinition userDefinition = (UserDefinition)userRetriever.ByUsername(request.Username);
                     var claims = new[]
                     {
-                        new Claim(JwtRegisteredClaimNames.NameId,request.Username),
+                        new Claim(JwtRegisteredClaimNames.NameId,userDefinition.Id),
                         new Claim(ClaimTypes.Name,request.Username),
                         new Claim(ClaimTypes.NameIdentifier,request.Username),
                         new Claim(JwtRegisteredClaimNames.UniqueName,request.Username),
                         new Claim(JwtRegisteredClaimNames.Sub, request.Username),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    };
+                        new Claim("TenantId",userDefinition.TenantId.ToString()),
+                };
 
-                    //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("6LftZ6gUAAAAAD1Ken7Eep9Wv3Z_WISb9lrxh_QN"));
-                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("6LftZ6gUAAAAAD1Ken7Eep9Wv3Z_WISb9lrxh_QN"));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken("https://omrapp.azurewebsites.net", "https://omrapp.azurewebsites.net",
-                      claims,
-                      expires: DateTime.Now.AddDays(365),
-                      signingCredentials: creds);
+                var token = new JwtSecurityToken("https://omrapp.azurewebsites.net", "https://omrapp.azurewebsites.net",
+                  claims,
+                  expires: DateTime.Now.AddDays(365),
+                  signingCredentials: creds);
 
-                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
-                }
-                else
-                {
-                    //var error = new ServiceError();
-                    //error.Code = "400A";
-                    //error.Message = "Admission already taken";
-
-                    return BadRequest(Texts.Validation.AuthenticationError);
-
-                }
+                return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
             }
-            return BadRequest("Could not create token");
-        }
+            else
+            {
+                //var error = new ServiceError();
+                //error.Code = "400A";
+                //error.Message = "Admission already taken";
 
-        [HttpPost]
-        public RetrieveResponse<UserDefinition> UserData([FromServices] IUserRetrieveService userRetriever)
-        {
-            UserDefinition userDefinition = userRetriever.ByUsername(HttpContext.User.Identity.Name) as UserDefinition;
-            RetrieveResponse<UserDefinition> response = new RetrieveResponse<UserDefinition>();
-            response.Entity = userDefinition;
-            return response;
+                return BadRequest(Texts.Validation.AuthenticationError);
+
+            }
         }
-        #endregion
+            return BadRequest("Could not create token");
     }
+
+    [HttpPost]
+    public RetrieveResponse<UserDefinition> UserData([FromServices] IUserRetrieveService userRetriever)
+    {
+        UserDefinition userDefinition = userRetriever.ByUsername(HttpContext.User.Identity.Name) as UserDefinition;
+        RetrieveResponse<UserDefinition> response = new RetrieveResponse<UserDefinition>();
+        response.Entity = userDefinition;
+        return response;
+    }
+    #endregion
+}
 }

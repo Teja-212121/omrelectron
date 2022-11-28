@@ -14,7 +14,7 @@ namespace Rio.Workspace.Endpoints
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("Api/Services/Workspace/SheetTypeTenant/[action]")]
-    [ConnectionKey(typeof(MyRow))]//, ServiceAuthorize(typeof(MyRow))]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class SheetTypeTenantApiController : ServiceEndpoint
     {
         [HttpPost]
