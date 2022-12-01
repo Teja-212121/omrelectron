@@ -1,4 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { Authorization } from '@serenity-is/corelib/q';
 import { ExamColumns, ExamRow, ExamService } from '../../ServerTypes/Workspace';
 import { ExamDialog } from './ExamDialog';
 
@@ -19,9 +20,14 @@ export class ExamGrid extends EntityGrid<ExamRow, any> {
     }
 
      protected getColumns() {
-        var columns = super.getColumns();
-        columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
-        return columns;
+         var columns = super.getColumns();
+
+         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
+         if (!Authorization.hasPermission("Administration:Security")) {
+             columns = columns.filter(f => f.field != ExamRow.Fields.TenantId);
+         }
+         return columns;
+
     }
     protected createToolbarExtensions() {
         super.createToolbarExtensions();

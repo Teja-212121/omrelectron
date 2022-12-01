@@ -1,4 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { Authorization } from '@serenity-is/corelib/q';
 import { SheetTypeTenantColumns, SheetTypeTenantRow, SheetTypeTenantService } from '../../ServerTypes/Workspace';
 import { SheetTypeTenantDialog } from './SheetTypeTenantDialog';
 
@@ -21,6 +22,11 @@ export class SheetTypeTenantGrid extends EntityGrid<SheetTypeTenantRow, any> {
     protected getColumns() {
         var columns = super.getColumns();
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
+
+        if (!Authorization.hasPermission("Administration:Security")) {
+            columns = columns.filter(f => f.field != SheetTypeTenantRow.Fields.TenantId);
+        }
+
         return columns;
     }
     protected createToolbarExtensions() {
