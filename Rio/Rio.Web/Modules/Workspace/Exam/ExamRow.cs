@@ -85,12 +85,20 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant Id"), NotNull, Insertable(false), Updatable(true)]
+        [DisplayName("Tenant Id"), Insertable(true), Updatable(true)]
         [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {
             get => fields.TenantId[this];
             set => fields.TenantId[this] = value;
+        }
+
+        [DisplayName("Tenant Id"), NotMapped]
+        [LookupEditor("Administration.Tenant")]
+        public int? SelectedTenant
+        {
+            get => fields.SelectedTenant[this];
+            set => fields.SelectedTenant[this] = value;
         }
         public Int32Field TenantIdField
         {
@@ -126,6 +134,7 @@ namespace Rio.Workspace
            
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public Int32Field SelectedTenant;
         }
     }
 }

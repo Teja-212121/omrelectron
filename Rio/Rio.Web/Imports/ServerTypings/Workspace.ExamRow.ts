@@ -11,6 +11,7 @@
         ResultCriteria?: string;
         IsActive?: number;
         TenantId?: number;
+        SelectedTenant?: number;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -44,6 +45,7 @@
             ResultCriteria = "ResultCriteria",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            SelectedTenant = "SelectedTenant",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

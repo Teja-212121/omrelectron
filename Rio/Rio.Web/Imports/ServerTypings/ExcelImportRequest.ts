@@ -3,5 +3,6 @@
         FileName?: string;
         ExamId?: number;
         ScannedSheetId?: number;
+        TenantId?: number;
     }
 }

@@ -1,4 +1,5 @@
 import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Authorization } from '@serenity-is/corelib/q';
 import { ExamForm, ExamRow, ExamService } from '../../ServerTypes/Workspace';
 
 @Decorators.registerClass()
@@ -14,5 +15,12 @@ export class ExamDialog extends EntityDialog<ExamRow, any> {
 
     protected form = new ExamForm(this.idPrefix);
 
+    constructor() {
+        super();
+        this.form = new ExamForm(this.idPrefix);
 
+        if (!Authorization.hasPermission("Administration:Security")) {
+            this.form.SelectedTenant.getGridField().toggle(false);
+        }
+    }
 }

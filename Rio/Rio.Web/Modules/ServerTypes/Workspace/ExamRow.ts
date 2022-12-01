@@ -12,6 +12,7 @@ export interface ExamRow {
     ResultCriteria?: string;
     IsActive?: number;
     TenantId?: number;
+    SelectedTenant?: number;
     InsertUserId?: number;
     InsertDate?: string;
     UpdateUserId?: number;
