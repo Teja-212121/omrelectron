@@ -11,6 +11,8 @@ namespace Rio
         public Int32 ExamId { get; set; }
         public Int32 ScannedSheetId { get; set; }
 
+        public Int32 TenantId { get; set; }
+
         /*public String ProductId { get; set; }
 
         public int stateId { get; set; }

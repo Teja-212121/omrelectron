@@ -8,6 +8,7 @@
         NegativeMarks: Serenity.DecimalEditor;
         OptionsAvailable: Serenity.IntegerEditor;
         ResultCriteria: Serenity.StringEditor;
+        SelectedTenant: Serenity.LookupEditor;
     }
 
     export class ExamForm extends Serenity.PrefixedContext {
@@ -25,6 +26,7 @@
                 var w1 = s.TextAreaEditor;
                 var w2 = s.IntegerEditor;
                 var w3 = s.DecimalEditor;
+                var w4 = s.LookupEditor;
 
                 Q.initFormType(ExamForm, [
                     'Code', w0,
@@ -34,7 +36,8 @@
                     'TotalMarks', w2,
                     'NegativeMarks', w3,
                     'OptionsAvailable', w2,
-                    'ResultCriteria', w0
+                    'ResultCriteria', w0,
+                    'SelectedTenant', w4
                 ]);
             }
         }

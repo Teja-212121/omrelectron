@@ -25,6 +25,8 @@ namespace Rio.Workspace.Forms
         public short OptionsAvailable { get; set; }
         [HalfWidth]
         public string ResultCriteria { get; set; }
+        [HalfWidth]
+        public int SelectedTenant { get; set; }
         
     }
 }

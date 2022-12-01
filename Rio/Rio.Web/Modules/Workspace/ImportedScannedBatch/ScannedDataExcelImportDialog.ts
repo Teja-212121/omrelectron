@@ -1,5 +1,5 @@
 import { Decorators, PropertyDialog } from '@serenity-is/corelib';
-import { DialogButton } from '@serenity-is/corelib/q';
+import { DialogButton, Authorization } from '@serenity-is/corelib/q';
 import { ScannedDataExcelImportForm } from '../../ServerTypes/Workspace';
 import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/ImportedScannedBatchService';
 
@@ -12,6 +12,10 @@ import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/Importe
         constructor() {
             super();
             this.form = new ScannedDataExcelImportForm(this.idPrefix);
+
+            if (!Authorization.hasPermission("Administration:Security")) {
+                this.form.TenantId.getGridField().toggle(false);
+            }
 
             /*this.form.ExamId.changeSelect2(e => {
                 var examId = Q.toId(this.form.ExamId.value);
@@ -42,6 +46,8 @@ import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/Importe
 
                         ImportedScannedBatchService.ExcelImport({
                             FileName: this.form.FileName.value.Filename,
+                            ExamId: this.form.ExamId.value,
+                            TenantId: this.form.TenantId.value
                         }, response => {
                             Q.notifyInfo(
                                 'Inserted: ' + (response.Inserted || 0));

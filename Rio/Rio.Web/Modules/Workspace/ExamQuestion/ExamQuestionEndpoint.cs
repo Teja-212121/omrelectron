@@ -136,27 +136,32 @@ namespace Rio.Workspace.Endpoints
                     }
                     
                     Row.ExamSectionId = Convert.ToInt32(worksheet.Cells[row, 4].Value ?? null);
-                    if (Row.ExamSectionId != null)
-                        if (Row.ExamSectionId != 0)
-                        {
-                        var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.Id == Row.ExamSectionId.Value);
-                            if (examsectionid == null)
-                            {
-                                response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
-                                continue;
-                            }
-                            else
-                            {
-                                Row.ExamSectionId = examsectionid.Id;
-                                if (examsectionid.TenantId != Exam.TenantId)
-                                {
-                                    response.ErrorList.Add("Error On Row " + row + ":  Exam Section not belong to Exam!!!");
-                                    continue;
+                    if (Row.ExamSectionId == 0)
+                    {
+                        Row.ExamSectionId = null;
+                        /*response.ErrorList.Add("Error On Row " + row + ": Cannot Insert Exam Question!!!");
+                        continue;*/
+                    }
 
-                                }
-                                
+                    if (Row.ExamSectionId != null)
+                    {
+                        var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.Id == Row.ExamSectionId.Value);
+                        if (examsectionid == null)
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
+                            continue;
+                        }
+                        else
+                        {
+                            Row.ExamSectionId = examsectionid.Id;
+                            if (examsectionid.TenantId != Exam.TenantId)
+                            {
+                                response.ErrorList.Add("Error On Row " + row + ":  Exam Section not belong to Exam!!!");
+                                continue;
+
                             }
-                       
+
+                        }
                     }
                    
                     Row.RuleTypeId = Convert.ToInt32(worksheet.Cells[row, 5].Value ?? null);
