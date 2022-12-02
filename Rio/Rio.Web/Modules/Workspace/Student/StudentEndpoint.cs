@@ -173,18 +173,20 @@ namespace Rio.Workspace.Endpoints
                         Row.TenantId = Convert.ToInt32(worksheet.Cells[row, 8].Value ?? null);
                         var tenantid = User.GetTenantId();
                         /*Row.TenantId = student.TenantId;*/
-                        if (Row.TenantId != tenantid)
-                        {
-                            response.ErrorList.Add("Error On Row " + row + ": TenantId doest not belong to Student!!");
-                            continue;
-                        }
-                        else
+                        if (Permissions.HasPermission("Administration.Security"))
                         {
                             uow.Connection.Insert<StudentRow>(Row);
                             response.Inserted = response.Inserted + 1;
                         }
+                        else
+                        {
+                            if (Row.TenantId != tenantid)
+                            {
+                                response.ErrorList.Add("Error On Row " + row + ": TenantId doest not belong to Student!!");
+                                continue;
+                            }
+                        }
 
-                        
                     }
 
                 }
