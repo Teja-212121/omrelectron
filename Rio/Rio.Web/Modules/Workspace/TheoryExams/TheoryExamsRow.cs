@@ -2,6 +2,7 @@ using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
+using Serenity.Extensions.Entities;
 using System.ComponentModel;
 
 namespace Rio.Workspace
@@ -10,13 +11,21 @@ namespace Rio.Workspace
     [DisplayName("Theory Exams"), InstanceName("Theory Exams")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
-    public sealed class TheoryExamsRow : Row<TheoryExamsRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
+    [LookupScript("Workspace.TheoryExams", Permission = "?", Expiration = 1, LookupType = typeof(MultiTenantRowLookupScript<>))]
+    public sealed class TheoryExamsRow : LoggingRow<TheoryExamsRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         public long? Id
         {
             get => fields.Id[this];
             set => fields.Id[this] = value;
+        }
+
+        [NotMapped]
+        public String RowIds
+        {
+            get { return Fields.RowIds[this]; }
+            set { Fields.RowIds[this] = value; }
         }
 
         [DisplayName("Code"), Size(100), NotNull, QuickSearch, NameProperty]
@@ -47,35 +56,11 @@ namespace Rio.Workspace
             set => fields.TotalMarks[this] = value;
         }
 
-        [DisplayName("Insert Date"), NotNull]
-        public DateTime? InsertDate
-        {
-            get => fields.InsertDate[this];
-            set => fields.InsertDate[this] = value;
-        }
+       
 
-        [DisplayName("Insert User Id"), NotNull]
-        public int? InsertUserId
-        {
-            get => fields.InsertUserId[this];
-            set => fields.InsertUserId[this] = value;
-        }
+       
 
-        [DisplayName("Update Date")]
-        public DateTime? UpdateDate
-        {
-            get => fields.UpdateDate[this];
-            set => fields.UpdateDate[this] = value;
-        }
-
-        [DisplayName("Update User Id")]
-        public int? UpdateUserId
-        {
-            get => fields.UpdateUserId[this];
-            set => fields.UpdateUserId[this] = value;
-        }
-
-        [DisplayName("Is Active"), NotNull]
+        [DisplayName("Is Active"), NotNull,DefaultValue(1)]
         public short? IsActive
         {
             get => fields.IsActive[this];
@@ -103,17 +88,14 @@ namespace Rio.Workspace
         {
         }
 
-        public class RowFields : RowFieldsBase
+        public class RowFields : LoggingRowFields
         {
             public Int64Field Id;
+            public StringField RowIds;
             public StringField Code;
             public StringField Name;
             public StringField Description;
             public Int32Field TotalMarks;
-            public DateTimeField InsertDate;
-            public Int32Field InsertUserId;
-            public DateTimeField UpdateDate;
-            public Int32Field UpdateUserId;
             public Int16Field IsActive;
             public Int32Field TenantId;
         }

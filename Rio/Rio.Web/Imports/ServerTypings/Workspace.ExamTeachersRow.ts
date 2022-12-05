@@ -1,12 +1,9 @@
 ﻿namespace Rio.Workspace {
     export interface ExamTeachersRow {
         Id?: number;
+        RowIds?: string;
         TheoryExamId?: number;
         TeacherId?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
         TheoryExamCode?: string;
@@ -36,6 +33,10 @@
         TeacherUpdateUserId?: number;
         TeacherIsActive?: number;
         TeacherTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace ExamTeachersRow {
@@ -48,12 +49,9 @@
 
         export declare const enum Fields {
             Id = "Id",
+            RowIds = "RowIds",
             TheoryExamId = "TheoryExamId",
             TeacherId = "TeacherId",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             TenantId = "TenantId",
             TheoryExamCode = "TheoryExamCode",
@@ -82,7 +80,11 @@
             TeacherUpdateDate = "TeacherUpdateDate",
             TeacherUpdateUserId = "TeacherUpdateUserId",
             TeacherIsActive = "TeacherIsActive",
-            TeacherTenantId = "TeacherTenantId"
+            TeacherTenantId = "TeacherTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

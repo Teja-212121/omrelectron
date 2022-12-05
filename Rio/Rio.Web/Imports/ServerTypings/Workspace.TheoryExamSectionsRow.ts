@@ -6,10 +6,6 @@
         TheoryExamId?: number;
         ParentId?: number;
         SortOrder?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
         TheoryExamCode?: string;
@@ -33,12 +29,21 @@
         ParentUpdateUserId?: number;
         ParentIsActive?: number;
         ParentTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace TheoryExamSectionsRow {
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.TheoryExamSections';
+        export const lookupKey = 'Workspace.TheoryExamSections';
+
+        export function getLookup(): Q.Lookup<TheoryExamSectionsRow> {
+            return Q.getLookup<TheoryExamSectionsRow>('Workspace.TheoryExamSections');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
@@ -51,10 +56,6 @@
             TheoryExamId = "TheoryExamId",
             ParentId = "ParentId",
             SortOrder = "SortOrder",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             TenantId = "TenantId",
             TheoryExamCode = "TheoryExamCode",
@@ -77,7 +78,11 @@
             ParentUpdateDate = "ParentUpdateDate",
             ParentUpdateUserId = "ParentUpdateUserId",
             ParentIsActive = "ParentIsActive",
-            ParentTenantId = "ParentTenantId"
+            ParentTenantId = "ParentTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

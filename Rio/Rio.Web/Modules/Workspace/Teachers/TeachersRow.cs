@@ -11,6 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Teachers"), InstanceName("Teachers")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("Workspace.Teachers", Permission = "?", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class TeachersRow : LoggingRow<TeachersRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]

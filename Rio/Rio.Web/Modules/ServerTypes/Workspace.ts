@@ -1,6 +1,7 @@
 ﻿export * from "./Workspace/ApiTheoryExamQuestionsService"
 export * from "./Workspace/ApiTheoryExamSectionsService"
 export * from "./Workspace/ApiTheoryExamsService"
+export * from "./Workspace/AssignExamTeachersForm"
 export * from "./Workspace/AssignSheetTypesForm"
 export * from "./Workspace/enums.EPaperSize"
 export * from "./Workspace/enums.EScannedStatus"

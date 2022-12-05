@@ -7,10 +7,6 @@
         DisplayIndex?: string;
         Tags?: string;
         TheoryExamSectionId?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
         TheoryExamCode?: string;
@@ -34,12 +30,21 @@
         TheoryExamSectionUpdateUserId?: number;
         TheoryExamSectionIsActive?: number;
         TheoryExamSectionTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace TheoryExamQuestionsRow {
         export const idProperty = 'Id';
         export const nameProperty = 'DisplayIndex';
         export const localTextPrefix = 'Workspace.TheoryExamQuestions';
+        export const lookupKey = 'Workspace.TheoryExamQuestions';
+
+        export function getLookup(): Q.Lookup<TheoryExamQuestionsRow> {
+            return Q.getLookup<TheoryExamQuestionsRow>('Workspace.TheoryExamQuestions');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
@@ -53,10 +58,6 @@
             DisplayIndex = "DisplayIndex",
             Tags = "Tags",
             TheoryExamSectionId = "TheoryExamSectionId",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             TenantId = "TenantId",
             TheoryExamCode = "TheoryExamCode",
@@ -79,7 +80,11 @@
             TheoryExamSectionUpdateDate = "TheoryExamSectionUpdateDate",
             TheoryExamSectionUpdateUserId = "TheoryExamSectionUpdateUserId",
             TheoryExamSectionIsActive = "TheoryExamSectionIsActive",
-            TheoryExamSectionTenantId = "TheoryExamSectionTenantId"
+            TheoryExamSectionTenantId = "TheoryExamSectionTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

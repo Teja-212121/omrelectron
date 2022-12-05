@@ -56,7 +56,7 @@ namespace Rio.Workspace
                     Email = email,
                     PasswordHash = hash,
                     PasswordSalt = salt,
-                    IsActive = 0,
+                    IsActive = 1,
                     InsertDate = DateTime.Now,
                     InsertUserId = 1,
                     LastDirectoryUpdate = DateTime.Now,
