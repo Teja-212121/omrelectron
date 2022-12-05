@@ -1,6 +1,8 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { ExcelExportHelper } from '@serenity-is/extensions';
+import { ExcelExportHelper, ReportHelper } from '@serenity-is/extensions';
+import { FormatterContext } from '@serenity-is/sleekgrid';
 import { ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
+import { ScannedQuestionGrid } from '../ScannedQuestion/ScannedQuestionGrid';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
 
 @Decorators.registerClass()
@@ -21,6 +23,29 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
     protected getColumns() {
         var columns = super.getColumns();
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
+
+        /*columns.splice(1, 0, {
+            id: 'View Sheet',
+            field: null,
+            name: '',
+            cssClass: 'align-center',
+            format: ctx => 
+                `<a class="inline-image view-sheet" title="sheet" target="_blank" href="/upload/">` +
+                `<img src="/upload/" class="fa fa-file-text-o text-blue" style="max-height: 145px; max-width: 100%;" /></a>`,
+            width: 36,
+            minWidth: 36,
+            maxWidth: 36
+        });*/
+
+        columns.splice(2, 0, {
+            field: 'View Sheet Question',
+            name: '',
+            format: ctx => `<a class="inline-action view-sheet-question" title="view sheet question">
+                    <i class="fa fa-pencil-square-o"></i></a>`,
+            width: 24,
+            minWidth: 24,
+            maxWidth: 24
+        });
         return columns;
     }
     get selectedItems() {
@@ -40,5 +65,36 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         }));
 
         return buttons;
+    }
+    protected onClick(e: JQueryEventObject, row: number, cell: number) {
+        super.onClick(e, row, cell);
+
+        if (e.isDefaultPrevented())
+            return;
+
+        var item = this.itemAt(row);
+        var target = $(e.target);
+
+        // if user clicks "i" element, e.g. icon
+        if (target.parent().hasClass('inline-action'))
+            target = target.parent();
+
+        if (target.hasClass('inline-action')) {
+            e.preventDefault();
+
+            /*if (target.hasClass('view-sheet')) {
+                ReportHelper.execute({
+                    reportKey: 'Workspace.ScannedSheet',
+                    params: {
+                        Id: item.Id
+                    }
+                });
+            }
+            else*/ if (target.hasClass('view-sheet-question')) {
+                var dlg = new ScannedQuestionGrid($('#GridDiv'));
+                this.initDialog(dlg);
+                dlg.getGridField();
+            }
+        }
     }
 }
