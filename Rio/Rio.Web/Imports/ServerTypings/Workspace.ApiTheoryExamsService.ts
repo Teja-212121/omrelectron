@@ -8,6 +8,7 @@
         export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TheoryExamsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function ExamDetails(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TheoryExamsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TheoryExamsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function List2(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TheoryExamsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export declare const enum Methods {
             Create = "~/Api/Services/Workspace/TheoryExams/Create",
@@ -15,7 +16,8 @@
             Delete = "~/Api/Services/Workspace/TheoryExams/Delete",
             Retrieve = "~/Api/Services/Workspace/TheoryExams/Retrieve",
             ExamDetails = "~/Api/Services/Workspace/TheoryExams/ExamDetails",
-            List = "~/Api/Services/Workspace/TheoryExams/List"
+            List = "~/Api/Services/Workspace/TheoryExams/List",
+            List2 = "~/Api/Services/Workspace/TheoryExams/List2"
         }
 
         [
@@ -24,7 +26,8 @@
             'Delete', 
             'Retrieve', 
             'ExamDetails', 
-            'List'
+            'List', 
+            'List2'
         ].forEach(x => {
             (<any>ApiTheoryExamsService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);

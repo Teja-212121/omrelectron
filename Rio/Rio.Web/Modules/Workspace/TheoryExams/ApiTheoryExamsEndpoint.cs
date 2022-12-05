@@ -62,6 +62,21 @@ namespace Rio.Workspace.Endpoints
             return handler.List(connection, request);
         }
 
+        [HttpPost, AuthorizeList(typeof(MyRow))]
+        public ListResponse<MyRow> List2(IDbConnection connection, ListRequest request,
+           [FromServices] ITheoryExamsListHandler handler)
+        {
+            var obj= handler.List(connection, request);
+            if(obj.TotalCount>0)
+            foreach (var exam in obj.Entities)
+            {
+                    exam.ExamSections = connection.List<TheoryExamSectionsRow>(TheoryExamSectionsRow.Fields.TheoryExamId == exam.Id.Value);
+                    exam.ExamQuestions = connection.List<TheoryExamQuestionsRow>(TheoryExamQuestionsRow.Fields.TheoryExamId == exam.Id.Value);
+
+             }
+            return obj;
+        }
+
         [AuthorizeList(typeof(MyRow))]
         public FileContentResult ListExcel(IDbConnection connection, ListRequest request,
             [FromServices] ITheoryExamsListHandler handler,
