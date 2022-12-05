@@ -2,6 +2,7 @@
     export interface SheetTypeRow {
         Id?: number;
         Name?: string;
+        DIsplayName?: string;
         Description?: string;
         TotalQuestions?: number;
         EPaperSize?: Workspace.enums.EPaperSize;
@@ -23,7 +24,7 @@
 
     export namespace SheetTypeRow {
         export const idProperty = 'Id';
-        export const nameProperty = 'Name';
+        export const nameProperty = 'DIsplayName';
         export const localTextPrefix = 'Workspace.SheetType';
         export const lookupKey = 'Workspace.SheetTypes';
 
@@ -38,6 +39,7 @@
         export declare const enum Fields {
             Id = "Id",
             Name = "Name",
+            DIsplayName = "DIsplayName",
             Description = "Description",
             TotalQuestions = "TotalQuestions",
             EPaperSize = "EPaperSize",

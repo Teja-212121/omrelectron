@@ -45,6 +45,16 @@ namespace Rio.Workspace.Endpoints
             return handler.Retrieve(connection, request);
         }
 
+        [HttpPost]
+        public RetrieveResponse<MyRow> ExamDetails(IDbConnection connection, RetrieveRequest request,
+            [FromServices] ITheoryExamsRetrieveHandler handler)
+        {
+            var obj = handler.Retrieve(connection, request);
+            obj.Entity.ExamSections = connection.List<TheoryExamSectionsRow>(TheoryExamSectionsRow.Fields.TheoryExamId == obj.Entity.Id.Value);
+            obj.Entity.ExamQuestions = connection.List<TheoryExamQuestionsRow>(TheoryExamQuestionsRow.Fields.TheoryExamId == obj.Entity.Id.Value);
+            return obj;
+        }
+
         [HttpPost, AuthorizeList(typeof(MyRow))]
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
             [FromServices] ITheoryExamsListHandler handler)

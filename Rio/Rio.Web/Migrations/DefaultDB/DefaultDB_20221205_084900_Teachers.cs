@@ -73,7 +73,7 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
             Execute.Sql(@"Insert into Roles (RoleName,RoleKey) values ('Tenant','Administration.Tenants')
-                          Insert into Roles (RoleName,RoleKey) values ('Teacher','Workspace.Teachers')");
+                          Insert into Roles (RoleName,RoleKey) values ('Teacher','Administration.Teachers')");
 
             this.CreateTableWithId64("ExamTeachers", "Id", s => s
                 .WithColumn("TheoryExamId").AsInt64().NotNullable()
