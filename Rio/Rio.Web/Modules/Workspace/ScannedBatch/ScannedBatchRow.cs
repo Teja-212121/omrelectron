@@ -2,6 +2,7 @@ using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using Serenity.Extensions.Entities;
+using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.ComponentModel;
 
@@ -12,9 +13,9 @@ namespace Rio.Workspace
     [ReadPermission(PermissionKeys.ScannedDataManagement.View)]
     [ModifyPermission(PermissionKeys.ScannedDataManagement.Modify)]
     [LookupScript("Workspace.ScannedBatchs", Permission = "*", LookupType = typeof(MultiTenantRowLookupScript<>))]
-    public sealed class ScannedBatchRow :LoggingRow<ScannedBatchRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
+    public sealed class ScannedBatchRow :Row<ScannedBatchRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {
-        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty, Insertable(false), Updatable(false)]
+        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty, Insertable(false), Updatable(false), LookupInclude]
         [SortOrder(1,descending:true)]
         public Guid? Id
         {
@@ -36,7 +37,34 @@ namespace Rio.Workspace
             set => fields.Description[this] = value;
         }
 
-       
+        [DisplayName("Insert Date"), LookupInclude]
+        public DateTime? InsertDate
+        {
+            get => fields.InsertDate[this];
+            set => fields.InsertDate[this] = value;
+        }
+
+        [DisplayName("Insert User Id")]
+        public int? InsertUserId
+        {
+            get => fields.InsertUserId[this];
+            set => fields.InsertUserId[this] = value;
+        }
+
+        [DisplayName("Update Date")]
+        public DateTime? UpdateDate
+        {
+            get => fields.UpdateDate[this];
+            set => fields.UpdateDate[this] = value;
+        }
+
+        [DisplayName("Update User Id")]
+        public int? UpdateUserId
+        {
+            get => fields.UpdateUserId[this];
+            set => fields.UpdateUserId[this] = value;
+        }
+
         [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(true)]
         public short? IsActive
         {
@@ -69,13 +97,18 @@ namespace Rio.Workspace
         {
         }
 
-        public class RowFields : LoggingRowFields
+        public class RowFields : RowFieldsBase
         {
             public GuidField Id;
             public StringField Name;
             public StringField Description;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public DateTimeField InsertDate;
+            public Int32Field InsertUserId;
+            public DateTimeField UpdateDate;
+            public Int32Field UpdateUserId;
+            
         }
     }
 }

@@ -11,19 +11,19 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public Guid Id { get; set; }
         [QuickFilter]
+        /*[ChangingLookupTextEditor]*/
         public string SheetTypeName { get; set; }
         public DateTime ScannedAt { get; set; }
-        [EditLink,QuickFilter]
+        [EditLink]
         public string SheetNumber { get; set; }
-        public long ScannedRollNo { get; set; }
         [QuickFilter]
+        public long ScannedRollNo { get; set; }
         public long ScannedExamNo { get; set; }
         public long CorrectedRollNo { get; set; }
         public long CorrectedExamNo { get; set; }
         public int ExamSetNo { get; set; }
         public string ScannedImageSourcePath { get; set; }
         public string ScannedImage { get; set; }
-        public string ScannedBatchName { get; set; }
         public short ScannedStatus { get; set; }
         public string ScannedSystemErrors { get; set; }
         public string ScannedUserErrors { get; set; }
@@ -31,7 +31,11 @@ namespace Rio.Workspace.Columns
         public bool ResultProcessed { get; set; }
         [QuickFilter]
         [DisplayName("Date")]
-        public DateTime InsertDate { get; set; }
+        public DateTime ScannedBatchInsertDate { get; set; }
+        [QuickFilter]
+        public string ScannedBatchId { get; set; }
+        /*[QuickFilter]
+        public Guid CascadeScannedBatchId { get; set; }*/
         public int TenantId { get; set; }
     }
 }

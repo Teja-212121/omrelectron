@@ -95,12 +95,20 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
-        [LookupEditor("Workspace.ScannedBatchs")]
+        [LookupEditor("Workspace.ScannedBatchs", CascadeFrom = "ScannedBatchInsertDate", CascadeField = "ScannedBatchInsertDate")]
         public Guid? ScannedBatchId
         {
             get => fields.ScannedBatchId[this];
             set => fields.ScannedBatchId[this] = value;
         }
+
+        /*[DisplayName("Scanned Batch"), NotNull, Expression("select * from ScannedBatches where InsertDate between ScannedBatches.InsertDate and ScannedBatches.InsertDate")]
+        [LookupEditor("Workspace.ScannedBatchs", CascadeFrom = "ScannedBatchInsertDate", CascadeField = "ScannedBatchInsertDate")]
+        public Guid? CascadeScannedBatchId
+        {
+            get => fields.CascadeScannedBatchId[this];
+            set => fields.CascadeScannedBatchId[this] = value;
+        }*/
 
         [DisplayName("Scanned Status")]
         public EScannedStatus? ScannedStatus
@@ -292,7 +300,7 @@ namespace Rio.Workspace
             set => fields.ScannedBatchDescription[this] = value;
         }
 
-        [DisplayName("Scanned Batch Insert Date"), Expression("jScannedBatch.[InsertDate]")]
+        [DisplayName("Scanned Batch Insert Date"), Expression("jScannedBatch.[InsertDate]"), LookupInclude]
         public DateTime? ScannedBatchInsertDate
         {
             get => fields.ScannedBatchInsertDate[this];
@@ -372,6 +380,8 @@ namespace Rio.Workspace
             public BooleanField ResultProcessed;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            /*public GuidField CascadeScannedBatchId;*/
+
 
             public StringField SheetTypeName;
             public StringField SheetTypeDescription;
