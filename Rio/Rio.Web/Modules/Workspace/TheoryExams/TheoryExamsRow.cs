@@ -4,6 +4,7 @@ using Serenity.Data.Mapping;
 using System;
 using Serenity.Extensions.Entities;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Rio.Workspace
 {
@@ -56,9 +57,20 @@ namespace Rio.Workspace
             set => fields.TotalMarks[this] = value;
         }
 
-       
+        [NotMapped]
+        public List<TheoryExamSectionsRow> ExamSections
+        {
+            get { return Fields.ExamSections[this]; }
+            set { Fields.ExamSections[this] = value; }
+        }
+        [NotMapped]
+        public List<TheoryExamQuestionsRow> ExamQuestions
+        {
+            get { return Fields.ExamQuestions[this]; }
+            set { Fields.ExamQuestions[this] = value; }
+        }
 
-       
+
 
         [DisplayName("Is Active"), NotNull,DefaultValue(1)]
         public short? IsActive
@@ -98,6 +110,8 @@ namespace Rio.Workspace
             public Int32Field TotalMarks;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public ListField<TheoryExamSectionsRow> ExamSections;            
+            public RowListField<TheoryExamQuestionsRow> ExamQuestions;
         }
     }
 }

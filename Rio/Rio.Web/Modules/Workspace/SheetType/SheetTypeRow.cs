@@ -23,11 +23,18 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Name"), Size(100), NotNull, QuickSearch, NameProperty, Expression("(Select Name + ' '+ '('+ convert(nvarchar(10), SheetNumber )+')'  from SheetTypes where Id=t0.Id)")]
+        [DisplayName("Name"), Size(100), NotNull, QuickSearch]
         public string Name
         {
             get => fields.Name[this];
             set => fields.Name[this] = value;
+        }
+
+        [DisplayName("Name"), Size(100), NotNull, QuickSearch, NameProperty, Expression("(Select Name + ' '+ '('+ convert(nvarchar(10), SheetNumber )+')'  from SheetTypes where Id=t0.Id)")]
+        public string DIsplayName
+        {
+            get => fields.DIsplayName[this];
+            set => fields.DIsplayName[this] = value;
         }
 
         [DisplayName("Description"), Size(1000)]
@@ -137,6 +144,7 @@ namespace Rio.Workspace
         {
             public Int32Field Id;
             public StringField Name;
+            public StringField DIsplayName;
             public StringField Description;
             public Int32Field TotalQuestions;
             public Int32Field EPaperSize;

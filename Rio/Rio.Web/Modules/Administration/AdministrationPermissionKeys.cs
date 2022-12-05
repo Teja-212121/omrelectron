@@ -16,5 +16,8 @@ namespace Rio.Administration
 
         [Description("Tenants")]
         public const string Tenants = "Administration:Tenants";
+
+        [Description("Teachers")]
+        public const string Teachers = "Administration:Teachers";
     }
 }

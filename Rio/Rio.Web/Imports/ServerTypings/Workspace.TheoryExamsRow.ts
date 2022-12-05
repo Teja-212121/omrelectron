@@ -8,6 +8,8 @@
         TotalMarks?: number;
         IsActive?: number;
         TenantId?: number;
+        ExamSections?: TheoryExamSectionsRow[];
+        ExamQuestions?: TheoryExamQuestionsRow[];
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -37,6 +39,8 @@
             TotalMarks = "TotalMarks",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            ExamSections = "ExamSections",
+            ExamQuestions = "ExamQuestions",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

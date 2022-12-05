@@ -63,6 +63,12 @@ namespace Rio.Workspace
                     TenantId = User.GetTenantId()
                 });
                 Row.UserId = userId;
+
+                Connection.Execute(string.Format(@"INSERT INTO dbo.UserPermissions (UserId, PermissionKey, Granted)
+                                                       VALUES ({0}, 'Administration:Tenants', 1)", userId));
+
+                Connection.Execute(string.Format(@"INSERT INTO dbo.UserRoles (UserId, RoleId)
+                                                       VALUES ({0}, 3, 1)", userId));
                 byte[] bytes;
                 using (var ms = new MemoryStream())
                 using (var bw = new BinaryWriter(ms))

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -41,6 +41,7 @@ namespace Rio.Workspace.Endpoints
         {
             return handler.Retrieve(connection, request);
         }
+        
 
         [HttpPost, AuthorizeList(typeof(MyRow))]
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
