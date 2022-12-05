@@ -374,10 +374,6 @@ namespace Rio.Workspace
             public Int16Field AttemptStatus;
             public StringField RollNumber;
             public Int64Field StudentId;
-            public DateTimeField InsertDate;
-            public Int32Field InsertUserId;
-            public DateTimeField UpdateDate;
-            public Int32Field UpdateUserId;
             public Int16Field IsActive;
             public Int32Field TenantId;
 

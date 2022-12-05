@@ -7,12 +7,6 @@
         AttemptStatus: Serenity.IntegerEditor;
         RollNumber: Serenity.StringEditor;
         StudentId: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
     }
 
     export class TheoryExamResultsForm extends Serenity.PrefixedContext {
@@ -29,7 +23,6 @@
                 var w0 = s.StringEditor;
                 var w1 = s.DecimalEditor;
                 var w2 = s.IntegerEditor;
-                var w3 = s.DateEditor;
 
                 Q.initFormType(TheoryExamResultsForm, [
                     'TheoryExamId', w0,
@@ -38,13 +31,7 @@
                     'MarksObtained', w1,
                     'AttemptStatus', w2,
                     'RollNumber', w0,
-                    'StudentId', w0,
-                    'InsertDate', w3,
-                    'InsertUserId', w2,
-                    'UpdateDate', w3,
-                    'UpdateUserId', w2,
-                    'IsActive', w2,
-                    'TenantId', w2
+                    'StudentId', w0
                 ]);
             }
         }
