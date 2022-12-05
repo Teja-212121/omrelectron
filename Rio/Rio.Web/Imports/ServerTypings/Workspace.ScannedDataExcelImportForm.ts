@@ -1,5 +1,7 @@
 ﻿namespace Rio.Workspace {
     export interface ScannedDataExcelImportForm {
+        ExamId: Serenity.LookupEditor;
+        TenantId: Serenity.LookupEditor;
         FileName: Serenity.ImageUploadEditor;
     }
 
@@ -14,10 +16,13 @@
                 ScannedDataExcelImportForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.ImageUploadEditor;
+                var w0 = s.LookupEditor;
+                var w1 = s.ImageUploadEditor;
 
                 Q.initFormType(ScannedDataExcelImportForm, [
-                    'FileName', w0
+                    'ExamId', w0,
+                    'TenantId', w0,
+                    'FileName', w1
                 ]);
             }
         }

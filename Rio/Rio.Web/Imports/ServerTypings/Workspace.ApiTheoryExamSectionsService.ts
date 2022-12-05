@@ -1,6 +1,6 @@
 ﻿namespace Rio.Workspace {
     export namespace ApiTheoryExamSectionsService {
-        export const baseUrl = 'Workspace/TheoryExamSections';
+        export const baseUrl = '~/Api/Services/Workspace/TheoryExamSections';
 
         export declare function Create(request: Serenity.SaveRequest<TheoryExamSectionsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function Update(request: Serenity.SaveRequest<TheoryExamSectionsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
@@ -9,11 +9,11 @@
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TheoryExamSectionsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export declare const enum Methods {
-            Create = "Workspace/TheoryExamSections/Create",
-            Update = "Workspace/TheoryExamSections/Update",
-            Delete = "Workspace/TheoryExamSections/Delete",
-            Retrieve = "Workspace/TheoryExamSections/Retrieve",
-            List = "Workspace/TheoryExamSections/List"
+            Create = "~/Api/Services/Workspace/TheoryExamSections/Create",
+            Update = "~/Api/Services/Workspace/TheoryExamSections/Update",
+            Delete = "~/Api/Services/Workspace/TheoryExamSections/Delete",
+            Retrieve = "~/Api/Services/Workspace/TheoryExamSections/Retrieve",
+            List = "~/Api/Services/Workspace/TheoryExamSections/List"
         }
 
         [

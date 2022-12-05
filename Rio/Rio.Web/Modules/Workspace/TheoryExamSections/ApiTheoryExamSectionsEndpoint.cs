@@ -13,7 +13,7 @@ using MyRow = Rio.Workspace.TheoryExamSectionsRow;
 namespace Rio.Workspace.Endpoints
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Route("Services/Workspace/TheoryExamSections/[action]")]    
+    [Route("Api/Services/Workspace/TheoryExamSections/[action]")]    
     [ConnectionKey(typeof(MyRow)), IgnoreAntiforgeryToken]
     public class ApiTheoryExamSectionsController : ServiceEndpoint
     {
