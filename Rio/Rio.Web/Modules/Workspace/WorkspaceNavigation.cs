@@ -1,4 +1,4 @@
-using Serenity.Navigation;
+﻿using Serenity.Navigation;
 using MyPages = Rio.Workspace.Pages;
 
 
@@ -32,6 +32,11 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(5004, "Scanned Data/Imported Batches", typeof(MyPages.ImportedScannedBatchController), icon: "fa-circle-o")]
 [assembly: NavigationLink(5005, "Scanned Data/Imported Sheets", typeof(MyPages.ImportedScannedSheetController), icon: "fa-circle-o")]
 [assembly: NavigationLink(5006, "Scanned Data/Imported  Questions", typeof(MyPages.ImportedScannedQuestionController), icon: "fa-circle-o")]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Teachers", typeof(MyPages.TeachersController), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Theory Exam Questions", typeof(MyPages.TheoryExamQuestionsController), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Theory Exams", typeof(MyPages.TheoryExamsController), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Theory Exam Sections", typeof(MyPages.TheoryExamSectionsController), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Exam Teachers", typeof(MyPages.ExamTeachersController), icon: null)]
 
 
 
