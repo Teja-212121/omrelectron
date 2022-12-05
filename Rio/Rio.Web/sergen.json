@@ -63,6 +63,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ExamTeachers",
+          "Identifier": "ExamTeachers",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.Groups",
           "Identifier": "Group",
           "Module": "Workspace",
@@ -135,9 +141,33 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.Teachers",
+          "Identifier": "Teachers",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.Tenants",
           "Identifier": "Tenant",
           "Module": "Administration",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "dbo.TheoryExamQuestions",
+          "Identifier": "TheoryExamQuestions",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "dbo.TheoryExams",
+          "Identifier": "TheoryExams",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "dbo.TheoryExamSections",
+          "Identifier": "TheoryExamSections",
+          "Module": "Workspace",
           "PermissionKey": "Administration:General"
         }
       ]

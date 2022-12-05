@@ -12,14 +12,14 @@ export namespace TenantService {
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<TenantRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function ApproveTenants(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Create = "Administration/Tenant/Create",
-        Update = "Administration/Tenant/Update",
-        Delete = "Administration/Tenant/Delete",
-        Retrieve = "Administration/Tenant/Retrieve",
-        List = "Administration/Tenant/List",
-        ApproveTenants = "Administration/Tenant/ApproveTenants"
-    }
+    export const Methods = {
+        Create: "Administration/Tenant/Create",
+        Update: "Administration/Tenant/Update",
+        Delete: "Administration/Tenant/Delete",
+        Retrieve: "Administration/Tenant/Retrieve",
+        List: "Administration/Tenant/List",
+        ApproveTenants: "Administration/Tenant/ApproveTenants"
+    } as const;
 
     [
         'Create', 

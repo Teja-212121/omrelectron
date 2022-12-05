@@ -1,4 +1,5 @@
 ﻿import { StringEditor, TextAreaEditor, IntegerEditor, EnumEditor, ImageUploadEditor, BooleanEditor, PrefixedContext } from "@serenity-is/corelib";
+import { EPaperSize } from "./enums.EPaperSize";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface SheetTypeForm {
@@ -52,3 +53,5 @@ export class SheetTypeForm extends PrefixedContext {
         }
     }
 }
+
+[EPaperSize]; // referenced types
