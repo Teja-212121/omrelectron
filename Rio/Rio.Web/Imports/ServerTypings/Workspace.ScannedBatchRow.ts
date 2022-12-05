@@ -5,10 +5,10 @@
         Description?: string;
         IsActive?: number;
         TenantId?: number;
-        InsertUserId?: number;
         InsertDate?: string;
-        UpdateUserId?: number;
+        InsertUserId?: number;
         UpdateDate?: string;
+        UpdateUserId?: number;
     }
 
     export namespace ScannedBatchRow {
@@ -32,10 +32,10 @@
             Description = "Description",
             IsActive = "IsActive",
             TenantId = "TenantId",
-            InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
-            UpdateUserId = "UpdateUserId",
-            UpdateDate = "UpdateDate"
+            InsertUserId = "InsertUserId",
+            UpdateDate = "UpdateDate",
+            UpdateUserId = "UpdateUserId"
         }
     }
 }

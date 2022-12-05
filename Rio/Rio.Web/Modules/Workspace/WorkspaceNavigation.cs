@@ -37,6 +37,7 @@ using MyPages = Rio.Workspace.Pages;
 [assembly: NavigationLink(int.MaxValue, "Workspace/Theory Exams", typeof(MyPages.TheoryExamsController), icon: null)]
 [assembly: NavigationLink(int.MaxValue, "Workspace/Theory Exam Sections", typeof(MyPages.TheoryExamSectionsController), icon: null)]
 [assembly: NavigationLink(int.MaxValue, "Workspace/Exam Teachers", typeof(MyPages.ExamTeachersController), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Theory Exam Results", typeof(MyPages.TheoryExamResultsController), icon: null)]
 
 
 
