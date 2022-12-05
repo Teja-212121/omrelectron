@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ExamTeachers]")]
     [DisplayName("Exam Teachers"), InstanceName("Exam Teachers")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.StudentManagement.View)]
+    [ModifyPermission(PermissionKeys.StudentManagement.Modify)]
     public sealed class ExamTeachersRow : LoggingRow<ExamTeachersRow.RowFields>, IIdRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
