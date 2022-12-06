@@ -72,6 +72,20 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("IsActive").AsInt16().NotNullable().WithDefaultValue(1)
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
+            Insert.IntoTable("Roles")
+                .Row(new
+                {
+                    RoleName = "Tenant",
+                    RoleKey = "Administration.Tenants"
+                });
+
+            Insert.IntoTable("Roles")
+                .Row(new
+                {
+                    RoleName = "Teacher",
+                    RoleKey = "Administration.Teachers"
+                });
+
             /*Execute.Sql(@"Insert into Roles (RoleName,RoleKey) values ('Tenant','Administration.Tenants')
                           Insert into Roles (RoleName,RoleKey) values ('Teacher','Administration.Teachers')");*/
 
