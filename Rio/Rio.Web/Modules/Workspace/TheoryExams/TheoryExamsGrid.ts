@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-
+import { ExcelExportHelper } from '@serenity-is/extensions';
 import { TheoryExamsColumns, TheoryExamsRow, TheoryExamsService } from '../../ServerTypes/Workspace';
 import { AssignExamTeachersDialog } from '../ExamTeachers/AssignExamTeachersDialog';
 import { TheoryExamsDialog } from './TheoryExamsDialog';
@@ -12,8 +12,6 @@ export class TheoryExamsGrid extends EntityGrid<TheoryExamsRow, any> {
     protected getInsertPermission() { return TheoryExamsRow.insertPermission; }
     protected getLocalTextPrefix() { return TheoryExamsRow.localTextPrefix; }
     protected getService() { return TheoryExamsService.baseUrl; }
-
-   
 
     private rowSelection: GridRowSelectionMixin;
 
@@ -51,8 +49,15 @@ export class TheoryExamsGrid extends EntityGrid<TheoryExamsRow, any> {
                 },
                 separator: true
             });
-        
-        
+
+        buttons.push(ExcelExportHelper.createToolButton({
+            grid: this,
+            title: 'Export',
+            service: TheoryExamsService.baseUrl + '/ListExcel',
+            onViewSubmit: () => this.onViewSubmit(),
+            separator: true
+        }));
+
         return buttons;
     }
 }
