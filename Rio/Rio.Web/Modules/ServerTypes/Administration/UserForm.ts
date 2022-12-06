@@ -1,4 +1,5 @@
 ﻿import { StringEditor, EmailAddressEditor, LookupEditor, BooleanEditor, EnumEditor, ImageUploadEditor, PasswordEditor, PrefixedContext } from "@serenity-is/corelib";
+import { TwoFactorAuthType } from "./TwoFactorAuthType";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface UserForm {
@@ -51,3 +52,5 @@ export class UserForm extends PrefixedContext {
         }
     }
 }
+
+[TwoFactorAuthType]; // referenced types

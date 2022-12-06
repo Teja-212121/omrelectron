@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Common
 {
-    [ConnectionKey("Default"), Module("Common"), TableName("[dbo].[Mail]")]
+    [ConnectionKey("Default"), Module("Common"), TableName("[Mail]")]
     [DisplayName("Mail"), InstanceName("Mail")]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
