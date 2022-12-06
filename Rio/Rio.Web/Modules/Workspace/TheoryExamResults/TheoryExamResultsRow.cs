@@ -37,7 +37,7 @@ namespace Rio.Workspace
             set => fields.StudentScanId[this] = value;
         }
 
-        [DisplayName("Marks Scored"), NotNull]
+        [DisplayName("Marks Scored")]
         public float? MarksScored
         {
             get => fields.MarksScored[this];
