@@ -9,6 +9,8 @@ namespace Rio.Workspace.Forms
     public class ImportedScannedQuestionForm
     {
         [HalfWidth]
+        public Guid ScannedBatchId { get; set; }
+        [HalfWidth]
         public Guid ScannedSheetId { get; set; }
         [HalfWidth]
         public int QuestionIndex { get; set; }

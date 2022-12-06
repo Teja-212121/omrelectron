@@ -15,6 +15,14 @@ namespace Rio.Workspace.Columns
         public int QuestionIndex { get; set; }
         public long ScannedOptions { get; set; }
         public long CorrectedOptions { get; set; }
-       
+        [QuickFilter]
+        [DisplayName("Date")]
+        public DateTime InsertDate { get; set; }
+        [QuickFilter]
+        public Guid ScannedBatchId { get; set; }
+        [Width(120), LookupEditor("Workspace.ImportedScannedSheets")]
+        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ScannedBatchId")]
+        public Guid ScannedSheetId { get; set; }
+
     }
 }

@@ -21,8 +21,16 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[ImportedScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
-        [LookupEditor("Workspace.ImportedScannedSheets")]
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ImportedScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [LookupEditor("Workspace.ImportedScannedBatches")]
+        public Guid? ScannedBatchId
+        {
+            get => fields.ScannedBatchId[this];
+            set => fields.ScannedBatchId[this] = value;
+        }
+
+        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[ImportedScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetName")]
+        [LookupEditor("Workspace.ImportedScannedSheets", CascadeFrom = "ScannedBatchId", CascadeField = "ScannedBatchId")]
         public Guid? ScannedSheetId
         {
             get => fields.ScannedSheetId[this];
@@ -239,6 +247,7 @@ namespace Rio.Workspace
         public class RowFields : LoggingRowFields
         {
             public Int64Field Id;
+            public GuidField ScannedBatchId;
             public GuidField ScannedSheetId;
             public Int32Field QuestionIndex;
             public Int64Field ScannedOptions;
