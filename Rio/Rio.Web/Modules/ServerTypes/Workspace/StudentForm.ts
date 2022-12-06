@@ -1,5 +1,4 @@
 ﻿import { StringEditor, EmailEditor, DateEditor, EnumEditor, TextAreaEditor, PrefixedContext } from "@serenity-is/corelib";
-import { Gender } from "../Web/Enums.Gender";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface StudentForm {
@@ -40,5 +39,3 @@ export class StudentForm extends PrefixedContext {
         }
     }
 }
-
-[Gender]; // referenced types

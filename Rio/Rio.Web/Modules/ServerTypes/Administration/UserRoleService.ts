@@ -10,10 +10,10 @@ export namespace UserRoleService {
     export declare function Update(request: UserRoleUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: UserRoleListRequest, onSuccess?: (response: UserRoleListResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export const Methods = {
-        Update: "Administration/UserRole/Update",
-        List: "Administration/UserRole/List"
-    } as const;
+    export declare const enum Methods {
+        Update = "Administration/UserRole/Update",
+        List = "Administration/UserRole/List"
+    }
 
     [
         'Update', 

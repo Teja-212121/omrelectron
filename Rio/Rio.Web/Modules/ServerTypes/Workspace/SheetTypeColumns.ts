@@ -1,7 +1,3 @@
-﻿import { EPaperSize } from "./enums.EPaperSize";
-
-export class SheetTypeColumns {
+﻿export class SheetTypeColumns {
     static columnsKey = 'Workspace.SheetType';
 }
-
-[EPaperSize]; // referenced types

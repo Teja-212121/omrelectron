@@ -30,7 +30,7 @@ namespace Rio.Workspace
             set => fields.Name[this] = value;
         }
 
-        [DisplayName("Name"), Size(100),  QuickSearch, NameProperty, Expression("(Select Name + ' '+ '('+ convert(nvarchar(10), SheetNumber )+')'  from SheetTypes where Id=t0.Id)")]
+        [DisplayName("Name"), Size(100),  QuickSearch, NameProperty, Expression("(SELECT (Name || ' - ' || CAST(SheetNumber as nvarchar(20)) ) FROM SheetTypes WHERE Id = SheetTypes.Id)")]
         public string DIsplayName
         {
             get => fields.DIsplayName[this];

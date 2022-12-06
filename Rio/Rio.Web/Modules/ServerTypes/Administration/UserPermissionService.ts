@@ -12,12 +12,12 @@ export namespace UserPermissionService {
     export declare function ListRolePermissions(request: UserPermissionListRequest, onSuccess?: (response: ListResponse<string>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function ListPermissionKeys(request: ServiceRequest, onSuccess?: (response: ListResponse<string>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export const Methods = {
-        Update: "Administration/UserPermission/Update",
-        List: "Administration/UserPermission/List",
-        ListRolePermissions: "Administration/UserPermission/ListRolePermissions",
-        ListPermissionKeys: "Administration/UserPermission/ListPermissionKeys"
-    } as const;
+    export declare const enum Methods {
+        Update = "Administration/UserPermission/Update",
+        List = "Administration/UserPermission/List",
+        ListRolePermissions = "Administration/UserPermission/ListRolePermissions",
+        ListPermissionKeys = "Administration/UserPermission/ListPermissionKeys"
+    }
 
     [
         'Update', 
