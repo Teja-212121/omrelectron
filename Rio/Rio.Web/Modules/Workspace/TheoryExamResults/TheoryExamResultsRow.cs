@@ -5,10 +5,11 @@ using System;
 using Serenity.Extensions.Entities;
 using System.ComponentModel;
 using System.Collections.Generic;
+using Rio.Web.Enums;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[TheoryExamResults]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[TheoryExamResults]")]
     [DisplayName("Theory Exam Results"), InstanceName("Theory Exam Results")]
     [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
     [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]
@@ -22,7 +23,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Theory Exam"), NotNull, ForeignKey("[dbo].[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
+        [DisplayName("Theory Exam"), NotNull, ForeignKey("[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
         [LookupEditor(typeof(TheoryExamsRow)),LookupInclude]
         public long? TheoryExamId
         {
@@ -52,10 +53,10 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Result Status"), NotNull]
-        public short? ResultStatus
+        public EResultSyncStatus? ResultStatus
         {
-            get => fields.ResultStatus[this];
-            set => fields.ResultStatus[this] = value;
+            get => (EResultSyncStatus?)fields.ResultStatus[this];
+            set => fields.ResultStatus[this] = (short?)value;
         }
 
         [DisplayName("Roll Number"), Size(500)]
@@ -72,7 +73,7 @@ namespace Rio.Workspace
             set => fields.SheetImage[this] = value;
         }
 
-        [DisplayName("Student"), ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
+        [DisplayName("Student"), ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
         public long? StudentId
         {
             get => fields.StudentId[this];

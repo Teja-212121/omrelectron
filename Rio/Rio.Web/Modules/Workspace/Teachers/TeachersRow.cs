@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[Teachers]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[Teachers]")]
     [DisplayName("Teachers"), InstanceName("Teachers")]
     [ReadPermission(PermissionKeys.StudentManagement.View)]
     [ModifyPermission(PermissionKeys.StudentManagement.Modify)]
