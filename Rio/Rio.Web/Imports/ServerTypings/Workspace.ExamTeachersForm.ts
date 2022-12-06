@@ -1,7 +1,7 @@
 ﻿namespace Rio.Workspace {
     export interface ExamTeachersForm {
-        TheoryExamId: Serenity.StringEditor;
-        TeacherId: Serenity.StringEditor;
+        TheoryExamId: Serenity.LookupEditor;
+        TeacherId: Serenity.LookupEditor;
     }
 
     export class ExamTeachersForm extends Serenity.PrefixedContext {
@@ -15,7 +15,7 @@
                 ExamTeachersForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.StringEditor;
+                var w0 = s.LookupEditor;
 
                 Q.initFormType(ExamTeachersForm, [
                     'TheoryExamId', w0,

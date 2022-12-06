@@ -16,16 +16,16 @@ export namespace StudentService {
     export declare function ExcelImport(request: ExcelImportRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function DeleteStudent(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Create = "Workspace/Student/Create",
-        Update = "Workspace/Student/Update",
-        Delete = "Workspace/Student/Delete",
-        Retrieve = "Workspace/Student/Retrieve",
-        List = "Workspace/Student/List",
-        InsertStudentSelectedDetail = "Workspace/Student/InsertStudentSelectedDetail",
-        ExcelImport = "Workspace/Student/ExcelImport",
-        DeleteStudent = "Workspace/Student/DeleteStudent"
-    }
+    export const Methods = {
+        Create: "Workspace/Student/Create",
+        Update: "Workspace/Student/Update",
+        Delete: "Workspace/Student/Delete",
+        Retrieve: "Workspace/Student/Retrieve",
+        List: "Workspace/Student/List",
+        InsertStudentSelectedDetail: "Workspace/Student/InsertStudentSelectedDetail",
+        ExcelImport: "Workspace/Student/ExcelImport",
+        DeleteStudent: "Workspace/Student/DeleteStudent"
+    } as const;
 
     [
         'Create', 

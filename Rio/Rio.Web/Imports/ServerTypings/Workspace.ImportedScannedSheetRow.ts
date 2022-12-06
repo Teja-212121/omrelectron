@@ -19,18 +19,6 @@
         ResultProcessed?: boolean;
         IsActive?: number;
         TenantId?: number;
-        OCRData1Key?: string;
-        OCRData1Value?: string;
-        OCRData2Key?: string;
-        OCRData2Value?: string;
-        OCRData3Key?: string;
-        OCRData3Value?: string;
-        ICRData1Key?: string;
-        ICRData1Value?: string;
-        ICRData2Key?: string;
-        ICRData2Value?: string;
-        ICRData3Key?: string;
-        ICRData3Value?: string;
         SheetTypeName?: string;
         SheetTypeDescription?: string;
         SheetTypeTotalQuestions?: number;
@@ -98,18 +86,6 @@
             ResultProcessed = "ResultProcessed",
             IsActive = "IsActive",
             TenantId = "TenantId",
-            OCRData1Key = "OCRData1Key",
-            OCRData1Value = "OCRData1Value",
-            OCRData2Key = "OCRData2Key",
-            OCRData2Value = "OCRData2Value",
-            OCRData3Key = "OCRData3Key",
-            OCRData3Value = "OCRData3Value",
-            ICRData1Key = "ICRData1Key",
-            ICRData1Value = "ICRData1Value",
-            ICRData2Key = "ICRData2Key",
-            ICRData2Value = "ICRData2Value",
-            ICRData3Key = "ICRData3Key",
-            ICRData3Value = "ICRData3Value",
             SheetTypeName = "SheetTypeName",
             SheetTypeDescription = "SheetTypeDescription",
             SheetTypeTotalQuestions = "SheetTypeTotalQuestions",

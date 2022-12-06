@@ -10,10 +10,10 @@ export namespace TranslationService {
     export declare function List(request: TranslationListRequest, onSuccess?: (response: ListResponse<TranslationItem>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Update(request: TranslationUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        List = "Administration/Translation/List",
-        Update = "Administration/Translation/Update"
-    }
+    export const Methods = {
+        List: "Administration/Translation/List",
+        Update: "Administration/Translation/Update"
+    } as const;
 
     [
         'List', 
