@@ -65,7 +65,7 @@ namespace Rio.Workspace
             set => fields.RollNumber[this] = value;
         }
 
-        [DisplayName("Sheet Image"), Size(500), ImageUploadEditor(FilenameFormat = "TheoryExamResults/SheetImage/~")]
+        [DisplayName("Sheet Image"), Size(500), ImageUploadEditor(FilenameFormat = "TheoryExamResults/SheetImage/~",DisableDefaultBehavior =true)]
         public string SheetImage
         {
             get => fields.SheetImage[this];
