@@ -135,7 +135,7 @@ namespace Rio.Workspace
             set => fields.ScannedSheetScannedImage[this] = value;
         }
 
-        [DisplayName("Scanned Sheet Scanned Batch Id"), Expression("jScannedSheet.[ScannedBatchId]")]
+        [DisplayName("Scanned Batch"), Expression("jScannedSheet.[ScannedBatchId]")]
         public Guid? ScannedSheetScannedBatchId
         {
             get => fields.ScannedSheetScannedBatchId[this];
