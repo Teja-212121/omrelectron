@@ -11,13 +11,13 @@ export namespace RoleService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<RoleRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<RoleRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Create = "Administration/Role/Create",
-        Update = "Administration/Role/Update",
-        Delete = "Administration/Role/Delete",
-        Retrieve = "Administration/Role/Retrieve",
-        List = "Administration/Role/List"
-    }
+    export const Methods = {
+        Create: "Administration/Role/Create",
+        Update: "Administration/Role/Update",
+        Delete: "Administration/Role/Delete",
+        Retrieve: "Administration/Role/Retrieve",
+        List: "Administration/Role/List"
+    } as const;
 
     [
         'Create', 
