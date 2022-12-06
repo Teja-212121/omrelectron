@@ -33,7 +33,8 @@ namespace Rio.Workspace.Columns
         [DisplayName("Date")]
         public DateTime ScannedBatchInsertDate { get; set; }
         [QuickFilter]
-        public string ScannedBatchId { get; set; }
+        public Guid ScannedBatchId { get; set; }
+        public string ScannedBatchName { get; set; }
         /*[QuickFilter]
         public Guid CascadeScannedBatchId { get; set; }*/
         public int TenantId { get; set; }

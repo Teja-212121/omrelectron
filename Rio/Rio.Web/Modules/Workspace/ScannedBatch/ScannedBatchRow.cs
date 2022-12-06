@@ -15,7 +15,7 @@ namespace Rio.Workspace
     [LookupScript("Workspace.ScannedBatchs", Permission = "*", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ScannedBatchRow :LoggingRow<ScannedBatchRow.RowFields>, IIdRow, INameRow,IMultiTenantRow,IIsActiveRow
     {
-        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty, Insertable(false), Updatable(false), LookupInclude]
+        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty, Insertable(false), Updatable(false)]
         [SortOrder(1,descending:true)]
         public Guid? Id
         {

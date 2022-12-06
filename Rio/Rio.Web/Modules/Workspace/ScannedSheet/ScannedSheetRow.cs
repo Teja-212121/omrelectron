@@ -15,7 +15,7 @@ namespace Rio.Workspace
     [LookupScript("Workspace.ScannedSheets", Permission = "*", LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class ScannedSheetRow :LoggingRow<ScannedSheetRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
     {
-        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false),QuickSearch]
+        [DisplayName("Id"), PrimaryKey, NotNull, IdProperty,Insertable(false),Updatable(false),QuickSearch, LookupInclude]
         [SortOrder(1, descending: true)]
         public Guid? Id
         {
@@ -94,8 +94,8 @@ namespace Rio.Workspace
             set => fields.ScannedImage[this] = value;
         }
 
-        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
-        [LookupEditor("Workspace.ScannedBatchs", CascadeFrom = "ScannedBatchInsertDate", CascadeField = "ScannedBatchInsertDate")]
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName"), LookupInclude]
+        [LookupEditor("Workspace.ScannedBatchs"/*, CascadeFrom = "ScannedBatchInsertDate", CascadeField = "ScannedBatchInsertDate"*/)]
         public Guid? ScannedBatchId
         {
             get => fields.ScannedBatchId[this];
