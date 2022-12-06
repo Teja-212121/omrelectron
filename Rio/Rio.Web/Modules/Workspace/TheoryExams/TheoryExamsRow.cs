@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[TheoryExams]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[TheoryExams]")]
     [DisplayName("Theory Exams"), InstanceName("Theory Exams")]
     [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
     [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]

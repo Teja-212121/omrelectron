@@ -5,7 +5,7 @@
         StudentScanId?: string;
         MarksScored?: number;
         OutOfMarks?: number;
-        ResultStatus?: number;
+        ResultStatus?: Web.Enums.EResultSyncStatus;
         RollNumber?: string;
         SheetImage?: string;
         StudentId?: number;

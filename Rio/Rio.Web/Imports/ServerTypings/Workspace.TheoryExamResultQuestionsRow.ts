@@ -5,7 +5,7 @@
         TheoryExamQuestionId?: number;
         MarksObtained?: number;
         OutOfMarks?: number;
-        AttemptStatus?: number;
+        AttemptStatus?: Web.Enums.EAttemptStatus;
         IsActive?: number;
         TenantId?: number;
         TheoryExamResultTheoryExamId?: number;

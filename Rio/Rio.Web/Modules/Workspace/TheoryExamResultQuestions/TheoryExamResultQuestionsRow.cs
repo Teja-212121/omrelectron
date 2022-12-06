@@ -4,10 +4,11 @@ using Serenity.Data.Mapping;
 using System;
 using Serenity.Extensions.Entities;
 using System.ComponentModel;
+using Rio.Web.Enums;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[TheoryExamResultQuestions]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[TheoryExamResultQuestions]")]
     [DisplayName("Theory Exam Result Questions"), InstanceName("Theory Exam Result Questions")]
     [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
     [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]
@@ -20,7 +21,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Theory Exam Result"), NotNull, ForeignKey("[dbo].[TheoryExamResults]", "Id"), LeftJoin("jTheoryExamResult"), TextualField("TheoryExamResultStudentScanId")]
+        [DisplayName("Theory Exam Result"), NotNull, ForeignKey("[TheoryExamResults]", "Id"), LeftJoin("jTheoryExamResult"), TextualField("TheoryExamResultStudentScanId")]
         [LookupEditor(typeof(TheoryExamResultsRow)), LookupInclude]
         public long? TheoryExamResultId
         {
@@ -28,7 +29,7 @@ namespace Rio.Workspace
             set => fields.TheoryExamResultId[this] = value;
         }
 
-        [DisplayName("Theory Exam Question"), ForeignKey("[dbo].[TheoryExamQuestions]", "Id"), LeftJoin("jTheoryExamQuestion"), TextualField("TheoryExamQuestionDisplayIndex")]
+        [DisplayName("Theory Exam Question"), ForeignKey("[TheoryExamQuestions]", "Id"), LeftJoin("jTheoryExamQuestion"), TextualField("TheoryExamQuestionDisplayIndex")]
         [NotNull]
         public long? TheoryExamQuestionId
         {
@@ -51,12 +52,11 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Attempt Status"), NotNull]
-        public short? AttemptStatus
+        public EAttemptStatus? AttemptStatus
         {
-            get => fields.AttemptStatus[this];
-            set => fields.AttemptStatus[this] = value;
+            get => (EAttemptStatus?)fields.AttemptStatus[this];
+            set => fields.AttemptStatus[this] = (short?)value;
         }
-
 
         [DisplayName("Is Active"), NotNull,DefaultValue(1)]
         public short? IsActive

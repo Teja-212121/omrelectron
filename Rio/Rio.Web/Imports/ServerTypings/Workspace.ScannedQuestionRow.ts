@@ -1,6 +1,7 @@
 ﻿namespace Rio.Workspace {
     export interface ScannedQuestionRow {
         Id?: number;
+        ScannedBatchId?: string;
         ScannedSheetId?: string;
         QuestionIndex?: number;
         ScannedOptions?: number;
@@ -46,6 +47,7 @@
 
         export declare const enum Fields {
             Id = "Id",
+            ScannedBatchId = "ScannedBatchId",
             ScannedSheetId = "ScannedSheetId",
             QuestionIndex = "QuestionIndex",
             ScannedOptions = "ScannedOptions",

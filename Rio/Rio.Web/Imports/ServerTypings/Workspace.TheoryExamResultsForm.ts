@@ -4,7 +4,7 @@
         StudentScanId: Serenity.StringEditor;
         MarksScored: Serenity.DecimalEditor;
         OutOfMarks: Serenity.DecimalEditor;
-        ResultStatus: Serenity.IntegerEditor;
+        ResultStatus: Serenity.EnumEditor;
         RollNumber: Serenity.StringEditor;
         SheetImage: Serenity.ImageUploadEditor;
         StudentId: Serenity.StringEditor;
@@ -25,7 +25,7 @@
                 var w0 = s.LookupEditor;
                 var w1 = s.StringEditor;
                 var w2 = s.DecimalEditor;
-                var w3 = s.IntegerEditor;
+                var w3 = s.EnumEditor;
                 var w4 = s.ImageUploadEditor;
                 var w5 = s.DateEditor;
 

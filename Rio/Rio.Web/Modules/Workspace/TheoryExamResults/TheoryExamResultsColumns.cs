@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace Rio.Workspace.Columns
         public string StudentScanId { get; set; }
         public float MarksScored { get; set; }
         public float OutOfMarks { get; set; }
-        public short ResultStatus { get; set; }
+        public EResultSyncStatus ResultStatus { get; set; }
         public string RollNumber { get; set; }
         public string SheetImage { get; set; }
         public string StudentFirstName { get; set; }
