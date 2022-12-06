@@ -373,3 +373,4 @@ FodyWeavers.xsd
 /Rio/Rio.Web/wwwroot/Scripts/site/Rio.Web.js
 /Rio/Rio.Web/App_Data/Mail
 /Rio/Rio.Web/App_Data/upload/SheetType
+/Rio/Rio.Web/typings/serenity.extensions/index.d.ts
