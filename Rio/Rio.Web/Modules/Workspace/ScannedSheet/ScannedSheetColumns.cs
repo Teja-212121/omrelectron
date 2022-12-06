@@ -35,5 +35,17 @@ namespace Rio.Workspace.Columns
         public Guid ScannedBatchId { get; set; }
         public string ScannedBatchName { get; set; }
         public int TenantId { get; set; }
+        public string OCRData1Key { get; set; }
+        public string OCRData1Value { get; set; }
+        public string OCRData2Key { get; set; }
+        public string OCRData2Value { get; set; }
+        public string OCRData3Key { get; set; }
+        public string OCRData3Value { get; set; }
+        public string ICRData1Key { get; set; }
+        public string ICRData1Value { get; set; }
+        public string ICRData2Key { get; set; }
+        public string ICRData2Value { get; set; }
+        public string ICRData3Key { get; set; }
+        public string ICRData3Value { get; set; }
     }
 }
