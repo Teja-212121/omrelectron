@@ -160,6 +160,90 @@ namespace Rio.Workspace
             set => fields.TenantId[this] = value;
         }
 
+        [DisplayName("OCR Data 1 Key")]
+        public string OCRData1Key
+        {
+            get => fields.OCRData1Key[this];
+            set => fields.OCRData1Key[this] = value;
+        }
+
+        [DisplayName("OCR Data 1 Value")]
+        public string OCRData1Value
+        {
+            get => fields.OCRData1Value[this];
+            set => fields.OCRData1Value[this] = value;
+        }
+
+        [DisplayName("OCR Data 2 Key")]
+        public string OCRData2Key
+        {
+            get => fields.OCRData2Key[this];
+            set => fields.OCRData2Key[this] = value;
+        }
+
+        [DisplayName("OCR Data 2 Value")]
+        public string OCRData2Value
+        {
+            get => fields.OCRData2Value[this];
+            set => fields.OCRData2Value[this] = value;
+        }
+
+        [DisplayName("OCR Data 3 Key")]
+        public string OCRData3Key
+        {
+            get => fields.OCRData3Key[this];
+            set => fields.OCRData3Key[this] = value;
+        }
+
+        [DisplayName("OCR Data 3 Value")]
+        public string OCRData3Value
+        {
+            get => fields.OCRData3Value[this];
+            set => fields.OCRData3Value[this] = value;
+        }
+
+        [DisplayName("ICR Data 1 Key")]
+        public string ICRData1Key
+        {
+            get => fields.ICRData1Key[this];
+            set => fields.ICRData1Key[this] = value;
+        }
+
+        [DisplayName("ICR Data 1 Value")]
+        public string ICRData1Value
+        {
+            get => fields.ICRData1Value[this];
+            set => fields.ICRData1Value[this] = value;
+        }
+
+        [DisplayName("ICR Data 2 Key")]
+        public string ICRData2Key
+        {
+            get => fields.ICRData2Key[this];
+            set => fields.ICRData2Key[this] = value;
+        }
+
+        [DisplayName("ICR Data 2 Value")]
+        public string ICRData2Value
+        {
+            get => fields.ICRData2Value[this];
+            set => fields.ICRData2Value[this] = value;
+        }
+
+        [DisplayName("ICR Data 3 Key")]
+        public string ICRData3Key
+        {
+            get => fields.ICRData3Key[this];
+            set => fields.ICRData3Key[this] = value;
+        }
+
+        [DisplayName("ICR Data 3 Value")]
+        public string ICRData3Value
+        {
+            get => fields.ICRData3Value[this];
+            set => fields.ICRData3Value[this] = value;
+        }
+
         [DisplayName("Sheet Type Name"), Expression("jSheetType.[Name]")]
         public string SheetTypeName
         {
@@ -380,6 +464,19 @@ namespace Rio.Workspace
             public BooleanField ResultProcessed;
             public Int16Field IsActive;
             public Int32Field TenantId;
+
+            public StringField OCRData1Key;
+            public StringField OCRData1Value;
+            public StringField OCRData2Key;
+            public StringField OCRData2Value;
+            public StringField OCRData3Key;
+            public StringField OCRData3Value;
+            public StringField ICRData1Key;
+            public StringField ICRData1Value;
+            public StringField ICRData2Key;
+            public StringField ICRData2Value;
+            public StringField ICRData3Key;
+            public StringField ICRData3Value;
             /*public GuidField CascadeScannedBatchId;*/
 
 

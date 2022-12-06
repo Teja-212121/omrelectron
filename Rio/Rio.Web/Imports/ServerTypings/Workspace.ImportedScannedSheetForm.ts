@@ -16,6 +16,18 @@
         ScannedUserErrors: Serenity.TextAreaEditor;
         ScannedComments: Serenity.TextAreaEditor;
         ResultProcessed: Serenity.BooleanEditor;
+        OCRData1Key: Serenity.StringEditor;
+        OCRData1Value: Serenity.StringEditor;
+        OCRData2Key: Serenity.StringEditor;
+        OCRData2Value: Serenity.StringEditor;
+        OCRData3Key: Serenity.StringEditor;
+        OCRData3Value: Serenity.StringEditor;
+        ICRData1Key: Serenity.StringEditor;
+        ICRData1Value: Serenity.StringEditor;
+        ICRData2Key: Serenity.StringEditor;
+        ICRData2Value: Serenity.StringEditor;
+        ICRData3Key: Serenity.StringEditor;
+        ICRData3Value: Serenity.StringEditor;
     }
 
     export class ImportedScannedSheetForm extends Serenity.PrefixedContext {
@@ -53,7 +65,19 @@
                     'ScannedSystemErrors', w4,
                     'ScannedUserErrors', w4,
                     'ScannedComments', w4,
-                    'ResultProcessed', w6
+                    'ResultProcessed', w6,
+                    'OCRData1Key', w2,
+                    'OCRData1Value', w2,
+                    'OCRData2Key', w2,
+                    'OCRData2Value', w2,
+                    'OCRData3Key', w2,
+                    'OCRData3Value', w2,
+                    'ICRData1Key', w2,
+                    'ICRData1Value', w2,
+                    'ICRData2Key', w2,
+                    'ICRData2Value', w2,
+                    'ICRData3Key', w2,
+                    'ICRData3Value', w2
                 ]);
             }
         }

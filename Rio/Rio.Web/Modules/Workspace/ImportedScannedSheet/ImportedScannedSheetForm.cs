@@ -41,11 +41,29 @@ namespace Rio.Workspace.Forms
         public string ScannedComments { get; set; }
         [HalfWidth]
         public bool ResultProcessed { get; set; }
-       /* public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
-        public short IsActive { get; set; }
-        public int TenantId { get; set; }*/
+        [HalfWidth]
+        public string OCRData1Key { get; set; }
+        [HalfWidth]
+        public string OCRData1Value { get; set; }
+        [HalfWidth]
+        public string OCRData2Key { get; set; }
+        [HalfWidth]
+        public string OCRData2Value { get; set; }
+        [HalfWidth]
+        public string OCRData3Key { get; set; }
+        [HalfWidth]
+        public string OCRData3Value { get; set; }
+        [HalfWidth]
+        public string ICRData1Key { get; set; }
+        [HalfWidth]
+        public string ICRData1Value { get; set; }
+        [HalfWidth]
+        public string ICRData2Key { get; set; }
+        [HalfWidth]
+        public string ICRData2Value { get; set; }
+        [HalfWidth]
+        public string ICRData3Key { get; set; }
+        [HalfWidth]
+        public string ICRData3Value { get; set; }
     }
 }
