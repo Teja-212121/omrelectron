@@ -19,10 +19,9 @@ namespace Rio.Workspace.Columns
         [DisplayName("Date")]
         public DateTime InsertDate { get; set; }
         [QuickFilter]
-        [LookupEditor("Workspace.ScannedBatchs")]
-        public Guid ScannedSheetScannedBatchId { get; set; }
-        [QuickFilter]
-        [LookupEditor("Workspace.ScannedSheets"/*, CascadeFrom = "ScannedSheetScannedBatchId", CascadeField = "ScannedSheetScannedBatchId"*/)]
+        public Guid ScannedBatchId { get; set; }
+        [Width(120), LookupEditor("Workspace.ScannedSheets")]
+        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ScannedBatchId")]
         public Guid ScannedSheetId { get; set; }
         
 

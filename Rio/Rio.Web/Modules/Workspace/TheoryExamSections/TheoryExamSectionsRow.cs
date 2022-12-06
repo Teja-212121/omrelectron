@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[TheoryExamSections]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[TheoryExamSections]")]
     [DisplayName("Theory Exam Sections"), InstanceName("Theory Exam Sections")]
     [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
     [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]
@@ -35,7 +35,7 @@ namespace Rio.Workspace
             set => fields.Description[this] = value;
         }
 
-        [DisplayName("Theory Exam"), NotNull, ForeignKey("[dbo].[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
+        [DisplayName("Theory Exam"), NotNull, ForeignKey("[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
         [LookupEditor(typeof(TheoryExamsRow)), LookupInclude]
         public long? TheoryExamId
         {
@@ -43,7 +43,7 @@ namespace Rio.Workspace
             set => fields.TheoryExamId[this] = value;
         }
 
-        [DisplayName("Parent"), ForeignKey("[dbo].[TheoryExamSections]", "Id"), LeftJoin("jParent"), TextualField("ParentName")]
+        [DisplayName("Parent"), ForeignKey("[TheoryExamSections]", "Id"), LeftJoin("jParent"), TextualField("ParentName")]
         public int? ParentId
         {
             get => fields.ParentId[this];

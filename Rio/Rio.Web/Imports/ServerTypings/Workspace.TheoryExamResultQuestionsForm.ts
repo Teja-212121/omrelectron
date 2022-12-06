@@ -4,7 +4,7 @@
         TheoryExamQuestionId: Serenity.StringEditor;
         MarksObtained: Serenity.DecimalEditor;
         OutOfMarks: Serenity.DecimalEditor;
-        AttemptStatus: Serenity.IntegerEditor;
+        AttemptStatus: Serenity.EnumEditor;
         InsertDate: Serenity.DateEditor;
         InsertUserId: Serenity.IntegerEditor;
         UpdateDate: Serenity.DateEditor;
@@ -27,8 +27,9 @@
                 var w0 = s.LookupEditor;
                 var w1 = s.StringEditor;
                 var w2 = s.DecimalEditor;
-                var w3 = s.IntegerEditor;
+                var w3 = s.EnumEditor;
                 var w4 = s.DateEditor;
+                var w5 = s.IntegerEditor;
 
                 Q.initFormType(TheoryExamResultQuestionsForm, [
                     'TheoryExamResultId', w0,
@@ -37,11 +38,11 @@
                     'OutOfMarks', w2,
                     'AttemptStatus', w3,
                     'InsertDate', w4,
-                    'InsertUserId', w3,
+                    'InsertUserId', w5,
                     'UpdateDate', w4,
-                    'UpdateUserId', w3,
-                    'IsActive', w3,
-                    'TenantId', w3
+                    'UpdateUserId', w5,
+                    'IsActive', w5,
+                    'TenantId', w5
                 ]);
             }
         }

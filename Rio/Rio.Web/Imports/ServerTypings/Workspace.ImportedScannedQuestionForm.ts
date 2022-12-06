@@ -1,5 +1,6 @@
 ﻿namespace Rio.Workspace {
     export interface ImportedScannedQuestionForm {
+        ScannedBatchId: Serenity.LookupEditor;
         ScannedSheetId: Serenity.LookupEditor;
         QuestionIndex: Serenity.IntegerEditor;
         ScannedOptions: Serenity.StringEditor;
@@ -22,6 +23,7 @@
                 var w2 = s.StringEditor;
 
                 Q.initFormType(ImportedScannedQuestionForm, [
+                    'ScannedBatchId', w0,
                     'ScannedSheetId', w0,
                     'QuestionIndex', w1,
                     'ScannedOptions', w2,

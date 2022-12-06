@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[ExamTeachers]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[ExamTeachers]")]
     [DisplayName("Exam Teachers"), InstanceName("Exam Teachers")]
     [ReadPermission(PermissionKeys.StudentManagement.View)]
     [ModifyPermission(PermissionKeys.StudentManagement.Modify)]
@@ -27,14 +27,14 @@ namespace Rio.Workspace
             set { Fields.RowIds[this] = value; }
         }
 
-        [DisplayName("Theory Exam"),  ForeignKey("[dbo].[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
+        [DisplayName("Theory Exam"),  ForeignKey("[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
         public long? TheoryExamId
         {
             get => fields.TheoryExamId[this];
             set => fields.TheoryExamId[this] = value;
         }
 
-        [DisplayName("Teacher"), NotNull, ForeignKey("[dbo].[Teachers]", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
+        [DisplayName("Teacher"), NotNull, ForeignKey("[Teachers]", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
         public long? TeacherId
         {
             get => fields.TeacherId[this];

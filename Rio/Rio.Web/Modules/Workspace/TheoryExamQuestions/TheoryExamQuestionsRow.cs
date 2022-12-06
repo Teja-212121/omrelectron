@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("[dbo].[TheoryExamQuestions]")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("[TheoryExamQuestions]")]
     [DisplayName("Theory Exam Questions"), InstanceName("Theory Exam Questions")]
     [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
     [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]
@@ -21,7 +21,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Theory Exam"), NotNull, ForeignKey("[dbo].[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
+        [DisplayName("Theory Exam"), NotNull, ForeignKey("[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
         [LookupEditor(typeof(TheoryExamsRow)), LookupInclude]
         public long? TheoryExamId
         {
@@ -57,15 +57,13 @@ namespace Rio.Workspace
             set => fields.Tags[this] = value;
         }
 
-        [DisplayName("Theory Exam Section"), ForeignKey("[dbo].[TheoryExamSections]", "Id"), LeftJoin("jTheoryExamSection"), TextualField("TheoryExamSectionName")]
+        [DisplayName("Theory Exam Section"), ForeignKey("[TheoryExamSections]", "Id"), LeftJoin("jTheoryExamSection"), TextualField("TheoryExamSectionName")]
         [LookupEditor(typeof(TheoryExamSectionsRow),CascadeFrom = "TheoryExamId", CascadeField = "TheoryExamId"), LookupInclude]
         public int? TheoryExamSectionId
         {
             get => fields.TheoryExamSectionId[this];
             set => fields.TheoryExamSectionId[this] = value;
         }
-
-        
 
         [DisplayName("Is Active"), NotNull,DefaultValue(1)]
         public short? IsActive
