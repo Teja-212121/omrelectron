@@ -10,10 +10,10 @@ export namespace RolePermissionService {
     export declare function Update(request: RolePermissionUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: RolePermissionListRequest, onSuccess?: (response: RolePermissionListResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Update = "Administration/RolePermission/Update",
-        List = "Administration/RolePermission/List"
-    }
+    export const Methods = {
+        Update: "Administration/RolePermission/Update",
+        List: "Administration/RolePermission/List"
+    } as const;
 
     [
         'Update', 

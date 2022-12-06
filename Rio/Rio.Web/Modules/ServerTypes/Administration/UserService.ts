@@ -12,13 +12,13 @@ export namespace UserService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<UserRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: UserListRequest, onSuccess?: (response: ListResponse<UserRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Create = "Administration/User/Create",
-        Update = "Administration/User/Update",
-        Delete = "Administration/User/Delete",
-        Retrieve = "Administration/User/Retrieve",
-        List = "Administration/User/List"
-    }
+    export const Methods = {
+        Create: "Administration/User/Create",
+        Update: "Administration/User/Update",
+        Delete: "Administration/User/Delete",
+        Retrieve: "Administration/User/Retrieve",
+        List: "Administration/User/List"
+    } as const;
 
     [
         'Create', 

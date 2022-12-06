@@ -24,10 +24,13 @@ namespace Rio.Workspace
             base.PrepareQuery(query);
             if (!permissions.HasPermission("Administration:Security"))
             {
-                var fld = MyRow.Fields;
-                var ExamTeachers = ExamTeachersRow.Fields.As("ExamTeachers");
-                query.InnerJoin(ExamTeachers, fld.Id == ExamTeachers.TheoryExamId)
-                    .Where(ExamTeachers.TeacherUserId == User.GetIdentifier());
+                if (permissions.HasPermission("Administration:Teachers"))
+                {
+                    var fld = MyRow.Fields;
+                    var ExamTeachers = ExamTeachersRow.Fields.As("ExamTeachers");
+                    query.InnerJoin(ExamTeachers, fld.Id == ExamTeachers.TheoryExamId)
+                        .Where(ExamTeachers.TeacherUserId == User.GetIdentifier());
+                }
             }
 
         }

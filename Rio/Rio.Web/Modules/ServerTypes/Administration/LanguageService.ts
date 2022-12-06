@@ -11,13 +11,13 @@ export namespace LanguageService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<LanguageRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<LanguageRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Create = "Administration/Language/Create",
-        Update = "Administration/Language/Update",
-        Delete = "Administration/Language/Delete",
-        Retrieve = "Administration/Language/Retrieve",
-        List = "Administration/Language/List"
-    }
+    export const Methods = {
+        Create: "Administration/Language/Create",
+        Update: "Administration/Language/Update",
+        Delete: "Administration/Language/Delete",
+        Retrieve: "Administration/Language/Retrieve",
+        List: "Administration/Language/List"
+    } as const;
 
     [
         'Create', 

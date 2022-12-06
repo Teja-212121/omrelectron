@@ -11,13 +11,13 @@ export namespace SheetTypeService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<SheetTypeRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<SheetTypeRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Create = "Workspace/SheetType/Create",
-        Update = "Workspace/SheetType/Update",
-        Delete = "Workspace/SheetType/Delete",
-        Retrieve = "Workspace/SheetType/Retrieve",
-        List = "Workspace/SheetType/List"
-    }
+    export const Methods = {
+        Create: "Workspace/SheetType/Create",
+        Update: "Workspace/SheetType/Update",
+        Delete: "Workspace/SheetType/Delete",
+        Retrieve: "Workspace/SheetType/Retrieve",
+        List: "Workspace/SheetType/List"
+    } as const;
 
     [
         'Create', 
