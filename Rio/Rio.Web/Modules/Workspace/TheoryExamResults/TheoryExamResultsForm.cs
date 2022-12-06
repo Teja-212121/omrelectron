@@ -10,10 +10,13 @@ namespace Rio.Workspace.Forms
     {
         public long TheoryExamId { get; set; }
         public string StudentScanId { get; set; }
-        public long TheoryExamQuestionId { get; set; }
-        public float MarksObtained { get; set; }
-        public short AttemptStatus { get; set; }
+        public float MarksScored { get; set; }
+        public float OutOfMarks { get; set; }
+        public short ResultStatus { get; set; }
         public string RollNumber { get; set; }
+        public string SheetImage { get; set; }
         public long StudentId { get; set; }
+        public DateTime AttemptDate { get; set; }
+       
     }
 }

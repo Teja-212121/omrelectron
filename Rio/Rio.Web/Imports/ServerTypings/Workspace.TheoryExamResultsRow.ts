@@ -3,13 +3,16 @@
         Id?: number;
         TheoryExamId?: number;
         StudentScanId?: string;
-        TheoryExamQuestionId?: number;
-        MarksObtained?: number;
-        AttemptStatus?: number;
+        MarksScored?: number;
+        OutOfMarks?: number;
+        ResultStatus?: number;
         RollNumber?: string;
+        SheetImage?: string;
         StudentId?: number;
+        AttemptDate?: string;
         IsActive?: number;
         TenantId?: number;
+        TheoryExamResultQuestions?: TheoryExamResultQuestionsRow[];
         TheoryExamCode?: string;
         TheoryExamName?: string;
         TheoryExamDescription?: string;
@@ -20,18 +23,6 @@
         TheoryExamUpdateUserId?: number;
         TheoryExamIsActive?: number;
         TheoryExamTenantId?: number;
-        TheoryExamQuestionTheoryExamId?: number;
-        TheoryExamQuestionQuestionIndex?: number;
-        TheoryExamQuestionMaxMarks?: number;
-        TheoryExamQuestionDisplayIndex?: string;
-        TheoryExamQuestionTags?: string;
-        TheoryExamQuestionTheoryExamSectionId?: number;
-        TheoryExamQuestionInsertDate?: string;
-        TheoryExamQuestionInsertUserId?: number;
-        TheoryExamQuestionUpdateDate?: string;
-        TheoryExamQuestionUpdateUserId?: number;
-        TheoryExamQuestionIsActive?: number;
-        TheoryExamQuestionTenantId?: number;
         StudentRollNo?: number;
         StudentFirstName?: string;
         StudentMiddleName?: string;
@@ -58,6 +49,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'StudentScanId';
         export const localTextPrefix = 'Workspace.TheoryExamResults';
+        export const lookupKey = 'Workspace.TheoryExamResults';
+
+        export function getLookup(): Q.Lookup<TheoryExamResultsRow> {
+            return Q.getLookup<TheoryExamResultsRow>('Workspace.TheoryExamResults');
+        }
         export const deletePermission = 'Workspace:ExamsAndSectionManagement:Modify';
         export const insertPermission = 'Workspace:ExamsAndSectionManagement:Modify';
         export const readPermission = 'Workspace:ExamsAndSectionManagement:View';
@@ -67,13 +63,16 @@
             Id = "Id",
             TheoryExamId = "TheoryExamId",
             StudentScanId = "StudentScanId",
-            TheoryExamQuestionId = "TheoryExamQuestionId",
-            MarksObtained = "MarksObtained",
-            AttemptStatus = "AttemptStatus",
+            MarksScored = "MarksScored",
+            OutOfMarks = "OutOfMarks",
+            ResultStatus = "ResultStatus",
             RollNumber = "RollNumber",
+            SheetImage = "SheetImage",
             StudentId = "StudentId",
+            AttemptDate = "AttemptDate",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            TheoryExamResultQuestions = "TheoryExamResultQuestions",
             TheoryExamCode = "TheoryExamCode",
             TheoryExamName = "TheoryExamName",
             TheoryExamDescription = "TheoryExamDescription",
@@ -84,18 +83,6 @@
             TheoryExamUpdateUserId = "TheoryExamUpdateUserId",
             TheoryExamIsActive = "TheoryExamIsActive",
             TheoryExamTenantId = "TheoryExamTenantId",
-            TheoryExamQuestionTheoryExamId = "TheoryExamQuestionTheoryExamId",
-            TheoryExamQuestionQuestionIndex = "TheoryExamQuestionQuestionIndex",
-            TheoryExamQuestionMaxMarks = "TheoryExamQuestionMaxMarks",
-            TheoryExamQuestionDisplayIndex = "TheoryExamQuestionDisplayIndex",
-            TheoryExamQuestionTags = "TheoryExamQuestionTags",
-            TheoryExamQuestionTheoryExamSectionId = "TheoryExamQuestionTheoryExamSectionId",
-            TheoryExamQuestionInsertDate = "TheoryExamQuestionInsertDate",
-            TheoryExamQuestionInsertUserId = "TheoryExamQuestionInsertUserId",
-            TheoryExamQuestionUpdateDate = "TheoryExamQuestionUpdateDate",
-            TheoryExamQuestionUpdateUserId = "TheoryExamQuestionUpdateUserId",
-            TheoryExamQuestionIsActive = "TheoryExamQuestionIsActive",
-            TheoryExamQuestionTenantId = "TheoryExamQuestionTenantId",
             StudentRollNo = "StudentRollNo",
             StudentFirstName = "StudentFirstName",
             StudentMiddleName = "StudentMiddleName",

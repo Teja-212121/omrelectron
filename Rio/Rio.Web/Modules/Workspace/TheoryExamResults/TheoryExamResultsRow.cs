@@ -2,8 +2,9 @@ using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
-using System.ComponentModel;
 using Serenity.Extensions.Entities;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Rio.Workspace
 {
@@ -11,6 +12,7 @@ namespace Rio.Workspace
     [DisplayName("Theory Exam Results"), InstanceName("Theory Exam Results")]
     [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
     [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]
+    [LookupScript("Workspace.TheoryExamResults", Permission = "?", Expiration = 1, LookupType = typeof(MultiTenantRowLookupScript<>))]
     public sealed class TheoryExamResultsRow : LoggingRow<TheoryExamResultsRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
@@ -21,6 +23,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Theory Exam"), NotNull, ForeignKey("[dbo].[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
+        [LookupEditor(typeof(TheoryExamsRow)),LookupInclude]
         public long? TheoryExamId
         {
             get => fields.TheoryExamId[this];
@@ -34,25 +37,25 @@ namespace Rio.Workspace
             set => fields.StudentScanId[this] = value;
         }
 
-        [DisplayName("Theory Exam Question"), ForeignKey("[dbo].[TheoryExamQuestions]", "Id"), LeftJoin("jTheoryExamQuestion"), TextualField("TheoryExamQuestionDisplayIndex")]
-        public long? TheoryExamQuestionId
+        [DisplayName("Marks Scored"), NotNull]
+        public float? MarksScored
         {
-            get => fields.TheoryExamQuestionId[this];
-            set => fields.TheoryExamQuestionId[this] = value;
+            get => fields.MarksScored[this];
+            set => fields.MarksScored[this] = value;
         }
 
-        [DisplayName("Marks Obtained"), NotNull]
-        public float? MarksObtained
+        [DisplayName("Out Of Marks")]
+        public float? OutOfMarks
         {
-            get => fields.MarksObtained[this];
-            set => fields.MarksObtained[this] = value;
+            get => fields.OutOfMarks[this];
+            set => fields.OutOfMarks[this] = value;
         }
 
-        [DisplayName("Attempt Status"), NotNull]
-        public short? AttemptStatus
+        [DisplayName("Result Status"), NotNull]
+        public short? ResultStatus
         {
-            get => fields.AttemptStatus[this];
-            set => fields.AttemptStatus[this] = value;
+            get => fields.ResultStatus[this];
+            set => fields.ResultStatus[this] = value;
         }
 
         [DisplayName("Roll Number"), Size(500)]
@@ -62,14 +65,28 @@ namespace Rio.Workspace
             set => fields.RollNumber[this] = value;
         }
 
-        [DisplayName("Student"), NotNull, ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
+        [DisplayName("Sheet Image"), Size(500), ImageUploadEditor(FilenameFormat = "TheoryExamResults/SheetImage/~")]
+        public string SheetImage
+        {
+            get => fields.SheetImage[this];
+            set => fields.SheetImage[this] = value;
+        }
+
+        [DisplayName("Student"), ForeignKey("[dbo].[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
         public long? StudentId
         {
             get => fields.StudentId[this];
             set => fields.StudentId[this] = value;
         }
 
-       
+        [DisplayName("Attempt Date")]
+        public DateTime? AttemptDate
+        {
+            get => fields.AttemptDate[this];
+            set => fields.AttemptDate[this] = value;
+        }
+
+      
 
         [DisplayName("Is Active"), NotNull,DefaultValue(1)]
         public short? IsActive
@@ -78,11 +95,22 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant Id"), NotNull]
+        public Int32Field TenantIdField
+        {
+            get => Fields.TenantId;
+        }
+        [DisplayName("Tenant Id"), NotNull, Insertable(false), Updatable(true)]
         public int? TenantId
         {
             get => fields.TenantId[this];
             set => fields.TenantId[this] = value;
+        }
+
+        [NotMapped]
+        public List<TheoryExamResultQuestionsRow> TheoryExamResultQuestions
+        {
+            get { return Fields.TheoryExamResultQuestions[this]; }
+            set { Fields.TheoryExamResultQuestions[this] = value; }
         }
 
         [DisplayName("Theory Exam Code"), Expression("jTheoryExam.[Code]")]
@@ -153,90 +181,6 @@ namespace Rio.Workspace
         {
             get => fields.TheoryExamTenantId[this];
             set => fields.TheoryExamTenantId[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Theory Exam Id"), Expression("jTheoryExamQuestion.[TheoryExamId]")]
-        public long? TheoryExamQuestionTheoryExamId
-        {
-            get => fields.TheoryExamQuestionTheoryExamId[this];
-            set => fields.TheoryExamQuestionTheoryExamId[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Question Index"), Expression("jTheoryExamQuestion.[QuestionIndex]")]
-        public int? TheoryExamQuestionQuestionIndex
-        {
-            get => fields.TheoryExamQuestionQuestionIndex[this];
-            set => fields.TheoryExamQuestionQuestionIndex[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Max Marks"), Expression("jTheoryExamQuestion.[MaxMarks]")]
-        public float? TheoryExamQuestionMaxMarks
-        {
-            get => fields.TheoryExamQuestionMaxMarks[this];
-            set => fields.TheoryExamQuestionMaxMarks[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Display Index"), Expression("jTheoryExamQuestion.[DisplayIndex]")]
-        public string TheoryExamQuestionDisplayIndex
-        {
-            get => fields.TheoryExamQuestionDisplayIndex[this];
-            set => fields.TheoryExamQuestionDisplayIndex[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Tags"), Expression("jTheoryExamQuestion.[Tags]")]
-        public string TheoryExamQuestionTags
-        {
-            get => fields.TheoryExamQuestionTags[this];
-            set => fields.TheoryExamQuestionTags[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Theory Exam Section Id"), Expression("jTheoryExamQuestion.[TheoryExamSectionId]")]
-        public int? TheoryExamQuestionTheoryExamSectionId
-        {
-            get => fields.TheoryExamQuestionTheoryExamSectionId[this];
-            set => fields.TheoryExamQuestionTheoryExamSectionId[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Insert Date"), Expression("jTheoryExamQuestion.[InsertDate]")]
-        public DateTime? TheoryExamQuestionInsertDate
-        {
-            get => fields.TheoryExamQuestionInsertDate[this];
-            set => fields.TheoryExamQuestionInsertDate[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Insert User Id"), Expression("jTheoryExamQuestion.[InsertUserId]")]
-        public int? TheoryExamQuestionInsertUserId
-        {
-            get => fields.TheoryExamQuestionInsertUserId[this];
-            set => fields.TheoryExamQuestionInsertUserId[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Update Date"), Expression("jTheoryExamQuestion.[UpdateDate]")]
-        public DateTime? TheoryExamQuestionUpdateDate
-        {
-            get => fields.TheoryExamQuestionUpdateDate[this];
-            set => fields.TheoryExamQuestionUpdateDate[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Update User Id"), Expression("jTheoryExamQuestion.[UpdateUserId]")]
-        public int? TheoryExamQuestionUpdateUserId
-        {
-            get => fields.TheoryExamQuestionUpdateUserId[this];
-            set => fields.TheoryExamQuestionUpdateUserId[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Is Active"), Expression("jTheoryExamQuestion.[IsActive]")]
-        public short? TheoryExamQuestionIsActive
-        {
-            get => fields.TheoryExamQuestionIsActive[this];
-            set => fields.TheoryExamQuestionIsActive[this] = value;
-        }
-
-        [DisplayName("Theory Exam Question Tenant Id"), Expression("jTheoryExamQuestion.[TenantId]")]
-        public int? TheoryExamQuestionTenantId
-        {
-            get => fields.TheoryExamQuestionTenantId[this];
-            set => fields.TheoryExamQuestionTenantId[this] = value;
         }
 
         [DisplayName("Student Roll No"), Expression("jStudent.[RollNo]")]
@@ -350,10 +294,7 @@ namespace Rio.Workspace
             get => fields.StudentTenantId[this];
             set => fields.StudentTenantId[this] = value;
         }
-        public Int32Field TenantIdField
-        {
-            get => Fields.TenantId;
-        }
+
         public TheoryExamResultsRow()
             : base()
         {
@@ -369,13 +310,16 @@ namespace Rio.Workspace
             public Int64Field Id;
             public Int64Field TheoryExamId;
             public StringField StudentScanId;
-            public Int64Field TheoryExamQuestionId;
-            public SingleField MarksObtained;
-            public Int16Field AttemptStatus;
+            public SingleField MarksScored;
+            public SingleField OutOfMarks;
+            public Int16Field ResultStatus;
             public StringField RollNumber;
+            public StringField SheetImage;
             public Int64Field StudentId;
+            public DateTimeField AttemptDate;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public ListField<TheoryExamResultQuestionsRow> TheoryExamResultQuestions;
 
             public StringField TheoryExamCode;
             public StringField TheoryExamName;
@@ -387,19 +331,6 @@ namespace Rio.Workspace
             public Int32Field TheoryExamUpdateUserId;
             public Int16Field TheoryExamIsActive;
             public Int32Field TheoryExamTenantId;
-
-            public Int64Field TheoryExamQuestionTheoryExamId;
-            public Int32Field TheoryExamQuestionQuestionIndex;
-            public SingleField TheoryExamQuestionMaxMarks;
-            public StringField TheoryExamQuestionDisplayIndex;
-            public StringField TheoryExamQuestionTags;
-            public Int32Field TheoryExamQuestionTheoryExamSectionId;
-            public DateTimeField TheoryExamQuestionInsertDate;
-            public Int32Field TheoryExamQuestionInsertUserId;
-            public DateTimeField TheoryExamQuestionUpdateDate;
-            public Int32Field TheoryExamQuestionUpdateUserId;
-            public Int16Field TheoryExamQuestionIsActive;
-            public Int32Field TheoryExamQuestionTenantId;
 
             public Int64Field StudentRollNo;
             public StringField StudentFirstName;

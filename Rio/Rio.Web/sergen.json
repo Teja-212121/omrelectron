@@ -159,6 +159,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.TheoryExamResultQuestions",
+          "Identifier": "TheoryExamResultQuestions",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.TheoryExamResults",
           "Identifier": "TheoryExamResults",
           "Module": "Workspace",

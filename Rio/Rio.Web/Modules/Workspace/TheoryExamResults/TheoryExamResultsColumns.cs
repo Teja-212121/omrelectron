@@ -13,11 +13,13 @@ namespace Rio.Workspace.Columns
         public string TheoryExamCode { get; set; }
         [EditLink]
         public string StudentScanId { get; set; }
-        public string TheoryExamQuestionDisplayIndex { get; set; }
-        public float MarksObtained { get; set; }
-        public short AttemptStatus { get; set; }
+        public float MarksScored { get; set; }
+        public float OutOfMarks { get; set; }
+        public short ResultStatus { get; set; }
         public string RollNumber { get; set; }
+        public string SheetImage { get; set; }
         public string StudentFirstName { get; set; }
+        public DateTime AttemptDate { get; set; }
       
     }
 }
