@@ -11,6 +11,8 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
+        [QuickFilter,FilterOnly]
+        public long TheoryExamId { get; set; }
         public string TheoryExamCode { get; set; }
         [EditLink]
         public string StudentScanId { get; set; }
@@ -21,6 +23,9 @@ namespace Rio.Workspace.Columns
         public string SheetImage { get; set; }
         public string StudentFirstName { get; set; }
         public DateTime AttemptDate { get; set; }
-      
+        [QuickFilter]
+        [DisplayName("Insert Date")]
+        public DateTime InsertDate { get; set; }
+
     }
 }

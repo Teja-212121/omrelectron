@@ -10,6 +10,10 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
+        [QuickFilter,FilterOnly]
+        public long TheoryExamId { get; set; }
+        [QuickFilter, FilterOnly]
+        public long TeacherId { get; set; }
         public string TheoryExamCode { get; set; }
         public string TeacherFirstName { get; set; }
        

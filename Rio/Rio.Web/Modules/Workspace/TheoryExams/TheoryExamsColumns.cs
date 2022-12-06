@@ -15,6 +15,9 @@ namespace Rio.Workspace.Columns
         public string Name { get; set; }
         public string Description { get; set; }
         public int TotalMarks { get; set; }
-        
+        [QuickFilter]
+        [DisplayName("Insert Date")]
+        public DateTime InsertDate { get; set; }
+
     }
 }

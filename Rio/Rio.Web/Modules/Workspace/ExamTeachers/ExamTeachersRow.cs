@@ -28,6 +28,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Theory Exam"),  ForeignKey("[TheoryExams]", "Id"), LeftJoin("jTheoryExam"), TextualField("TheoryExamCode")]
+        [LookupEditor(typeof(TheoryExamsRow))]
         public long? TheoryExamId
         {
             get => fields.TheoryExamId[this];
@@ -35,6 +36,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Teacher"), NotNull, ForeignKey("[Teachers]", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
+        [LookupEditor(typeof(TeachersRow))]
         public long? TeacherId
         {
             get => fields.TeacherId[this];
