@@ -10,7 +10,7 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
-        [Width(130), LookupEditor(typeof(ExamRow)), QuickFilter(CssClass = "hidden-xs")]
+        /*[Width(130), LookupEditor(typeof(ExamRow)), QuickFilter(CssClass = "hidden-xs")]*/
         public long ExamId { get; set; }
         public string ExamName { get; set; }
         public int QuestionIndex { get; set; }
@@ -19,8 +19,8 @@ namespace Rio.Workspace.Columns
         [EditLink]
         public string Tags { get; set; }
         public string RuleTypeName { get; set; }
-        [Width(120), LookupEditor("Workspace.ExamSection")]
-        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ExamId")]
+        /*[Width(120), LookupEditor("Workspace.ExamSection")]
+        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ExamId")]*/
         public int ExamSectionId { get; set; }
         public string ExamSectionName { get; set; }
         [QuickFilter]

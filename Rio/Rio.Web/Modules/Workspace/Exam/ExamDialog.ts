@@ -1,6 +1,6 @@
 import { Decorators, EntityDialog, TabsExtensions } from '@serenity-is/corelib';
 import { Authorization, first, isEmptyOrNull } from '@serenity-is/corelib/q';
-import { ExamForm, ExamRow, ExamSectionRow, ExamService } from '../../ServerTypes/Workspace';
+import { ExamForm, ExamRow, ExamService } from '../../ServerTypes/Workspace';
 import { ExamQuestionGrid } from '../ExamQuestion/ExamQuestionGrid';
 import { ExamSectionGrid } from '../ExamSection/ExamSectionGrid';
 

@@ -37,7 +37,7 @@ namespace Rio.Workspace
             set => fields.Description[this] = value;
         }
 
-        [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode"), LookupInclude]
+        [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamName"), LookupInclude]
         [LookupEditor("Workspace.Exam")]
         public long? ExamId
         {
