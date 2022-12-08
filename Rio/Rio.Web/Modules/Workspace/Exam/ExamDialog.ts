@@ -1,5 +1,5 @@
 import { Decorators, EntityDialog, TabsExtensions } from '@serenity-is/corelib';
-import { Authorization, reloadLookup } from '@serenity-is/corelib/q';
+import { Authorization, first, isEmptyOrNull } from '@serenity-is/corelib/q';
 import { ExamForm, ExamRow, ExamSectionRow, ExamService } from '../../ServerTypes/Workspace';
 import { ExamQuestionGrid } from '../ExamQuestion/ExamQuestionGrid';
 import { ExamSectionGrid } from '../ExamSection/ExamSectionGrid';
@@ -62,15 +62,12 @@ export class ExamDialog extends EntityDialog<ExamRow, any> {
         super.afterLoadEntity();
         this.examSectionGrid.ExamId = this.entityId;
         this.examQuestionGrid.ExamId = this.entityId;
-
-        //Passing discount to OrderProduct Editor
-        //   this.form.OrderProducts.discount = this.form.DiscountPer.value;
     }
 
     onSaveSuccess(response) {
         super.onSaveSuccess(response);
-
-        reloadLookup('Workspace.Exam');
+        TabsExtensions.setDisabled(this.tabs, 'ExamSection', this.isNewOrDeleted());
+        this.loadedState = this.getSaveState();
     }
 
     getTemplate() {

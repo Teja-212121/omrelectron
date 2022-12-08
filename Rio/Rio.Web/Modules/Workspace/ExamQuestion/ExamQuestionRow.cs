@@ -29,7 +29,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
-        [LookupEditor(typeof(ExamRow))]
+        [LookupEditor("Workspace.Exam")]
         public long? ExamId
         {
             get => fields.ExamId[this];
