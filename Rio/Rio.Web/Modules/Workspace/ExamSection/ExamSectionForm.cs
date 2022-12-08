@@ -9,12 +9,12 @@ namespace Rio.Workspace.Forms
     public class ExamSectionForm
     {
         [HalfWidth]
+        public long ExamId { get; set; }
+        [HalfWidth]
         public string Name { get; set; }
         [TextAreaEditor(Rows = 5)]
         [HalfWidth]
         public string Description { get; set; }
-        [HalfWidth]
-        public long ExamId { get; set; }
         [HalfWidth]
         public int ParentId { get; set; }
         
