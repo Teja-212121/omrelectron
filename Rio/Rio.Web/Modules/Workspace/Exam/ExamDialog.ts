@@ -1,8 +1,11 @@
-import { Decorators, EntityDialog } from '@serenity-is/corelib';
-import { Authorization } from '@serenity-is/corelib/q';
-import { ExamForm, ExamRow, ExamService } from '../../ServerTypes/Workspace';
+import { Decorators, EntityDialog, TabsExtensions } from '@serenity-is/corelib';
+import { Authorization, reloadLookup } from '@serenity-is/corelib/q';
+import { ExamForm, ExamRow, ExamSectionRow, ExamService } from '../../ServerTypes/Workspace';
+import { ExamQuestionGrid } from '../ExamQuestion/ExamQuestionGrid';
+import { ExamSectionGrid } from '../ExamSection/ExamSectionGrid';
 
 @Decorators.registerClass()
+@Decorators.panel()
 export class ExamDialog extends EntityDialog<ExamRow, any> {
     protected getFormKey() { return ExamForm.formKey; }
     protected getIdProperty() { return ExamRow.idProperty; }
@@ -15,12 +18,83 @@ export class ExamDialog extends EntityDialog<ExamRow, any> {
 
     protected form = new ExamForm(this.idPrefix);
 
+    private examSectionGrid: ExamSectionGrid;
+    private examQuestionGrid: ExamQuestionGrid;
+    private loadedState: string;
+
     constructor() {
         super();
-        this.form = new ExamForm(this.idPrefix);
 
         if (!Authorization.hasPermission("Administration:Security")) {
             this.form.SelectedTenant.getGridField().toggle(false);
         }
+
+        this.examSectionGrid = new ExamSectionGrid(this.byId('ExamSectionGrid'));
+        this.examSectionGrid.openDialogsAsPanel = false;
+        this.examQuestionGrid = new ExamQuestionGrid(this.byId('ExamQuestionGrid'));
+        this.examQuestionGrid.openDialogsAsPanel = false;
     }
+
+    getSaveState() {
+        try {
+            return $.toJSON(this.getSaveEntity());
+        }
+        catch (e) {
+            return null;
+        }
+    }
+
+    loadResponse(data) {
+        super.loadResponse(data);
+        this.loadedState = this.getSaveState();
+    }
+
+    loadEntity(entity: ExamSectionRow) {
+        super.loadEntity(entity);
+
+        TabsExtensions.setDisabled(this.tabs, 'ExamSection', this.isNewOrDeleted());
+        TabsExtensions.setDisabled(this.tabs, 'ExamQuestion', this.isNewOrDeleted());
+        this.examSectionGrid.ExamId = entity.ExamId;
+        this.examQuestionGrid.ExamId = entity.ExamId;
+    }
+
+    onSaveSuccess(response) {
+        super.onSaveSuccess(response);
+
+        reloadLookup('Workspace.Exam');
+    }
+
+    getTemplate() {
+        return `<div id="~_Tabs" class="s-DialogContent">
+    <ul>
+        <li><a href="#~_TabInfo"><span>General</span></a></li>
+        <li><a href="#~_TabExamSection"><span>Exam Section </span></a></li>
+        <li><a href="#~_TabExamQuestion"><span>Exam Question </span></a></li>
+       
+    </ul>
+    <div id="~_TabInfo" class="tab-pane s-TabInfo">
+        <div id="~_Toolbar" class="s-DialogToolbar">
+        </div>
+        <div class="s-Form">
+            <form id="~_Form" action="">
+                <div class="fieldset ui-widget ui-widget-content ui-corner-all">
+                    <div id="~_PropertyGrid"></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="~_TabExamSection" class="tab-pane s-ExamSection">
+        <div id="~_ExamSectionGrid">
+
+        </div>
+    </div>
+    <div id="~_TabExamQuestion" class="tab-pane s-ExamQuestion">
+        <div id="~_ExamQuestionGrid">
+
+        </div>
+    </div>
+</div>`;
+    }
+
 }

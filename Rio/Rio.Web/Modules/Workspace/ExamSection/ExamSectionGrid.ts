@@ -5,7 +5,7 @@ import { ExamSectionDialog } from './ExamSectionDialog';
 @Decorators.registerClass()
 export class ExamSectionGrid extends EntityGrid<ExamSectionRow, any> {
     protected getColumnsKey() { return ExamSectionColumns.columnsKey; }
-    protected getDialogType() { return ExamSectionDialog; }
+    protected getDialogType() { return <any>ExamSectionDialog; }
     protected getIdProperty() { return ExamSectionRow.idProperty; }
     protected getInsertPermission() { return ExamSectionRow.insertPermission; }
     protected getLocalTextPrefix() { return ExamSectionRow.localTextPrefix; }
@@ -51,5 +51,32 @@ export class ExamSectionGrid extends EntityGrid<ExamSectionRow, any> {
         });
 
         return buttons;
+    }
+
+    protected addButtonClick() {
+        this.editItem({ ExamId: this.ExamId });
+    }
+
+    protected usePager() {
+        return false;
+    }
+
+    protected getGridCanLoad() {
+        return this.ExamId != null;
+    }
+
+    private _ExamId: number;
+
+    get ExamId() {
+        return this._ExamId;
+    }
+
+    set ExamId(value: number) {
+        //debugger;
+        if (this._ExamId != value) {
+            this._ExamId = value;
+            this.setEquality(ExamSectionRow.Fields.ExamId, value);
+            this.refresh();
+        }
     }
 }

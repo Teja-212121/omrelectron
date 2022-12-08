@@ -19,9 +19,9 @@ namespace Rio.Workspace
         {
         }
 
-        protected override void BeforeSave()
+        protected override void SetInternalFields()
         {
-            base.BeforeSave();
+            base.SetInternalFields();
 
             if (Permissions.HasPermission("Administration:Security"))
             {
@@ -31,6 +31,6 @@ namespace Rio.Workspace
             {
                 Row.TenantId = User.GetTenantId();
             }
-        }
+        }        
     }
 }

@@ -85,7 +85,7 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant Id"), Insertable(true), Updatable(true)]
+        [DisplayName("Tenant Id")]
         [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {

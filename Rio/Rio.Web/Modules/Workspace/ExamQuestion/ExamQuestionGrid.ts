@@ -7,7 +7,7 @@ import { ExamQuestionUpdateDialog } from './ExamQuestionUpdateDialog';
 @Decorators.registerClass()
 export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
     protected getColumnsKey() { return ExamQuestionColumns.columnsKey; }
-    protected getDialogType() { return ExamQuestionDialog; }
+    protected getDialogType() { return <any>ExamQuestionDialog; }
     protected getIdProperty() { return ExamQuestionRow.idProperty; }
     protected getInsertPermission() { return ExamQuestionRow.insertPermission; }
     protected getLocalTextPrefix() { return ExamQuestionRow.localTextPrefix; }
@@ -93,5 +93,31 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
             }
         });
         return buttons;
+    }
+    protected addButtonClick() {
+        this.editItem({ ExamId: this.ExamId });
+    }
+
+    protected usePager() {
+        return false;
+    }
+
+    protected getGridCanLoad() {
+        return this.ExamId != null;
+    }
+
+    private _ExamId: number;
+
+    get ExamId() {
+        return this._ExamId;
+    }
+
+    set ExamId(value: number) {
+        //debugger;
+        if (this._ExamId != value) {
+            this._ExamId = value;
+            this.setEquality(ExamQuestionRow.Fields.ExamId, value);
+            this.refresh();
+        }
     }
 }

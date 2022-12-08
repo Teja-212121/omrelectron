@@ -10,6 +10,7 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public int Id { get; set; }
+        [QuickFilter]
         public string SheetTypeName { get; set; }
         public string TenantTenantName { get; set; }
         public int SheetTypeTotalQuestions { get; set; }
@@ -23,7 +24,6 @@ namespace Rio.Workspace.Columns
         [EditLink]
         public string SheetDesignPdf { get; set; }
         [DisplayName("Date")]
-        [QuickFilter]
         public DateTime InsertDate { get; set; }
         [QuickFilter]
         public int TenantId { get; set; }

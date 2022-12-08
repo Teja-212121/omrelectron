@@ -12,10 +12,10 @@ namespace Rio.Workspace
     [DisplayName("Sheet Type"), InstanceName("Sheet Type")]
     [ReadPermission(PermissionKeys.SheetType.View)]
     [ModifyPermission(PermissionKeys.SheetType.Modify)]
-    [LookupScript("Workspace.SheetTypes", Permission = "*",Expiration =1)]
+    [LookupScript("Workspace.SheetTypes", Permission = "*", Expiration = 1)]
     public sealed class SheetTypeRow : LoggingRow<SheetTypeRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Id"), Identity, IdProperty,QuickSearch]
+        [DisplayName("Id"), Identity, IdProperty, QuickSearch]
         [SortOrder(1, descending: true)]
         public int? Id
         {
@@ -30,7 +30,9 @@ namespace Rio.Workspace
             set => fields.Name[this] = value;
         }
 
-        [DisplayName("Name"), Size(100),  QuickSearch, NameProperty, Expression("(SELECT (Name + ' - ' + CAST(SheetNumber as nvarchar(20)) ) FROM SheetTypes WHERE Id = T0.Id)")]
+        [DisplayName("Name"), Size(100), QuickSearch, NameProperty]
+        [Expression("(SELECT (Name || ' - ' || CAST(SheetNumber as nvarchar(20)) ) FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.Sqlite)]
+        [Expression("(SELECT (Name + ' - ' + CAST(SheetNumber as nvarchar(20)) ) FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.SqlServer)]
         public string DIsplayName
         {
             get => fields.DIsplayName[this];
@@ -121,9 +123,9 @@ namespace Rio.Workspace
             set => fields.SheetNumber[this] = value;
         }
 
-        
 
-        [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(true)]
+
+        [DisplayName("Is Active"), NotNull, Insertable(false), Updatable(true)]
         public short? IsActive
         {
             get => fields.IsActive[this];
