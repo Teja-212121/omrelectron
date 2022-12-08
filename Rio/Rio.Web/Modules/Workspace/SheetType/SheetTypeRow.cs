@@ -31,8 +31,8 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Name"), Size(100), QuickSearch, NameProperty]
-        [Expression("(SELECT (Name || ' - ' || CAST(SheetNumber as nvarchar(20)) ) FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.Sqlite)]
-        [Expression("(SELECT (Name + ' - ' + CAST(SheetNumber as nvarchar(20)) ) FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.SqlServer)]
+        [Expression("(SELECT (Name || ' (' || CAST(SheetNumber as nvarchar(20)) || ')') FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.Sqlite)]
+        [Expression("(SELECT (Name + ' (' + CAST(SheetNumber as nvarchar(20)) + ')') FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.SqlServer)]
         public string DIsplayName
         {
             get => fields.DIsplayName[this];

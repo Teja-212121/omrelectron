@@ -49,13 +49,22 @@ export class ExamDialog extends EntityDialog<ExamRow, any> {
         this.loadedState = this.getSaveState();
     }
 
-    loadEntity(entity: ExamSectionRow) {
+    loadEntity(entity: ExamRow) {
         super.loadEntity(entity);
 
         TabsExtensions.setDisabled(this.tabs, 'ExamSection', this.isNewOrDeleted());
         TabsExtensions.setDisabled(this.tabs, 'ExamQuestion', this.isNewOrDeleted());
-        this.examSectionGrid.ExamId = entity.ExamId;
-        this.examQuestionGrid.ExamId = entity.ExamId;
+        this.examSectionGrid.ExamId = entity.Id;
+        this.examQuestionGrid.ExamId = entity.Id;
+    }
+
+    protected afterLoadEntity() {
+        super.afterLoadEntity();
+        this.examSectionGrid.ExamId = this.entityId;
+        this.examQuestionGrid.ExamId = this.entityId;
+
+        //Passing discount to OrderProduct Editor
+        //   this.form.OrderProducts.discount = this.form.DiscountPer.value;
     }
 
     onSaveSuccess(response) {

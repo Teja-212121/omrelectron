@@ -29,11 +29,21 @@ namespace Rio.Workspace
             set => fields.Code[this] = value;
         }
 
-        [DisplayName("Name"), Size(500), NotNull, NameProperty, QuickSearch]
+        [DisplayName("Name"), Size(500), NotNull, QuickSearch]
         public string Name
         {
             get => fields.Name[this];
             set => fields.Name[this] = value;
+        }
+
+
+        [DisplayName("Name"), Size(500), NotNull, NameProperty, QuickSearch]
+        [Expression("(SELECT (Name || ' (' || CAST(Code as nvarchar(20))  || ')')FROM Exams WHERE Id = t0.Id)", Serenity.Data.ServerType.Sqlite)]
+        [Expression("(SELECT (Name + ' (' + CAST(Code as nvarchar(20))  + ')')FROM Exams WHERE Id = t0.Id", Serenity.Data.ServerType.SqlServer)]
+        public string DIsplayName
+        {
+            get => fields.DIsplayName[this];
+            set => fields.DIsplayName[this] = value;
         }
 
         [DisplayName("Description"), Size(1000)]
@@ -125,13 +135,13 @@ namespace Rio.Workspace
             public Int64Field Id;
             public StringField Code;
             public StringField Name;
+            public StringField DIsplayName;
             public StringField Description;
             public Int32Field TotalQuestions;
             public Int32Field TotalMarks;
             public SingleField NegativeMarks;
             public Int16Field OptionsAvailable;
             public StringField ResultCriteria;
-           
             public Int16Field IsActive;
             public Int32Field TenantId;
             public Int32Field SelectedTenant;

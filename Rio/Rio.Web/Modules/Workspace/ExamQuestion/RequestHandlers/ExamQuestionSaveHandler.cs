@@ -17,7 +17,7 @@ namespace Rio.Workspace
         {
         }
 
-            protected override void BeforeSave()
+        protected override void BeforeSave()
         {
             base.BeforeSave();
             if (Row.RowIds != null)
@@ -40,6 +40,44 @@ namespace Rio.Workspace
                     }
                 }
             }
+
+            /*if(IsCreate)
+            {
+                if(Row.QuestionIndex != null)
+                {
+                    if (Row.QuestionIndex == Request.Entity.QuestionIndex)
+                    {
+                        throw new ValidationError("Question Index already assigned to Question!");
+                    }
+                    else
+                    {
+                        Row.QuestionIndex = Request.Entity.QuestionIndex;
+                    }
+                }
+                else
+                {
+                    
+                    
+                }
+            }
+            if(IsUpdate)
+            {
+                if (Row.QuestionIndex != null)
+                {
+                    if (Row.Id == Request.Entity.Id)
+                    {
+                        ExamQuestionRow examQuestionRow = Connection.ById<ExamQuestionRow>(Row.Id);
+                        if (examQuestionRow.QuestionIndex == Row.QuestionIndex)
+                        {
+                            throw new ValidationError("Question Index already assigned to Question");
+                        }
+                        else
+                        {
+                            examQuestionRow.QuestionIndex = Request.Entity.QuestionIndex;
+                        }
+                    }
+                }
+            }*/
         }
 
         protected override void ExecuteSave()
