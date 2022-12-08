@@ -185,6 +185,11 @@ namespace Rio.Workspace.Endpoints
                                 response.ErrorList.Add("Error On Row " + row + ": TenantId doest not belong to Student!!");
                                 continue;
                             }
+                            else
+                            {
+                                uow.Connection.Insert<StudentRow>(Row);
+                                response.Inserted = response.Inserted + 1;
+                            }
                         }
 
                     }

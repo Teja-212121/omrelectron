@@ -31,7 +31,7 @@ namespace Rio.Workspace.Endpoints
         {
             return handler.Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
             [FromServices] IExamQuestionDeleteHandler handler)
@@ -127,43 +127,68 @@ namespace Rio.Workspace.Endpoints
                     {
                         response.ErrorList.Add("Error On Row " + row + ": RightOptions Not found");
                         continue;
-                    } 
+                    }
                     Row.Score = Convert.ToInt32(worksheet.Cells[row, 3].Value ?? null);
                     if (Row.Score == null || Row.Score == 0)
                     {
                         response.ErrorList.Add("Error On Row " + row + ": Score Not found");
                         continue;
                     }
-                    
-                    Row.ExamSectionId = Convert.ToInt32(worksheet.Cells[row, 4].Value ?? null);
-                    if (Row.ExamSectionId == 0)
-                    {
-                        Row.ExamSectionId = null;
-                        /*response.ErrorList.Add("Error On Row " + row + ": Cannot Insert Exam Question!!!");
-                        continue;*/
-                    }
 
-                    if (Row.ExamSectionId != null)
+                    if (!Permissions.HasPermission("Administration.Security"))
                     {
-                        var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.Id == Row.ExamSectionId.Value);
-                        if (examsectionid == null)
+                        Row.ExamSectionId = Convert.ToInt32(worksheet.Cells[row, 4].Value ?? null);
+                        if (Row.ExamSectionId == 0)
                         {
-                            response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
-                            continue;
+                            Row.ExamSectionId = null;
+                            /*response.ErrorList.Add("Error On Row " + row + ": Cannot Insert Exam Question!!!");
+                            continue;*/
                         }
-                        else
+                        if (Row.ExamSectionId != null)
                         {
-                            Row.ExamSectionId = examsectionid.Id;
-                            if (examsectionid.TenantId != Exam.TenantId)
+                            var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.Id == Row.ExamSectionId.Value);
+                            if (examsectionid == null)
                             {
-                                response.ErrorList.Add("Error On Row " + row + ":  Exam Section not belong to Exam!!!");
+                                response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
                                 continue;
+                            }
+                            else
+                            {
+                                Row.ExamSectionId = examsectionid.Id;
+                                if (examsectionid.TenantId != Exam.TenantId)
+                                {
+                                    response.ErrorList.Add("Error On Row " + row + ":  Exam Section not belong to Exam!!!");
+                                    continue;
+
+                                }
 
                             }
-
                         }
                     }
-                   
+                    else
+                    {
+                        Row.ExamSectionId = Convert.ToInt32(worksheet.Cells[row, 4].Value ?? null);
+                        if (Row.ExamSectionId == 0)
+                        {
+                            Row.ExamSectionId = null;
+                            /*response.ErrorList.Add("Error On Row " + row + ": Cannot Insert Exam Question!!!");
+                            continue;*/
+                        }
+                        if (Row.ExamSectionId != null)
+                        {
+                            var examsectionid = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.Id == Row.ExamSectionId.Value);
+                            if (examsectionid == null)
+                            {
+                                response.ErrorList.Add("Error On Row " + row + ": Invalid Exam Section Id!!!");
+                                continue;
+                            }
+                            else
+                            {
+                                Row.ExamSectionId = examsectionid.Id;
+                            }
+                        }
+                    }
+
                     Row.RuleTypeId = Convert.ToInt32(worksheet.Cells[row, 5].Value ?? null);
                     if (Row.RuleTypeId == null || Row.RuleTypeId == 0)
                     {
@@ -181,14 +206,13 @@ namespace Rio.Workspace.Endpoints
                         else
                             Row.RuleTypeId = ruletypeid.Id;
                     }
-                   
+
                     Row.TenantId = Exam.TenantId;
                     Row.InsertDate = DateTime.UtcNow;
                     Row.InsertUserId = Convert.ToInt32(User.GetIdentifier());
 
                     uow.Connection.Insert<ExamQuestionRow>(Row);
                     response.Inserted = response.Inserted + 1;
-
 
                 }
                 catch (Exception)/*(Exception ex)*/
@@ -202,4 +226,4 @@ namespace Rio.Workspace.Endpoints
         }
     }
 }
-    
+

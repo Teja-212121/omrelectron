@@ -1,7 +1,7 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { Authorization } from '@serenity-is/corelib/q';
 import { AssignSheetTypesForm, SelectSheetTypeColumns, SelectSheetTypeRow, SelectSheetTypeService } from '../../ServerTypes/Workspace';
-import { AssignSheetTypeDialog, AssignSheetTypesDialog } from '../SheetTypeTenant/AssignSheetTypesDialog';
+import { AssignSheetTypesDialog } from '../SheetTypeTenant/AssignSheetTypesDialog';
 import { SelectSheetTypeDialog } from './SelectSheetTypeDialog';
 
 @Decorators.registerClass()
