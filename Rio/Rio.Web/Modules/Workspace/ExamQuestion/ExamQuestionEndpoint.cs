@@ -122,14 +122,14 @@ namespace Rio.Workspace.Endpoints
                         response.ErrorList.Add("Error On Row " + row + ": QuestionIndex Not found");
                         continue;
                     }
-                    Row.RightOptions = Convert.ToInt16(worksheet.Cells[row, 2].Value ?? null);
-                    if (Row.RightOptions == null || Row.RightOptions == 0)
+                    Row.RightOptions = Convert.ToString(worksheet.Cells[row, 2].Value ?? null);
+                    if (string.IsNullOrEmpty(Row.RightOptions))
                     {
                         response.ErrorList.Add("Error On Row " + row + ": RightOptions Not found");
                         continue;
                     }
-                    Row.Score = Convert.ToInt32(worksheet.Cells[row, 3].Value ?? null);
-                    if (Row.Score == null || Row.Score == 0)
+                    Row.Score = Convert.ToString(worksheet.Cells[row, 3].Value ?? null);
+                    if (string.IsNullOrEmpty(Row.Score))
                     {
                         response.ErrorList.Add("Error On Row " + row + ": Score Not found");
                         continue;

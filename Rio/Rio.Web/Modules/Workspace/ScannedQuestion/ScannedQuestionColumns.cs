@@ -13,8 +13,8 @@ namespace Rio.Workspace.Columns
         public long Id { get; set; }
         public string ScannedSheetSheetNumber { get; set; }
         public int QuestionIndex { get; set; }
-        public long ScannedOptions { get; set; }
-        public long CorrectedOptions { get; set; }
+        public string ScannedOptions { get; set; }
+        public string CorrectedOptions { get; set; }
         [QuickFilter]
         [DisplayName("Date")]
         public DateTime InsertDate { get; set; }

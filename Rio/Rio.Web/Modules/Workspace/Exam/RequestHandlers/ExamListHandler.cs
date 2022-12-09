@@ -1,4 +1,5 @@
-﻿using Serenity.Services;
+using Serenity.Data;
+using Serenity.Services;
 using MyRequest = Serenity.Services.ListRequest;
 using MyResponse = Serenity.Services.ListResponse<Rio.Workspace.ExamRow>;
 using MyRow = Rio.Workspace.ExamRow;
@@ -12,6 +13,10 @@ namespace Rio.Workspace
         public ExamListHandler(IRequestContext context)
              : base(context)
         {
+        }
+        protected override void PrepareQuery(SqlQuery query)
+        {
+            base.PrepareQuery(query);
         }
     }
 }

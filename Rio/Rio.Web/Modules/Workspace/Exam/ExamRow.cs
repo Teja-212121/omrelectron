@@ -37,13 +37,12 @@ namespace Rio.Workspace
         }
 
 
-        [DisplayName("Name"), Size(500), NotNull, NameProperty, QuickSearch]
-        [Expression("(SELECT (Name || ' (' || CAST(Code as nvarchar(20))  || ')')FROM Exams WHERE Id = t0.Id)", Serenity.Data.ServerType.Sqlite)]
-        [Expression("(SELECT (Name + ' (' + CAST(Code as nvarchar(20))  + ')')FROM Exams WHERE Id = t0.Id", Serenity.Data.ServerType.SqlServer)]
-        public string DisplayName
+        [DisplayName("ExamDisplayName"), Size(500),  NameProperty, QuickSearch]
+       
+        public string ExamDisplayName
         {
-            get => fields.DisplayName[this];
-            set => fields.DisplayName[this] = value;
+            get => fields.ExamDisplayName[this];
+            set => fields.ExamDisplayName[this] = value;
         }
 
         [DisplayName("Description"), Size(1000)]
@@ -135,7 +134,7 @@ namespace Rio.Workspace
             public Int64Field Id;
             public StringField Code;
             public StringField Name;
-            public StringField DisplayName;
+            public StringField ExamDisplayName;
             public StringField Description;
             public Int32Field TotalQuestions;
             public Int32Field TotalMarks;

@@ -2,8 +2,8 @@
     export interface ExamQuestionForm {
         ExamId: Serenity.LookupEditor;
         QuestionIndex: Serenity.IntegerEditor;
-        RightOptions: Serenity.IntegerEditor;
-        Score: Serenity.DecimalEditor;
+        RightOptions: Serenity.StringEditor;
+        Score: Serenity.StringEditor;
         Tags: Serenity.StringEditor;
         RuleTypeId: Serenity.LookupEditor;
         ExamSectionId: Serenity.LookupEditor;
@@ -22,15 +22,14 @@
                 var s = Serenity;
                 var w0 = s.LookupEditor;
                 var w1 = s.IntegerEditor;
-                var w2 = s.DecimalEditor;
-                var w3 = s.StringEditor;
+                var w2 = s.StringEditor;
 
                 Q.initFormType(ExamQuestionForm, [
                     'ExamId', w0,
                     'QuestionIndex', w1,
-                    'RightOptions', w1,
+                    'RightOptions', w2,
                     'Score', w2,
-                    'Tags', w3,
+                    'Tags', w2,
                     'RuleTypeId', w0,
                     'ExamSectionId', w0
                 ]);

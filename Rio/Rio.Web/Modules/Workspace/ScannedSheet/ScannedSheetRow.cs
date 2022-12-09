@@ -46,35 +46,35 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Scanned Roll No")]
-        public long? ScannedRollNo
+        public string ScannedRollNo
         {
             get => fields.ScannedRollNo[this];
             set => fields.ScannedRollNo[this] = value;
         }
 
         [DisplayName("Scanned Exam No")]
-        public long? ScannedExamNo
+        public string ScannedExamNo
         {
             get => fields.ScannedExamNo[this];
             set => fields.ScannedExamNo[this] = value;
         }
 
         [DisplayName("Corrected Roll No")]
-        public long? CorrectedRollNo
+        public string CorrectedRollNo
         {
             get => fields.CorrectedRollNo[this];
             set => fields.CorrectedRollNo[this] = value;
         }
 
         [DisplayName("Corrected Exam No")]
-        public long? CorrectedExamNo
+        public string CorrectedExamNo
         {
             get => fields.CorrectedExamNo[this];
             set => fields.CorrectedExamNo[this] = value;
         }
 
         [DisplayName("Exam Set No")]
-        public int? ExamSetNo
+        public string ExamSetNo
         {
             get => fields.ExamSetNo[this];
             set => fields.ExamSetNo[this] = value;
@@ -449,11 +449,11 @@ namespace Rio.Workspace
             public Int32Field SheetTypeId;
             public DateTimeField ScannedAt;
             public StringField SheetNumber;
-            public Int64Field ScannedRollNo;
-            public Int64Field ScannedExamNo;
-            public Int64Field CorrectedRollNo;
-            public Int64Field CorrectedExamNo;
-            public Int32Field ExamSetNo;
+            public StringField ScannedRollNo;
+            public StringField ScannedExamNo;
+            public StringField CorrectedRollNo;
+            public StringField CorrectedExamNo;
+            public StringField ExamSetNo;
             public StringField ScannedImageSourcePath;
             public StringField ScannedImage;
             public GuidField ScannedBatchId;

@@ -19,6 +19,13 @@ namespace Rio.Workspace
         {
         }
 
+        protected override void BeforeSave()
+        {
+            base.BeforeSave();
+            if(!string.IsNullOrEmpty( Row.Code)&& !string.IsNullOrEmpty(Row.Name))
+                Row.ExamDisplayName= Row.Name + " ("+ Row.Code + ")";
+        }
+
         protected override void SetInternalFields()
         {
             base.SetInternalFields();

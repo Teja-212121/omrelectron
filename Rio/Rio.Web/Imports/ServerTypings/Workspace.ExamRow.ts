@@ -3,6 +3,7 @@
         Id?: number;
         Code?: string;
         Name?: string;
+        ExamDisplayName?: string;
         Description?: string;
         TotalQuestions?: number;
         TotalMarks?: number;
@@ -21,7 +22,7 @@
     export namespace ExamRow {
         export const idProperty = 'Id';
         export const isActiveProperty = 'IsActive';
-        export const nameProperty = 'Name';
+        export const nameProperty = 'ExamDisplayName';
         export const localTextPrefix = 'Workspace.Exam';
         export const lookupKey = 'Workspace.Exam';
 
@@ -37,6 +38,7 @@
             Id = "Id",
             Code = "Code",
             Name = "Name",
+            ExamDisplayName = "ExamDisplayName",
             Description = "Description",
             TotalQuestions = "TotalQuestions",
             TotalMarks = "TotalMarks",

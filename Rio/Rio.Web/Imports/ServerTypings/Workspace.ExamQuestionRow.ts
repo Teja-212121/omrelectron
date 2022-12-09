@@ -3,8 +3,8 @@
         Id?: number;
         ExamId?: number;
         QuestionIndex?: number;
-        RightOptions?: number;
-        Score?: number;
+        RightOptions?: string;
+        Score?: string;
         Tags?: string;
         RuleTypeId?: number;
         ExamSectionId?: number;

@@ -1,8 +1,8 @@
 ﻿namespace Rio.Workspace {
     export interface ExamSectionForm {
+        ExamId: Serenity.LookupEditor;
         Name: Serenity.StringEditor;
         Description: Serenity.TextAreaEditor;
-        ExamId: Serenity.LookupEditor;
         ParentId: Serenity.LookupEditor;
     }
 
@@ -17,15 +17,15 @@
                 ExamSectionForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.StringEditor;
-                var w1 = s.TextAreaEditor;
-                var w2 = s.LookupEditor;
+                var w0 = s.LookupEditor;
+                var w1 = s.StringEditor;
+                var w2 = s.TextAreaEditor;
 
                 Q.initFormType(ExamSectionForm, [
-                    'Name', w0,
-                    'Description', w1,
-                    'ExamId', w2,
-                    'ParentId', w2
+                    'ExamId', w0,
+                    'Name', w1,
+                    'Description', w2,
+                    'ParentId', w0
                 ]);
             }
         }

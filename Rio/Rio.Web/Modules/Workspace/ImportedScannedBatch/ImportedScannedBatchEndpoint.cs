@@ -194,8 +194,8 @@ namespace Rio.Workspace.Endpoints
                     
                     questionRow.QuestionIndex = Convert.ToInt32(worksheet.Cells[row, 16].Value ?? null);
                     questionRow.ScannedSheetId = new Guid(guidSheetString);
-                    questionRow.ScannedOptions = Convert.ToInt32(worksheet.Cells[row, 17].Value ?? null);
-                    questionRow.CorrectedOptions = Convert.ToInt32(worksheet.Cells[row, 18].Value ?? null);
+                    questionRow.ScannedOptions = Convert.ToString(worksheet.Cells[row, 17].Value ?? null);
+                    questionRow.CorrectedOptions = Convert.ToString(worksheet.Cells[row, 18].Value ?? null);
                     questionRow.TenantId = Convert.ToInt32(worksheet.Cells[row, 19].Value ?? null);
                     questionRow.InsertDate = DateTime.UtcNow;
                     questionRow.InsertUserId = Convert.ToInt32(User.GetIdentifier());

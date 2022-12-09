@@ -4,11 +4,11 @@
         SheetTypeId?: number;
         ScannedAt?: string;
         SheetNumber?: string;
-        ScannedRollNo?: number;
-        ScannedExamNo?: number;
-        CorrectedRollNo?: number;
-        CorrectedExamNo?: number;
-        ExamSetNo?: number;
+        ScannedRollNo?: string;
+        ScannedExamNo?: string;
+        CorrectedRollNo?: string;
+        CorrectedExamNo?: string;
+        ExamSetNo?: string;
         ScannedImageSourcePath?: string;
         ScannedImage?: string;
         ScannedBatchId?: string;

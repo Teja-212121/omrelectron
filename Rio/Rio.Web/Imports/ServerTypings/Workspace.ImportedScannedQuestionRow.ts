@@ -1,20 +1,21 @@
 ﻿namespace Rio.Workspace {
     export interface ImportedScannedQuestionRow {
         Id?: number;
+        ScannedBatchId?: string;
         ScannedSheetId?: string;
         QuestionIndex?: number;
-        ScannedOptions?: number;
-        CorrectedOptions?: number;
+        ScannedOptions?: string;
+        CorrectedOptions?: string;
         IsActive?: number;
         TenantId?: number;
         ScannedSheetSheetTypeId?: number;
         ScannedSheetScannedAt?: string;
         ScannedSheetSheetNumber?: string;
-        ScannedSheetScannedRollNo?: number;
-        ScannedSheetScannedExamNo?: number;
-        ScannedSheetCorrectedRollNo?: number;
-        ScannedSheetCorrectedExamNo?: number;
-        ScannedSheetExamSetNo?: number;
+        ScannedSheetScannedRollNo?: string;
+        ScannedSheetScannedExamNo?: string;
+        ScannedSheetCorrectedRollNo?: string;
+        ScannedSheetCorrectedExamNo?: string;
+        ScannedSheetExamSetNo?: string;
         ScannedSheetScannedImageSourcePath?: string;
         ScannedSheetScannedImage?: string;
         ScannedSheetScannedBatchId?: string;
@@ -46,6 +47,7 @@
 
         export declare const enum Fields {
             Id = "Id",
+            ScannedBatchId = "ScannedBatchId",
             ScannedSheetId = "ScannedSheetId",
             QuestionIndex = "QuestionIndex",
             ScannedOptions = "ScannedOptions",

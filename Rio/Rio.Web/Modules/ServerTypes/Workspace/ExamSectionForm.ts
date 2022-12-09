@@ -1,10 +1,10 @@
-﻿import { StringEditor, TextAreaEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { LookupEditor, StringEditor, TextAreaEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface ExamSectionForm {
+    ExamId: LookupEditor;
     Name: StringEditor;
     Description: TextAreaEditor;
-    ExamId: LookupEditor;
     ParentId: LookupEditor;
 }
 
@@ -18,15 +18,15 @@ export class ExamSectionForm extends PrefixedContext {
         if (!ExamSectionForm.init)  {
             ExamSectionForm.init = true;
 
-            var w0 = StringEditor;
-            var w1 = TextAreaEditor;
-            var w2 = LookupEditor;
+            var w0 = LookupEditor;
+            var w1 = StringEditor;
+            var w2 = TextAreaEditor;
 
             initFormType(ExamSectionForm, [
-                'Name', w0,
-                'Description', w1,
-                'ExamId', w2,
-                'ParentId', w2
+                'ExamId', w0,
+                'Name', w1,
+                'Description', w2,
+                'ParentId', w0
             ]);
         }
     }

@@ -45,14 +45,14 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Scanned Options"), NotNull]
-        public long? ScannedOptions
+        public string ScannedOptions
         {
             get => fields.ScannedOptions[this];
             set => fields.ScannedOptions[this] = value;
         }
 
         [DisplayName("Corrected Options"), NotNull]
-        public long? CorrectedOptions
+        public string CorrectedOptions
         {
             get => fields.CorrectedOptions[this];
             set => fields.CorrectedOptions[this] = value;
@@ -95,35 +95,35 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Scanned Sheet Scanned Roll No"), Expression("jScannedSheet.[ScannedRollNo]")]
-        public long? ScannedSheetScannedRollNo
+        public string ScannedSheetScannedRollNo
         {
             get => fields.ScannedSheetScannedRollNo[this];
             set => fields.ScannedSheetScannedRollNo[this] = value;
         }
 
         [DisplayName("Scanned Sheet Scanned Exam No"), Expression("jScannedSheet.[ScannedExamNo]")]
-        public long? ScannedSheetScannedExamNo
+        public string ScannedSheetScannedExamNo
         {
             get => fields.ScannedSheetScannedExamNo[this];
             set => fields.ScannedSheetScannedExamNo[this] = value;
         }
 
         [DisplayName("Scanned Sheet Corrected Roll No"), Expression("jScannedSheet.[CorrectedRollNo]")]
-        public long? ScannedSheetCorrectedRollNo
+        public string ScannedSheetCorrectedRollNo
         {
             get => fields.ScannedSheetCorrectedRollNo[this];
             set => fields.ScannedSheetCorrectedRollNo[this] = value;
         }
 
         [DisplayName("Scanned Sheet Corrected Exam No"), Expression("jScannedSheet.[CorrectedExamNo]")]
-        public long? ScannedSheetCorrectedExamNo
+        public string ScannedSheetCorrectedExamNo
         {
             get => fields.ScannedSheetCorrectedExamNo[this];
             set => fields.ScannedSheetCorrectedExamNo[this] = value;
         }
 
         [DisplayName("Scanned Sheet Exam Set No"), Expression("jScannedSheet.[ExamSetNo]")]
-        public int? ScannedSheetExamSetNo
+        public string ScannedSheetExamSetNo
         {
             get => fields.ScannedSheetExamSetNo[this];
             set => fields.ScannedSheetExamSetNo[this] = value;
@@ -250,19 +250,19 @@ namespace Rio.Workspace
             public GuidField ScannedBatchId;
             public GuidField ScannedSheetId;
             public Int32Field QuestionIndex;
-            public Int64Field ScannedOptions;
-            public Int64Field CorrectedOptions;
+            public StringField ScannedOptions;
+            public StringField CorrectedOptions;
             public Int16Field IsActive;
             public Int32Field TenantId;
 
             public Int32Field ScannedSheetSheetTypeId;
             public DateTimeField ScannedSheetScannedAt;
             public StringField ScannedSheetSheetNumber;
-            public Int64Field ScannedSheetScannedRollNo;
-            public Int64Field ScannedSheetScannedExamNo;
-            public Int64Field ScannedSheetCorrectedRollNo;
-            public Int64Field ScannedSheetCorrectedExamNo;
-            public Int32Field ScannedSheetExamSetNo;
+            public StringField ScannedSheetScannedRollNo;
+            public StringField ScannedSheetScannedExamNo;
+            public StringField ScannedSheetCorrectedRollNo;
+            public StringField ScannedSheetCorrectedExamNo;
+            public StringField ScannedSheetExamSetNo;
             public StringField ScannedSheetScannedImageSourcePath;
             public StringField ScannedSheetScannedImage;
             public GuidField ScannedSheetScannedBatchId;

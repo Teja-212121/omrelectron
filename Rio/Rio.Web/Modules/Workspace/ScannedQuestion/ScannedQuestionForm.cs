@@ -15,9 +15,9 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public int QuestionIndex { get; set; }
         [HalfWidth]
-        public long ScannedOptions { get; set; }
+        public string ScannedOptions { get; set; }
         [HalfWidth]
-        public long CorrectedOptions { get; set; }
+        public string CorrectedOptions { get; set; }
 
        /* public DateTime InsertDate { get; set; }
         public int InsertUserId { get; set; }

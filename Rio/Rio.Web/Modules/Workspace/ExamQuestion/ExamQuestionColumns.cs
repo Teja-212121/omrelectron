@@ -14,8 +14,8 @@ namespace Rio.Workspace.Columns
         public long ExamId { get; set; }
         public string ExamName { get; set; }
         public int QuestionIndex { get; set; }
-        public short RightOptions { get; set; }
-        public float Score { get; set; }
+        public string RightOptions { get; set; }
+        public string Score { get; set; }
         [EditLink]
         public string Tags { get; set; }
         public string RuleTypeName { get; set; }

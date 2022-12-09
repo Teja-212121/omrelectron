@@ -4,6 +4,7 @@ export interface ExamRow {
     Id?: number;
     Code?: string;
     Name?: string;
+    ExamDisplayName?: string;
     Description?: string;
     TotalQuestions?: number;
     TotalMarks?: number;
@@ -22,7 +23,7 @@ export interface ExamRow {
 export abstract class ExamRow {
     static readonly idProperty = 'Id';
     static readonly isActiveProperty = 'IsActive';
-    static readonly nameProperty = 'Name';
+    static readonly nameProperty = 'ExamDisplayName';
     static readonly localTextPrefix = 'Workspace.Exam';
     static readonly lookupKey = 'Workspace.Exam';
 

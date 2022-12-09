@@ -13,9 +13,9 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public int QuestionIndex { get; set; }
         [HalfWidth]
-        public short RightOptions { get; set; }
+        public string RightOptions { get; set; }
         [HalfWidth]
-        public float Score { get; set; }
+        public string Score { get; set; }
         [HalfWidth]
         public string Tags { get; set; }
         [HalfWidth]

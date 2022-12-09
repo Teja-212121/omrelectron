@@ -12,14 +12,14 @@ export namespace ExamSectionService {
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<ExamSectionRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function DeleteExamSection(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export const Methods = {
-        Create: "Workspace/ExamSection/Create",
-        Update: "Workspace/ExamSection/Update",
-        Delete: "Workspace/ExamSection/Delete",
-        Retrieve: "Workspace/ExamSection/Retrieve",
-        List: "Workspace/ExamSection/List",
-        DeleteExamSection: "Workspace/ExamSection/DeleteExamSection"
-    } as const;
+    export declare const enum Methods {
+        Create = "Workspace/ExamSection/Create",
+        Update = "Workspace/ExamSection/Update",
+        Delete = "Workspace/ExamSection/Delete",
+        Retrieve = "Workspace/ExamSection/Retrieve",
+        List = "Workspace/ExamSection/List",
+        DeleteExamSection = "Workspace/ExamSection/DeleteExamSection"
+    }
 
     [
         'Create', 
