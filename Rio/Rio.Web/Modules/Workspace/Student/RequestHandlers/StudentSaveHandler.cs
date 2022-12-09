@@ -1,4 +1,5 @@
-﻿using Serenity.Services;
+using Serenity.Services;
+using System;
 using MyRequest = Serenity.Services.SaveRequest<Rio.Workspace.StudentRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = Rio.Workspace.StudentRow;
@@ -12,6 +13,15 @@ namespace Rio.Workspace
         public StudentSaveHandler(IRequestContext context)
              : base(context)
         {
+        }
+        protected override void SetInternalFields()
+        {
+            base.SetInternalFields();
+            if (IsCreate)
+            {
+                if (Row.StudentId == null)
+                    Row.StudentId = Guid.NewGuid();
+            }
         }
     }
 }

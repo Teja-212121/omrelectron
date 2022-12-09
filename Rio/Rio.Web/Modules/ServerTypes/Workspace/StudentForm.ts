@@ -2,6 +2,7 @@
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface StudentForm {
+    StudentId: StringEditor;
     RollNo: StringEditor;
     FullName: StringEditor;
     Email: EmailEditor;
@@ -9,6 +10,7 @@ export interface StudentForm {
     Dob: DateEditor;
     Gender: EnumEditor;
     Note: TextAreaEditor;
+    Comments: TextAreaEditor;
 }
 
 export class StudentForm extends PrefixedContext {
@@ -28,13 +30,15 @@ export class StudentForm extends PrefixedContext {
             var w4 = TextAreaEditor;
 
             initFormType(StudentForm, [
+                'StudentId', w0,
                 'RollNo', w0,
                 'FullName', w0,
                 'Email', w1,
                 'Mobile', w0,
                 'Dob', w2,
                 'Gender', w3,
-                'Note', w4
+                'Note', w4,
+                'Comments', w4
             ]);
         }
     }

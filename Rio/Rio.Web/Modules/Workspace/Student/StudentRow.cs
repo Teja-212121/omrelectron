@@ -23,7 +23,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Roll No"), NotNull]
+        [DisplayName("Roll No")]
         public long? RollNo
         {
             get => fields.RollNo[this];
@@ -58,14 +58,14 @@ namespace Rio.Workspace
             set => fields.FullName[this] = value;
         }
 
-        [DisplayName("Email"), Size(500), NotNull]
+        [DisplayName("Email"), Size(500)]
         public string Email
         {
             get => fields.Email[this];
             set => fields.Email[this] = value;
         }
 
-        [DisplayName("Mobile"), Size(100), NotNull]
+        [DisplayName("Mobile"), Size(100)]
         public string Mobile
         {
             get => fields.Mobile[this];
@@ -93,6 +93,20 @@ namespace Rio.Workspace
             set => fields.Note[this] = value;
         }
 
+        [DisplayName("Student Id"), Insertable(false), Updatable(false)]
+        public Guid? StudentId
+        {
+            get => fields.StudentId[this];
+            set => fields.StudentId[this] = value;
+        }
+
+        [DisplayName("Comments"), Size(500), QuickSearch]
+        public string Comments
+        {
+            get => fields.Comments[this];
+            set => fields.Comments[this] = value;
+        }
+
         [DisplayName("Is Active"), NotNull, Insertable(false), Updatable(true)]
         public short? IsActive
         {
@@ -100,12 +114,20 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant Id"), NotNull]
-        [Insertable(false), Updatable(false)]
+        [DisplayName("Tenant Id")]
+        [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {
             get => fields.TenantId[this];
             set => fields.TenantId[this] = value;
+        }
+
+        [DisplayName("Tenant Id"), NotMapped]
+        [LookupEditor("Administration.Tenant")]
+        public int? SelectedTenant
+        {
+            get => fields.SelectedTenant[this];
+            set => fields.SelectedTenant[this] = value;
         }
 
         public Int32Field TenantIdField
@@ -141,8 +163,11 @@ namespace Rio.Workspace
             public DateTimeField Dob;
             public Int16Field Gender;
             public StringField Note;
+            public GuidField StudentId;
+            public StringField Comments;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public Int32Field SelectedTenant;
         }
     }
 }

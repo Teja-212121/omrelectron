@@ -1,5 +1,6 @@
 ﻿namespace Rio.Workspace {
     export interface StudentForm {
+        StudentId: Serenity.StringEditor;
         RollNo: Serenity.StringEditor;
         FullName: Serenity.StringEditor;
         Email: Serenity.EmailEditor;
@@ -7,6 +8,7 @@
         Dob: Serenity.DateEditor;
         Gender: Serenity.EnumEditor;
         Note: Serenity.TextAreaEditor;
+        Comments: Serenity.TextAreaEditor;
     }
 
     export class StudentForm extends Serenity.PrefixedContext {
@@ -27,13 +29,15 @@
                 var w4 = s.TextAreaEditor;
 
                 Q.initFormType(StudentForm, [
+                    'StudentId', w0,
                     'RollNo', w0,
                     'FullName', w0,
                     'Email', w1,
                     'Mobile', w0,
                     'Dob', w2,
                     'Gender', w3,
-                    'Note', w4
+                    'Note', w4,
+                    'Comments', w4
                 ]);
             }
         }

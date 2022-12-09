@@ -119,6 +119,7 @@ namespace Rio.Workspace.Endpoints
                         response.ErrorList.Add("Error On Row " + row + ": Id Not found");
                         continue;
                     }*/
+                    Row.Comments = request.Comments;
                     Row.RollNo = Convert.ToInt64(worksheet.Cells[row, 1].Value ?? null);
                     if (Row.RollNo == null)
                     {

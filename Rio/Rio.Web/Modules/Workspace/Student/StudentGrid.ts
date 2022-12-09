@@ -1,4 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { Authorization } from '@serenity-is/corelib/q';
 import { ExcelExportHelper } from '@serenity-is/extensions';
 import { StudentColumns, StudentRow, StudentService } from '../../ServerTypes/Workspace';
 import { GroupStudentsForStudentsDialog } from '../GroupStudent/GroupStudentsForStudentsDialog';
@@ -23,6 +24,10 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
     protected getColumns() {
         var columns = super.getColumns();
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
+
+        if (!Authorization.hasPermission("Administration:Security")) {
+            columns = columns.filter(f => f.field != StudentRow.Fields.TenantId);
+        }
         return columns;
     }
     get selectedItems() {

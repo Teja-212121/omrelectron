@@ -10,10 +10,9 @@ namespace Rio.Workspace.Forms
     public class StudentForm
     {
         [HalfWidth]
+        public Guid StudentId { get; set; }
+        [HalfWidth]
         public long RollNo { get; set; }
-        /*public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }*/
         [HalfWidth]
         public string FullName { get; set; }
         [EmailEditor]
@@ -26,5 +25,7 @@ namespace Rio.Workspace.Forms
         public Gender Gender { get; set; }
         [TextAreaEditor(Rows = 3)]
         public string Note { get; set; }
+        [TextAreaEditor(Rows = 3)]
+        public string Comments { get; set; }
     }
 }

@@ -8,8 +8,8 @@ using MyPage = Rio.Common.Pages;
 
 [assembly: NavigationMenu(3000, "Exams", icon: "fa-pencil-square-o")]
 [assembly: NavigationLink(3001, "Exams/Exams", typeof(MyPages.ExamController), icon: "fa-circle-o")]
-[assembly: NavigationLink(3002, "Exams/Exam Sections", typeof(MyPages.ExamSectionController), icon: "fa-circle-o")]
-[assembly: NavigationLink(3003, "Exams/Exam Questions", typeof(MyPages.ExamQuestionController), icon: "fa-circle-o")]
+/*[assembly: NavigationLink(3002, "Exams/Exam Sections", typeof(MyPages.ExamSectionController), icon: "fa-circle-o")]
+[assembly: NavigationLink(3003, "Exams/Exam Questions", typeof(MyPages.ExamQuestionController), icon: "fa-circle-o")]*/
 
 [assembly: NavigationMenu(4000, "Students", icon: "fa-users")]
 [assembly: NavigationLink(4001, "Students/Students", typeof(MyPages.StudentController), icon: "fa-circle-o")]

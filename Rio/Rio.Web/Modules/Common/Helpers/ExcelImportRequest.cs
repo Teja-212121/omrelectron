@@ -10,6 +10,7 @@ namespace Rio
         public String FileName { get; set; }
         public Int32 ExamId { get; set; }
         public Int32 ScannedSheetId { get; set; }
+        public String Comments { get; set; }
 
         public Int32 TenantId { get; set; }
 

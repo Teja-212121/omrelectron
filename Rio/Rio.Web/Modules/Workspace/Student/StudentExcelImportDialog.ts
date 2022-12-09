@@ -42,6 +42,7 @@ import { StudentExcelImportForm } from '../../ServerTypes/Workspace/StudentExcel
 
                         StudentService.ExcelImport({
                             FileName: this.form.FileName.value.Filename,
+                            Comments: this.form.Comments.value
                         }, response => {
                             Q.notifyInfo(
                                 'Inserted: ' + (response.Inserted || 0));
