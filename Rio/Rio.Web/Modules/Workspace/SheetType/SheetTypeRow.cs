@@ -30,13 +30,11 @@ namespace Rio.Workspace
             set => fields.Name[this] = value;
         }
 
-        [DisplayName("Name"), Size(100), QuickSearch, NameProperty]
-        [Expression("(SELECT (Name || ' (' || CAST(SheetNumber as nvarchar(20)) || ')') FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.Sqlite)]
-        [Expression("(SELECT (Name + ' (' + CAST(SheetNumber as nvarchar(20)) + ')') FROM SheetTypes WHERE Id = T0.Id)", Serenity.Data.ServerType.SqlServer)]
-        public string DIsplayName
+        [DisplayName("SheetTypeDisplayName"), Size(100), QuickSearch, NameProperty]
+        public string SheetTypeDisplayName
         {
-            get => fields.DIsplayName[this];
-            set => fields.DIsplayName[this] = value;
+            get => fields.SheetTypeDisplayName[this];
+            set => fields.SheetTypeDisplayName[this] = value;
         }
 
         [DisplayName("Description"), Size(1000)]
@@ -146,7 +144,7 @@ namespace Rio.Workspace
         {
             public Int32Field Id;
             public StringField Name;
-            public StringField DIsplayName;
+            public StringField SheetTypeDisplayName;
             public StringField Description;
             public Int32Field TotalQuestions;
             public Int32Field EPaperSize;
