@@ -30,7 +30,7 @@ namespace Rio.Workspace
             set => fields.Name[this] = value;
         }
 
-        [DisplayName("SheetTypeDisplayName"), Size(100), QuickSearch, NameProperty]
+        [DisplayName("Sheet Type Display Name"), Size(100), QuickSearch, NameProperty]
         public string SheetTypeDisplayName
         {
             get => fields.SheetTypeDisplayName[this];
