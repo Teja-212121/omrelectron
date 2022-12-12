@@ -155,14 +155,14 @@ namespace Rio.Workspace.Endpoints
                         Int16? ScannedStatus = Convert.ToInt16(worksheet.Cells[row, 12].Value ?? null);
                         if (ScannedStatus != null)
                         {
-                            if (ScannedStatus == 1)
-                            {
-                                sheetRow.ScannedStatus = enums.EScannedStatus.SuccessfulSheet;
-                            }
+                            if (ScannedStatus == 0)
+                                sheetRow.ScannedStatus = enums.EScannedStatus.OpenSheet;
+                            else if (ScannedStatus == 1)
+                                sheetRow.ScannedStatus = enums.EScannedStatus.FailedSheet;
                             else if (ScannedStatus == 2)
-                                sheetRow.ScannedStatus = enums.EScannedStatus.UnsuccessfulSheet;
-                            else if (ScannedStatus == 3)
                                 sheetRow.ScannedStatus = enums.EScannedStatus.WarningSheet;
+                            else if (ScannedStatus == 3)
+                                sheetRow.ScannedStatus = enums.EScannedStatus.SuccessSheet;
                             else
                             {
                                 response.ErrorList.Add("Error On Row " + row + ": Invalid Scanned Status");

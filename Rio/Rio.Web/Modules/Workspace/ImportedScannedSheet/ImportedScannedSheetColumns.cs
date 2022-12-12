@@ -1,3 +1,4 @@
+using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
@@ -24,7 +25,8 @@ namespace Rio.Workspace.Columns
         public string ScannedImageSourcePath { get; set; }
         public string ScannedImage { get; set; }
         public string ScannedBatchName { get; set; }
-        public short ScannedStatus { get; set; }
+        [QuickFilter]
+        public EScannedStatus ScannedStatus { get; set; }
         public string ScannedSystemErrors { get; set; }
         public string ScannedUserErrors { get; set; }
         public string ScannedComments { get; set; }

@@ -2,6 +2,7 @@
     export interface ExamQuestionForm {
         ExamId: Serenity.LookupEditor;
         QuestionIndex: Serenity.IntegerEditor;
+        DisplayIndex: Serenity.IntegerEditor;
         RightOptions: Serenity.StringEditor;
         Score: Serenity.StringEditor;
         Tags: Serenity.StringEditor;
@@ -27,6 +28,7 @@
                 Q.initFormType(ExamQuestionForm, [
                     'ExamId', w0,
                     'QuestionIndex', w1,
+                    'DisplayIndex', w1,
                     'RightOptions', w2,
                     'Score', w2,
                     'Tags', w2,

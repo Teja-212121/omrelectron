@@ -1,3 +1,4 @@
+using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
@@ -32,7 +33,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public Guid ScannedBatchId { get; set; }
         [HalfWidth]
-        public short ScannedStatus { get; set; }
+        public EScannedStatus ScannedStatus { get; set; }
         [TextAreaEditor(Rows = 3)]
         public string ScannedSystemErrors { get; set; }
         [TextAreaEditor(Rows = 3)]

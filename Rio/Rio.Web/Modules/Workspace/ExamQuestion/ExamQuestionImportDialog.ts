@@ -1,4 +1,4 @@
-import { Decorators, PropertyDialog } from "@serenity-is/corelib";
+import { Decorators, PropertyDialog, EditorUtils } from "@serenity-is/corelib";
 import { DialogButton } from '@serenity-is/corelib/q';
 import { ExamQuestionImportForm, ExamQuestionService } from "../../ServerTypes/Workspace";
 
@@ -18,8 +18,15 @@ export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
             //        this.form.ExamId.value = Workspace.ExamRow.getLookup().itemById[examId].Id;
             //    }
             //});
+            this.form.ExamId = this.entity.Id;
         
         }
+
+    updateTitle() {
+        super.updateTitle();
+
+        EditorUtils.setReadOnly(this.form.ExamId, true);
+    }
 
         protected getDialogTitle(): string {
             return "Excel Import";
