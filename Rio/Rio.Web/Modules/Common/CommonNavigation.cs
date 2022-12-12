@@ -1,4 +1,5 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 using MyPages = Rio.Common.Pages;
 
-[assembly: NavigationLink(int.MaxValue, "Common/Mail", typeof(MyPages.MailController), icon: null)]
+[assembly: NavigationMenu(10000, "Common", icon: "fa-circle-o")]
+[assembly: NavigationLink(10001, "Common/Mail", typeof(MyPages.MailController), icon: "fa-envelope-o")]

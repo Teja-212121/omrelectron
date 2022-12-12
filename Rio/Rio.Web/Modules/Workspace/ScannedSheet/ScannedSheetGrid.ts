@@ -54,7 +54,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
 
     protected getButtons() {
         var buttons = super.getButtons();
-        buttons.splice(1, 1);
+        buttons.splice(0, 1);
 
         buttons.push(ExcelExportHelper.createToolButton({
             grid: this,

@@ -24,10 +24,10 @@ using MyPage = Rio.Common.Pages;
 [assembly: NavigationLink(5005, "Scanned Data/Imported Sheets", typeof(MyPages.ImportedScannedSheetController), icon: "fa-circle-o")]
 [assembly: NavigationLink(5006, "Scanned Data/Imported  Questions", typeof(MyPages.ImportedScannedQuestionController), icon: "fa-circle-o")]
 
-[assembly: NavigationMenu(6000, "Master", icon: "fa-Users")]
+[assembly: NavigationMenu(6000, "Master", icon: "fa-graduation-cap")]
 [assembly: NavigationLink(6001, "Master/Rule Types", typeof(MyPages.RuleTypeController), icon: "fa-circle-o")]
 
-[assembly: NavigationMenu(7000, "Reports", icon: "fa-Users")]
+[assembly: NavigationMenu(7000, "Reports", icon: "fa-files-o")]
 [assembly: NavigationLink(7001, "Reports/Exam Results", typeof(MyPages.ExamResultController), icon: "fa-circle-o")]
 [assembly: NavigationLink(7002, "Reports/Exam Section Results", typeof(MyPages.ExamSectionResultController), icon: "fa-circle-o")]
 [assembly: NavigationLink(7003, "Reports/Exam Question Results", typeof(MyPages.ExamQuestionResultController), icon: "fa-circle-o")]
@@ -37,13 +37,13 @@ using MyPage = Rio.Common.Pages;
 /*[assembly: NavigationMenu(8000, "Users", icon: "fa-Users")]*/
 
 
-[assembly: NavigationMenu(10000, "Workspace", icon: null)]
-[assembly: NavigationLink(10001, "Workspace/Teachers", typeof(MyPages.TeachersController), icon: null)]
-[assembly: NavigationLink(10002, "Workspace/Exam Teachers", typeof(MyPages.ExamTeachersController), icon: null)]
-[assembly: NavigationLink(10003, "Workspace/Theory Exams", typeof(MyPages.TheoryExamsController), icon: null)]
-[assembly: NavigationLink(10004, "Workspace/Theory Exam Sections", typeof(MyPages.TheoryExamSectionsController), icon: null)]
-[assembly: NavigationLink(10005, "Workspace/Theory Exam Questions", typeof(MyPages.TheoryExamQuestionsController), icon: null)]
-[assembly: NavigationLink(10006, "Workspace/Theory Exam Results", typeof(MyPages.TheoryExamResultsController), icon: null)]
-[assembly: NavigationLink(10007, "Workspace/Theory Exam Result Questions", typeof(MyPages.TheoryExamResultQuestionsController), icon: null)]
+[assembly: NavigationMenu(10000, "Workspace", icon: "fa-building-o")]
+[assembly: NavigationLink(10001, "Workspace/Teachers", typeof(MyPages.TeachersController), icon: "fa-circle-o")]
+[assembly: NavigationLink(10002, "Workspace/Exam Teachers", typeof(MyPages.ExamTeachersController), icon: "fa-circle-o")]
+[assembly: NavigationLink(10003, "Workspace/Theory Exams", typeof(MyPages.TheoryExamsController), icon: "fa-circle-o")]
+[assembly: NavigationLink(10004, "Workspace/Theory Exam Sections", typeof(MyPages.TheoryExamSectionsController), icon: "fa-circle-o")]
+[assembly: NavigationLink(10005, "Workspace/Theory Exam Questions", typeof(MyPages.TheoryExamQuestionsController), icon: "fa-circle-o")]
+[assembly: NavigationLink(10006, "Workspace/Theory Exam Results", typeof(MyPages.TheoryExamResultsController), icon: "fa-circle-o")]
+[assembly: NavigationLink(10007, "Workspace/Theory Exam Result Questions", typeof(MyPages.TheoryExamResultQuestionsController), icon: "fa-circle-o")]
 
 //[assembly: NavigationLink(2002, "Sheets/Select Sheet Type", typeof(MyPages.SelectSheetTypeController), icon: "fa-circle-o")]

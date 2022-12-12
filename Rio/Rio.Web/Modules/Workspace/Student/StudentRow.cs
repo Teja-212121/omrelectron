@@ -23,7 +23,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Roll No")]
+        [DisplayName("Roll No"), QuickSearch]
         public long? RollNo
         {
             get => fields.RollNo[this];
@@ -51,7 +51,7 @@ namespace Rio.Workspace
             set => fields.LastName[this] = value;
         }
 
-        [DisplayName("Full Name"), Size(300), NotNull, NameProperty]
+        [DisplayName("Full Name"), QuickSearch, Size(300), NotNull, NameProperty]
         public string FullName
         {
             get => fields.FullName[this];
@@ -79,7 +79,7 @@ namespace Rio.Workspace
             set => fields.Dob[this] = value;
         }
 
-        [DisplayName("Gender")]
+        [DisplayName("Gender"), QuickSearch]
         public Gender? Gender
         {
             get => (Gender)fields.Gender[this];
