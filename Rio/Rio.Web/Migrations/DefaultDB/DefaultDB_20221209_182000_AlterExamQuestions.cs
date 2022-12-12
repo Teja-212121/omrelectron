@@ -24,6 +24,8 @@ namespace Rio.Migrations.DefaultDB
 
             this.Alter.Table("Exams").AddColumn("ExamDisplayName").AsString(500).Nullable();
             this.Alter.Table("SheetTypes").AddColumn("SheetTypeDisplayName").AsString(500).Nullable();
+            this.Alter.Table("ScannedSheets").AddColumn("ScannedSheetDisplayName").AsString(500).Nullable();
+            this.Alter.Table("ImportedScannedSheets").AddColumn("ImportScannedSheetDisplayName").AsString(500).Nullable();
 
         }
     }

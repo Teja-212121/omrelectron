@@ -14,6 +14,16 @@ namespace Rio.Workspace
              : base(context)
         {
         }
+
+        protected override void BeforeSave()
+        {
+            base.BeforeSave();
+            var scannedRollNo = Row.ScannedRollNo.ToString();
+            var scannedExamNo = Row.ScannedRollNo.ToString();
+            if (!string.IsNullOrEmpty(scannedExamNo) && !string.IsNullOrEmpty(scannedRollNo))
+                Row.ImportScannedSheetDisplayName = Row.ScannedRollNo + " (" + Row.ScannedExamNo + ")";
+        }
+
         protected override void SetInternalFields()
         {
             base.SetInternalFields();

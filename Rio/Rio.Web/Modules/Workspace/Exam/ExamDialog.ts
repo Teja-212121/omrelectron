@@ -60,6 +60,7 @@ export class ExamDialog extends EntityDialog<ExamRow, any> {
 
     protected afterLoadEntity() {
         super.afterLoadEntity();
+        this.entity.TenantId = this.entity.TenantId;
         this.examSectionGrid.ExamId = this.entityId;
         this.examQuestionGrid.ExamId = this.entityId;
     }

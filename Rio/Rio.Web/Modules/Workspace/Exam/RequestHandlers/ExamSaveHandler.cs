@@ -29,14 +29,29 @@ namespace Rio.Workspace
         protected override void SetInternalFields()
         {
             base.SetInternalFields();
-
-            if (Permissions.HasPermission("Administration:Security"))
+            if (IsCreate)
             {
-                Row.TenantId = Row.SelectedTenant;
+                if (Permissions.HasPermission("Administration:Security"))
+                {
+                    Row.TenantId = Row.SelectedTenant;
+                }
+                else
+                {
+                    Row.TenantId = User.GetTenantId();
+                }
             }
-            else
+
+            if(IsUpdate)
             {
-                Row.TenantId = User.GetTenantId();
+                var tenantid = Row.TenantId;
+                if(Old.TenantId != tenantid)
+                {
+                    Row.TenantId = Row.SelectedTenant;
+                }
+                else
+                {
+                    Request.Entity.TenantId = tenantid;
+                }
             }
         }        
     }

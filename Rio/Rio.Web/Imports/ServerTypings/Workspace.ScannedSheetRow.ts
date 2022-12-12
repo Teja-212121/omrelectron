@@ -3,6 +3,7 @@
         Id?: string;
         SheetTypeId?: number;
         ScannedAt?: string;
+        ScannedSheetDisplayName?: string;
         SheetNumber?: string;
         ScannedRollNo?: string;
         ScannedExamNo?: string;
@@ -66,7 +67,7 @@
     export namespace ScannedSheetRow {
         export const idProperty = 'Id';
         export const isActiveProperty = 'IsActive';
-        export const nameProperty = 'SheetNumber';
+        export const nameProperty = 'ScannedSheetDisplayName';
         export const localTextPrefix = 'Workspace.ScannedSheet';
         export const lookupKey = 'Workspace.ScannedSheets';
 
@@ -82,6 +83,7 @@
             Id = "Id",
             SheetTypeId = "SheetTypeId",
             ScannedAt = "ScannedAt",
+            ScannedSheetDisplayName = "ScannedSheetDisplayName",
             SheetNumber = "SheetNumber",
             ScannedRollNo = "ScannedRollNo",
             ScannedExamNo = "ScannedExamNo",

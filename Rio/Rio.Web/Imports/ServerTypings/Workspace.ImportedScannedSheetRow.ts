@@ -3,6 +3,7 @@
         Id?: string;
         SheetTypeId?: number;
         ScannedAt?: string;
+        ImportScannedSheetDisplayName?: string;
         SheetNumber?: string;
         ScannedRollNo?: number;
         ScannedExamNo?: number;
@@ -66,7 +67,7 @@
     export namespace ImportedScannedSheetRow {
         export const idProperty = 'Id';
         export const isActiveProperty = 'IsActive';
-        export const nameProperty = 'SheetNumber';
+        export const nameProperty = 'ImportScannedSheetDisplayName';
         export const localTextPrefix = 'Workspace.ImportedScannedSheet';
         export const lookupKey = 'Workspace.ImportedScannedSheets';
 
@@ -82,6 +83,7 @@
             Id = "Id",
             SheetTypeId = "SheetTypeId",
             ScannedAt = "ScannedAt",
+            ImportScannedSheetDisplayName = "ImportScannedSheetDisplayName",
             SheetNumber = "SheetNumber",
             ScannedRollNo = "ScannedRollNo",
             ScannedExamNo = "ScannedExamNo",
