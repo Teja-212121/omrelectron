@@ -43,15 +43,7 @@ namespace Rio.Workspace
 
             if(IsUpdate)
             {
-                var tenantid = Row.TenantId;
-                if(Old.TenantId != tenantid)
-                {
-                    Row.TenantId = Row.SelectedTenant;
-                }
-                else
-                {
-                    Request.Entity.TenantId = tenantid;
-                }
+                Request.Entity.TenantId = Row.TenantId;
             }
         }        
     }
