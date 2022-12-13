@@ -1,4 +1,4 @@
-﻿import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Decorators, EntityDialog } from '@serenity-is/corelib';
 import { ScannedSheetForm, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 
 @Decorators.registerClass()
@@ -14,4 +14,23 @@ export class ScannedSheetDialog extends EntityDialog<ScannedSheetRow, any> {
 
     protected form = new ScannedSheetForm(this.idPrefix);
 
+    protected getToolbarButtons() {
+        let buttons = super.getToolbarButtons();
+
+        buttons.push({
+            title: 'generate results',
+            cssClass: 'edit-permissions-button',
+            icon: 'fa-lock text-green',
+            onClick: () => {
+                ScannedSheetService.Update({
+                    EntityId: this.entityId,
+                    Entity: this.entity
+                }, response => {
+                    /*Q.alert("Result generated Successfully");*/
+                });
+            }
+        });
+
+        return buttons;
+    }
 }

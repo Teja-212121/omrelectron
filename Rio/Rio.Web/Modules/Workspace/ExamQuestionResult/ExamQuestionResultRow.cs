@@ -3,6 +3,7 @@ using Serenity.Data;
 using Serenity.Data.Mapping;
 using Serenity.Extensions.Entities;
 using System;
+using Serenity.Extensions.Entities;
 using System.ComponentModel;
 
 namespace Rio.Workspace
@@ -11,7 +12,7 @@ namespace Rio.Workspace
     [DisplayName("Exam Question Result"), InstanceName("Exam Question Result")]
     [ReadPermission(PermissionKeys.ExamResultManagement.View)]
     [ModifyPermission("Administration.Security")]
-    public sealed class ExamQuestionResultRow : Row<ExamQuestionResultRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
+    public sealed class ExamQuestionResultRow : LoggingRow<ExamQuestionResultRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         [SortOrder(1, descending: true)]
@@ -21,7 +22,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Student"), NotNull, ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
+        [DisplayName("Student"),  ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFirstName")]
         [LookupEditor("Workspace.Student")]
         public long? StudentId
         {
@@ -84,6 +85,22 @@ namespace Rio.Workspace
         {
             get => fields.ObtainedMarks[this];
             set => fields.ObtainedMarks[this] = value;
+        }
+
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [LookupEditor("Workspace.ScannedBatchs")]
+        public Guid? ScannedBatchId
+        {
+            get => fields.ScannedBatchId[this];
+            set => fields.ScannedBatchId[this] = value;
+        }
+
+        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[ScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
+        [LookupEditor("Workspace.ScannedSheets", CascadeFrom = "ScannedBatchId", CascadeField = "ScannedBatchId")]
+        public Guid? ScannedSheetId
+        {
+            get => fields.ScannedSheetId[this];
+            set => fields.ScannedSheetId[this] = value;
         }
 
         [DisplayName("Tenant Id"), NotNull, Insertable(false), Updatable(true)]
@@ -311,7 +328,7 @@ namespace Rio.Workspace
         {
         }
 
-        public class RowFields : RowFieldsBase
+        public class RowFields : LoggingRowFields
         {
             public Int64Field Id;
             public Int64Field StudentId;
@@ -323,6 +340,8 @@ namespace Rio.Workspace
             public BooleanField IsAttempted;
             public BooleanField IsCorrect;
             public SingleField ObtainedMarks;
+            public GuidField ScannedBatchId;
+            public GuidField ScannedSheetId;
             public Int32Field TenantId;
 
             public Int64Field StudentRollNo;

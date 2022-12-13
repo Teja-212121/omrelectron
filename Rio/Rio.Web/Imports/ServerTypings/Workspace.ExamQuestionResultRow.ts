@@ -10,6 +10,8 @@
         IsAttempted?: boolean;
         IsCorrect?: boolean;
         ObtainedMarks?: number;
+        ScannedBatchId?: string;
+        ScannedSheetId?: string;
         TenantId?: number;
         StudentRollNo?: number;
         StudentFirstName?: string;
@@ -40,6 +42,10 @@
         ExamUpdateUserId?: number;
         ExamIsActive?: number;
         ExamTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace ExamQuestionResultRow {
@@ -62,6 +68,8 @@
             IsAttempted = "IsAttempted",
             IsCorrect = "IsCorrect",
             ObtainedMarks = "ObtainedMarks",
+            ScannedBatchId = "ScannedBatchId",
+            ScannedSheetId = "ScannedSheetId",
             TenantId = "TenantId",
             StudentRollNo = "StudentRollNo",
             StudentFirstName = "StudentFirstName",
@@ -91,7 +99,11 @@
             ExamUpdateDate = "ExamUpdateDate",
             ExamUpdateUserId = "ExamUpdateUserId",
             ExamIsActive = "ExamIsActive",
-            ExamTenantId = "ExamTenantId"
+            ExamTenantId = "ExamTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

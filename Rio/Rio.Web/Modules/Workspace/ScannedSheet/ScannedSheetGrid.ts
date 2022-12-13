@@ -56,6 +56,8 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         var buttons = super.getButtons();
         buttons.splice(1, 1);
 
+        
+
         buttons.push(ExcelExportHelper.createToolButton({
             grid: this,
             title: 'Export',
@@ -63,6 +65,25 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
             onViewSubmit: () => this.onViewSubmit(),
             separator: true
         }));
+
+        buttons.push({
+            title: 'Generate Result',
+            cssClass: 'send-button',
+            onClick: () => {
+                var rowKeys = this.rowSelection.getSelectedKeys();
+                if (rowKeys.length == 0) {
+                    Q.alert("Select Sheet To Process Result");
+                    return;
+                }
+                
+                    Q.confirm('Are you sure you want to Process Result?', () => {
+
+                        Q.serviceRequest('/Services/Workspace/ScannedSheet/UpdateResult', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                    });
+                
+            },
+            separator: true
+        });
 
         return buttons;
     }

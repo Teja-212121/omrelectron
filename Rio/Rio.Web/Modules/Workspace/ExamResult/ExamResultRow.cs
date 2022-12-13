@@ -21,7 +21,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Student"), NotNull, ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFullName")]
+        [DisplayName("Student"),  ForeignKey("[Students]", "Id"), LeftJoin("jStudent"), TextualField("StudentFullName")]
         [LookupEditor("Workspace.Student")]
         public long? StudentId
         {
@@ -48,6 +48,21 @@ namespace Rio.Workspace
         {
             get => fields.SheetGuid[this];
             set => fields.SheetGuid[this] = value;
+        }
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [LookupEditor("Workspace.ScannedBatchs")]
+        public Guid? ScannedBatchId
+        {
+            get => fields.ScannedBatchId[this];
+            set => fields.ScannedBatchId[this] = value;
+        }
+
+        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[ScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
+        [LookupEditor("Workspace.ScannedSheets", CascadeFrom = "ScannedBatchId", CascadeField = "ScannedBatchId")]
+        public Guid? ScannedSheetId
+        {
+            get => fields.ScannedSheetId[this];
+            set => fields.ScannedSheetId[this] = value;
         }
 
         [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
@@ -368,7 +383,8 @@ namespace Rio.Workspace
             public Int32Field TotalNotAttempted;
             public Int32Field TotalRightAnswers;
             public Int32Field TotalWrongAnswers;
-            
+            public GuidField ScannedBatchId;
+            public GuidField ScannedSheetId;
             public Int16Field IsActive;
             public Int32Field TenantId;
 

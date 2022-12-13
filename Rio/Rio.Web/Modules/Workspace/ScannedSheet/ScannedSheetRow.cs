@@ -59,7 +59,7 @@ namespace Rio.Workspace
             set => fields.ScannedExamNo[this] = value;
         }
 
-        [DisplayName("Corrected Roll No")]
+        [DisplayName("Corrected Roll No"),QuickSearch]
         public string CorrectedRollNo
         {
             get => fields.CorrectedRollNo[this];

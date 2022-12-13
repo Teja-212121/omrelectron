@@ -44,14 +44,14 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Right Options")]
-        public string? RightOptions
+        public string RightOptions
         {
             get => fields.RightOptions[this];
             set => fields.RightOptions[this] = value;
         }
 
         [DisplayName("Score")]
-        public string? Score
+        public string Score
         {
             get => fields.Score[this];
             set => fields.Score[this] = value;

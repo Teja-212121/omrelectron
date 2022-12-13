@@ -14,6 +14,8 @@
         TotalNotAttempted?: number;
         TotalRightAnswers?: number;
         TotalWrongAnswers?: number;
+        ScannedBatchId?: string;
+        ScannedSheetId?: string;
         IsActive?: number;
         TenantId?: number;
         StudentRollNo?: number;
@@ -76,6 +78,8 @@
             TotalNotAttempted = "TotalNotAttempted",
             TotalRightAnswers = "TotalRightAnswers",
             TotalWrongAnswers = "TotalWrongAnswers",
+            ScannedBatchId = "ScannedBatchId",
+            ScannedSheetId = "ScannedSheetId",
             IsActive = "IsActive",
             TenantId = "TenantId",
             StudentRollNo = "StudentRollNo",
