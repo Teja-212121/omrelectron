@@ -19,7 +19,7 @@ namespace Rio.Migrations.DefaultDB
                .AddColumn("ScannedSheetId").AsGuid().Nullable().ForeignKey("ScannedSheets", "Id")
                .AddColumn("ScannedBatchId").AsGuid().Nullable().ForeignKey("ScannedBatches", "Id");
 
-            Execute.Sql(@"CREATE FUNCTION [dbo].[Ruletype2]
+            /*Execute.Sql(@"CREATE FUNCTION [dbo].[Ruletype2]
 (
     @Scannedoption varchar(20),
     @CorrectOption varchar(20)
@@ -211,7 +211,7 @@ BEGIN
  end
    return @Score
  end
-GO");
+GO");*/
             
         }
         public override void Down()
