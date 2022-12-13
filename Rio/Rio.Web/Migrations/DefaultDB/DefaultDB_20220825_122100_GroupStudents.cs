@@ -23,13 +23,13 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
             this.CreateTableWithId64("Students", "Id", s => s
-                .WithColumn("RollNo").AsInt64().NotNullable()
+                .WithColumn("RollNo").AsInt64().Nullable()
                 .WithColumn("FirstName").AsString(100).Nullable()
                 .WithColumn("MiddleName").AsString(100).Nullable()
                 .WithColumn("LastName").AsString(100).Nullable()
                 .WithColumn("FullName").AsString(300).NotNullable()
-                .WithColumn("Email").AsString(500).NotNullable()
-                .WithColumn("Mobile").AsString(100).NotNullable()
+                .WithColumn("Email").AsString(500).Nullable()
+                .WithColumn("Mobile").AsString(100).Nullable()
                 .WithColumn("DOB").AsDateTime().Nullable()
                 .WithColumn("Gender").AsInt16().Nullable()
                 .WithColumn("Note").AsString(2000).Nullable()

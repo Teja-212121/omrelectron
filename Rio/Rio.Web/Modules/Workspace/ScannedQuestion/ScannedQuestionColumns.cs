@@ -9,9 +9,10 @@ namespace Rio.Workspace.Columns
     public class ScannedQuestionColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
-        [QuickFilter]
         public long Id { get; set; }
         public string ScannedSheetSheetNumber { get; set; }
+        public string ScannedSheetCorrectedRollNo { get; set; }
+        public string ScannedSheetCorrectedExamNo { get; set; }
         public int QuestionIndex { get; set; }
         public string ScannedOptions { get; set; }
         public string CorrectedOptions { get; set; }
@@ -24,13 +25,5 @@ namespace Rio.Workspace.Columns
         [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ScannedBatchId")]
         public Guid ScannedSheetId { get; set; }
         
-
-
-        /* public DateTime InsertDate { get; set; }
-         public int InsertUserId { get; set; }
-         public DateTime UpdateDate { get; set; }
-         public int UpdateUserId { get; set; }
-         public short IsActive { get; set; }
-         public int TenantId { get; set; }*/
     }
 }

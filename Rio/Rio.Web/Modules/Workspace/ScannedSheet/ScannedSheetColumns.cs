@@ -1,3 +1,4 @@
+using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
@@ -17,13 +18,15 @@ namespace Rio.Workspace.Columns
         public string SheetNumber { get; set; }
         [QuickFilter]
         public long ScannedRollNo { get; set; }
+        [QuickFilter]
         public long ScannedExamNo { get; set; }
         public long CorrectedRollNo { get; set; }
         public long CorrectedExamNo { get; set; }
         public int ExamSetNo { get; set; }
         public string ScannedImageSourcePath { get; set; }
         public string ScannedImage { get; set; }
-        public short ScannedStatus { get; set; }
+        [QuickFilter]
+        public EScannedStatus ScannedStatus { get; set; }
         public string ScannedSystemErrors { get; set; }
         public string ScannedUserErrors { get; set; }
         public string ScannedComments { get; set; }

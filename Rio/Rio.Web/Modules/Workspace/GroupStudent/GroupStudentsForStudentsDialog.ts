@@ -17,7 +17,7 @@ export class GroupStudentsForStudentsDialog extends EntityDialog<GroupStudentRow
             this.rowids = selectedids;
         }
 
-        loadEntity(entity: StudentRow) {
+        loadEntity(entity: GroupStudentRow) {
             super.loadEntity(entity);
             this.form.RowIds.value = this.rowids;
         }

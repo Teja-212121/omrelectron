@@ -14,13 +14,14 @@ namespace Rio.Workspace.Columns
         public long ExamId { get; set; }
         public string ExamName { get; set; }
         public int QuestionIndex { get; set; }
+        public int DisplayIndex { get; set; }
         public string RightOptions { get; set; }
         public string Score { get; set; }
         [EditLink]
         public string Tags { get; set; }
         public string RuleTypeName { get; set; }
-        /*[Width(120), LookupEditor("Workspace.ExamSection")]
-        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ExamId")]*/
+        [Width(120), LookupEditor("Workspace.ExamSection")]
+        [QuickFilter/*(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ExamId")*/]
         public int ExamSectionId { get; set; }
         public string ExamSectionName { get; set; }
         [QuickFilter]

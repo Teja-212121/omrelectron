@@ -88,7 +88,7 @@ namespace Rio.Membership.Pages
                     LastDirectoryUpdate = DateTime.Now
                 });
 
-                connection.Execute(string.Format(@"INSERT INTO dbo.UserPermissions (UserId, PermissionKey, Granted)
+                connection.Execute(string.Format(@"INSERT INTO UserPermissions (UserId, PermissionKey, Granted)
                                                        VALUES ({0}, 'Administration:Tenants', 1)", userId));
 
                 byte[] bytes;

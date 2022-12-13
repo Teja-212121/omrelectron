@@ -1,4 +1,4 @@
-﻿import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Decorators, EntityDialog } from '@serenity-is/corelib';
 import { StudentForm, StudentRow, StudentService } from '../../ServerTypes/Workspace';
 
 @Decorators.registerClass()

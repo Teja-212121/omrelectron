@@ -16,3 +16,18 @@
 .s-UserRoleDialog .s-DataGrid {
   height: 100%;
 }
+
+.s-Rio-Workspace-ScannedSheetGrid .failed-sheet .col-scanned-status {
+  background-color: orange;
+  color: #fff;
+}
+
+.s-Rio-Workspace-ScannedSheetGrid .warning-sheet .col-scanned-status {
+  background-color: red;
+  color: #000;
+}
+
+.s-Rio-Workspace-ScannedSheetGrid .success-sheet .col-scanned-status {
+  background-color: green;
+  color: #fff;
+}

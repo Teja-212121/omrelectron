@@ -4,7 +4,7 @@ import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
 export interface SheetTypeRow {
     Id?: number;
     Name?: string;
-    DIsplayName?: string;
+    SheetTypeDisplayName?: string;
     Description?: string;
     TotalQuestions?: number;
     EPaperSize?: EPaperSize;
@@ -26,7 +26,7 @@ export interface SheetTypeRow {
 
 export abstract class SheetTypeRow {
     static readonly idProperty = 'Id';
-    static readonly nameProperty = 'DIsplayName';
+    static readonly nameProperty = 'SheetTypeDisplayName';
     static readonly localTextPrefix = 'Workspace.SheetType';
     static readonly lookupKey = 'Workspace.SheetTypes';
 

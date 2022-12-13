@@ -24,7 +24,7 @@ namespace Rio.Migrations.DefaultDB
 
             this.Alter.Table("Exams").AddColumn("ExamDisplayName").AsString(500).Nullable();
             this.Alter.Table("SheetTypes").AddColumn("SheetTypeDisplayName").AsString(500).Nullable();
-
+            
         }
     }
 }

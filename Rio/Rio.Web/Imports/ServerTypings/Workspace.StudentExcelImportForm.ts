@@ -1,5 +1,6 @@
 ﻿namespace Rio.Workspace {
     export interface StudentExcelImportForm {
+        Comments: Serenity.StringEditor;
         FileName: Serenity.ImageUploadEditor;
     }
 
@@ -14,10 +15,12 @@
                 StudentExcelImportForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.ImageUploadEditor;
+                var w0 = s.StringEditor;
+                var w1 = s.ImageUploadEditor;
 
                 Q.initFormType(StudentExcelImportForm, [
-                    'FileName', w0
+                    'Comments', w0,
+                    'FileName', w1
                 ]);
             }
         }

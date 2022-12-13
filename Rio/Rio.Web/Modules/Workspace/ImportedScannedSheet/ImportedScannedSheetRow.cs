@@ -38,7 +38,14 @@ namespace Rio.Workspace
             set => fields.ScannedAt[this] = value;
         }
 
-        [DisplayName("Sheet Number"), Size(50), QuickSearch, NameProperty]
+        [DisplayName("Scanned Sheet Display Name"), Size(100), QuickSearch, NameProperty]
+        public string ImportScannedSheetDisplayName
+        {
+            get => fields.ImportScannedSheetDisplayName[this];
+            set => fields.ImportScannedSheetDisplayName[this] = value;
+        }
+
+        [DisplayName("Sheet Number"), Size(50), QuickSearch]
         public string SheetNumber
         {
             get => fields.SheetNumber[this];
@@ -442,6 +449,7 @@ namespace Rio.Workspace
             public GuidField Id;
             public Int32Field SheetTypeId;
             public DateTimeField ScannedAt;
+            public StringField ImportScannedSheetDisplayName;
             public StringField SheetNumber;
             public Int64Field ScannedRollNo;
             public Int64Field ScannedExamNo;

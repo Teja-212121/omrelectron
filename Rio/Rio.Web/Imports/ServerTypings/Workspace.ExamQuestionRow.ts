@@ -3,6 +3,7 @@
         Id?: number;
         ExamId?: number;
         QuestionIndex?: number;
+        DisplayIndex?: number;
         RightOptions?: string;
         Score?: string;
         Tags?: string;
@@ -56,6 +57,7 @@
             Id = "Id",
             ExamId = "ExamId",
             QuestionIndex = "QuestionIndex",
+            DisplayIndex = "DisplayIndex",
             RightOptions = "RightOptions",
             Score = "Score",
             Tags = "Tags",

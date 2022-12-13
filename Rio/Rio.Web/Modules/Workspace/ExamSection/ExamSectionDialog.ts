@@ -1,4 +1,4 @@
-﻿import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Decorators, EntityDialog, EditorUtils } from '@serenity-is/corelib';
 import { ExamSectionForm, ExamSectionRow, ExamSectionService } from '../../ServerTypes/Workspace';
 
 @Decorators.registerClass()
@@ -13,5 +13,11 @@ export class ExamSectionDialog extends EntityDialog<ExamSectionRow, any> {
     protected getUpdatePermission() { return ExamSectionRow.updatePermission; }
 
     protected form = new ExamSectionForm(this.idPrefix);
+
+    updateInterface() {
+        super.updateInterface();
+
+        EditorUtils.setReadOnly(this.form.ExamId, true);
+    }
 
 }

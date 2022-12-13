@@ -13,8 +13,11 @@ export interface StudentRow {
     Dob?: string;
     Gender?: Gender;
     Note?: string;
+    StudentId?: string;
+    Comments?: string;
     IsActive?: number;
     TenantId?: number;
+    SelectedTenant?: number;
     InsertUserId?: number;
     InsertDate?: string;
     UpdateUserId?: number;

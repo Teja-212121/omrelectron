@@ -1,6 +1,6 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { ExcelExportHelper, ReportHelper } from '@serenity-is/extensions';
-import { FormatterContext } from '@serenity-is/sleekgrid';
+import { ExcelExportHelper } from '@serenity-is/extensions';
+import { Column } from '@serenity-is/sleekgrid';
 import { ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 import { ScannedQuestionGrid } from '../ScannedQuestion/ScannedQuestionGrid';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
@@ -20,9 +20,10 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         super(container);
         this.rowSelection = new GridRowSelectionMixin(this);
     }
-    protected getColumns() {
+    protected getColumns(): Column[]  {
         var columns = super.getColumns();
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
+        Q.first(columns, x => x.field == ScannedSheetRow.Fields.ScannedStatus).cssClass += " col-scanned-status";
 
         /*columns.splice(1, 0, {
             id: 'View Sheet',
@@ -54,7 +55,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
 
     protected getButtons() {
         var buttons = super.getButtons();
-        buttons.splice(1, 1);
+        buttons.splice(0, 1);
 
         
 
@@ -117,5 +118,18 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
                 dlg.getGridField();
             }
         }
+    }
+
+    protected getItemCssClass(item: ScannedSheetRow, index: number): string {
+        let klass: string = "";
+
+        if (item.ScannedStatus == 1)
+            klass += " failed-sheet";
+        else if (item.ScannedStatus == 2)
+            klass += " warning-sheet";
+        else
+            klass += " success-sheet";
+
+        return Q.trimToNull(klass);
     }
 }

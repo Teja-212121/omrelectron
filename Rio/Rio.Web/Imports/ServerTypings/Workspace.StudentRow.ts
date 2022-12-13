@@ -11,8 +11,11 @@
         Dob?: string;
         Gender?: Web.Enums.Gender;
         Note?: string;
+        StudentId?: string;
+        Comments?: string;
         IsActive?: number;
         TenantId?: number;
+        SelectedTenant?: number;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -46,8 +49,11 @@
             Dob = "Dob",
             Gender = "Gender",
             Note = "Note",
+            StudentId = "StudentId",
+            Comments = "Comments",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            SelectedTenant = "SelectedTenant",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

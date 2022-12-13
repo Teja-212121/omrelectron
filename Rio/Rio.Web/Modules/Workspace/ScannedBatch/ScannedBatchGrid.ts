@@ -14,4 +14,11 @@ export class ScannedBatchGrid extends EntityGrid<ScannedBatchRow, any> {
     constructor(container: JQuery) {
         super(container);
     }
+
+    protected getButtons() {
+        var buttons = super.getButtons();
+        buttons.splice(0, 1);
+
+        return buttons;
+    }
 }

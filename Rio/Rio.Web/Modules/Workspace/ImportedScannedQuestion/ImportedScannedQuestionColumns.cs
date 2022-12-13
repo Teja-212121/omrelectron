@@ -9,9 +9,10 @@ namespace Rio.Workspace.Columns
     public class ImportedScannedQuestionColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
-        [QuickFilter]
         public long Id { get; set; }
         public string ScannedSheetSheetNumber { get; set; }
+        public string ScannedSheetCorrectedRollNo { get; set; }
+        public string ScannedSheetCorrectedExamNo { get; set; }
         public int QuestionIndex { get; set; }
         public string ScannedOptions { get; set; }
         public string CorrectedOptions { get; set; }

@@ -3,6 +3,7 @@
         FileName?: string;
         ExamId?: number;
         ScannedSheetId?: number;
+        Comments?: string;
         TenantId?: number;
     }
 }

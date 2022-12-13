@@ -16,5 +16,9 @@ namespace Rio.Workspace.Columns
         public String StudentFullName { get; set; }
         public string StudentEmail { get; set; }
         public int StudentMobile { get; set; }
+        public DateTime StudentDob { get; set; }
+        public short StudentGender { get; set; }
+        public string StudentNote { get; set; }
+        public int StudentTenantId { get; set; }
     }
 }
