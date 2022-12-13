@@ -8,7 +8,7 @@ namespace Rio.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Insert.IntoTable("RolePermissions")
+            /*Insert.IntoTable("RolePermissions")
                 .Row(new
                 {
                     RoleId = "1",
@@ -151,7 +151,7 @@ namespace Rio.Migrations.DefaultDB
                 {
                     RoleId = "1",
                     PermissionKey = "Workspace:SheetTypeTenant:View"
-                });
+                });*/
         }
     }
 }
