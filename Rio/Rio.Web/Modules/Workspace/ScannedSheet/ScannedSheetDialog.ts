@@ -1,4 +1,4 @@
-import { Decorators, EntityDialog, TabsExtensions } from '@serenity-is/corelib';
+import { Decorators, EntityDialog, TabsExtensions, EditorUtils } from '@serenity-is/corelib';
 import { ScannedSheetForm, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 import { ScannedQuestionTabGrid } from '../ScannedQuestion/ScannedQuestionTabGrid';
 
@@ -79,6 +79,13 @@ export class ScannedSheetDialog extends EntityDialog<ScannedSheetRow, any> {
         });
 
         return buttons;
+    }
+
+    updateInterface() {
+        super.updateInterface();
+
+        EditorUtils.setReadOnly(this.form.ScannedRollNo, true);
+        EditorUtils.setReadOnly(this.form.ScannedExamNo, true);
     }
 
     getTemplate() {

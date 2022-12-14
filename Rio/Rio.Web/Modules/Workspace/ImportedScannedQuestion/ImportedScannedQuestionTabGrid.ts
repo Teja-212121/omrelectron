@@ -1,21 +1,21 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
-import { ImportedScannedQuestionColumns, ImportedScannedQuestionRow, ImportedScannedQuestionService } from '../../ServerTypes/Workspace';
-import { ImportedScannedQuestionDialog } from './ImportedScannedQuestionDialog';
+import { ImportedScannedQuestionRow, ImportedScannedQuestionService } from '../../ServerTypes/Workspace';
+import { ImportedScannedQuestionTabColumns } from '../../ServerTypes/Workspace/ImportedScannedQuestionTabColumns';
 
 const fld = ImportedScannedQuestionRow.Fields;
 
 @Decorators.registerClass()
 @Decorators.filterable()
-export class ImportedScannedQuestionGrid extends EntityGrid<ImportedScannedQuestionRow, any> {
-    protected getColumnsKey() { return ImportedScannedQuestionColumns.columnsKey; }
-    protected getDialogType() { return ImportedScannedQuestionDialog; }
+export class ImportedScannedQuestionTabGrid extends EntityGrid<ImportedScannedQuestionRow, any> {
+    protected getColumnsKey() { return ImportedScannedQuestionTabColumns.columnsKey; }
     protected getIdProperty() { return ImportedScannedQuestionRow.idProperty; }
-    protected getInsertPermission() { return ImportedScannedQuestionRow.insertPermission; }
-    protected getLocalTextPrefix() { return ImportedScannedQuestionRow.localTextPrefix; }
     protected getService() { return ImportedScannedQuestionService.baseUrl; }
-
+    /*protected getDialogType() { return ScannedQuestionDialog; }
+    protected getInsertPermission() { return ScannedQuestionRow.insertPermission; }*/
+    protected getLocalTextPrefix() { return ImportedScannedQuestionRow.localTextPrefix; }
+    
     private pendingChanges: Dictionary<any> = {};
     private rowSelection: GridRowSelectionMixin;
 
@@ -38,6 +38,13 @@ export class ImportedScannedQuestionGrid extends EntityGrid<ImportedScannedQuest
             onClick: e => this.saveClick(),
             separator: true
         });
+        /*buttons.push(ExcelExportHelper.createToolButton({
+            grid: this,
+            title: 'Export',
+            service: ScannedQuestionService.baseUrl + '/ListExcel',
+            onViewSubmit: () => this.onViewSubmit(),
+            separator: true
+        }));*/
 
         return buttons;
     }
@@ -239,5 +246,31 @@ export class ImportedScannedQuestionGrid extends EntityGrid<ImportedScannedQuest
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
         first(columns, x => x.field === fld.CorrectedOptions).format = str;
         return columns;
+    }
+
+    protected addButtonClick() {
+        this.editItem({ ScannedSheetId: this.importedScannedSheetId });
+    }
+
+    protected getInitialTitle() {
+        return null;
+    }
+
+    protected getGridCanLoad() {
+        return super.getGridCanLoad() && !!this.importedScannedSheetId;
+    }
+
+    private _importedScannedSheetId: string;
+
+    get importedScannedSheetId() {
+        return this._importedScannedSheetId;
+    }
+
+    set importedScannedSheetId(value: string) {
+        if (this._importedScannedSheetId !== value) {
+            this._importedScannedSheetId = value;
+            this.setEquality('ScannedSheetId', value);
+            this.refresh();
+        }
     }
 }

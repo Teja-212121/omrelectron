@@ -3,7 +3,6 @@ import { ExcelExportHelper } from '@serenity-is/extensions';
 import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
-import { ScannedQuestionGrid } from '../ScannedQuestion/ScannedQuestionGrid';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
 
 const fld = ScannedSheetRow.Fields;
