@@ -12,6 +12,9 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public Guid Id { get; set; }
         [QuickFilter]
+        [DisplayName("Date")]
+        public DateTime ScannedBatchInsertDate { get; set; }
+        [QuickFilter]
         public string SheetTypeName { get; set; }
         public DateTime ScannedAt { get; set; }
         [EditLink]
@@ -31,9 +34,7 @@ namespace Rio.Workspace.Columns
         public string ScannedUserErrors { get; set; }
         public string ScannedComments { get; set; }
         public bool ResultProcessed { get; set; }
-        [QuickFilter]
-        [DisplayName("Date")]
-        public DateTime ScannedBatchInsertDate { get; set; }
+       
         [Width(120), /*LookupEditor("Workspace.ScannedBatchAsPerDate")*/]
         [QuickFilter, /*FilteringOption("cascadeFrom", "ScannedBatchInsertDate")*/]
         public Guid ScannedBatchId { get; set; }
