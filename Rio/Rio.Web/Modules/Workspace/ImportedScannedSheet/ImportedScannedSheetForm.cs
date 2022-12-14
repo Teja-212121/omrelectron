@@ -17,15 +17,15 @@ namespace Rio.Workspace.Forms
         public string SheetNumber { get; set; }
 
         [HalfWidth]
-        public long ScannedRollNo { get; set; }
+        public string ScannedRollNo { get; set; }
         [HalfWidth]
-        public long ScannedExamNo { get; set; }
+        public string ScannedExamNo { get; set; }
         [HalfWidth]
-        public long CorrectedRollNo { get; set; }
+        public string CorrectedRollNo { get; set; }
         [HalfWidth]
-        public long CorrectedExamNo { get; set; }
+        public string CorrectedExamNo { get; set; }
         [HalfWidth]
-        public int ExamSetNo { get; set; }
+        public string ExamSetNo { get; set; }
         [TextAreaEditor(Rows = 3)]
         public string ScannedImageSourcePath { get; set; }
         [HalfWidth]

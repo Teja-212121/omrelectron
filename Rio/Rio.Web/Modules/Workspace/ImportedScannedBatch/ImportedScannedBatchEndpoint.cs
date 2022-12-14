@@ -146,11 +146,11 @@ namespace Rio.Workspace.Endpoints
                         sheetRow.Id = new Guid(guidSheetString);
                         scansheetid = new Guid(guidSheetString);
                         sheetRow.SheetNumber = Convert.ToString(worksheet.Cells[row, 5].Value ?? "").Trim();
-                        sheetRow.ScannedRollNo = Convert.ToInt32(worksheet.Cells[row, 6].Value ?? null);
-                        sheetRow.CorrectedRollNo = Convert.ToInt32(worksheet.Cells[row, 7].Value ?? null);
-                        sheetRow.ScannedExamNo = Convert.ToInt32(worksheet.Cells[row, 8].Value ?? null);
-                        sheetRow.CorrectedExamNo = Convert.ToInt32(worksheet.Cells[row, 9].Value ?? null);
-                        sheetRow.ExamSetNo = Convert.ToInt32(worksheet.Cells[row, 10].Value ?? null);
+                        sheetRow.ScannedRollNo = Convert.ToString(worksheet.Cells[row, 6].Value ?? null);
+                        sheetRow.CorrectedRollNo = Convert.ToString(worksheet.Cells[row, 7].Value ?? null);
+                        sheetRow.ScannedExamNo = Convert.ToString(worksheet.Cells[row, 8].Value ?? null);
+                        sheetRow.CorrectedExamNo = Convert.ToString(worksheet.Cells[row, 9].Value ?? null);
+                        sheetRow.ExamSetNo = Convert.ToString(worksheet.Cells[row, 10].Value ?? null);
                         sheetRow.ScannedImageSourcePath = Convert.ToString(worksheet.Cells[row, 11].Value ?? "").Trim();
                         Int16? ScannedStatus = Convert.ToInt16(worksheet.Cells[row, 12].Value ?? null);
                         if (ScannedStatus != null)

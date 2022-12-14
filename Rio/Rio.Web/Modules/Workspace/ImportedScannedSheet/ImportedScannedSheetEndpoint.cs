@@ -46,7 +46,7 @@ namespace Rio.Workspace.Endpoints
                     {
                         var ExamQuestionResult = new ExamQuestionResultRow();
                         ExamQuestionResult.QuestionIndex = question.QuestionIndex;
-                        ExamQuestionResult.RollNumber = request.Entity.CorrectedRollNo;
+                        //ExamQuestionResult.RollNumber = request.Entity.CorrectedRollNo;
                         ExamQuestionResult.ExamId = Exam.Id;
                         ExamQuestionResult.SheetGuid = request.Entity.Id;
                         ExamQuestionResult.SheetNumber = request.Entity.SheetNumber;
