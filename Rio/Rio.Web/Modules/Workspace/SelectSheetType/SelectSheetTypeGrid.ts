@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { Authorization } from '@serenity-is/corelib/q';
+import { Authorization, serviceRequest } from '@serenity-is/corelib/q';
 import { AssignSheetTypesForm, SelectSheetTypeColumns, SelectSheetTypeRow, SelectSheetTypeService } from '../../ServerTypes/Workspace';
 import { AssignSheetTypesDialog } from '../SheetTypeTenant/AssignSheetTypesDialog';
 import { SelectSheetTypeDialog } from './SelectSheetTypeDialog';
@@ -41,7 +41,7 @@ export class SelectSheetTypeGrid extends EntityGrid<SelectSheetTypeRow, any> {
                     //debugger;
                     var SelectedKeys = this.rowSelection.getSelectedKeys();
                     if (SelectedKeys.length > 4) {
-                        Q.alert("Maximum 4 SheetTypes are allowed!!!");
+                        alert("Maximum 4 SheetTypes are allowed!!!");
                         return;
                     }
 
@@ -49,7 +49,7 @@ export class SelectSheetTypeGrid extends EntityGrid<SelectSheetTypeRow, any> {
                         return;
                     }
 
-                    Q.serviceRequest('/Services/Workspace/SelectSheetType/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
+                    serviceRequest('/Services/Workspace/SelectSheetType/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
                 }
             });
         if (Authorization.hasPermission("Administration:Security")) {
@@ -59,11 +59,11 @@ export class SelectSheetTypeGrid extends EntityGrid<SelectSheetTypeRow, any> {
                 onClick: () => {
                     var rowKeys = this.rowSelection.getSelectedKeys();
                     if (rowKeys.length == 0) {
-                        Q.alert("Select Sheet To Assign");
+                        alert("Select Sheet To Assign");
                         return;
                     }
                     if (rowKeys.length > 4) {
-                        Q.alert("Maximum 4 SheetTypes are allowed!!!");
+                        alert("Maximum 4 SheetTypes are allowed!!!");
                         return;
                     }
                     else {

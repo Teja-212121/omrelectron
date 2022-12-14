@@ -1,4 +1,5 @@
 import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { notifySuccess } from '@serenity-is/corelib/q';
 import { ExamQuestionRow, ExamQuestionService, ExamQuestionUpdateForm } from '../../ServerTypes/Workspace';
 import { ExamQuestionGrid } from './ExamQuestionGrid';
 
@@ -28,7 +29,7 @@ import { ExamQuestionGrid } from './ExamQuestionGrid';
         onSaveSuccess(response) {
             super.onSaveSuccess(response);
             if (this.form.RowIds.value != "") {
-                Q.notifySuccess("Updated sucessfully");
+                notifySuccess("Updated sucessfully");
                 this.checkGrid.rowSelection.resetCheckedAndRefresh();
                 this.checkGrid.refresh();
             }

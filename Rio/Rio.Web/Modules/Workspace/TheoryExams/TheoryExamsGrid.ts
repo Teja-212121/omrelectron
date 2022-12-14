@@ -40,7 +40,7 @@ export class TheoryExamsGrid extends EntityGrid<TheoryExamsRow, any> {
                 onClick: () => {
                     var rowKeys = this.rowSelection.getSelectedKeys();
                     if (rowKeys.length == 0) {
-                        Q.alert("Select Exams To Assign");
+                        alert("Select Exams To Assign");
                         return;
                     }                  
                     else {

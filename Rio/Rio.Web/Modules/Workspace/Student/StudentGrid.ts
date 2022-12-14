@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { Authorization } from '@serenity-is/corelib/q';
+import { Authorization, postToService, serviceRequest } from '@serenity-is/corelib/q';
 import { ExcelExportHelper } from '@serenity-is/extensions';
 import { StudentColumns, StudentRow, StudentService } from '../../ServerTypes/Workspace';
 import { GroupStudentsForStudentsDialog } from '../GroupStudent/GroupStudentsForStudentsDialog';
@@ -44,7 +44,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
             onClick: () => {
                 var SelectedKeys = this.rowSelection.getSelectedKeys();
                 if (SelectedKeys.length == 0) {
-                    Q.alert("Please select atleast one Student!");
+                    alert("Please select atleast one Student!");
                     return;
                 }
                 //new Rio.Workspace.ExamForStudentsDialog(this, true, SelectedKeys).loadNewAndOpenDialog();
@@ -59,7 +59,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
             onClick: () => {
                 var SelectedKeys = this.rowSelection.getSelectedKeys();
                 if (SelectedKeys.length == 0) {
-                    Q.alert("Please select atleast one Student!");
+                    alert("Please select atleast one Student!");
                     return;
                 }
                 new GroupStudentsForStudentsDialog(this, true, SelectedKeys).loadNewAndOpenDialog();
@@ -87,7 +87,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
             onClick: () => {
                 var url = "~/Workspace/Student/StudentSample";
 
-                Q.postToService({ url: Q.resolveUrl(url), request: '', target: '_blank' });
+                postToService({ url: Q.resolveUrl(url), request: '', target: '_blank' });
             },
             separator: true
         });
@@ -106,13 +106,13 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
 
                 var rowKeys = this.rowSelection.getSelectedKeys();
                 if (rowKeys.length == 0) {
-                    Q.alert("Please select record(s)");
+                    alert("Please select record(s)");
                     return;
                 }
                 else {
                     Q.confirm('Are you sure you want to Delete?', () => {
 
-                        Q.serviceRequest('/Services/Workspace/Student/DeleteStudent', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                        serviceRequest('/Services/Workspace/Student/DeleteStudent', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
                     });
 
                 }

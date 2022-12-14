@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { Authorization } from '@serenity-is/corelib/q';
+import { Authorization, serviceRequest } from '@serenity-is/corelib/q';
 import { SheetTypeTenantColumns, SheetTypeTenantRow, SheetTypeTenantService } from '../../ServerTypes/Workspace';
 import { SheetTypeTenantDialog } from './SheetTypeTenantDialog';
 
@@ -43,13 +43,13 @@ export class SheetTypeTenantGrid extends EntityGrid<SheetTypeTenantRow, any> {
 
                 var rowKeys = this.rowSelection.getSelectedKeys();
                 if (rowKeys.length == 0) {
-                    Q.alert("Please select record(s)");
+                    alert("Please select record(s)");
                     return;
                 }
                 else {
                     Q.confirm('Are you sure you want to Delete?', () => {
 
-                        Q.serviceRequest('/Services/Workspace/SheetTypeTenant/DeleteSheetTypeTenant', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                        serviceRequest('/Services/Workspace/SheetTypeTenant/DeleteSheetTypeTenant', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
                     });
 
                 }

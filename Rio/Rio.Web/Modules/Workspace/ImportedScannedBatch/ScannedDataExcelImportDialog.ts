@@ -1,5 +1,5 @@
 import { Decorators, PropertyDialog } from '@serenity-is/corelib';
-import { DialogButton, Authorization } from '@serenity-is/corelib/q';
+import { DialogButton, Authorization, isEmptyOrNull, notifyError, notifyInfo } from '@serenity-is/corelib/q';
 import { ScannedDataExcelImportForm } from '../../ServerTypes/Workspace';
 import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/ImportedScannedBatchService';
 
@@ -18,7 +18,7 @@ import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/Importe
             }
 
             /*this.form.ExamId.changeSelect2(e => {
-                var examId = Q.toId(this.form.ExamId.value);
+                var examId = toId(this.form.ExamId.value);
                 if (examId != null) {
                     this.form.ExamId.value = .ExamRow.getLookup().itemById[examId].Id;
                 }
@@ -39,8 +39,8 @@ import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/Importe
                             return;
 
                         if (this.form.FileName.value == null ||
-                            Q.isEmptyOrNull(this.form.FileName.value.Filename)) {
-                            Q.notifyError("Please select a file!");
+                            isEmptyOrNull(this.form.FileName.value.Filename)) {
+                            notifyError("Please select a file!");
                             return;
                         }
 
@@ -49,11 +49,11 @@ import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/Importe
                             ExamId: this.form.ExamId.value,
                             TenantId: this.form.TenantId.value
                         }, response => {
-                            Q.notifyInfo(
+                            notifyInfo(
                                 'Inserted: ' + (response.Inserted || 0));
 
                             if (response.ErrorList != null && response.ErrorList.length > 0) {
-                                Q.notifyError(response.ErrorList.join(',\r\n '));
+                                notifyError(response.ErrorList.join(',\r\n '));
                             }
 
                             this.dialogClose();

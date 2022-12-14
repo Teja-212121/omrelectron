@@ -1,4 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { postToService, resolveUrl } from '@serenity-is/corelib/q';
 import { ImportedScannedBatchColumns, ImportedScannedBatchRow } from '../../ServerTypes/Workspace';
 import { ImportedScannedBatchService } from '../../ServerTypes/Workspace/ImportedScannedBatchService';
 import { ImportedScannedBatchDialog } from './ImportedScannedBatchDialog';
@@ -53,7 +54,7 @@ export class ImportedScannedBatchGrid extends EntityGrid<ImportedScannedBatchRow
             onClick: () => {
                 var url = "~/Workspace/ImportedScannedBatch/ImportedScannedBatchSample";
 
-                Q.postToService({ url: Q.resolveUrl(url), request: '', target: '_blank' });
+                postToService({ url: resolveUrl(url), request: '', target: '_blank' });
             },
             separator: true
         });

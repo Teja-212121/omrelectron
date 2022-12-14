@@ -1,26 +1,23 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { Authorization, postToService, resolveUrl } from '@serenity-is/corelib/q';
-import { ExamQuestionColumns, ExamQuestionRow, ExamQuestionService, RuleTypeRow } from '../../ServerTypes/Workspace';
 import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
-import { ExamQuestionDialog } from './ExamQuestionDialog';
-import { ExamQuestionImportDialog } from './ExamQuestionImportDialog';
-import { ExamQuestionUpdateDialog } from './ExamQuestionUpdateDialog';
+import { ScannedQuestionTabColumns, ScannedQuestionRow, ScannedQuestionService } from '../../ServerTypes/Workspace';
+import { ScannedQuestionDialog } from './ScannedQuestionDialog';
 
-const fld = ExamQuestionRow.Fields;
+const fld = ScannedQuestionRow.Fields;
 
 @Decorators.registerClass()
 @Decorators.filterable()
-export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
-    protected getColumnsKey() { return ExamQuestionColumns.columnsKey; }
-    protected getDialogType() { return <any>ExamQuestionDialog; }
-    protected getIdProperty() { return ExamQuestionRow.idProperty; }
-    protected getInsertPermission() { return ExamQuestionRow.insertPermission; }
-    protected getLocalTextPrefix() { return ExamQuestionRow.localTextPrefix; }
-    protected getService() { return ExamQuestionService.baseUrl; }
-
+export class ScannedQuestionTabGrid extends EntityGrid<ScannedQuestionRow, any> {
+    protected getColumnsKey() { return ScannedQuestionTabColumns.columnsKey; }
+    protected getIdProperty() { return ScannedQuestionRow.idProperty; }
+    protected getService() { return ScannedQuestionService.baseUrl; }
+    /*protected getDialogType() { return ScannedQuestionDialog; }
+    protected getInsertPermission() { return ScannedQuestionRow.insertPermission; }*/
+    protected getLocalTextPrefix() { return ScannedQuestionRow.localTextPrefix; }
+    
     private pendingChanges: Dictionary<any> = {};
-    public rowSelection: GridRowSelectionMixin;
+    private rowSelection: GridRowSelectionMixin;
 
     constructor(container: JQuery) {
         super(container);
@@ -31,7 +28,27 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
     get selectedItems() {
         return this.rowSelection.getSelectedKeys().map(x => this.view.getItemById(x));
     }
-    
+
+    protected getButtons() {
+        var buttons = super.getButtons();
+        buttons.splice(0, 1);
+        buttons.push({
+            title: 'Save Changes',
+            cssClass: 'apply-changes-button disabled',
+            onClick: e => this.saveClick(),
+            separator: true
+        });
+        /*buttons.push(ExcelExportHelper.createToolButton({
+            grid: this,
+            title: 'Export',
+            service: ScannedQuestionService.baseUrl + '/ListExcel',
+            onViewSubmit: () => this.onViewSubmit(),
+            separator: true
+        }));*/
+
+        return buttons;
+    }
+
     protected onViewProcessData(response) {
         this.pendingChanges = {};
         this.setSaveButtonState();
@@ -55,7 +72,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
             return htmlEncode(formatNumber(ctx.value, '#0.##'));
 
         var klass = 'edit numeric';
-        var item = ctx.item as ExamQuestionRow;
+        var item = ctx.item as ScannedQuestionRow;
         var pending = this.pendingChanges[item.Id];
 
         if (pending && pending[ctx.column.field] !== undefined) {
@@ -74,7 +91,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
             return htmlEncode(ctx.value);
 
         var klass = 'edit string';
-        var item = ctx.item as ExamQuestionRow;
+        var item = ctx.item as ScannedQuestionRow;
         var pending = this.pendingChanges[item.Id];
         var column = ctx.column as Column;
 
@@ -98,7 +115,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
             return htmlEncode(ctx.value);
 
         var klass = 'edit';
-        var item = ctx.item as ExamQuestionRow;
+        var item = ctx.item as ScannedQuestionRow;
         var pending = this.pendingChanges[item.Id];
         var column = ctx.column as Column;
 
@@ -212,7 +229,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
             var key = keys[current];
             var entity = deepClone(self.pendingChanges[key]);
             entity.Id = key;
-            serviceRequest("Workspace/ExamQuestion/Update", {
+            serviceRequest("Workspace/ScannedQuestion/Update", {
                 EntityId: key,
                 Entity: entity
             }, (response) => {
@@ -227,116 +244,32 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
         var num = ctx => this.numericInputFormatter(ctx);
         var str = ctx => this.stringInputFormatter(ctx);
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
-        first(columns, x => x.field === fld.Score).format = str;
-
-        var category = first(columns, x => x.field === fld.RuleTypeName);
-        category.referencedFields = [fld.RuleTypeId];
-        category.format = ctx => this.selectFormatter(ctx, fld.RuleTypeId, RuleTypeRow.getLookup());
-
-        first(columns, x => x.field === fld.RightOptions).format = str;
-
-        if (!Authorization.hasPermission("Administration:Security")) {
-            columns = columns.filter(f => f.field != ExamQuestionRow.Fields.TenantId);
-        }
+        first(columns, x => x.field === fld.CorrectedOptions).format = str;
         return columns;
-
     }
 
-    protected getButtons() {
-        var buttons = super.getButtons();
-        buttons.splice(1, 4);
-
-        buttons.push({
-            title: 'Save Changes',
-            cssClass: 'apply-changes-button disabled',
-            onClick: e => this.saveClick(),
-            separator: true
-        });
-
-        buttons.push({
-            title: 'Assign to ExamSection',
-            cssClass: 'edit-button',
-            onClick: () => {
-                var SelectedKeys = this.rowSelection.getSelectedKeys();
-                if (SelectedKeys.length == 0) {
-                    alert("Please select atleast one Exam Question!");
-                    return;
-                }
-                new ExamQuestionUpdateDialog(this, true, SelectedKeys).loadNewAndOpenDialog();
-
-            }
-        });
-
-        buttons.push({
-            title: 'Import From Excel',
-            cssClass: 'export-xlsx-button',
-            onClick: () => {
-                // open import dialog, let it handle rest
-                var dialog = new ExamQuestionImportDialog();
-                dialog.element.on('dialogclose', () => {
-                    this.refresh();
-                    dialog = null;
-                });
-                dialog.dialogOpen();
-            },
-            separator: true
-        });
-
-        buttons.push({
-            title: 'Download Sample',
-            cssClass: 'export-xlsx-button',
-            onClick: () => {
-                /*  debugger;*/
-                var url = "~/Workspace/ExamQuestion/ExamQuestionSample";
-                /*var url = "~/Uploads/ProductsImportSample.xlsx";*/
-
-                postToService({ url: resolveUrl(url), request: '', target: '_blank' });
-            }
-        });
-
-        buttons.push({
-            title: 'Delete Exam Question', cssClass: 'delete-button',
-            onClick: () => {
-
-                var rowKeys = this.rowSelection.getSelectedKeys();
-                if (rowKeys.length == 0) {
-                    alert("Please select record(s)");
-                    return;
-                }
-                else {
-                    Q.confirm('Are you sure you want to Delete?', () => {
-
-                        serviceRequest('/Services/Workspace/ExamQuestion/DeleteExamQuestion', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
-                    });
-
-                }
-            }
-        });
-        return buttons;
-    }
     protected addButtonClick() {
-        this.editItem({ ExamId: this.ExamId });
+        this.editItem({ ScannedSheetId: this.scannedSheetId });
     }
 
-    protected usePager() {
-        return false;
+    protected getInitialTitle() {
+        return null;
     }
 
     protected getGridCanLoad() {
-        return this.ExamId != null;
+        return super.getGridCanLoad() && !!this.scannedSheetId;
     }
 
-    private _ExamId: number;
+    private _scannedSheetId: string;
 
-    get ExamId() {
-        return this._ExamId;
+    get scannedSheetId() {
+        return this._scannedSheetId;
     }
 
-    set ExamId(value: number) {
-        //debugger;
-        if (this._ExamId != value) {
-            this._ExamId = value;
-            this.setEquality(ExamQuestionRow.Fields.ExamId, value);
+    set scannedSheetId(value: string) {
+        if (this._scannedSheetId !== value) {
+            this._scannedSheetId = value;
+            this.setEquality('ScannedSheetId', value);
             this.refresh();
         }
     }
