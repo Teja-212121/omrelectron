@@ -101,7 +101,15 @@ namespace Rio.Workspace
             set => fields.ScannedImage[this] = value;
         }
 
+        [DisplayName("Scanned Batch Insert Date"), Expression("jScannedBatch.[InsertDate]"), LookupInclude]
+        public DateTime? ScannedBatchInsertDate
+        {
+            get => fields.ScannedBatchInsertDate[this];
+            set => fields.ScannedBatchInsertDate[this] = value;
+        }
+
         [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName"), LookupInclude]
+        //[LookupEditor("Workspace.ScannedBatchAsPerDate", CascadeFrom = "ScannedBatchInsertDate", CascadeField = "ScannedBatchInsertDate")]
         [LookupEditor("Workspace.ScannedBatchs"/*, CascadeFrom = "ScannedBatchInsertDate", CascadeField = "ScannedBatchInsertDate"*/)]
         public Guid? ScannedBatchId
         {
@@ -391,12 +399,7 @@ namespace Rio.Workspace
             set => fields.ScannedBatchDescription[this] = value;
         }
 
-        [DisplayName("Scanned Batch Insert Date"), Expression("jScannedBatch.[InsertDate]"), LookupInclude]
-        public DateTime? ScannedBatchInsertDate
-        {
-            get => fields.ScannedBatchInsertDate[this];
-            set => fields.ScannedBatchInsertDate[this] = value;
-        }
+        
 
         [DisplayName("Scanned Batch Insert User Id"), Expression("jScannedBatch.[InsertUserId]")]
         public int? ScannedBatchInsertUserId
