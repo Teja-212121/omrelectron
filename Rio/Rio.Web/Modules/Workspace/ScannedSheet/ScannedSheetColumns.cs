@@ -31,11 +31,10 @@ namespace Rio.Workspace.Columns
         public string ScannedUserErrors { get; set; }
         public string ScannedComments { get; set; }
         public bool ResultProcessed { get; set; }
-        [QuickFilter]
-        [DisplayName("Date")]
+        [QuickFilter]        
         public DateTime ScannedBatchInsertDate { get; set; }
         [Width(120), LookupEditor("Workspace.ScannedBatchAsPerDate")]
-        [QuickFilter, FilteringOption("cascadeFrom", "ScannedBatchInsertDate")]
+        [QuickFilter, /*FilteringOption("cascadeFrom", "ScannedBatchInsertDate")*/]
         public Guid ScannedBatchId { get; set; }
         public string ScannedBatchName { get; set; }
         public int TenantId { get; set; }

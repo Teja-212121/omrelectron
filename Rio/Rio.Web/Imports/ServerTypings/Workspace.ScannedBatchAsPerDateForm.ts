@@ -3,9 +3,6 @@
         Name: Serenity.StringEditor;
         ScanBatchid: Serenity.LookupEditor;
         InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
         IsActive: Serenity.IntegerEditor;
         TenantId: Serenity.IntegerEditor;
     }
@@ -30,9 +27,6 @@
                     'Name', w0,
                     'ScanBatchid', w1,
                     'InsertDate', w2,
-                    'InsertUserId', w3,
-                    'UpdateUserId', w3,
-                    'UpdateDate', w2,
                     'IsActive', w3,
                     'TenantId', w3
                 ]);

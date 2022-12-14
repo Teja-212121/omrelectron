@@ -1,4 +1,4 @@
-import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { Decorators, EntityGrid, GridRowSelectionMixin, LookupEditor, QuickFilter } from '@serenity-is/corelib';
 import { ExcelExportHelper } from '@serenity-is/extensions';
 import { Column } from '@serenity-is/sleekgrid';
 import { ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
@@ -131,29 +131,24 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         return Q.trimToNull(klass);
     }
 
-    //protected getQuickFilters() {
+    protected getQuickFilters() {
 
-    //    var filters = super.getQuickFilters();
-
-
-    //    let filter = Q.first(filters, x => x.field == fld.ScannedBatchInsertDate);
-
-    //    filter.handler = h => {
-    //        // if filter is active, e.g. editor has some value
-    //        if (h.active) {
-    //            this.ScannedBatchInsertDate = h.value;
-    //            h.request.Criteria = Serenity.Criteria.and(h.request.Criteria,
-    //                [[fld.Center], '=', h.value]);
-    //        }
-    //    };
+        var filters = super.getQuickFilters();
 
 
+        let filter = Q.first(filters, x => x.field == fld.ScannedBatchInsertDate);
 
-    //    //Q.first(filters, x => x.field == fld.Center).init = w => {
-    //    //    // enum editor has a string value, so need to call toString()
-    //    //    (w as Serenity.EnumEditor).value = "25"
-    //    //};
-    //    return filters;
+        filter.handler = h => {
+            // if filter is active, e.g. editor has some value
+            if (h.active) {
+                this.ScannedBatchInsertDate = h.value;
+                h.request.Criteria = Serenity.Criteria.and(h.request.Criteria,
+                    [[fld.ScannedBatchInsertDate], '=', h.value]);
+            }
+        };
+        return filters;
 
-    //}
+    }
+
+   
 }

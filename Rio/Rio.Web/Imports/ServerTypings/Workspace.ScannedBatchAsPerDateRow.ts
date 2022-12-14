@@ -2,11 +2,9 @@
     export interface ScannedBatchAsPerDateRow {
         Id?: string;
         Name?: string;
+        ScannedSheetDisplayName?: string;
         ScanBatchid?: string;
         InsertDate?: string;
-        InsertUserId?: number;
-        UpdateUserId?: number;
-        UpdateDate?: string;
         ScannedBatchInsertDate?: string;
         IsActive?: number;
         TenantId?: number;
@@ -29,11 +27,9 @@
         export declare const enum Fields {
             Id = "Id",
             Name = "Name",
+            ScannedSheetDisplayName = "ScannedSheetDisplayName",
             ScanBatchid = "ScanBatchid",
             InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateUserId = "UpdateUserId",
-            UpdateDate = "UpdateDate",
             ScannedBatchInsertDate = "ScannedBatchInsertDate",
             IsActive = "IsActive",
             TenantId = "TenantId"
