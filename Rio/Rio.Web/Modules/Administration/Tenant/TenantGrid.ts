@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { Authorization } from '@serenity-is/corelib/q';
+import { Authorization, serviceRequest } from '@serenity-is/corelib/q';
 import { TenantColumns, TenantRow, TenantService } from '../../ServerTypes/Administration';
 import { TenantDialog } from './TenantDialog';
 
@@ -43,7 +43,7 @@ export class TenantGrid extends EntityGrid<TenantRow, any> {
                         return;
                     }
                     else {
-                        Q.serviceRequest('/Services/Administration/Tenant/ApproveTenants', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                        serviceRequest('/Services/Administration/Tenant/ApproveTenants', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
                     }
                 }
             });

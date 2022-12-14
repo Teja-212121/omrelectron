@@ -1,4 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { serviceRequest } from '@serenity-is/corelib/q';
 import { ExamSectionColumns, ExamSectionRow, ExamSectionService } from '../../ServerTypes/Workspace';
 import { ExamSectionDialog } from './ExamSectionDialog';
 
@@ -37,13 +38,13 @@ export class ExamSectionGrid extends EntityGrid<ExamSectionRow, any> {
 
                 var rowKeys = this.rowSelection.getSelectedKeys();
                 if (rowKeys.length == 0) {
-                    Q.alert("Please select record(s)");
+                    alert("Please select record(s)");
                     return;
                 }
                 else {
                     Q.confirm('Are you sure you want to Delete?', () => {
 
-                        Q.serviceRequest('/Services/Workspace/ExamSection/DeleteExamSection', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                        serviceRequest('/Services/Workspace/ExamSection/DeleteExamSection', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
                     });
 
                 }

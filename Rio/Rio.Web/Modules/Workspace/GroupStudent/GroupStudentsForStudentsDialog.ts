@@ -1,4 +1,5 @@
 import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { notifySuccess } from '@serenity-is/corelib/q';
 import { GroupStudentRow, GroupStudentService, GroupStudentsForStudentsForm, StudentRow } from '../../ServerTypes/Workspace';
 import { StudentGrid } from '../Student/StudentGrid';
 
@@ -25,7 +26,7 @@ export class GroupStudentsForStudentsDialog extends EntityDialog<GroupStudentRow
         onSaveSuccess(response) {
             super.onSaveSuccess(response);
             if (this.form.RowIds.value != "") {
-                Q.notifySuccess("Added sucessfully");
+                notifySuccess("Added sucessfully");
             }
         }
     }

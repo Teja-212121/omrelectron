@@ -1,7 +1,7 @@
 import { UserForm, UserRow, UserService } from "../";
 import { UserPermissionDialog } from "../UserPermission/UserPermissionDialog";
 import { Decorators, EntityDialog } from "@serenity-is/corelib"
-import { text } from "@serenity-is/corelib/q";
+import { Authorization, text } from "@serenity-is/corelib/q";
 
 @Decorators.registerClass()
 export class UserDialog extends EntityDialog<UserRow, any> {
@@ -66,7 +66,7 @@ export class UserDialog extends EntityDialog<UserRow, any> {
 
     protected getPropertyItems() {
         var items = super.getPropertyItems();
-        if (!Q.Authorization.hasPermission("Administration:Tenants"))
+        if (!Authorization.hasPermission("Administration:Tenants"))
             items = items.filter(x => x.name != UserRow.Fields.TenantId);
         return items;
     }

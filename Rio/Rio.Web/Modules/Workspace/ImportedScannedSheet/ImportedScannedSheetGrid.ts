@@ -1,4 +1,5 @@
 import { Decorators, EntityGrid } from '@serenity-is/corelib';
+import { first, trimToNull } from '@serenity-is/corelib/q';
 import { Column } from '@serenity-is/sleekgrid';
 import { ImportedScannedSheetColumns, ImportedScannedSheetRow, ImportedScannedSheetService } from '../../ServerTypes/Workspace';
 import { ImportedScannedSheetDialog } from './ImportedScannedSheetDialog';
@@ -22,7 +23,7 @@ export class ImportedScannedSheetGrid extends EntityGrid<ImportedScannedSheetRow
 
         // adding a specific css class to UnitPrice column, 
         // to be able to format cell with a different background
-        Q.first(columns, x => x.field == ImportedScannedSheetRow.Fields.ScannedStatus).cssClass += " col-scanned-status";
+        first(columns, x => x.field == ImportedScannedSheetRow.Fields.ScannedStatus).cssClass += " col-scanned-status";
 
         return columns;
     }
@@ -43,6 +44,6 @@ export class ImportedScannedSheetGrid extends EntityGrid<ImportedScannedSheetRow
         else
             klass += " success-sheet";
 
-        return Q.trimToNull(klass);
+        return trimToNull(klass);
     }
 }

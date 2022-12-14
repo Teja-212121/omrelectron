@@ -1,4 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { serviceRequest } from '@serenity-is/corelib/q';
 import { ExcelExportHelper } from '@serenity-is/extensions';
 import { GroupColumns, GroupRow, GroupService } from '../../ServerTypes/Workspace';
 import { GroupDialog } from './GroupDialog';
@@ -45,13 +46,13 @@ export class GroupGrid extends EntityGrid<GroupRow, any> {
 
                 var rowKeys = this.rowSelection.getSelectedKeys();
                 if (rowKeys.length == 0) {
-                    Q.alert("Please select record(s)");
+                    alert("Please select record(s)");
                     return;
                 }
                 else {
                     Q.confirm('Are you sure you want to Delete?', () => {
 
-                        Q.serviceRequest('/Services/Workspace/Group/DeleteGroup', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                        serviceRequest('/Services/Workspace/Group/DeleteGroup', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
                     });
 
                 }

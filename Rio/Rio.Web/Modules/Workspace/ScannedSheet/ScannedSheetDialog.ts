@@ -73,7 +73,7 @@ export class ScannedSheetDialog extends EntityDialog<ScannedSheetRow, any> {
                     EntityId: this.entityId,
                     Entity: this.entity
                 }, response => {
-                    /*Q.alert("Result generated Successfully");*/
+                    /*alert("Result generated Successfully");*/
                 });
             }
         });
