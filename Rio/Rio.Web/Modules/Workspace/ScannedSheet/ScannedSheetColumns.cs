@@ -34,7 +34,8 @@ namespace Rio.Workspace.Columns
         [QuickFilter]
         [DisplayName("Date")]
         public DateTime ScannedBatchInsertDate { get; set; }
-        [QuickFilter]
+        [Width(120), LookupEditor("Workspace.ScannedBatchAsPerDate")]
+        [QuickFilter, FilteringOption("cascadeFrom", "ScannedBatchInsertDate")]
         public Guid ScannedBatchId { get; set; }
         public string ScannedBatchName { get; set; }
         public int TenantId { get; set; }

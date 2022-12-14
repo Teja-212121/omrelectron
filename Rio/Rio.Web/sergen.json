@@ -111,6 +111,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.ScannedBatchAsPerDate",
+          "Identifier": "ScannedBatchAsPerDate",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.ScannedBatches",
           "Identifier": "ScannedBatch",
           "Module": "Workspace",

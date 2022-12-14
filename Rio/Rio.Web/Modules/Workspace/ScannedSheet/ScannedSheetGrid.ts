@@ -4,7 +4,7 @@ import { Column } from '@serenity-is/sleekgrid';
 import { ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 import { ScannedQuestionGrid } from '../ScannedQuestion/ScannedQuestionGrid';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
-
+const fld = ScannedSheetRow.Fields;
 @Decorators.registerClass()
 export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
     protected getColumnsKey() { return ScannedSheetColumns.columnsKey; }
@@ -15,7 +15,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
     protected getService() { return ScannedSheetService.baseUrl; }
 
     private rowSelection: GridRowSelectionMixin;
-
+    private ScannedBatchInsertDate;
     constructor(container: JQuery) {
         super(container);
         this.rowSelection = new GridRowSelectionMixin(this);
@@ -119,4 +119,30 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
 
         return Q.trimToNull(klass);
     }
+
+    //protected getQuickFilters() {
+
+    //    var filters = super.getQuickFilters();
+
+
+    //    let filter = Q.first(filters, x => x.field == fld.ScannedBatchInsertDate);
+
+    //    filter.handler = h => {
+    //        // if filter is active, e.g. editor has some value
+    //        if (h.active) {
+    //            this.ScannedBatchInsertDate = h.value;
+    //            h.request.Criteria = Serenity.Criteria.and(h.request.Criteria,
+    //                [[fld.Center], '=', h.value]);
+    //        }
+    //    };
+
+
+
+    //    //Q.first(filters, x => x.field == fld.Center).init = w => {
+    //    //    // enum editor has a string value, so need to call toString()
+    //    //    (w as Serenity.EnumEditor).value = "25"
+    //    //};
+    //    return filters;
+
+    //}
 }

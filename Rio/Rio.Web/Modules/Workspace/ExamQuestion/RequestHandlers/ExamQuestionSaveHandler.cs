@@ -41,43 +41,21 @@ namespace Rio.Workspace
                 }
             }
 
-            /*if(IsCreate)
+            var examquestion = Connection.TryFirst<MyRow>(MyRow.Fields.ExamId == Row.ExamId.Value && MyRow.Fields.QuestionIndex == Row.QuestionIndex.Value);
+            if (IsCreate)
             {
-                if(Row.QuestionIndex != null)
-                {
-                    if (Row.QuestionIndex == Request.Entity.QuestionIndex)
-                    {
-                        throw new ValidationError("Question Index already assigned to Question!");
-                    }
-                    else
-                    {
-                        Row.QuestionIndex = Request.Entity.QuestionIndex;
-                    }
-                }
-                else
-                {
-                    
-                    
-                }
+                if (examquestion != null)
+
+                    throw new ValidationError("Question Index already exists to for other Question!");
+
+
             }
-            if(IsUpdate)
-            {
-                if (Row.QuestionIndex != null)
-                {
-                    if (Row.Id == Request.Entity.Id)
-                    {
-                        ExamQuestionRow examQuestionRow = Connection.ById<ExamQuestionRow>(Row.Id);
-                        if (examQuestionRow.QuestionIndex == Row.QuestionIndex)
-                        {
-                            throw new ValidationError("Question Index already assigned to Question");
-                        }
-                        else
-                        {
-                            examQuestionRow.QuestionIndex = Request.Entity.QuestionIndex;
-                        }
-                    }
-                }
-            }*/
+            else {
+                if(examquestion.Id!=Row.Id.Value)
+                    throw new ValidationError("Question Index already exists to for other Question!");
+
+            }
+            
         }
 
         protected override void ExecuteSave()

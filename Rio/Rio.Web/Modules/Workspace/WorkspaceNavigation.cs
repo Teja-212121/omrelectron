@@ -47,3 +47,4 @@ using MyPage = Rio.Common.Pages;
 [assembly: NavigationLink(10007, "Workspace/Theory Exam Result Questions", typeof(MyPages.TheoryExamResultQuestionsController), icon: "fa-circle-o")]
 
 //[assembly: NavigationLink(2002, "Sheets/Select Sheet Type", typeof(MyPages.SelectSheetTypeController), icon: "fa-circle-o")]
+//[assembly: NavigationLink(int.MaxValue, "Workspace/Scanned Batch As Per Date", typeof(MyPages.ScannedBatchAsPerDateController), icon: null)]
