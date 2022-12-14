@@ -25,19 +25,6 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
         Q.first(columns, x => x.field == ScannedSheetRow.Fields.ScannedStatus).cssClass += " col-scanned-status";
 
-        /*columns.splice(1, 0, {
-            id: 'View Sheet',
-            field: null,
-            name: '',
-            cssClass: 'align-center',
-            format: ctx => 
-                `<a class="inline-image view-sheet" title="sheet" target="_blank" href="/upload/">` +
-                `<img src="/upload/" class="fa fa-file-text-o text-blue" style="max-height: 145px; max-width: 100%;" /></a>`,
-            width: 36,
-            minWidth: 36,
-            maxWidth: 36
-        });*/
-
         columns.splice(2, 0, {
             field: 'View Sheet Question',
             name: '',
@@ -111,9 +98,11 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
                 });
             }
             else*/ if (target.hasClass('view-sheet-question')) {
-                var dlg = new ScannedQuestionGrid($('#GridDiv'));
-                this.initDialog(dlg);
-                dlg.getGridField();
+                this.editItem(item.Id);
+                /*this.initDialog(dlg);
+                dlg.loadEntityAndOpenDialog(<ScannedSheetRow>{
+                    Id: item.Id
+                });*/
             }
         }
     }
