@@ -7,6 +7,8 @@ namespace Rio.Migrations.DefaultDB
     {
         public override void Up()
         {
+            Execute.Sql(@"DELETE FROM RolePermissions");
+
             Insert.IntoTable("RolePermissions")
                 .Row(new
                 {
