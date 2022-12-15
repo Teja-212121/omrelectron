@@ -21,7 +21,7 @@ import { ExamQuestionGrid } from './ExamQuestionGrid';
             this.rowids = selectedids;
 
             if (this.dialogOpen) {
-                ExamService.Retrieve({
+                ExamQuestionService.Retrieve({
                     EntityId: 1
                 }, response => {
                     if (response.Entity != null)

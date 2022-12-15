@@ -13,7 +13,7 @@ export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
             this.form = new ExamQuestionImportForm(this.idPrefix);
 
             if (this.dialogOpen) {
-                ExamService.Retrieve({
+                ExamQuestionService.Retrieve({
                     EntityId: 1
                 }, response => {
                     if (response.Entity != null)
