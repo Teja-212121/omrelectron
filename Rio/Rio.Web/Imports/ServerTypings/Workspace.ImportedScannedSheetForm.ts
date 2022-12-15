@@ -7,6 +7,7 @@
         ScannedExamNo: Serenity.StringEditor;
         CorrectedRollNo: Serenity.StringEditor;
         CorrectedExamNo: Serenity.StringEditor;
+        IsRectified: Serenity.BooleanEditor;
         ExamSetNo: Serenity.StringEditor;
         ScannedImageSourcePath: Serenity.TextAreaEditor;
         ScannedImage: Serenity.StringEditor;
@@ -44,9 +45,9 @@
                 var w0 = s.LookupEditor;
                 var w1 = s.DateEditor;
                 var w2 = s.StringEditor;
-                var w3 = s.TextAreaEditor;
-                var w4 = s.EnumEditor;
-                var w5 = s.BooleanEditor;
+                var w3 = s.BooleanEditor;
+                var w4 = s.TextAreaEditor;
+                var w5 = s.EnumEditor;
 
                 Q.initFormType(ImportedScannedSheetForm, [
                     'SheetTypeId', w0,
@@ -56,15 +57,16 @@
                     'ScannedExamNo', w2,
                     'CorrectedRollNo', w2,
                     'CorrectedExamNo', w2,
+                    'IsRectified', w3,
                     'ExamSetNo', w2,
-                    'ScannedImageSourcePath', w3,
+                    'ScannedImageSourcePath', w4,
                     'ScannedImage', w2,
                     'ScannedBatchId', w0,
-                    'ScannedStatus', w4,
-                    'ScannedSystemErrors', w3,
-                    'ScannedUserErrors', w3,
-                    'ScannedComments', w3,
-                    'ResultProcessed', w5,
+                    'ScannedStatus', w5,
+                    'ScannedSystemErrors', w4,
+                    'ScannedUserErrors', w4,
+                    'ScannedComments', w4,
+                    'ResultProcessed', w3,
                     'OCRData1Key', w2,
                     'OCRData1Value', w2,
                     'OCRData2Key', w2,

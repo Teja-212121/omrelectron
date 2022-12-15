@@ -22,6 +22,12 @@ namespace Rio.Workspace
             var scannedExamNo = Row.ScannedRollNo.ToString();
             if (!string.IsNullOrEmpty(scannedExamNo) && !string.IsNullOrEmpty(scannedRollNo))
                 Row.ImportScannedSheetDisplayName = Row.ScannedRollNo + " (" + Row.ScannedExamNo + ")";
+
+            if (IsUpdate)
+            {
+                if (Old.CorrectedExamNo != Row.CorrectedExamNo || Old.CorrectedRollNo != Row.CorrectedRollNo)
+                    Row.IsRectified = true;
+            }
         }
 
         protected override void SetInternalFields()

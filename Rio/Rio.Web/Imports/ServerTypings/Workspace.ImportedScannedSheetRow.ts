@@ -18,6 +18,7 @@
         ScannedUserErrors?: string;
         ScannedComments?: string;
         ResultProcessed?: boolean;
+        IsRectified?: boolean;
         IsActive?: number;
         TenantId?: number;
         OCRData1Key?: string;
@@ -98,6 +99,7 @@
             ScannedUserErrors = "ScannedUserErrors",
             ScannedComments = "ScannedComments",
             ResultProcessed = "ResultProcessed",
+            IsRectified = "IsRectified",
             IsActive = "IsActive",
             TenantId = "TenantId",
             OCRData1Key = "OCRData1Key",

@@ -14,6 +14,9 @@ namespace Rio.Workspace.Columns
         [QuickFilter]
         [DisplayName("Date")]
         public DateTime ScannedBatchInsertDate { get; set; }
+        [Width(120), /*LookupEditor("Workspace.ScannedBatchAsPerDate")*/]
+        [QuickFilter, /*FilteringOption("cascadeFrom", "ScannedBatchInsertDate")*/]
+        public Guid ScannedBatchId { get; set; }
         [QuickFilter]
         public string SheetTypeName { get; set; }
         public DateTime ScannedAt { get; set; }
@@ -34,10 +37,10 @@ namespace Rio.Workspace.Columns
         public string ScannedUserErrors { get; set; }
         public string ScannedComments { get; set; }
         public bool ResultProcessed { get; set; }
+        [QuickFilter]
+        public bool IsRectified { get; set; }
        
-        [Width(120), /*LookupEditor("Workspace.ScannedBatchAsPerDate")*/]
-        [QuickFilter, /*FilteringOption("cascadeFrom", "ScannedBatchInsertDate")*/]
-        public Guid ScannedBatchId { get; set; }
+       
         public string ScannedBatchName { get; set; }
         public int TenantId { get; set; }
         public string OCRData1Key { get; set; }

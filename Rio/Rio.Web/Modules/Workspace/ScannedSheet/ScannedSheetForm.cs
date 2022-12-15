@@ -24,6 +24,8 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public string CorrectedExamNo { get; set; }
         [HalfWidth]
+        public bool IsRectified { get; set; }
+        [HalfWidth]
         public string ExamSetNo { get; set; }
         [TextAreaEditor(Rows =3)]
         public string ScannedImageSourcePath { get; set; }
