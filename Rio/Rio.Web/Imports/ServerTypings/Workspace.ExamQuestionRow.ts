@@ -3,7 +3,7 @@
         Id?: number;
         ExamId?: number;
         QuestionIndex?: number;
-        DisplayIndex?: number;
+        DisplayIndex?: string;
         RightOptions?: string;
         Score?: string;
         Tags?: string;

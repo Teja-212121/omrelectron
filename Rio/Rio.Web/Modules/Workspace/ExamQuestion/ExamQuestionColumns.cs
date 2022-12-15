@@ -14,7 +14,7 @@ namespace Rio.Workspace.Columns
         public long ExamId { get; set; }
         public string ExamName { get; set; }
         public int QuestionIndex { get; set; }
-        public int DisplayIndex { get; set; }
+        public string DisplayIndex { get; set; }
         public string RightOptions { get; set; }
         public string Score { get; set; }
         [EditLink]

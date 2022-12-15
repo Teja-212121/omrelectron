@@ -44,7 +44,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Display Index")]
-        public int? DisplayIndex
+        public string? DisplayIndex
         {
             get => fields.DisplayIndex[this];
             set => fields.DisplayIndex[this] = value;
@@ -298,7 +298,7 @@ namespace Rio.Workspace
             public Int64Field Id;
             public Int64Field ExamId;
             public Int32Field QuestionIndex;
-            public Int32Field DisplayIndex;
+            public StringField DisplayIndex;
             public StringField RightOptions;
             public StringField Score;
             public StringField Tags;
