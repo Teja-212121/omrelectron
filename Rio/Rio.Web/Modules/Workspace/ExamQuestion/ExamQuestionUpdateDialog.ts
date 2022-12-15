@@ -1,6 +1,6 @@
 import { Decorators, EntityDialog } from '@serenity-is/corelib';
 import { notifySuccess } from '@serenity-is/corelib/q';
-import { ExamQuestionRow, ExamQuestionService, ExamQuestionUpdateForm } from '../../ServerTypes/Workspace';
+import { ExamQuestionRow, ExamQuestionService, ExamQuestionUpdateForm, ExamService } from '../../ServerTypes/Workspace';
 import { ExamQuestionGrid } from './ExamQuestionGrid';
 
     @Decorators.registerClass()
@@ -18,7 +18,18 @@ import { ExamQuestionGrid } from './ExamQuestionGrid';
             super();
             this.checkGrid = gridToRefresh;
             this.form = new ExamQuestionUpdateForm(this.idPrefix);
-            this.rowids = selectedids;            
+            this.rowids = selectedids;
+
+            if (this.dialogOpen) {
+                ExamService.Retrieve({
+                    EntityId: 1
+                }, response => {
+                    if (response.Entity != null)
+                        this.form.ExamId.value = response.Entity.Id.toString();
+                });
+            }
+
+            this.form.ExamId.set_readOnly(true);
         }
         
         loadEntity(entity:ExamQuestionRow) {
