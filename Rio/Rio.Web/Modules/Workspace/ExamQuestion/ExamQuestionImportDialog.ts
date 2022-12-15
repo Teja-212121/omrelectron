@@ -18,7 +18,6 @@ export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
             //        this.form.ExamId.value = Workspace.ExamRow.getLookup().itemById[examId].Id;
             //    }
             //});
-            this.form.ExamId = this.entity.Id;
         
         }
 
