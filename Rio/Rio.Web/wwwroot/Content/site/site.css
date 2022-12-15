@@ -17,22 +17,20 @@
   height: 100%;
 }
 
-/*.s-ScannedSheetGrid .failed-sheet .slick-cell,
-.s-ScannedSheetGrid .failed-sheet .slick-cell a{
+
+
+.s-Workspace-ScannedSheetGrid .failed-sheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .failed-sheet .slick-cell a {
   background-color: red;
 }
 
-.s-ScannedSheetGrid .warning-sheet .slick-cell,
-.s-ScannedSheetGrid .warning-sheet .slick-cell a{
+.s-Workspace-ScannedSheetGrid .warning-sheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .warning-sheet .slick-cell a {
   background-color: orange;
-  color: white;
-}*/
+}
 
-.s-ScannedSheetGrid .success-sheet {
+.s-Workspace-ScannedSheetGrid .success-sheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .success-sheet .slick-cell a {
   background-color: green;
 }
 
-  /*.s-ScannedSheetGrid .success-sheet .slick-cell,
-  .s-ScannedSheetGrid .success-sheet .slick-cell a{
-    color: white;
-  }*/
