@@ -145,7 +145,12 @@ namespace Rio.Workspace
             set => fields.ResultProcessed[this] = value;
         }
 
-       
+        [DisplayName("IsRectified"),DefaultValue(false)]
+        public bool? IsRectified
+        {
+            get => fields.IsRectified[this];
+            set => fields.IsRectified[this] = value;
+        }
 
         [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(false)]
         public short? IsActive
@@ -464,6 +469,7 @@ namespace Rio.Workspace
             public StringField ScannedUserErrors;
             public StringField ScannedComments;
             public BooleanField ResultProcessed;
+            public BooleanField IsRectified;
             public Int16Field IsActive;
             public Int32Field TenantId;
 

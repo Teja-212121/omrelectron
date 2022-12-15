@@ -15,6 +15,8 @@ namespace Rio.Workspace.Columns
         [DisplayName("Date")]
         public DateTime ScannedBatchInsertDate { get; set; }
         [QuickFilter]
+        public Guid ScannedBatchId { get; set; }
+        [QuickFilter]
         public string CorrectedExamNo { get; set; }
         [QuickFilter]
         public string SheetTypeName { get; set; }
@@ -36,9 +38,9 @@ namespace Rio.Workspace.Columns
         public string ScannedUserErrors { get; set; }
         public string ScannedComments { get; set; }
         public bool ResultProcessed { get; set; }
-        
         [QuickFilter]
-        public Guid ScannedBatchId { get; set; }
+        public bool IsRectified { get; set; }
+        
         public int TenantId { get; set; }
         public string OCRData1Key { get; set; }
         public string OCRData1Value { get; set; }

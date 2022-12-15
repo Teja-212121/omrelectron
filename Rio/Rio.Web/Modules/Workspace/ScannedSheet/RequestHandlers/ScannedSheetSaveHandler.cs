@@ -20,6 +20,12 @@ namespace Rio.Workspace
             base.BeforeSave();
             if (!string.IsNullOrEmpty(Row.ScannedExamNo) && !string.IsNullOrEmpty(Row.ScannedRollNo))
                 Row.ScannedSheetDisplayName = Row.ScannedRollNo + " (" + Row.ScannedExamNo + ")";
+
+            if (IsUpdate)
+            {
+                if(Old.CorrectedExamNo!= Row.CorrectedExamNo || Old.CorrectedRollNo != Row.CorrectedRollNo)
+                    Row.IsRectified= true;
+            }
         }
 
         protected override void SetInternalFields()
