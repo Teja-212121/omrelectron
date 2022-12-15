@@ -1,6 +1,6 @@
 import { Decorators, PropertyDialog, EditorUtils } from "@serenity-is/corelib";
 import { DialogButton, isEmptyOrNull, notifyError, notifyInfo } from '@serenity-is/corelib/q';
-import { ExamQuestionImportForm, ExamQuestionService } from "../../ServerTypes/Workspace";
+import { ExamQuestionImportForm, ExamQuestionService, ExamService } from "../../ServerTypes/Workspace";
 
 @Decorators.registerClass()
 export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
@@ -12,21 +12,25 @@ export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
             super();
             this.form = new ExamQuestionImportForm(this.idPrefix);
 
+            if (this.dialogOpen) {
+                ExamQuestionService.Retrieve({
+                    EntityId: 1
+                }, response => {
+                    if (response.Entity != null)
+                        this.form.ExamId.value = response.Entity.Id.toString();
+                });
+            }
+
+            this.form.ExamId.set_readOnly(true);
+
             //this.form.ExamId.changeSelect2(e => {
             //    var examId = toId(this.form.ExamId.value);
             //    if (examId != null) {
             //        this.form.ExamId.value = Workspace.ExamRow.getLookup().itemById[examId].Id;
             //    }
             //});
-            this.form.ExamId = this.entity.Id;
         
         }
-
-    updateTitle() {
-        super.updateTitle();
-
-        EditorUtils.setReadOnly(this.form.ExamId, true);
-    }
 
         protected getDialogTitle(): string {
             return "Excel Import";
