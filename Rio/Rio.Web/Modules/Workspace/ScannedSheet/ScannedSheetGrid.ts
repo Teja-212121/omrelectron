@@ -228,7 +228,6 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
         first(columns, x => x.field === fld.CorrectedRollNo).format = str;
         first(columns, x => x.field === fld.CorrectedExamNo).format = str;
-        first(columns, x => x.field == fld.ScannedStatus).cssClass += " col-scanned-status";
 
         columns.splice(2, 0, {
             field: 'View Sheet Question',

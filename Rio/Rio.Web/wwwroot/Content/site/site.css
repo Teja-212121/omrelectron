@@ -17,17 +17,22 @@
   height: 100%;
 }
 
-.s-Rio-Workspace-ScannedSheetGrid .failed-sheet .col-scanned-status {
-  background-color: orange;
-  color: #fff;
-}
-
-.s-Rio-Workspace-ScannedSheetGrid .warning-sheet .col-scanned-status {
+/*.s-ScannedSheetGrid .failed-sheet .slick-cell,
+.s-ScannedSheetGrid .failed-sheet .slick-cell a{
   background-color: red;
-  color: #000;
 }
 
-.s-Rio-Workspace-ScannedSheetGrid .success-sheet .col-scanned-status {
+.s-ScannedSheetGrid .warning-sheet .slick-cell,
+.s-ScannedSheetGrid .warning-sheet .slick-cell a{
+  background-color: orange;
+  color: white;
+}*/
+
+.s-ScannedSheetGrid .success-sheet {
   background-color: green;
-  color: #fff;
 }
+
+  /*.s-ScannedSheetGrid .success-sheet .slick-cell,
+  .s-ScannedSheetGrid .success-sheet .slick-cell a{
+    color: white;
+  }*/
