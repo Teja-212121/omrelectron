@@ -1,4 +1,5 @@
-﻿import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Authorization } from '@serenity-is/corelib/q';
 import { GroupForm, GroupRow, GroupService } from '../../ServerTypes/Workspace';
 
 @Decorators.registerClass()
@@ -14,4 +15,11 @@ export class GroupDialog extends EntityDialog<GroupRow, any> {
 
     protected form = new GroupForm(this.idPrefix);
 
+    constructor() {
+        super();
+
+        if (!Authorization.hasPermission("Administration:Security")) {
+            this.form.SelectedTenant.getGridField().toggle(false);
+        }
+    }
 }

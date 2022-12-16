@@ -14,5 +14,7 @@ namespace Rio.Workspace.Forms
         public int ParentId { get; set; }
         [TextAreaEditor(Rows = 3)]
         public string Description { get; set; }
+        [HalfWidth]
+        public int SelectedTenant { get; set; }
     }
 }

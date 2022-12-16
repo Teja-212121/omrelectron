@@ -43,7 +43,14 @@ namespace Rio.Workspace
 
             if(IsUpdate)
             {
-                Request.Entity.TenantId = Row.TenantId;
+                if (Permissions.HasPermission("Administration:Security"))
+                {
+                    Row.TenantId = Row.SelectedTenant;
+                }
+                else
+                {
+                    Row.TenantId = User.GetTenantId();
+                }
             }
         }        
     }

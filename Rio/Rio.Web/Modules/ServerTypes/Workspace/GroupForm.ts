@@ -5,6 +5,7 @@ export interface GroupForm {
     Name: StringEditor;
     ParentId: LookupEditor;
     Description: TextAreaEditor;
+    SelectedTenant: LookupEditor;
 }
 
 export class GroupForm extends PrefixedContext {
@@ -24,7 +25,8 @@ export class GroupForm extends PrefixedContext {
             initFormType(GroupForm, [
                 'Name', w0,
                 'ParentId', w1,
-                'Description', w2
+                'Description', w2,
+                'SelectedTenant', w1
             ]);
         }
     }

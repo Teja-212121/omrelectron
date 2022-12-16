@@ -3,6 +3,7 @@
         Name: Serenity.StringEditor;
         ParentId: Serenity.LookupEditor;
         Description: Serenity.TextAreaEditor;
+        SelectedTenant: Serenity.LookupEditor;
     }
 
     export class GroupForm extends Serenity.PrefixedContext {
@@ -23,7 +24,8 @@
                 Q.initFormType(GroupForm, [
                     'Name', w0,
                     'ParentId', w1,
-                    'Description', w2
+                    'Description', w2,
+                    'SelectedTenant', w1
                 ]);
             }
         }
