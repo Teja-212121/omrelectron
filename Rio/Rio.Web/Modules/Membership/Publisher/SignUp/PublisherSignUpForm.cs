@@ -10,6 +10,8 @@ namespace Rio.Membership
         public String Organization { get; set; }
         [Required(true), Placeholder("full name")]
         public String DisplayName { get; set; }
+        [Required(true), Placeholder("mobile")]
+        public String Mobile { get; set; }
         [EmailAddressEditor, Required(true), Placeholder("e-mail")]
         public String Email { get; set; }
         [EmailAddressEditor, Required(true), Placeholder("confirm email")]

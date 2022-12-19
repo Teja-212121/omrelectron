@@ -13,6 +13,8 @@ using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.IO;
+using System.Net;
+using System.Text;
 
 namespace Rio.Membership.Pages
 {
@@ -30,6 +32,7 @@ namespace Rio.Membership.Pages
         [HttpPost, JsonRequest]
         public Result<ServiceResponse> SignUp(PublisherSignUpRequest request,
             [FromServices] IEmailSender emailSender,
+            /*[FromServices] ISMSService smsService,*/
             [FromServices] IOptions<EnvironmentSettings> options = null)
         {
             return this.UseConnection("Default", connection =>
@@ -89,7 +92,7 @@ namespace Rio.Membership.Pages
                 });
 
                 connection.Execute(string.Format(@"INSERT INTO UserPermissions (UserId, PermissionKey, Granted)
-                                                       VALUES ({0}, 'Administration:Tenants', 1)", userId));
+                                                       VALUES ({0}, 'Administration.Tenants', 1)", userId));
 
                 byte[] bytes;
                 using (var ms = new MemoryStream())
@@ -148,6 +151,42 @@ namespace Rio.Membership.Pages
                 //    mail.ReplyTo = string.Join(";", message.ReplyToList.Select(x => x.ToString()));
                 connection.Insert<MailRow>(mail);
                 #endregion
+
+                /*#region SMS
+
+                var body = "Dear " + request.Name + ",UserName: " + request.Email + " and Password: " + request.Password + " For OMRApp Thanks, Team OMR";
+
+                string source = "MTSExa";
+                string requestUrl = "https://vas.sevenomedia.com/domestic/sendsms/bulksms_v2.php?";
+                HttpWebRequest SMSrequest = (HttpWebRequest)WebRequest.Create(requestUrl);
+                SMSrequest.Method = "POST";
+                SMSrequest.ContentType = "application/x-www-form-urlencoded";
+                request.Mobile = "+91" + "7276380771";
+                //string postData = "authkey=50402A4uy2U6iMm588f2d3f&&mobiles=" + request.Mobile1 + "&message=" + body + "&sender=Shield&route=4&country=91";
+                string postData = "apikey=YW50YXJneWFuOjNxMllQZ09J&type=TEXT&sender=MTSMGR&entityId=1201161191548157480&templateId=1207165641046779928&mobile=" + "7276380771" + "&message=" + body;
+                //string postData = "apikey=YW50YXJneWFuOjNxMllQZ09J&type=TEXT&sender=MTSMGR&entityId=1201161191548157480&templateId=1207165641046779928&mobile=" + request.Mobile1 + "&message=" + body;
+                postData = postData.Replace("7276380771", "7276380771");
+                postData = postData.Replace("##smsBody##", body);
+                postData = postData.Replace("##source##", source);
+                byte[] SMSbytes = Encoding.ASCII.GetBytes(postData);
+
+                //byte[] SMSbytes = Encoding.UTF8.GetBytes(postData);
+                SMSrequest.ContentLength = SMSbytes.Length;
+
+                Stream requestStream = SMSrequest.GetRequestStream();
+                requestStream.Write(SMSbytes, 0, SMSbytes.Length);
+                requestStream.Close();
+
+                WebResponse response = SMSrequest.GetResponse();
+                Stream responseStream = response.GetResponseStream();
+
+                StreamReader reader = new StreamReader(responseStream);
+                var result = reader.ReadToEnd();
+                responseStream.Dispose();
+                reader.Dispose();
+                requestStream.Dispose();
+
+                #endregion*/
 
                 uow.Commit();
                 

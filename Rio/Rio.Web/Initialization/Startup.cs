@@ -132,7 +132,7 @@ namespace Rio
                 o.Cookie.Name = ".AspNetAuth";
                 o.LoginPath = new PathString("/Account/Login/");
                 o.AccessDeniedPath = new PathString("/Account/AccessDenied");
-                o.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                o.ExpireTimeSpan = TimeSpan.FromDays(100);
                 o.SlidingExpiration = true;
             }).AddJwtBearer(cfg =>
             {

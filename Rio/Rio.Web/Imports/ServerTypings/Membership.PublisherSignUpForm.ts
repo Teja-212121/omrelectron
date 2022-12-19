@@ -2,6 +2,7 @@
     export interface PublisherSignUpForm {
         Organization: Serenity.StringEditor;
         DisplayName: Serenity.StringEditor;
+        Mobile: Serenity.StringEditor;
         Email: Serenity.EmailAddressEditor;
         ConfirmEmail: Serenity.EmailAddressEditor;
         Password: Serenity.PasswordEditor;
@@ -26,6 +27,7 @@
                 Q.initFormType(PublisherSignUpForm, [
                     'Organization', w0,
                     'DisplayName', w0,
+                    'Mobile', w0,
                     'Email', w1,
                     'ConfirmEmail', w1,
                     'Password', w2,

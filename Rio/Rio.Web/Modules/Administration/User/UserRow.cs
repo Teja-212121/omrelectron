@@ -64,7 +64,7 @@ namespace Rio.Administration
             set => fields.Email[this] = value;
         }
 
-        [DisplayName("Mobile Phone Number"), Size(20)]
+        [DisplayName("Mobile Phone Number"), Size(20), NotNull]
         public string MobilePhoneNumber
         {
             get => fields.MobilePhoneNumber[this];
