@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Rio.Web;
+using Serenity;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -91,7 +93,7 @@ namespace Rio.Workspace.Endpoints
                         throw new ValidationError("Maximum 4 SheetTypes are allowed!!!");
 
                     long tenantId = (long)request.Entity.TenantId;
-                    int alreadyAssignedCount = uow.Connection.Count<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId);
+                    int alreadyAssignedCount = uow.Connection.Count<MyRow>(new Criteria(MyRow.Fields.TenantId) == tenantId);
                     if ((5 - (alreadyAssignedCount + rowIds.Length)) < 0)
                     {
                         throw new ValidationError("You can have maximum of 5 Sheets Assinged to your account!!!");
@@ -127,6 +129,42 @@ namespace Rio.Workspace.Endpoints
                 }
             }
             return saveResponse;
+        }
+
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse UpdateSheetTypeTenants(string[] ids, IUnitOfWork uow)
+        {
+            if (ids.Length > 4)
+                throw new ValidationError("Maximum 4 SheetTypes are allowed!!!");
+            int tenantId = User.GetTenantId();
+            int alreadyAssignedCount = uow.Connection.Count<MyRow>(new Criteria(MyRow.Fields.TenantId) == tenantId);
+            if ((5 - (alreadyAssignedCount + ids.Length)) < 0)
+            {
+                throw new ValidationError("You can have maximum of 5 Sheets Assinged to your account!!!");
+            }
+            foreach (string sheetId in ids)
+            {
+
+                if (!uow.Connection.Exists<MyRow>(new Criteria(MyRow.Fields.SheetTypeId) == sheetId && new Criteria(MyRow.Fields.TenantId) == tenantId))
+                {
+                    MyRow mySheetType = new MyRow()
+                    {
+                        SheetTypeId = Convert.ToInt32(sheetId),
+                        TenantId = tenantId,
+                        InsertDate = DateTime.Now,
+                        InsertUserId = Convert.ToInt32(User.GetIdentifier()),
+                        IsActive = 1
+                    };
+                    uow.Connection.Insert<MyRow>(mySheetType);
+                }
+                else
+                {
+                    throw new ValidationError("Sheet Types already assigned.");
+                }
+            }
+
+            return new SaveResponse();
+
         }
     }
 }

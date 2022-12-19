@@ -61,41 +61,5 @@ namespace Rio.Workspace.Endpoints
             return ExcelContentResult.Create(bytes, "SelectSheetTypeList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
         }
-
-        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse UpdateSheetTypeTenants(string[] ids, IUnitOfWork uow)
-        {
-            if (ids.Length > 4)
-                throw new ValidationError("Maximum 4 SheetTypes are allowed!!!");
-            int tenantId = User.GetTenantId();
-            int alreadyAssignedCount = uow.Connection.Count<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId);
-            if ((5 - (alreadyAssignedCount + ids.Length)) < 0)
-            {
-                throw new ValidationError("You can have maximum of 5 Sheets Assinged to your account!!!");
-            }
-            foreach (string sheetId in ids)
-            {
-
-                if (!uow.Connection.Exists<SheetTypeTenantRow>(new Criteria(SheetTypeTenantRow.Fields.SheetTypeId) == sheetId && new Criteria(SheetTypeTenantRow.Fields.TenantId) == tenantId))
-                {
-                    SheetTypeTenantRow mySheetType = new SheetTypeTenantRow()
-                    {
-                        SheetTypeId = Convert.ToInt32(sheetId),
-                        TenantId = tenantId,
-                        InsertDate = DateTime.Now,
-                        InsertUserId = Convert.ToInt32(User.GetIdentifier()),
-                        IsActive = 1
-                    };
-                    uow.Connection.Insert<SheetTypeTenantRow>(mySheetType);
-                }
-                else
-                {
-                    throw new ValidationError("Sheet Types already assigned.");
-                }
-            }
-
-            return new SaveResponse();
-
-        }
     }
 }

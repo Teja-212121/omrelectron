@@ -9,6 +9,7 @@
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SheetTypeTenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function DeleteSheetTypeTenant(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function Assign(request: Serenity.SaveRequest<SheetTypeTenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function UpdateSheetTypeTenants(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export declare const enum Methods {
             Create = "Workspace/SheetTypeTenant/Create",
@@ -17,7 +18,8 @@
             Retrieve = "Workspace/SheetTypeTenant/Retrieve",
             List = "Workspace/SheetTypeTenant/List",
             DeleteSheetTypeTenant = "Workspace/SheetTypeTenant/DeleteSheetTypeTenant",
-            Assign = "Workspace/SheetTypeTenant/Assign"
+            Assign = "Workspace/SheetTypeTenant/Assign",
+            UpdateSheetTypeTenants = "Workspace/SheetTypeTenant/UpdateSheetTypeTenants"
         }
 
         [
@@ -27,7 +29,8 @@
             'Retrieve', 
             'List', 
             'DeleteSheetTypeTenant', 
-            'Assign'
+            'Assign', 
+            'UpdateSheetTypeTenants'
         ].forEach(x => {
             (<any>SheetTypeTenantService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);

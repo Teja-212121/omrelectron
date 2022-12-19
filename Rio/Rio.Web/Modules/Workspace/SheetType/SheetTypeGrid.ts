@@ -71,7 +71,7 @@ export class SheetTypeGrid extends EntityGrid<SheetTypeRow, any> {
                             return;
                         }
 
-                        serviceRequest('/Services/Workspace/SelectSheetType/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
+                        serviceRequest('/Services/Workspace/SheetTypeTenant/UpdateSheetTypeTenants', this.rowSelection.getSelectedKeys(), (response) => { this.refresh(), this.rowSelection.resetCheckedAndRefresh() });
                     },
                     separator: true
                 });
