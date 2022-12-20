@@ -14,8 +14,14 @@ namespace Rio.Administration
         [Description("Languages and Translations")]
         public const string Translation = "Administration:Translation";
 
-        [Description("Tenants")]
+        [Description("Publisher")]
         public const string Tenants = "Administration:Tenants";
+
+        [Description("Manager")]
+        public const string Managers = "Administration:Managers";
+
+        [Description("Student")]
+        public const string Student = "Administration:Students";
 
         [Description("Teachers")]
         public const string Teachers = "Administration:Teachers";

@@ -14,6 +14,7 @@ namespace Rio.Administration
     public sealed class RoleRow : Row<RoleRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole"), IdProperty]
+        [SortOrder(1, descending: false)]
         public Int32? RoleId
         {
             get => fields.RoleId[this];

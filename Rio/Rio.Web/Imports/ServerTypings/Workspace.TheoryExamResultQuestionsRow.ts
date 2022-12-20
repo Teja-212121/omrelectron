@@ -44,10 +44,10 @@
     export namespace TheoryExamResultQuestionsRow {
         export const idProperty = 'Id';
         export const localTextPrefix = 'Workspace.TheoryExamResultQuestions';
-        export const deletePermission = 'Workspace:ExamsAndSectionManagement:Modify';
-        export const insertPermission = 'Workspace:ExamsAndSectionManagement:Modify';
-        export const readPermission = 'Workspace:ExamsAndSectionManagement:View';
-        export const updatePermission = 'Workspace:ExamsAndSectionManagement:Modify';
+        export const deletePermission = 'Workspace:TheoryResultManagement:Modify';
+        export const insertPermission = 'Workspace:TheoryResultManagement:Modify';
+        export const readPermission = 'Workspace:TheoryResultManagement:View';
+        export const updatePermission = 'Workspace:TheoryResultManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",

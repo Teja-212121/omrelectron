@@ -45,10 +45,10 @@
         export function getLookup(): Q.Lookup<TheoryExamQuestionsRow> {
             return Q.getLookup<TheoryExamQuestionsRow>('Workspace.TheoryExamQuestions');
         }
-        export const deletePermission = 'Workspace:ExamsAndSectionManagement:Modify';
-        export const insertPermission = 'Workspace:ExamsAndSectionManagement:Modify';
-        export const readPermission = 'Workspace:ExamsAndSectionManagement:View';
-        export const updatePermission = 'Workspace:ExamsAndSectionManagement:Modify';
+        export const deletePermission = 'Workspace:TheoryQuestionManagement:Modify';
+        export const insertPermission = 'Workspace:TheoryQuestionManagement:Modify';
+        export const readPermission = 'Workspace:TheoryQuestionManagement:View';
+        export const updatePermission = 'Workspace:TheoryQuestionManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",

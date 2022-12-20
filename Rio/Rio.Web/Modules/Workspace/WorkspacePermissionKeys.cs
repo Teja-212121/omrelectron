@@ -102,5 +102,45 @@ namespace Rio.Workspace
             public const string Modify = "Workspace:ImportedDataManagement:Modify";
             public const string View = "Workspace:ImportedDataManagement:View";
         }
+
+        [DisplayName("Teacher Management")]
+        public class TeacherManagement
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:TeacherManagement:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:TeacherManagement:Modify";
+            public const string View = "Workspace:TeacherManagement:View";
+        }
+
+        [Description("Theory Exam Management")]
+        public class TheoryExamManagement
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:TheoryExamManagement:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:TheoryExamManagement:Modify";
+            public const string View = "Workspace:TheoryExamManagement:View";
+        }
+
+        [Description("Theory Question Management")]
+        public class TheoryQuestionManagement
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:TheoryQuestionManagement:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:TheoryQuestionManagement:Modify";
+            public const string View = "Workspace:TheoryQuestionManagement:View";
+        }
+
+        [Description("Theory Result Management")]
+        public class TheoryResultManagement
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:TheoryResultManagement:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:TheoryResultManagement:Modify";
+            public const string View = "Workspace:TheoryResultManagement:View";
+        }
     }
 }
