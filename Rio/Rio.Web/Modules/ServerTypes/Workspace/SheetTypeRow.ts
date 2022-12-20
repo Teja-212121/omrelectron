@@ -14,6 +14,7 @@ export interface SheetTypeRow {
     SheetImage?: string;
     OverlayImage?: string;
     Synced?: boolean;
+    IsPublic?: boolean;
     IsPrivate?: boolean;
     PdfTemplate?: string;
     SheetNumber?: number;

@@ -72,6 +72,7 @@ namespace Rio.Membership.Pages
                 string salt = null;
                 var hash = UserHelper.GenerateHash(request.Password, ref salt);
                 var displayName = request.Name.TrimToEmpty();
+                var mobile = request.Mobile.TrimToEmpty();
                 var email = request.Email;
                 var username = request.Email;
 
@@ -82,6 +83,7 @@ namespace Rio.Membership.Pages
                     Source = "sign",
                     DisplayName = displayName,
                     Email = email,
+                    MobilePhoneNumber = mobile,
                     PasswordHash = hash,
                     PasswordSalt = salt,
                     IsActive = 0,
@@ -113,16 +115,16 @@ namespace Rio.Membership.Pages
                 var activateLink = UriHelper.Combine(externalUrl, "Account/Activate?t=");
                 activateLink += Uri.EscapeDataString(token);
 
-                var emailModel = new ActivateEmailModel();
+                var emailModel = new PublisherEmailModel();
                 emailModel.Username = username;
                 emailModel.Organization = request.Organization;
                 emailModel.DisplayName = displayName;
-                //emailModel.ActivateLink = activateLink;
+                emailModel.ActivateLink = activateLink;
                 //emailModel.LoginLink = LoginLink;
 
                 var emailSubject = "OMR Registration Successful";
                 var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
-                    MVC.Views.Membership.Account.SignUp.TenantSignupEmail, emailModel);
+                    MVC.Views.Membership.Account.SignUp.PublisherActivateEmail, emailModel);
 
                 #region Email                   
 

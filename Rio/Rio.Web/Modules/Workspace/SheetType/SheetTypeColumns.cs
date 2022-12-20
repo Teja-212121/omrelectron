@@ -22,6 +22,7 @@ namespace Rio.Workspace.Columns
         public string SheetImage { get; set; }
         public string OverlayImage { get; set; }
         public bool Synced { get; set; }
+        public bool IsPublic { get; set; }
         public bool IsPrivate { get; set; }
         public string PdfTemplate { get; set; }
         public long SheetNumber { get; set; }

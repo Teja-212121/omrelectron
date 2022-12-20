@@ -100,6 +100,13 @@ namespace Rio.Workspace
             set => fields.Synced[this] = value;
         }
 
+        [DisplayName("Is Pbulic")]
+        public bool? IsPublic
+        {
+            get => fields.IsPrivate[this];
+            set => fields.IsPrivate[this] = value;
+        }
+
         [DisplayName("Is Private")]
         public bool? IsPrivate
         {
@@ -154,6 +161,7 @@ namespace Rio.Workspace
             public StringField SheetImage;
             public StringField OverlayImage;
             public BooleanField Synced;
+            public BooleanField IsPublic;
             public BooleanField IsPrivate;
             public StringField PdfTemplate;
             public Int64Field SheetNumber;

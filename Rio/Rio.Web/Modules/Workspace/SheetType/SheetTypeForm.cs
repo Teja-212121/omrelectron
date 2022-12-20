@@ -30,6 +30,8 @@ namespace Rio.Workspace.Forms
         [QuarterWidth]
         public bool Synced { get; set; }
         [QuarterWidth]
+        public bool IsPublic { get; set; }
+        [QuarterWidth]
         public bool IsPrivate { get; set; }
         [HalfWidth]
         public long SheetNumber { get; set; }

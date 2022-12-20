@@ -12,6 +12,7 @@
         SheetImage?: string;
         OverlayImage?: string;
         Synced?: boolean;
+        IsPublic?: boolean;
         IsPrivate?: boolean;
         PdfTemplate?: string;
         SheetNumber?: number;
@@ -49,6 +50,7 @@
             SheetImage = "SheetImage",
             OverlayImage = "OverlayImage",
             Synced = "Synced",
+            IsPublic = "IsPublic",
             IsPrivate = "IsPrivate",
             PdfTemplate = "PdfTemplate",
             SheetNumber = "SheetNumber",
