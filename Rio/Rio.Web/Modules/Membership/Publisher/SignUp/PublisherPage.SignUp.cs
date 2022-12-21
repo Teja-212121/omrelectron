@@ -95,6 +95,8 @@ namespace Rio.Membership.Pages
 
                 connection.Execute(string.Format(@"INSERT INTO UserPermissions (UserId, PermissionKey, Granted)
                                                        VALUES ({0}, 'Administration.Tenants', 1)", userId));
+                connection.Execute(string.Format(@"INSERT INTO UserRoles (UserId, RoleId)
+                                                       VALUES ({0},  1)", userId));
 
                 byte[] bytes;
                 using (var ms = new MemoryStream())
