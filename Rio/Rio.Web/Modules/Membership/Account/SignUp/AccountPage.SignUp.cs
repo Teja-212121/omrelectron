@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Rio.Administration;
@@ -141,7 +141,19 @@ namespace Rio.Membership.Pages
             var user = uow.Connection.TryById<UserRow>(userId);
             if (user == null || user.IsActive != 0)
                 return Error(Texts.Validation.InvalidActivateToken.ToString(Localizer));
+            var tenant = uow.Connection.TryFirst<TenantRow>(TenantRow.Fields.TenantId == user.TenantId.Value);
+            if (tenant != null)
+                if (tenant.EApprovalStatus != Web.Enums.EApprovalStatus.Approved)
+                {
+                    uow.Connection.UpdateById(new TenantRow
+                    {
+                        TenantId = tenant.TenantId.Value,
+                        IsActive = 1,
+                        EApprovalStatus = Web.Enums.EApprovalStatus.Approved
+                    });
+                }
 
+            
             uow.Connection.UpdateById(new UserRow
             {
                 UserId = user.UserId.Value,

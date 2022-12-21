@@ -112,7 +112,8 @@ namespace Rio.Membership.Pages
                 var externalUrl = options?.Value?.SiteExternalUrl ??
                     Request.GetBaseUri().ToString();
 
-                var activateLink = UriHelper.Combine(externalUrl, "Account/Activate?t=");
+                 var activateLink = UriHelper.Combine("https://omrapp.azurewebsites.net/", "Account/Activate?t=");
+                //var activateLink = UriHelper.Combine("https://localhost:59252/", "Account/Activate?t=");
                 activateLink += Uri.EscapeDataString(token);
 
                 var emailModel = new PublisherEmailModel();
