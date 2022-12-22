@@ -374,3 +374,6 @@ FodyWeavers.xsd
 /Rio/Rio.Web/App_Data/Mail
 /Rio/Rio.Web/App_Data/upload/SheetType
 /Rio/Rio.Web/typings/serenity.extensions/index.d.ts
+/Rio/Rio.Web/App_Data/upload/ScannedSheet/ScannedImage/1b
+/Rio/Rio.Web/wwwroot/uploads/ScannedSheet/ScannedImage
+/Rio/Rio.Web/wwwroot/uploads/temporary
