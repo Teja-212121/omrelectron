@@ -39,6 +39,19 @@ namespace Rio.Web.Modules.Orders.CommonController
                     var data = endpoint.List(Connection, request2, handler);
                     ScannedQuestion.ScanQuestionList = new List<ScannedQuestionRow>();
                     ScannedQuestion.ScanQuestionList = data.Entities;
+                    var e = ScannedSheetRow.Fields;
+                    var nextScansheet = Connection.TryFirst<ScannedSheetRow>(q => q
+                     .Select(e.Id).Take(1)
+                    .Where(e.Id >ScannedSheetId));
+
+                    if (nextScansheet != null)
+                        ScannedQuestion.NextScannedSheetId = nextScansheet.Id.ToString();
+                    var PrevScansheet = Connection.TryFirst<ScannedSheetRow>(q => q
+                    .Select(e.Id).Take(1)
+                   .Where(e.Id < ScannedSheetId));
+                    if (PrevScansheet != null)
+                        ScannedQuestion.PrevScannedSheetId = PrevScansheet.Id.ToString();
+                    //var nextScansheet=Connection.TryFirst<ScannedSheetRow>()
                 }
                 finally
                 {
@@ -54,7 +67,7 @@ namespace Rio.Web.Modules.Orders.CommonController
 
 
         [Route("~/Rectify/UpdateScanQuestions")]
-        public int UpdateScanQuestions(string QuestionList, [FromServices] ISqlConnections sqlConnections)
+        public int UpdateScanQuestions(string QuestionList, string CorrectedExamno, string CorrectedRollno,string ScannedSheetId, [FromServices] ISqlConnections sqlConnections)
         {
 
             using (var Connection = sqlConnections.NewByKey("Default"))
@@ -67,6 +80,15 @@ namespace Rio.Web.Modules.Orders.CommonController
                     
                     string CorrectedOption;
                     var Question = QuestionList.Split("#$#");
+                    var scannedsheet = Connection.TryFirst<ScannedSheetRow>(ScannedSheetRow.Fields.Id == ScannedSheetId);
+                    if (scannedsheet != null)
+                    {
+                        var srow = new ScannedSheetRow();
+                        srow.Id=scannedsheet.Id;
+                        srow.CorrectedRollNo = CorrectedRollno;
+                        srow.CorrectedExamNo = CorrectedExamno;
+                        Connection.UpdateById<ScannedSheetRow>(srow);
+                    }
 
                     for (int u = 0; u < Question.Length; u++)
                     {

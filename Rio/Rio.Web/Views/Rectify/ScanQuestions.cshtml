@@ -12,8 +12,11 @@
 
 <div class="container">
     
-    <h5 style="text-align:center">Corrected Exam no: @Model.ScanQuestionList[0].ScannedSheetCorrectedExamNo  &emsp;&emsp;&emsp;&emsp;
-    Corrected Roll no: @Model.ScanQuestionList[0].ScannedSheetCorrectedRollNo</h5>
+   <lable>Corrected ExamNo</lable>
+    <input type="text" id="CorrectedExamNo" value="@Model.ScanQuestionList[0].ScannedSheetCorrectedExamNo" />
+    <br/>
+    <lable>Corrected RollNo</lable>
+    <input type="text" id="CorrectedRollNo" value="@Model.ScanQuestionList[0].ScannedSheetCorrectedRollNo" />
     <br/>
     <h5 style="text-align:center">
         Scanned Sheet Id: @Model.ScanQuestionList[0].ScannedSheetId  
@@ -56,50 +59,89 @@
         </div>
 
     </div>
-    <button id="btnback" style="float:left;margin-right:150px;" class="btn btn-info">Save Data</button>
+    <button id="btnsave" style="float:left;margin-right:150px;" class="btn btn-info">Save Data</button>
+    @if (!string.IsNullOrEmpty(Model.PrevScannedSheetId))
+    {
+        <button id="btnback" style="float:left;margin-right:150px;" class="btn btn-info">Previous</button>
+    }
+    @if (!string.IsNullOrEmpty(Model.NextScannedSheetId))
+    {
+        <button id="btnnext" style="float:left;margin-right:150px;" class="btn btn-info">Next</button>
+    }
 </div>
 
 <script type="text/javascript">
 
-    $("#btnback").click(function () {
-
-        
-
-        // var param = ["ActivationKey", "QBSubjectId", "SubjectId", "SubjectName", "TransactionKey"];
+    $("#btnsave").click(function () {
         var param = [];
-        var qbsubjectlist = "";
+        var CorrectedExamno = "";
+        var CorrectedRollno = "";
         var Questionlist = "";
+        if ($("#CorrectedExamNo").val() == "") {
+            alert("Please Enter Corrected Exam number");
+                    return;
+        }
+        if ($("#CorrectedRollNo").val() == "") {
+            alert("Please Enter Corrected Roll number");
+                    return;
+        }
         for (var i = 0; i < parseInt("@rowcount"); i++) {
             var subid = "-1";
             var CorrectOption = "";
-            CorrectOption = $("#Correctoption" + i.toString()).val();
-
-           
+            CorrectOption = $("#Correctoption" + i.toString()).val();          
 
             Questionlist +=   CorrectOption + "#;#" + $("#ScannQuestion" + i.toString()).val() + "#$#";
 
-
         }
 
+        CorrectedExamno = $("#CorrectedExamNo").val();
+        CorrectedRollno = $("#CorrectedRollNo").val();
         $.post("UpdateScanQuestions", {
             
-            "Questionlist": Questionlist
+            "Questionlist": Questionlist, "CorrectedExamno": CorrectedExamno, "CorrectedRollno": CorrectedRollno, "ScannedSheetId": "@Model.ScanQuestionList[0].ScannedSheetId.ToString()"
         }, function (data) {
              Q.alert("Data Saved");
            
         });
 
 
-        //$.ajax({
-        //    url: "/Workspace/SaveSubjectMapping",
-        //    type: "POST",
-        //    traditional: true,
-        //    data: JSON.stringify(param),
-        //    dataType: "json",
-        //    contentType: "application/json; charset=utf-8",
-        //    success: function (data) {
-        //    }
-        //});
 
     });
+    function OpenWindowWithPostData(url, windowoption, name, params) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", url);
+        form.setAttribute("target", name);
+        for (var i in params) {
+            if (params.hasOwnProperty(i)) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = i;
+                input.value = params[i];
+                form.appendChild(input);
+            }
+        }
+        document.body.appendChild(form);
+        //window.open(url, name, windowoption);
+        form.submit();
+        document.body.removeChild(form);
+    }
+    $("#btnback").click(function () {
+        var  PrevScannedSheetId="@Model.PrevScannedSheetId.ToString()";
+        var param = {
+            'ScannedSheetId': PrevScannedSheetId.toString()
+        };
+        var url = "/Rectify/ScanQuestions";
+        OpenWindowWithPostData(url, "", "ScanQuestion", param);
+    });
+
+    $("#btnnext").click(function () {
+        var NextScannedSheetId = "@Model.NextScannedSheetId";
+        var param = {
+            'ScannedSheetId': NextScannedSheetId.toString()
+        };
+        var url = "/Rectify/ScanQuestions";
+        OpenWindowWithPostData(url, "", "ScanQuestion", param);
+    });
+        
 </script>
