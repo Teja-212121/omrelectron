@@ -51,6 +51,11 @@ namespace MVC
             }
         }
 
+        public static class Rectify
+        {
+            public const string ScanQuestions = "~/Views/Rectify/ScanQuestions.cshtml";
+        }
+
         public static class Shared
         {
             public const string _Layout = "~/Views/Shared/_Layout.cshtml";

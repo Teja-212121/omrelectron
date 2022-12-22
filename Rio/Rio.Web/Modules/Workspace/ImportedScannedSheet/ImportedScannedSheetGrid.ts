@@ -272,7 +272,12 @@ export class ImportedScannedSheetGrid extends EntityGrid<ImportedScannedSheetRow
             e.preventDefault();
 
             if (target.hasClass('view-sheet-question')) {
-                this.editItem(item.Id);
+                var param = {
+                    'ScannedSheetId': item.Id
+                };
+                var url = "/Rectify/ScanQuestions";
+                //this.OpenWindowWithPostData(url, "", "ScanQuestions", param);
+                Q.postToService({ url: Q.resolveUrl('~/Rectify/ScanQuestions?ScannedSheetId=' + item.Id), request: '', target: '_blank' });
             }
         }
     }
@@ -288,5 +293,25 @@ export class ImportedScannedSheetGrid extends EntityGrid<ImportedScannedSheetRow
             klass += " success-sheet";
 
         return trimToNull(klass);
+    }
+
+    protected OpenWindowWithPostData(url, windowoption, name, params) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", url);
+        form.setAttribute("target", name);
+        for (var i in params) {
+            if (params.hasOwnProperty(i)) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = i;
+                input.value = params[i];
+                form.appendChild(input);
+            }
+        }
+        document.body.appendChild(form);
+        // window.open(url, name, windowoption);
+        form.submit();
+        document.body.removeChild(form);
     }
 }

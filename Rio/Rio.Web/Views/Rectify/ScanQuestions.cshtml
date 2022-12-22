@@ -1,0 +1,105 @@
+@model Rio.Web.Modules.Workspace.CommonController.Models.RectifyModel.ScannedQuestionDatamodel
+@inject Serenity.ITextLocalizer Localizer
+
+@{
+    ViewData["Title"] = "RectifyAnswers";
+    ViewData["PageId"] = "Rectify";
+    Layout = User.IsLoggedIn() ?
+        "~/Views/Shared/_Layout.cshtml" :
+        "~/Views/Shared/_LayoutNoNavigation.cshtml";
+    int rowcount = @Model.ScanQuestionList.Count;
+}
+
+<div class="container">
+    
+    <h5 style="text-align:center">Corrected Exam no: @Model.ScanQuestionList[0].ScannedSheetCorrectedExamNo  &emsp;&emsp;&emsp;&emsp;
+    Corrected Roll no: @Model.ScanQuestionList[0].ScannedSheetCorrectedRollNo</h5>
+    <br/>
+    <h5 style="text-align:center">
+        Scanned Sheet Id: @Model.ScanQuestionList[0].ScannedSheetId  
+    </h5>
+    
+    <br /><br />
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-md-6">
+            
+            <img width="100%" height="80%" src="~/uploads/@Model.ScanQuestionList[0].ScannedSheetScannedImage" />
+            
+        </div>
+        <div class="col-md-6" style="overflow-y: scroll;height:600px;">
+            <div class="row" style="margin-left:5px;">
+                <div class="col-md-2">
+                    <label> Question Index</label>
+                </div>
+                <div class="col-md-2">
+                    <label> Scanned Option</label>
+                </div>
+                <div class="col-md-2">
+                    <label> Corrected Option</label>
+                </div>
+            </div>
+            @for (int i = 0; i < @Model.ScanQuestionList.Count; i++)
+            {
+                <div class="row" style="margin-left:5px;">
+                    <div class="col-md-2">
+                       <label>@Model.ScanQuestionList[i].QuestionIndex </label> 
+                    </div>
+                    <div class="col-md-2">
+                        <label>@Model.ScanQuestionList[i].ScannedOptions </label>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" id="Correctoption@(i)" value="@Model.ScanQuestionList[i].CorrectedOptions"/>
+                        <input type="hidden" id="ScannQuestion@(i)" value="@Model.ScanQuestionList[i].Id" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <button id="btnback" style="float:left;margin-right:150px;" class="btn btn-info">Save Data</button>
+</div>
+
+<script type="text/javascript">
+
+    $("#btnback").click(function () {
+
+        
+
+        // var param = ["ActivationKey", "QBSubjectId", "SubjectId", "SubjectName", "TransactionKey"];
+        var param = [];
+        var qbsubjectlist = "";
+        var Questionlist = "";
+        for (var i = 0; i < parseInt("@rowcount"); i++) {
+            var subid = "-1";
+            var CorrectOption = "";
+            CorrectOption = $("#Correctoption" + i.toString()).val();
+
+           
+
+            Questionlist +=   CorrectOption + "#;#" + $("#ScannQuestion" + i.toString()).val() + "#$#";
+
+
+        }
+
+        $.post("UpdateScanQuestions", {
+            
+            "Questionlist": Questionlist
+        }, function (data) {
+             Q.alert("Data Saved");
+           
+        });
+
+
+        //$.ajax({
+        //    url: "/Workspace/SaveSubjectMapping",
+        //    type: "POST",
+        //    traditional: true,
+        //    data: JSON.stringify(param),
+        //    dataType: "json",
+        //    contentType: "application/json; charset=utf-8",
+        //    success: function (data) {
+        //    }
+        //});
+
+    });
+</script>

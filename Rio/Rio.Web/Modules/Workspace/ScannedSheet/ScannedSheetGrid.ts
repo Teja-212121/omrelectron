@@ -297,7 +297,12 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
             e.preventDefault();
 
             if (target.hasClass('view-sheet-question')) {
-                this.editItem(item.Id);
+                var param = {
+                    'ScannedSheetId': item.Id
+                };
+                var url = "/Rectify/ScanQuestions";
+                //this.OpenWindowWithPostData(url, "", "ScanQuestions", param);
+                Q.postToService({ url: Q.resolveUrl('~/Rectify/ScanQuestions?ScannedSheetId=' + item.Id), request: '', target: '_blank' });
             }
         }
     }
