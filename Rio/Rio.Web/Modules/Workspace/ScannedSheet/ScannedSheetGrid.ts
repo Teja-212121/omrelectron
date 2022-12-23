@@ -2,7 +2,7 @@ import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/core
 import { ExcelExportHelper } from '@serenity-is/extensions';
 import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
-import { ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
+import { EScannedStatus, ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
 
 const fld = ScannedSheetRow.Fields;
@@ -309,15 +309,16 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
 
     protected getItemCssClass(item: ScannedSheetRow, index: number): string {
         let klass: string = "";
-
-        if (item.ScannedStatus == 1)
-            klass += " failed-sheet";
-        else if (item.ScannedStatus == 2)
-            klass += " warning-sheet";
-        else
-            klass += " success-sheet";
-
-        return trimToNull(klass);
+       
+        if (item.ScannedStatus == EScannedStatus.SuccessSheet )
+            klass += " successsheet";
+        else if (item.ScannedStatus == EScannedStatus.WarningSheet)
+            klass += " warningsheet";
+        else if (item.ScannedStatus == EScannedStatus.FailedSheet)
+            klass += " failedsheet";
+        else if (item.ScannedStatus == EScannedStatus.OpenSheet)
+            klass += " Opensheet";
+        return Q.trimToNull(klass);
     }
 
     //protected getQuickFilters() {
