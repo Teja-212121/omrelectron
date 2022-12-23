@@ -90,7 +90,7 @@ namespace Rio.Administration.Endpoints
                         var LoginLink = "https://omrapp.azurewebsites.net/Account/Login";
                        
 
-                        var emailModel = new Rio.Membership.ActivateEmailModel();
+                        var emailModel = new Rio.Membership.PublisherEmailModel();
                         emailModel.Username = user.Username;
                         emailModel.DisplayName = user.DisplayName;
                         //emailModel.ActivateLink = activateLink;
