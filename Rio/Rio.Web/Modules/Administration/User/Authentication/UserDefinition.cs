@@ -19,9 +19,12 @@ namespace Rio
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
         public string Source { get; set; }
+        
         public DateTime? UpdateDate { get; set; }
         public DateTime? LastDirectoryUpdate { get; set; }
         public TwoFactorAuthType? TwoFactorAuth { get; set; }
         public int TenantId { get; set; }
+        public string RoleName { get; set; }
+        public int RoleId { get; set; }
     }
 }

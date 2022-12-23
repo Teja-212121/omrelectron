@@ -51,13 +51,13 @@ namespace Rio.Workspace.Endpoints
                 {
                     if (ruletype == 1)
                     {
-                        query = query + " declare @Score float " +
-                            "select @Score = isnull(NegativeMarks,0) from exams where Id =" + Exams.Id + " " +
-                            "set @Score= @Score*(-1) ";
+                        //query = query + " declare @Score float " +
+                        //    "select @Score = isnull(NegativeMarks,0) from exams where Id =" + Exams.Id + " " +
+                        //    "set @Score= @Score*(-1) ";
                         query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId) " +
                             " select s.Id,ss.ScannedBatchId,ss.Id,s.RollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
                             " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted,case  when SQ.CorrectedOptions =EQ.RightOptions then 1 else 0 end as IsCorrect, " +
-                            " case when SQ.CorrectedOptions is null then 0 when SQ.CorrectedOptions =EQ.RightOptions then EQ.Score else @Score end as ObtainedMarks,ss.TenantId" +
+                            " case when SQ.CorrectedOptions is null then 0 when SQ.CorrectedOptions =EQ.RightOptions then EQ.Score else (ifnull(e.NegativeMarks,0)*(-1)) end as ObtainedMarks,ss.TenantId" +
                             " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
                             " inner join Exams E on ss.CorrectedExamNo=E.Code" +
                             " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
@@ -133,6 +133,8 @@ namespace Rio.Workspace.Endpoints
                             " where ss.CorrectedRollNo=" + Scannedsheet.CorrectedRollNo + " and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=7 and ss.tenantId=" + Scannedsheet.TenantId;
                     }
 
+                query = query + "  insert into examresults ";
+
                 }
                 uow.Connection.Execute(query);
             
@@ -187,13 +189,14 @@ namespace Rio.Workspace.Endpoints
                 {
                     if (ruletype == 1)
                     {
-                        query = query + " declare @Score float " +
-                            "select @Score = isnull(NegativeMarks,0) from exams where Id =" + Exams.Id + " " +
-                            "set @Score= @Score*(-1) ";
-                        query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId) " +
+                        //query = query + " declare @Score float " +
+                        //    "select @Score = isnull(NegativeMarks,0) from exams where Id =" + Exams.Id + " " +
+                        //    "set @Score= @Score*(-1) ";
+                        query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,InsertDate,InsertUserId) " +
                             " select s.Id,ss.ScannedBatchId,ss.Id,s.RollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
                             " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted,case  when SQ.CorrectedOptions =EQ.RightOptions then 1 else 0 end as IsCorrect, " +
-                            " case when SQ.CorrectedOptions is null then 0 when SQ.CorrectedOptions =EQ.RightOptions then EQ.Score else @Score end as ObtainedMarks,ss.TenantId" +
+                            " case when SQ.CorrectedOptions is null then 0 when SQ.CorrectedOptions =EQ.RightOptions then EQ.Score else (ifnull(e.NegativeMarks,0)*(-1)) end as ObtainedMarks,ss.TenantId" +
+                            " ,datetime('now'),1" +
                             " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
                             " inner join Exams E on ss.CorrectedExamNo=E.Code" +
                             " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
