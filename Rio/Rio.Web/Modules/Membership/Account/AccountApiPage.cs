@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Rio.Administration;
 using Serenity;
 using Serenity.Abstractions;
+using Serenity.Data;
 using Serenity.Extensions;
 using Serenity.Services;
 using System;
@@ -345,6 +346,28 @@ namespace Rio.Membership.Pages
         response.Entity = userDefinition;
         return response;
     }
-    #endregion
-}
+
+        [HttpPost]
+        public RetrieveResponse<UserDefinition> GetUserData([FromServices] IUserRetrieveService userRetriever, [FromServices] ISqlConnections sqlConnections)
+        {
+            UserDefinition userDefinition = userRetriever.ByUsername(HttpContext.User.Identity.Name) as UserDefinition;
+            RetrieveResponse<UserDefinition> response = new RetrieveResponse<UserDefinition>();
+            using var connection = sqlConnections.NewByKey("Default");
+            {
+                var userpermission = connection.TryFirst<UserRoleRow>(UserRoleRow.Fields.UserId == response.Entity.UserId);
+                if (userpermission != null)
+                {
+                    if (userDefinition.RoleId != 0)
+                    {
+                        userDefinition.RoleId = userpermission.RoleId.Value;
+                        var role = connection.TryFirst<RoleRow>(RoleRow.Fields.RoleId == userpermission.RoleId.Value);
+                        userDefinition.RoleName = role.RoleName;
+                    }
+                }
+            }
+            response.Entity = userDefinition;
+            return response;
+        }
+        #endregion
+    }
 }

@@ -57,7 +57,7 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
             this.CreateTableWithId32("ExamResults", "Id", s => s
-                .WithColumn("StudentId").AsInt64().NotNullable()
+                .WithColumn("StudentId").AsInt64().Nullable()
                     .ForeignKey("Students", "Id")
                 .WithColumn("RollNumber").AsInt64().NotNullable()
                 .WithColumn("SheetNumber").AsString(50).Nullable()
@@ -80,7 +80,7 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
             this.CreateTableWithId32("ExamSectionResults", "Id", s => s
-                .WithColumn("StudentId").AsInt64().NotNullable()
+                .WithColumn("StudentId").AsInt64().Nullable()
                     .ForeignKey("Students", "Id")
                 .WithColumn("RollNumber").AsInt64().NotNullable()
                 .WithColumn("SheetNumber").AsString(50).Nullable()
@@ -105,7 +105,7 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
             this.CreateTableWithId64("ExamQuestionResults", "Id", s => s
-                .WithColumn("StudentId").AsInt64().NotNullable()
+                .WithColumn("StudentId").AsInt64().Nullable()
                     .ForeignKey("Students", "Id")
                 .WithColumn("RollNumber").AsInt64().NotNullable()
                 .WithColumn("SheetNumber").AsString(50).Nullable()
@@ -119,7 +119,7 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
             this.CreateTableWithId64("ExamGroupWiseResults", "Id", s => s
-                .WithColumn("StudentId").AsInt64().NotNullable()
+                .WithColumn("StudentId").AsInt64().Nullable()
                     .ForeignKey("Students", "Id")
                 .WithColumn("RollNumber").AsInt64().NotNullable()
                 .WithColumn("SheetNumber").AsString(50).Nullable()
@@ -132,7 +132,7 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("TenantId").AsInt32().NotNullable());
 
             this.CreateTableWithId64("ExamRankWiseResults", "Id", s => s
-                .WithColumn("StudentId").AsInt64().NotNullable()
+                .WithColumn("StudentId").AsInt64().Nullable()
                     .ForeignKey("Students", "Id")
                 .WithColumn("RollNumber").AsInt64().NotNullable()
                 .WithColumn("SheetNumber").AsString(50).Nullable()

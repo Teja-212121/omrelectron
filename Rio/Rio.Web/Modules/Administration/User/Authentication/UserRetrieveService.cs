@@ -28,39 +28,25 @@ namespace Rio.Administration
             var user = connection.TrySingle<MyRow>(criteria);
 
             if (user != null)
-            {
-                UserDefinition userDefinition = new UserDefinition();
-                var userpermission = connection.TryFirst<UserRoleRow>(UserRoleRow.Fields.UserId == user.UserId.Value);
-                if (userpermission != null)
+                return new UserDefinition
                 {
-                    if (userDefinition.RoleId != 0)
-                    {
-                        userDefinition.RoleId = userpermission.RoleId.Value;
-                        var role = connection.TryFirst<RoleRow>(RoleRow.Fields.RoleId == userpermission.RoleId.Value);
-                        userDefinition.RoleName = role.RoleName;
-                    }
-                }
+                    UserId = user.UserId.Value,
+                    Username = user.Username,
+                    Email = user.Email,
+                    MobilePhoneNumber = user.MobilePhoneNumber,
+                    MobilePhoneVerified = user.MobilePhoneVerified ?? false,
+                    TwoFactorAuth = user.TwoFactorAuth,
+                    UserImage = user.UserImage,
+                    DisplayName = user.DisplayName,
+                    IsActive = user.IsActive.Value,
+                    Source = user.Source,
+                    PasswordHash = user.PasswordHash,
+                    PasswordSalt = user.PasswordSalt,
+                    UpdateDate = user.UpdateDate,
+                    LastDirectoryUpdate = user.LastDirectoryUpdate,
+                    TenantId = user.TenantId.Value
+                };
 
-
-                userDefinition.UserId = user.UserId.Value;
-                userDefinition.Username = user.Username;
-                userDefinition.Email = user.Email;
-                userDefinition.MobilePhoneNumber = user.MobilePhoneNumber;
-                userDefinition.MobilePhoneVerified = user.MobilePhoneVerified ?? false;
-                userDefinition.TwoFactorAuth = user.TwoFactorAuth;
-                userDefinition.UserImage = user.UserImage;
-                userDefinition.DisplayName = user.DisplayName;
-                userDefinition.IsActive = user.IsActive.Value;
-                userDefinition.Source = user.Source;
-                userDefinition.PasswordHash = user.PasswordHash;
-                userDefinition.PasswordSalt = user.PasswordSalt;
-                userDefinition.UpdateDate = user.UpdateDate;
-                userDefinition.LastDirectoryUpdate = user.LastDirectoryUpdate;
-                userDefinition.TenantId = user.TenantId.Value;
-            
-                return userDefinition;
-            }
-           
             return null;
         }
 
