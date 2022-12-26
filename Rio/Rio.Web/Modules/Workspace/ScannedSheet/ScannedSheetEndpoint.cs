@@ -220,45 +220,50 @@ namespace Rio.Workspace.Endpoints
                     //        " where ss.CorrectedRollNo=" + Scannedsheet.CorrectedRollNo + " and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=2 and ss.tenantId=" + Scannedsheet.TenantId;
                     //}
 
-                    //if (ruletype == 3)
-                    //{
+                    if (ruletype == 3)
+                    {
 
-                    //    query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId) " +
-                    //        " select s.Id,ss.ScannedBatchId,ss.Id,s.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
-                    //        " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted,1 as IsCorrect,EQ.Score,ss.TenantId" +
-                    //        " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
-                    //        " inner join Exams E on ss.CorrectedExamNo=E.Code inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
-                    //        " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                    //        " where ss.CorrectedRollNo=" + Scannedsheet.CorrectedRollNo + " and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=3 and ss.tenantId=" + Scannedsheet.TenantId;
-                    //}
+                        query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,InsertDate,InsertUserId) " +
+                            " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
+                            " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted,1 as IsCorrect,EQ.Score,ss.TenantId" +
+                            " ,datetime('now')," + User.GetIdentifier() + "" +
+                            " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
+                            " inner join Exams E on ss.CorrectedExamNo=E.Code" +
+                            " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
+                            " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                             " where ss.Id='" + id.ToString().ToUpper() + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=1 and ss.tenantId=" + Scannedsheet.TenantId;
+                    }
 
-                    //if (ruletype == 5)
-                    //{
+                    if (ruletype == 5)
+                    {
 
-                    //    query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId) " +
-                    //         " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
-                    //         " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted,case  when SQ.CorrectedOptions =EQ.RightOptions then 1 else 0 end as IsCorrect, " +
-                    //        " case when SQ.CorrectedOptions is null then 0 when SQ.CorrectedOptions =EQ.RightOptions then EQ.Score else @Score end as ObtainedMarks,ss.TenantId" +
-                    //        " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
-                    //        " inner join Exams E on ss.CorrectedExamNo=E.Code" +
-                    //        " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
-                    //        " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                    //        " where ss.CorrectedRollNo=" + Scannedsheet.CorrectedRollNo + " and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=5 and ss.tenantId=" + Scannedsheet.TenantId;
-                    //}
+                        query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,InsertDate,InsertUserId) " +
+                           " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
+                    " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted,case  when SQ.CorrectedOptions =EQ.RightOptions then 1 else 0 end as IsCorrect, " +
+                            " case when SQ.CorrectedOptions is null then 0 when SQ.CorrectedOptions =EQ.RightOptions then EQ.Score else (ifnull(e.NegativeMarks,0)*(-1)) end as ObtainedMarks,ss.TenantId" +
+                            " ,datetime('now')," + User.GetIdentifier() + "" +
+                            " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
+                            " inner join Exams E on ss.CorrectedExamNo=E.Code" +
+                            " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
+                            " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                            " where ss.Id='" + id.ToString().ToUpper() + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=5 and ss.tenantId=" + Scannedsheet.TenantId;
+                    }
 
-                    //if (ruletype == 6)
-                    //{
+                    if (ruletype == 6)
+                    {
 
-                    //    query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId) " +
-                    //        " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
-                    //        " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted," +
-                    //        " case  when SQ.CorrectedOptions =EQ.RightOptions then 1 else 0 end as IsCorrect, " +
-                    //        " case when SQ.CorrectedOptions is null then 0 else EQ.Score  end as ObtainedMarks,ss.TenantId" +
-                    //        " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id " +
-                    //        " inner join Exams E on ss.CorrectedExamNo=E.Code inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
-                    //        " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                    //        " where ss.CorrectedRollNo=" + Scannedsheet.CorrectedRollNo + " and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=6 and ss.tenantId=" + Scannedsheet.TenantId;
-                    //}
+                        query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,InsertDate,InsertUserId) " +
+                           " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
+                            " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted," +
+                            " case  when SQ.CorrectedOptions =EQ.RightOptions then 1 else 0 end as IsCorrect, " +
+                            " case when SQ.CorrectedOptions is null then 0 else EQ.Score  end as ObtainedMarks,ss.TenantId" +
+                            " ,datetime('now')," + User.GetIdentifier() + "" +
+                            " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
+                            " inner join Exams E on ss.CorrectedExamNo=E.Code" +
+                            " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
+                            " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                             " where ss.Id='" + id.ToString().ToUpper() + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=1 and ss.tenantId=" + Scannedsheet.TenantId;
+                    }
 
                     //if (ruletype == 7)
                     //{
@@ -274,7 +279,7 @@ namespace Rio.Workspace.Endpoints
                     //        " where ss.CorrectedRollNo=" + Scannedsheet.CorrectedRollNo + " and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=7 and ss.tenantId=" + Scannedsheet.TenantId;
                     //}
 
-                    
+
 
                 }
                 Examresultquery = "  insert into ExamResults (StudentId, RollNumber,SheetNumber,SheetGuid,ExamId,TotalMarks,ObtainedMarks,Percentage,TotalQuestions,TotalAttempted," +
@@ -288,9 +293,8 @@ namespace Rio.Workspace.Endpoints
                     "  (SELECT e.TotalQuestions-(select ifnull(count(Id),0) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsCorrect=1)) as TotalWrongAnswers," +
                     "  datetime('now'),1,1,ss.TenantId,ss.ScannedBatchId,ss.Id" +
                     "  from  ScannedSheets SS inner join Exams E on ss.CorrectedExamNo=E.Code" +
-                    "  left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                   
-                        " where ss.Id='" + id.ToString().ToUpper() + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + "  and ss.tenantId=" + Scannedsheet.TenantId;
+                    "  left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +                   
+                    " where ss.Id='" + id.ToString().ToUpper() + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + "  and ss.tenantId=" + Scannedsheet.TenantId;
                 uow.Connection.Execute(query);
                 uow.Connection.Execute(Examresultquery);
             }
