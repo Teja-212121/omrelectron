@@ -108,7 +108,7 @@ namespace Rio.Workspace
             set => fields.ScannedSheetScannedExamNo[this] = value;
         }
 
-        [DisplayName("Scanned Sheet Corrected Roll No"), Expression("jScannedSheet.[CorrectedRollNo]")]
+        [DisplayName("Scanned Sheet Corrected Roll No"), Expression("jScannedSheet.[CorrectedRollNo]"),QuickSearch]
         public string ScannedSheetCorrectedRollNo
         {
             get => fields.ScannedSheetCorrectedRollNo[this];
