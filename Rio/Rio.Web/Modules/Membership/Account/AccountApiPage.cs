@@ -354,15 +354,28 @@ namespace Rio.Membership.Pages
             RetrieveResponse<UserDefinition> response = new RetrieveResponse<UserDefinition>();
             using var connection = sqlConnections.NewByKey("Default");
             {
-                var userpermission = connection.TryFirst<UserRoleRow>(UserRoleRow.Fields.UserId == response.Entity.UserId);
-                if (userpermission != null)
+                var userpermission = connection.List<UserRoleRow>(UserRoleRow.Fields.UserId == userDefinition.UserId);
+                if (userpermission .Count>0)
                 {
-                    if (userDefinition.RoleId != 0)
-                    {
-                        userDefinition.RoleId = userpermission.RoleId.Value;
-                        var role = connection.TryFirst<RoleRow>(RoleRow.Fields.RoleId == userpermission.RoleId.Value);
-                        userDefinition.RoleName = role.RoleName;
+                    foreach(UserRoleRow row in userpermission) {
+                        if (row.RoleId != 0)
+                        {
+                            var role = connection.TryFirst<RoleRow>(RoleRow.Fields.RoleId == row.RoleId.Value);
+                            if (string.IsNullOrEmpty(userDefinition.RoleId))
+                            {
+                                userDefinition.RoleId = row.RoleId.ToString();
+                                userDefinition.RoleName = role.RoleName;
+                            }
+                            else
+                            {
+                                userDefinition.RoleId = userDefinition.RoleId + "," + row.RoleId.ToString();
+                                userDefinition.RoleName = userDefinition.RoleName + "," + role.RoleName.ToString();
+                            }
+                           
+                           
+                        }
                     }
+                    
                 }
             }
             response.Entity = userDefinition;

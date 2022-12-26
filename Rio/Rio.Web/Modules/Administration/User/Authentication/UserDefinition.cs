@@ -25,6 +25,6 @@ namespace Rio
         public TwoFactorAuthType? TwoFactorAuth { get; set; }
         public int TenantId { get; set; }
         public string RoleName { get; set; }
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
     }
 }
