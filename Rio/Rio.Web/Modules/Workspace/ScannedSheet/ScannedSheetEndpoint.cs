@@ -228,6 +228,9 @@ namespace Rio.Workspace.Endpoints
                             examQuestionResult.SheetNumber=scanned.SheetNumber;
                             examQuestionResult.SheetGuid=scanned.ScanSheetId;
                             examQuestionResult.ExamId=scanned.ExamId;
+                            examQuestionResult.QuestionIndex=scanned.QuestionIndex;
+                            if(!string.IsNullOrEmpty(scanned.CorrectedOptions))
+                                examQuestionResult.IsAttempted=true;
                         }
                     }
 

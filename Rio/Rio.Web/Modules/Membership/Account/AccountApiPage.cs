@@ -348,6 +348,7 @@ namespace Rio.Membership.Pages
                 var userpermission = connection.List<UserRoleRow>(UserRoleRow.Fields.UserId == userDefinition.UserId);
                 if (userpermission.Count > 0)
                 {
+                    userDefinition.RoleIds = "";
                     foreach (UserRoleRow row in userpermission)
                     {
                         if (row.RoleId != 0)
