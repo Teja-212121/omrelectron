@@ -280,6 +280,7 @@ namespace Rio.Workspace.Endpoints
 
                     if (ruletype == 3)
                     {
+                        query = "";
                         query =  " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,InsertDate,InsertUserId) " +
                             " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
                             " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted,1 as IsCorrect,EQ.Score,ss.TenantId" +
@@ -295,6 +296,7 @@ namespace Rio.Workspace.Endpoints
 
                     if (ruletype == 5)
                     {
+                        query = "";
 
                         query =  " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,InsertDate,InsertUserId) " +
                            " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
@@ -312,6 +314,7 @@ namespace Rio.Workspace.Endpoints
 
                     if (ruletype == 6)
                     {
+                        query = "";
 
                         query =  " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,InsertDate,InsertUserId) " +
                            " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
