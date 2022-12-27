@@ -24,7 +24,6 @@ namespace Rio
         public DateTime? LastDirectoryUpdate { get; set; }
         public TwoFactorAuthType? TwoFactorAuth { get; set; }
         public int TenantId { get; set; }
-        public string RoleName { get; set; }
-        public string RoleId { get; set; }
+        public string RoleIds { get; set; }
     }
 }

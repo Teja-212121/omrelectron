@@ -187,6 +187,7 @@ namespace Rio.Workspace.Endpoints
                 string query = "";
                 string Examresultquery = "";
                 List<int> RuleTypes = uow.Connection.Query<int>(sqlQuery, commandType: System.Data.CommandType.Text).ToList();
+               
                 foreach (int ruletype in RuleTypes)
                 {
                     if (ruletype == 1)
@@ -206,19 +207,29 @@ namespace Rio.Workspace.Endpoints
                             " where ss.Id='" + id.ToString().ToUpper() + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=1 and ss.tenantId=" + Scannedsheet.TenantId;
                     }
 
-                    //if (ruletype == 2)
-                    //{
+                    if (ruletype == 2)
+                    {
+                        List<ScannedData> RuleType2Data = uow.Connection.Query<ScannedData>("select s.Id as StudentId,e.Id as ExamId,e.NegativeMarks,eq.QuestionIndex,ss.TenantId,ss.Id as ScanSheetId,ss.ScannedBatchId as ScanBatchId," +
+                           " eq.Score,ss.CorrectedRollNo,ss.SheetNumber,eq.RightOptions,sq.CorrectedOptions " +
+                           " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
+                           " inner join Exams E on ss.CorrectedExamNo=E.Code" +
+                           " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
+                           " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                           " where ss.Id='" + id.ToString().ToUpper() + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=2 and ss.tenantId=" + Scannedsheet.TenantId).ToList();
+                        bool IsCorrect = false;
+                        bool IsAttempted = false;
+                        float Score = 0;
+                        foreach (ScannedData scanned in RuleType2Data)
+                        {
+                            ExamQuestionResultRow examQuestionResult=new ExamQuestionResultRow();
 
-                    //    query = query + " Insert into ExamQuestionResults (StudentId,ScannedBatchId,ScannedSheetId,RollNumber,SheetNumber,SheetGuid,ExamId,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId) " +
-                    //        " select s.Id,ss.ScannedBatchId,ss.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,eq.QuestionIndex," +
-                    //        " case when sq.CorrectedOptions is null then 0 else 1 end as IsAttempted," +
-                    //        " (select dbo.Ruletype2(sq.CorrectedOptions,EQ.RightOptions)) as IsCorrect," +
-                    //        " (select dbo.Ruletype2Marks(sq.CorrectedOptions,EQ.RightOptions,EQ.Id)) as score,ss.TenantId" +
-                    //        " from ScannedQuestions SQ  inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
-                    //        " inner join Exams E on ss.CorrectedExamNo=E.Code inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id " +
-                    //        " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                    //        " where ss.CorrectedRollNo=" + Scannedsheet.CorrectedRollNo + " and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=2 and ss.tenantId=" + Scannedsheet.TenantId;
-                    //}
+                            examQuestionResult.StudentId=scanned.StudentId;
+                            examQuestionResult.RollNumber=Convert.ToInt64(scanned.CorrectedRollNo);
+                            examQuestionResult.SheetNumber=scanned.SheetNumber;
+                            examQuestionResult.SheetGuid=scanned.ScanSheetId;
+                            examQuestionResult.ExamId=scanned.ExamId;
+                        }
+                    }
 
                     if (ruletype == 3)
                     {
@@ -300,5 +311,21 @@ namespace Rio.Workspace.Endpoints
             }
             return new SaveResponse();
         }
+    }
+    public class ScannedData
+    {
+
+        public int? StudentId { get; set; }
+        public int? ExamId { get; set; }
+        public float? NegativeMarks { get; set; }
+        public int? QuestionIndex { get; set; }
+        public int? TenantId { get; set; }
+        public Guid? ScanBatchId { get; set; }
+        public Guid? ScanSheetId { get; set; }
+        public string Score { get; set; }
+        public string CorrectedRollNo { get; set; }
+        public string CorrectedOptions { get; set; }
+        public string RightOptions { get; set; }
+        public string SheetNumber { get; set; }
     }
 }

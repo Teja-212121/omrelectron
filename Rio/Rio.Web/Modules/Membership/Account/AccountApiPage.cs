@@ -339,48 +339,42 @@ namespace Rio.Membership.Pages
     }
 
     [HttpPost]
-    public RetrieveResponse<UserDefinition> UserData([FromServices] IUserRetrieveService userRetriever)
+    public RetrieveResponse<UserDefinition> UserData([FromServices] IUserRetrieveService userRetriever, [FromServices] ISqlConnections sqlConnections)
     {
         UserDefinition userDefinition = userRetriever.ByUsername(HttpContext.User.Identity.Name) as UserDefinition;
         RetrieveResponse<UserDefinition> response = new RetrieveResponse<UserDefinition>();
-        response.Entity = userDefinition;
-        return response;
-    }
-
-        [HttpPost]
-        public RetrieveResponse<UserDefinition> GetUserData([FromServices] IUserRetrieveService userRetriever, [FromServices] ISqlConnections sqlConnections)
-        {
-            UserDefinition userDefinition = userRetriever.ByUsername(HttpContext.User.Identity.Name) as UserDefinition;
-            RetrieveResponse<UserDefinition> response = new RetrieveResponse<UserDefinition>();
             using var connection = sqlConnections.NewByKey("Default");
             {
                 var userpermission = connection.List<UserRoleRow>(UserRoleRow.Fields.UserId == userDefinition.UserId);
-                if (userpermission .Count>0)
+                if (userpermission.Count > 0)
                 {
-                    foreach(UserRoleRow row in userpermission) {
+                    foreach (UserRoleRow row in userpermission)
+                    {
                         if (row.RoleId != 0)
                         {
                             var role = connection.TryFirst<RoleRow>(RoleRow.Fields.RoleId == row.RoleId.Value);
-                            if (string.IsNullOrEmpty(userDefinition.RoleId))
+                            if (string.IsNullOrEmpty(userDefinition.RoleIds))
                             {
-                                userDefinition.RoleId = row.RoleId.ToString();
-                                userDefinition.RoleName = role.RoleName;
+                                userDefinition.RoleIds = row.RoleId.ToString();
+
                             }
                             else
                             {
-                                userDefinition.RoleId = userDefinition.RoleId + "," + row.RoleId.ToString();
-                                userDefinition.RoleName = userDefinition.RoleName + "," + role.RoleName.ToString();
+                                userDefinition.RoleIds = userDefinition.RoleIds + "," + row.RoleId.ToString();
+
                             }
-                           
-                           
+
+
                         }
                     }
-                    
+
                 }
             }
             response.Entity = userDefinition;
-            return response;
-        }
+        return response;
+    }
+
+       
         #endregion
     }
 }
