@@ -211,6 +211,13 @@ namespace Rio.Workspace.Endpoints
                         }
                         else
                             Row.RuleTypeId = ruletypeid.Id;
+
+                        if (Row.RuleTypeId == 1 && Row.RightOptions.Length > 1)
+                        {
+
+                            response.ErrorList.Add("Error On Row " + row + ": Right Options should not contain Multiple Options!!!");
+                            continue;
+                        }
                     }
 
                     Row.TenantId = Exam.TenantId;
