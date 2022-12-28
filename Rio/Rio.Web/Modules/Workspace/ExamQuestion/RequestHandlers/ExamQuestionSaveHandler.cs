@@ -55,6 +55,11 @@ namespace Rio.Workspace
                     throw new ValidationError("Question Index already exists to for other Question!");
 
             }
+
+            if(Row.RuleTypeId == 1 && Row.RightOptions.Length > 1)
+            {
+                throw new ValidationError("Right Options should not contain Multiple Options!");
+            }
             
         }
 
