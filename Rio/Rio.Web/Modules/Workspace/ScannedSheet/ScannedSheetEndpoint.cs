@@ -202,6 +202,73 @@ namespace Rio.Workspace.Endpoints
 
                     foreach (int ruletype in RuleTypes)
                     {
+                        if (ruletype == 4)
+                        {
+                            var Scandata = uow.Connection.List<GetScanDataRow>(GetScanDataRow.Fields.ScanSheetId == Scannedsheet.Id.Value && GetScanDataRow.Fields.RuleTypeId == 4);                           
+
+                            foreach (GetScanDataRow scanned in Scandata)
+                            {
+                                ExamQuestionResultRow examQuestionResult = new ExamQuestionResultRow();
+
+                                examQuestionResult.StudentId = scanned.StudentId;
+                                examQuestionResult.RollNumber = Convert.ToInt64(scanned.CorrectedRollNo);
+                                examQuestionResult.SheetNumber = scanned.SheetNumber;
+                                examQuestionResult.SheetGuid = scanned.ScanSheetId;
+                                examQuestionResult.ExamId = scanned.ExamId;
+                                examQuestionResult.QuestionIndex = scanned.QuestionIndex;
+                                examQuestionResult.TenantId = scanned.TenantId;
+                                examQuestionResult.InsertUserId = Convert.ToInt32(User.GetIdentifier());
+                                examQuestionResult.InsertDate = DateTime.Now;
+                                if (string.IsNullOrEmpty(scanned.CorrectedOptions))
+                                {
+                                    examQuestionResult.IsAttempted = false;
+                                    examQuestionResult.ObtainedMarks = 0;
+                                    examQuestionResult.IsCorrect = false;
+                                }
+                                else
+                                {
+                                    if (scanned.CorrectedOptions.Length > 1)
+                                    {
+                                        examQuestionResult.IsAttempted = true;
+                                        examQuestionResult.ObtainedMarks = 0;
+                                        examQuestionResult.IsCorrect = false;
+                                    }
+                                    else
+                                    {
+                                        if (!scanned.RightOptions.Contains(scanned.CorrectedOptions))
+                                        {
+                                            examQuestionResult.IsAttempted = true;
+                                            examQuestionResult.ObtainedMarks = 0;
+                                            examQuestionResult.IsCorrect = false;
+                                        }
+                                        else
+                                        {
+                                           
+                                            int selectedoption = Convert.ToInt32(scanned.CorrectedOptions);
+                                            string[] score = scanned.Score.Split(',');
+                                            if (selectedoption <= score.Length && selectedoption > 0)
+                                            {
+                                                int scoreAt = selectedoption - 1;
+                                                float marksobtained = Convert.ToSingle(score[scoreAt]);
+                                                examQuestionResult.IsAttempted = true;
+                                                examQuestionResult.ObtainedMarks = marksobtained;
+                                                examQuestionResult.IsCorrect = true;
+                                            }
+                                            else {
+                                                examQuestionResult.IsAttempted = true;
+                                                examQuestionResult.ObtainedMarks = 0;
+                                                examQuestionResult.IsCorrect = true;
+                                            }
+                                        }
+
+                                    }
+                                   
+                                   
+                                    
+                                }
+                                uow.Connection.Insert<ExamQuestionResultRow>(examQuestionResult);
+                            }
+                        }
                         if (ruletype == 1)
                         {
                             //query = query + " declare @Score float " +
@@ -308,6 +375,8 @@ namespace Rio.Workspace.Endpoints
                                 uow.Connection.Execute(query);
                         }
 
+                       
+
                         if (ruletype == 5)
                         {
                             query = "";
@@ -348,14 +417,6 @@ namespace Rio.Workspace.Endpoints
                         if (ruletype == 7)
                         {
                             var Scandata = uow.Connection.List<GetScanDataRow>(GetScanDataRow.Fields.ScanSheetId == Scannedsheet.Id.Value && GetScanDataRow.Fields.RuleTypeId == 7);
-
-                            //List<ScannedData> RuleType7Data = uow.Connection.Query<ScannedData>("select s.Id as StudentId,e.Id as ExamId,e.NegativeMarks,eq.QuestionIndex,ss.TenantId,ss.Id as ScanSheetId,ss.ScannedBatchId as ScanBatchId," +
-                            //    " eq.Score,ss.CorrectedRollNo,ss.SheetNumber,eq.RightOptions,sq.CorrectedOptions " +
-                            //    " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
-                            //    " inner join Exams E on ss.CorrectedExamNo=E.Code" +
-                            //    " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
-                            //    " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                            //    " where ss.Id='" + sheetid + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=7 and ss.tenantId=" + Scannedsheet.TenantId).ToList();
 
                             foreach (GetScanDataRow scanned in Scandata)
                             {
