@@ -223,17 +223,18 @@ namespace Rio.Workspace.Endpoints
 
                         if (ruletype == 2)
                         {
+                            var Scandata = uow.Connection.List<GetScanDataRow>(GetScanDataRow.Fields.ScanSheetId == Scannedsheet.Id.Value && GetScanDataRow.Fields.RuleTypeId ==2);
 
-                            string Querytogetdata = "select s.Id as StudentId,e.Id as ExamId,e.NegativeMarks,eq.QuestionIndex,ss.TenantId,ss.Id as ScanSheetId,ss.ScannedBatchId as ScanBatchId," +
-                               " eq.Score,ss.CorrectedRollNo,ss.SheetNumber,eq.RightOptions,sq.CorrectedOptions " +
-                               " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
-                               " inner join Exams E on ss.CorrectedExamNo=E.Code" +
-                               " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
-                               " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                               " where ss.Id='" + gid + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=2 and ss.tenantId=" + Scannedsheet.TenantId;
-                            List<ScannedData> RuleType2Data = uow.Connection.Query<ScannedData>(Querytogetdata).ToList();
+                            //string Querytogetdata = "select s.Id as StudentId,e.Id as ExamId,e.NegativeMarks,eq.QuestionIndex,ss.TenantId,ss.Id as ScanSheetId,ss.ScannedBatchId as ScanBatchId," +
+                            //   " eq.Score,ss.CorrectedRollNo,ss.SheetNumber,eq.RightOptions,sq.CorrectedOptions " +
+                            //   " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
+                            //   " inner join Exams E on ss.CorrectedExamNo=E.Code" +
+                            //   " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
+                            //   " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                            //   " where ss.Id='" + gid + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=2 and ss.tenantId=" + Scannedsheet.TenantId;
+                            //List<ScannedData> RuleType2Data = uow.Connection.Query<ScannedData>(Querytogetdata).ToList();
 
-                            foreach (ScannedData scanned in RuleType2Data)
+                            foreach (GetScanDataRow scanned in Scandata)
                             {
                                 ExamQuestionResultRow examQuestionResult = new ExamQuestionResultRow();
 
@@ -346,16 +347,17 @@ namespace Rio.Workspace.Endpoints
 
                         if (ruletype == 7)
                         {
+                            var Scandata = uow.Connection.List<GetScanDataRow>(GetScanDataRow.Fields.ScanSheetId == Scannedsheet.Id.Value && GetScanDataRow.Fields.RuleTypeId == 7);
 
-                            List<ScannedData> RuleType7Data = uow.Connection.Query<ScannedData>("select s.Id as StudentId,e.Id as ExamId,e.NegativeMarks,eq.QuestionIndex,ss.TenantId,ss.Id as ScanSheetId,ss.ScannedBatchId as ScanBatchId," +
-                                " eq.Score,ss.CorrectedRollNo,ss.SheetNumber,eq.RightOptions,sq.CorrectedOptions " +
-                                " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
-                                " inner join Exams E on ss.CorrectedExamNo=E.Code" +
-                                " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
-                                " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
-                                " where ss.Id='" + sheetid + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=7 and ss.tenantId=" + Scannedsheet.TenantId).ToList();
+                            //List<ScannedData> RuleType7Data = uow.Connection.Query<ScannedData>("select s.Id as StudentId,e.Id as ExamId,e.NegativeMarks,eq.QuestionIndex,ss.TenantId,ss.Id as ScanSheetId,ss.ScannedBatchId as ScanBatchId," +
+                            //    " eq.Score,ss.CorrectedRollNo,ss.SheetNumber,eq.RightOptions,sq.CorrectedOptions " +
+                            //    " from ScannedQuestions SQ inner join ScannedSheets SS on sq.ScannedSheetId=ss.Id" +
+                            //    " inner join Exams E on ss.CorrectedExamNo=E.Code" +
+                            //    " inner join ExamQuestions EQ on EQ.QuestionIndex=sq.QuestionIndex and eq.ExamId=e.Id" +
+                            //    " left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                            //    " where ss.Id='" + sheetid + "' and ss.CorrectedExamNo=" + Scannedsheet.CorrectedExamNo + " and RuletypeId=7 and ss.tenantId=" + Scannedsheet.TenantId).ToList();
 
-                            foreach (ScannedData scanned in RuleType7Data)
+                            foreach (GetScanDataRow scanned in Scandata)
                             {
                                 ExamQuestionResultRow examQuestionResult = new ExamQuestionResultRow();
 

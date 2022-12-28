@@ -187,6 +187,12 @@
           "Identifier": "TheoryExamSections",
           "Module": "Workspace",
           "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "GetScanData",
+          "Identifier": "GetScanData",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
         }
       ]
     }
