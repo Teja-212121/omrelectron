@@ -47,6 +47,7 @@
         ExamUpdateUserId?: number;
         ExamIsActive?: number;
         ExamTenantId?: number;
+        DetailList?: ExamQuestionResultRow[];
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -111,6 +112,7 @@
             ExamUpdateUserId = "ExamUpdateUserId",
             ExamIsActive = "ExamIsActive",
             ExamTenantId = "ExamTenantId",
+            DetailList = "DetailList",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

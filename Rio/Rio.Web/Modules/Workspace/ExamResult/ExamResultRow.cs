@@ -3,6 +3,7 @@ using Serenity.Data;
 using Serenity.Data.Mapping;
 using Serenity.Extensions.Entities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Rio.Workspace
@@ -357,6 +358,13 @@ namespace Rio.Workspace
             set => fields.ExamTenantId[this] = value;
         }
 
+        [DisplayName("Details"), MasterDetailRelation(foreignKey: "ExamId"), NotMapped]
+        public List<ExamQuestionResultRow> DetailList
+        {
+            get => fields.DetailList[this];
+            set => fields.DetailList[this] = value;
+        }
+
         public ExamResultRow()
             : base()
         {
@@ -418,6 +426,8 @@ namespace Rio.Workspace
             public Int32Field ExamUpdateUserId;
             public Int16Field ExamIsActive;
             public Int32Field ExamTenantId;
+
+            public RowListField<ExamQuestionResultRow> DetailList;
         }
     }
 }

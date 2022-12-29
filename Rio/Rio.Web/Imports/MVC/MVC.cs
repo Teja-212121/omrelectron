@@ -66,5 +66,14 @@ namespace MVC
             public const string GridPage = "~/Views/Shared/GridPage.cshtml";
         }
 
+        public static class Workspace
+        {
+            public static class ExamResult
+            {
+                public const string ExamResultReport = "~/Modules/Workspace/ExamResult/ExamResultReport.cshtml";
+            }
+
+        }
+
     }
 }
