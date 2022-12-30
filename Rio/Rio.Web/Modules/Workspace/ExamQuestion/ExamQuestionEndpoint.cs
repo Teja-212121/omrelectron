@@ -122,6 +122,15 @@ namespace Rio.Workspace.Endpoints
                         response.ErrorList.Add("Error On Row " + row + ": QuestionIndex Not found");
                         continue;
                     }
+                    else
+                    {
+                        var examquestion = uow.Connection.TryFirst<MyRow>(MyRow.Fields.ExamId == Row.ExamId.Value && MyRow.Fields.QuestionIndex == Row.QuestionIndex.Value);
+                        if (examquestion != null)
+                        {
+                            response.ErrorList.Add("Error On Row " + row + ": Question Index already exists to for other Question!");
+                            continue;
+                        }
+                    }
                     Row.DisplayIndex = Convert.ToString(worksheet.Cells[row, 2].Value ?? null);
                     if (string.IsNullOrEmpty(Row.DisplayIndex))
                     {
