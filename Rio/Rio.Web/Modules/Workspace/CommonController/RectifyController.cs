@@ -80,7 +80,7 @@ namespace Rio.Web.Modules.Orders.CommonController
                     
                     string CorrectedOption;
                     var Question = QuestionList.Split("#$#");
-                    var scannedsheet = Connection.TryFirst<ScannedSheetRow>(ScannedSheetRow.Fields.Id == ScannedSheetId);
+                    var scannedsheet = Connection.TryFirst<ScannedSheetRow>(ScannedSheetRow.Fields.Id == ScannedSheetId.ToUpper());
                     if (scannedsheet != null)
                     {
                         var srow = new ScannedSheetRow();
