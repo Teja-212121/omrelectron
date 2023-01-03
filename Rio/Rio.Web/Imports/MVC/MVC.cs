@@ -73,6 +73,11 @@ namespace MVC
                 public const string ExamResultReport = "~/Modules/Workspace/ExamResult/ExamResultReport.cshtml";
             }
 
+            public static class ScannedSheet
+            {
+                public const string ScannedSheetIndex = "~/Modules/Workspace/ScannedSheet/ScannedSheetIndex.cshtml";
+            }
+
         }
 
     }

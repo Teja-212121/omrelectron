@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Web;
 
 namespace Rio.Workspace.Pages 
@@ -12,6 +12,7 @@ namespace Rio.Workspace.Pages
         {
             return this.GridPage("@/Workspace/ScannedSheet/ScannedSheetPage",
                 ScannedSheetRow.Fields.PageTitle());
+            //return View("~/Modules/Workspace/ScannedSheet/ScannedSheetIndex.cshtml");
         }
     }
 }
