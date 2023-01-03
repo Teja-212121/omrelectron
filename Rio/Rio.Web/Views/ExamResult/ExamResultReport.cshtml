@@ -1,8 +1,10 @@
-@model Rio.Web.Modules.Workspace.ExamResult.ExamResultReportData
+@model Rio.Web.Modules.Workspace.CommonController.Models.ExamResultReportModel
 
-@if ((bool?)ViewData["Printing"] == true)
-{
-    Layout = MVC.Views.Shared._LayoutNoNavigation;
+@{
+    ViewData["Printing"] = true;
+    Layout = User.IsLoggedIn() ?
+        "~/Views/Shared/_Layout.cshtml" :
+        "~/Views/Shared/_LayoutNoNavigation.cshtml";
 }
 
 <section class="result">
@@ -14,19 +16,23 @@
         </div>
     </div>
     <!-- info row -->
-    <div class="row result-info">
+    @*<div class="row result-info">
         <div class="col-sm-4 result-col">
         </div>
         <!-- /.col -->
         <div class="col-sm-4 result-col">
             To
-            <address>
-                @Model.Exam.Code<br>
-                @Model.Exam.Name<br>
-                @Model.Exam.TotalMarks<br>
-            </address>
+            <student>
+                @Model.Student.RollNo<br>
+                @Model.Student.FullName<br>
+            </student>
+            <exam>
+                @Model.ExamResult.ExamId<br>
+                @Model.ExamResult.ExamCode<br>
+                @Model.ExamResult.ExamName<br>
+            </exam>
         </div>
-    </div>
+    </div>*@
     <!-- /.row -->
     <!-- Table row -->
     <div class="row">
@@ -39,6 +45,7 @@
                     <tr>
                         <th>Exam</th>
                         <th>Total Questions</th>
+                        <th>Obtained Marks</th>
                         <th>Attempted</th>
                         <th>Not Attempted</th>
                         <th>Right</th>
@@ -47,12 +54,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>@Model.Exam.Name</td>
-                        <td>@Model.ExamResult.TotalQuestions.ToStringDefault())</td>
-                        <td>@Model.ExamResult.TotalAttempted.ToStringDefault())</td>
-                        <td>@Model.ExamResult.TotalNotAttempted.ToStringDefault())</td>
-                        <td>@Model.ExamResult.TotalRightAnswers.ToStringDefault())</td>
-                        <td>@Model.ExamResult.TotalWrongAnswers.ToStringDefault())</td>
+                        <td>@Model.ExamResult.ExamId</td>
+                        <td>@Model.ExamResult.TotalQuestions.ToStringDefault()</td>
+                        <td>@Model.ExamResult.ObtainedMarks.ToStringDefault("#,##0.00")</td>
+                        <td>@Model.ExamResult.TotalAttempted.ToStringDefault()</td>
+                        <td>@Model.ExamResult.TotalNotAttempted.ToStringDefault()</td>
+                        <td>@Model.ExamResult.TotalRightAnswers.ToStringDefault()</td>
+                        <td>@Model.ExamResult.TotalWrongAnswers.ToStringDefault()</td>
                     </tr>
                 </tbody>
             </table>
@@ -63,7 +71,8 @@
     <div class="row">
         <div class="col-xs-12 col-12 table-responsive">
             <h2 class="page-header">
-                <small class="pull-right">Question Details: </small>
+                <small class="pull-right">Question Details: </small><br>
+                <small class="pull-right">Exam Id: @Model.ExamResult.ExamId </small>
             </h2>
             <table class="table table-striped">
                 <thead>
@@ -72,19 +81,19 @@
                         <th>Is Attempted</th>
                         <th>Is Correct</th>
                         <th>Obtained Marks</th>
-                        @*<th>Score</th>*@
+                        @*<th>Right Options</th>
+                        <th>Score</th>
+                        <th>Selected Options</th>*@
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var d in Model.Details)
                     {
                         <tr>
-                            <td>@d.ExamName</td>
                             <td>@(d.QuestionIndex.ToStringDefault())</td>
                             <td>@(d.IsAttempted)</td>
                             <td>@(d.IsCorrect)</td>
                             <td>@(d.ObtainedMarks.ToStringDefault("#,##0.00"))</td>
-                            @*<td>@(d.Score.ToStringDefault())</td>*@
                         </tr>
                     }
                 </tbody>

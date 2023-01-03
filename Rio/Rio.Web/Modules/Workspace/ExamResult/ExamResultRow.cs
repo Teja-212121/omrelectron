@@ -365,6 +365,20 @@ namespace Rio.Workspace
             set => fields.DetailList[this] = value;
         }
 
+        [DisplayName("Exam Questions Details"), MasterDetailRelation(foreignKey: "ExamId"), NotMapped]
+        public List<ExamQuestionRow> ExamQuestionList
+        {
+            get => fields.ExamQuestionList[this];
+            set => fields.ExamQuestionList[this] = value;
+        }
+
+        [DisplayName("Scanned Question Details"), MasterDetailRelation(foreignKey: "ScannedSheetId"), NotMapped]
+        public List<ScannedQuestionRow> ScannedQuestionList
+        {
+            get => fields.ScannedQuestionList[this];
+            set => fields.ScannedQuestionList[this] = value;
+        }
+
         public ExamResultRow()
             : base()
         {
@@ -428,6 +442,8 @@ namespace Rio.Workspace
             public Int32Field ExamTenantId;
 
             public RowListField<ExamQuestionResultRow> DetailList;
+            public RowListField<ExamQuestionRow> ExamQuestionList;
+            public RowListField<ScannedQuestionRow> ScannedQuestionList;
         }
     }
 }

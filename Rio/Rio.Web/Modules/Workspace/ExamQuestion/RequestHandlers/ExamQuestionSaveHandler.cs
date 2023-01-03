@@ -47,8 +47,6 @@ namespace Rio.Workspace
                 if (examquestion != null)
 
                     throw new ValidationError("Question Index already exists to for other Question!");
-
-
             }
             else {
                 if(examquestion.Id!=Row.Id.Value)

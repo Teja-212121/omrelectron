@@ -17,6 +17,11 @@ namespace MVC
             public const string ValidationError = "~/Views/Errors/ValidationError.cshtml";
         }
 
+        public static class ExamResult
+        {
+            public const string ExamResultReport = "~/Views/ExamResult/ExamResultReport.cshtml";
+        }
+
         public static class Membership
         {
             public static class Account
@@ -64,20 +69,6 @@ namespace MVC
             public const string _Sidebar = "~/Views/Shared/_Sidebar.cshtml";
             public const string Error = "~/Views/Shared/Error.cshtml";
             public const string GridPage = "~/Views/Shared/GridPage.cshtml";
-        }
-
-        public static class Workspace
-        {
-            public static class ExamResult
-            {
-                public const string ExamResultReport = "~/Modules/Workspace/ExamResult/ExamResultReport.cshtml";
-            }
-
-            public static class ScannedSheet
-            {
-                public const string ScannedSheetIndex = "~/Modules/Workspace/ScannedSheet/ScannedSheetIndex.cshtml";
-            }
-
         }
 
     }

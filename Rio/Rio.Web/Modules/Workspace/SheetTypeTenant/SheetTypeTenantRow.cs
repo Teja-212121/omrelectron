@@ -75,6 +75,13 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
+        [DisplayName("Sheet Type Display Name"), Size(100), Expression("jSheetType.[SheetTypeDisplayName]")]
+        public string SheetTypeDisplayName
+        {
+            get => fields.SheetTypeDisplayName[this];
+            set => fields.SheetTypeDisplayName[this] = value;
+        }
+
         [DisplayName("Sheet Type Name"), Expression("jSheetType.[Name]"),QuickSearch]
         public string SheetTypeName
         {
@@ -234,6 +241,8 @@ namespace Rio.Workspace
             public SingleField DisplayOrder;
             public StringField SheetDesignPdf;
             public Int16Field IsActive;
+
+            public StringField SheetTypeDisplayName;
 
             public StringField SheetTypeName;
             public StringField SheetTypeDescription;

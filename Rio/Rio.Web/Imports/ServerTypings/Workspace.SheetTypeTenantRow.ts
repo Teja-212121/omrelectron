@@ -7,6 +7,7 @@
         DisplayOrder?: number;
         SheetDesignPdf?: string;
         IsActive?: number;
+        SheetTypeDisplayName?: string;
         SheetTypeName?: string;
         SheetTypeDescription?: string;
         SheetTypeTotalQuestions?: number;
@@ -51,6 +52,7 @@
             DisplayOrder = "DisplayOrder",
             SheetDesignPdf = "SheetDesignPdf",
             IsActive = "IsActive",
+            SheetTypeDisplayName = "SheetTypeDisplayName",
             SheetTypeName = "SheetTypeName",
             SheetTypeDescription = "SheetTypeDescription",
             SheetTypeTotalQuestions = "SheetTypeTotalQuestions",

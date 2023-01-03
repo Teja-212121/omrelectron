@@ -3,6 +3,7 @@ import { ExamResultColumns, ExamResultRow, ExamResultService } from '../../Serve
 import { Column } from "@serenity-is/sleekgrid";
 import { ReportHelper } from "@serenity-is/extensions";
 import { ExamResultDialog } from './ExamResultDialog';
+import { postToService, resolveUrl } from '@serenity-is/corelib/q';
 
 @Decorators.registerClass()
 export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
@@ -59,14 +60,23 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             e.preventDefault();
 
             if (target.hasClass('print-result')) {
+                var param = {
+                    'ExamId': item.ExamId
+                };
+                var url = "/ExamResult/ExamResultReport";
+                postToService({ url: resolveUrl('~/ExamResult/ExamResultReport?ExamId=' + item.ExamId), request: '', target: '_blank' });
+            }
+/*
+            if (target.hasClass('print-result')) {
                 ReportHelper.execute({
                     reportKey: 'Workspace.ExamResult',
                     extension: 'html',
                     params: {
                         ExamId: item.ExamId
-                    }
+                    },
+                    target: '_blank'
                 });
-            }
+            }*/
         }
     }
 }
