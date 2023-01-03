@@ -26,7 +26,8 @@ namespace Rio.Web.Modules.Workspace.ExamResult
         [Route("~/ExamResult/ExamResultReport")]
         public IActionResult GetData(int ExamId,
             [FromServices] ISqlConnections SqlConnections,
-            [FromServices] IExamQuestionResultListHandler handler)
+            [FromServices] IExamQuestionResultListHandler handler,
+            [FromServices] IExamResultRetrieveHandler exhandler)
         {
             using (var connection = SqlConnections.NewByKey("Default"))
             {
@@ -44,47 +45,16 @@ namespace Rio.Web.Modules.Workspace.ExamResult
                     model.Details = new List<ExamQuestionResultRow>();
                     model.Details = data.Entities;
 
+                    RetrieveRequest retrieveRequest = new RetrieveRequest();
+                    retrieveRequest.ColumnSelection = RetrieveColumnSelection.Details;
+                    retrieveRequest.EntityId = ExamId;
+                    model.ExamResult = exhandler.Retrieve(connection, retrieveRequest).Entity;
+
                     var o = ExamResultRow.Fields;
-                    model.ExamResult = connection.TryFirst<ExamResultRow>(q=> q.Select(o.ExamCode).Select(o.ExamName).Select(o.TotalMarks).Select(o.TotalQuestions).Select(o.TotalQuestions).Select(o.TotalAttempted).Select(o.TotalNotAttempted).Select(o.TotalRightAnswers).Select(o.TotalWrongAnswers)
-                    .Where(o.ExamId == ExamId));
+                    model.ExamResult = connection.TryFirst<ExamResultRow>(new Criteria(o.ExamId) == ExamId);
 
                     var eqr = ExamQuestionResultRow.Fields;
                     model.Details = connection.List<ExamQuestionResultRow>(q => q.Select(eqr.QuestionIndex).Select(eqr.ObtainedMarks).Select(eqr.IsAttempted).Select(eqr.IsCorrect).Where(eqr.ExamId == ExamId));
-
-                    /*model.ExamResult = connection.TryFirst<ExamResultRow>(q => q.SelectTableFields().Select(o.ObtainedMarks).Select(o.TotalQuestions).Select(o.TotalAttempted).Select(o.TotalNotAttempted).Select(o.TotalRightAnswers).Select(o.TotalWrongAnswers).Where(o.ExamId == ExamId));
-
-                     var st = StudentRow.Fields;
-                     model.Student = connection.TryById<StudentRow>(StudentId, q => q
-                      .SelectTableFields()
-                      .Select(st.FullName)
-                      .Select(st.RollNo)
-                      .Select(st.Id)) ?? new StudentRow();
-
-                     var ex = ExamRow.Fields;
-                     model.Exam = connection.TryById<ExamRow>(ExamId, q => q
-                      .SelectTableFields()
-                      .Select(ex.Code)
-                      .Select(ex.Name)
-                      .Select(ex.Id)) ?? new ExamRow();
-
-                     var eqr = ExamQuestionResultRow.Fields;
-                     model.Details = connection.List<ExamQuestionResultRow>(q => q
-                         .SelectTableFields()
-                         .Select(eqr.QuestionIndex)
-                         .Select(eqr.ObtainedMarks)
-                         .Where(eqr.ExamId == ExamId));
-
-                     var sq = ScannedQuestionRow.Fields;
-                     model.ScannedQuestion = connection.TryById<ScannedQuestionRow>(ScannedQuestionId, q => q
-                         .SelectTableFields()
-                         .Select(sq.QuestionIndex)
-                         .Select(sq.CorrectedOptions)) ?? new ScannedQuestionRow();
-
-                     var eq = ExamQuestionRow.Fields;
-                     model.ExamQuestion = connection.TryFirst<ExamQuestionRow>(q => q.SelectTableFields()
-                         .Select(eq.QuestionIndex)
-                         .Select(eq.RightOptions))
-                     ?? new ExamQuestionRow();*/
                 }
                 catch (Exception ex)
                 {
