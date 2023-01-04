@@ -24,7 +24,7 @@ namespace Rio.Web.Modules.Workspace.ExamResult
         public int ScannedQuestionId { get; set; }
 
         [Route("~/ExamResult/ExamResultReport")]
-        public IActionResult GetData(int ExamId,
+        public IActionResult GetData(int ExamResultId,int ExamId,
             [FromServices] ISqlConnections SqlConnections,
             [FromServices] IExamQuestionResultListHandler handler,
             [FromServices] IExamResultRetrieveHandler exhandler)
@@ -39,7 +39,7 @@ namespace Rio.Web.Modules.Workspace.ExamResult
                     request2.ColumnSelection = ColumnSelection.Details;
                     request2.EqualityFilter = new Dictionary<string, object>();
                     //request2.Sort =new SortBy[]();
-                    request2.EqualityFilter.Add("ExamId", ExamId);
+                    request2.EqualityFilter.Add("Id", ExamResultId);
                     ExamQuestionResultController endpoint = new ExamQuestionResultController();
                     var data = endpoint.List(connection, request2, handler);
                     model.Details = new List<ExamQuestionResultRow>();
@@ -47,11 +47,11 @@ namespace Rio.Web.Modules.Workspace.ExamResult
 
                     RetrieveRequest retrieveRequest = new RetrieveRequest();
                     retrieveRequest.ColumnSelection = RetrieveColumnSelection.Details;
-                    retrieveRequest.EntityId = ExamId;
+                    retrieveRequest.EntityId = ExamResultId;
                     model.ExamResult = exhandler.Retrieve(connection, retrieveRequest).Entity;
 
                     var o = ExamResultRow.Fields;
-                    model.ExamResult = connection.TryFirst<ExamResultRow>(new Criteria(o.ExamId) == ExamId);
+                    model.ExamResult = connection.TryFirst<ExamResultRow>(new Criteria(o.Id) == ExamResultId);
 
                     var eqr = ExamQuestionResultRow.Fields;
                     model.Details = connection.List<ExamQuestionResultRow>(q => q.Select(eqr.QuestionIndex).Select(eqr.ObtainedMarks).Select(eqr.IsAttempted).Select(eqr.IsCorrect).Where(eqr.ExamId == ExamId));

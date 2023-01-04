@@ -61,10 +61,11 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
 
             if (target.hasClass('print-result')) {
                 var param = {
+                    'ExamResultId': item.Id,
                     'ExamId': item.ExamId
                 };
                 var url = "/ExamResult/ExamResultReport";
-                postToService({ url: resolveUrl('~/ExamResult/ExamResultReport?ExamId=' + item.ExamId), request: '', target: '_blank' });
+                postToService({ url: resolveUrl('~/ExamResult/ExamResultReport?ExamResultId=' + item.Id), request: '', target: '_blank' });
             }
 /*
             if (target.hasClass('print-result')) {
