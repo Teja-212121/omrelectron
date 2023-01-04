@@ -1,4 +1,4 @@
-﻿import { StringEditor, TextAreaEditor, IntegerEditor, DecimalEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, TextAreaEditor, IntegerEditor, DecimalEditor, ImageUploadEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface ExamForm {
@@ -10,6 +10,8 @@ export interface ExamForm {
     NegativeMarks: DecimalEditor;
     OptionsAvailable: IntegerEditor;
     ResultCriteria: StringEditor;
+    QuestionPaper: ImageUploadEditor;
+    ModelAnswer: ImageUploadEditor;
     SelectedTenant: LookupEditor;
 }
 
@@ -27,7 +29,8 @@ export class ExamForm extends PrefixedContext {
             var w1 = TextAreaEditor;
             var w2 = IntegerEditor;
             var w3 = DecimalEditor;
-            var w4 = LookupEditor;
+            var w4 = ImageUploadEditor;
+            var w5 = LookupEditor;
 
             initFormType(ExamForm, [
                 'Code', w0,
@@ -38,7 +41,9 @@ export class ExamForm extends PrefixedContext {
                 'NegativeMarks', w3,
                 'OptionsAvailable', w2,
                 'ResultCriteria', w0,
-                'SelectedTenant', w4
+                'QuestionPaper', w4,
+                'ModelAnswer', w4,
+                'SelectedTenant', w5
             ]);
         }
     }

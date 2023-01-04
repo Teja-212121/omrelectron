@@ -10,6 +10,8 @@
         NegativeMarks?: number;
         OptionsAvailable?: number;
         ResultCriteria?: string;
+        QuestionPaper?: string;
+        ModelAnswer?: string;
         IsActive?: number;
         TenantId?: number;
         SelectedTenant?: number;
@@ -45,6 +47,8 @@
             NegativeMarks = "NegativeMarks",
             OptionsAvailable = "OptionsAvailable",
             ResultCriteria = "ResultCriteria",
+            QuestionPaper = "QuestionPaper",
+            ModelAnswer = "ModelAnswer",
             IsActive = "IsActive",
             TenantId = "TenantId",
             SelectedTenant = "SelectedTenant",

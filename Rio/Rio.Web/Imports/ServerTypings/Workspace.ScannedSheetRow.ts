@@ -17,6 +17,7 @@
         ScannedSystemErrors?: string;
         ScannedUserErrors?: string;
         ScannedComments?: string;
+        ImageBase64?: string;
         ResultProcessed?: boolean;
         IsRectified?: boolean;
         IsActive?: number;
@@ -98,6 +99,7 @@
             ScannedSystemErrors = "ScannedSystemErrors",
             ScannedUserErrors = "ScannedUserErrors",
             ScannedComments = "ScannedComments",
+            ImageBase64 = "ImageBase64",
             ResultProcessed = "ResultProcessed",
             IsRectified = "IsRectified",
             IsActive = "IsActive",

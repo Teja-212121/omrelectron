@@ -39,6 +39,15 @@ namespace Rio.Web.Modules.Orders.CommonController
                     var data = endpoint.List(Connection, request2, handler);
                     ScannedQuestion.ScanQuestionList = new List<ScannedQuestionRow>();
                     ScannedQuestion.ScanQuestionList = data.Entities;
+                    if (data.Entities != null)
+                    {
+                        if (!string.IsNullOrEmpty(data.Entities[0].ScannedSheetImageBase64))
+                        {
+                            if (!data.Entities[0].ScannedSheetImageBase64.StartsWith("data:image/jpeg;base64,"))
+                                data.Entities[0].ScannedSheetImageBase64 = "data:image/jpeg;base64," + data.Entities[0].ScannedSheetImageBase64;
+                        }
+                        
+                    }
                     var e = ScannedSheetRow.Fields;
                     var nextScansheet = Connection.TryFirst<ScannedSheetRow>(q => q
                      .Select(e.Id).Take(1)

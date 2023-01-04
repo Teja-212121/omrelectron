@@ -2,6 +2,7 @@ using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
+using System.ComponentModel;
 
 namespace Rio.Workspace.Forms
 {
@@ -41,6 +42,8 @@ namespace Rio.Workspace.Forms
         public string ScannedUserErrors { get; set; }
         [TextAreaEditor(Rows = 3)]
         public string ScannedComments { get; set; }
+        [ReadOnly(true)]
+        public string ImageBase64 { get; set; }
         [HalfWidth]
         public bool ResultProcessed { get; set; }
         [HalfWidth]

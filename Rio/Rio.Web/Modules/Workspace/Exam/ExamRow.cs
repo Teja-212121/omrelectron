@@ -87,6 +87,20 @@ namespace Rio.Workspace
             set => fields.ResultCriteria[this] = value;
         }
 
+        [DisplayName("Question Paper"), Size(2000), FileUploadEditor()]
+        public string QuestionPaper
+        {
+            get => fields.QuestionPaper[this];
+            set => fields.QuestionPaper[this] = value;
+        }
+
+        [DisplayName("Model Answer"), Size(2000), FileUploadEditor()]
+        public string ModelAnswer
+        {
+            get => fields.ModelAnswer[this];
+            set => fields.ModelAnswer[this] = value;
+        }
+
         [DisplayName("Is Active"), NotNull, Insertable(false), Updatable(true)]
         public short? IsActive
         {
@@ -141,6 +155,8 @@ namespace Rio.Workspace
             public SingleField NegativeMarks;
             public Int16Field OptionsAvailable;
             public StringField ResultCriteria;
+            public StringField QuestionPaper;
+            public StringField ModelAnswer;
             public Int16Field IsActive;
             public Int32Field TenantId;
             public Int32Field SelectedTenant;

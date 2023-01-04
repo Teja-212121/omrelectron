@@ -1,0 +1,19 @@
+.s-Workspace-ScannedSheetGrid .failedsheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .failedsheet .slick-cell a {
+  background-color: red;
+}
+
+.s-Workspace-ScannedSheetGrid .warningsheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .warningsheet .slick-cell a {
+  background-color: orange;
+}
+
+.s-Workspace-ScannedSheetGrid .successsheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .successsheet .slick-cell a {
+  background-color: green;
+}
+
+.s-Workspace-ScannedSheetGrid .Opensheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .Opensheet .slick-cell a {
+  background-color: lightgrey;
+}

@@ -5,6 +5,7 @@ import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { EScannedStatus, ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
 
+
 const fld = ScannedSheetRow.Fields;
 
 @Decorators.registerClass()
