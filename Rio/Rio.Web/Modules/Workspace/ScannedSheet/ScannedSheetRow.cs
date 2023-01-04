@@ -146,6 +146,13 @@ namespace Rio.Workspace
             set => fields.ScannedUserErrors[this] = value;
         }
 
+        [DisplayName("ImageBase64")]
+        public string ImageBase64
+        {
+            get => fields.ImageBase64[this];
+            set => fields.ImageBase64[this] = value;
+        }
+
         [DisplayName("Scanned Comments"), Size(1000)]
         public string ScannedComments
         {
@@ -478,6 +485,7 @@ namespace Rio.Workspace
             public StringField ScannedSystemErrors;
             public StringField ScannedUserErrors;
             public StringField ScannedComments;
+            public StringField ImageBase64;
             public BooleanField ResultProcessed;
             public BooleanField IsRectified;
             public Int16Field IsActive;

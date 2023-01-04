@@ -18,6 +18,7 @@
         ScannedSheetExamSetNo?: string;
         ScannedSheetScannedImageSourcePath?: string;
         ScannedSheetScannedImage?: string;
+        ScannedSheetImageBase64?: string;
         ScannedSheetScannedBatchId?: string;
         ScannedSheetScannedStatus?: number;
         ScannedSheetScannedSystemErrors?: string;
@@ -64,6 +65,7 @@
             ScannedSheetExamSetNo = "ScannedSheetExamSetNo",
             ScannedSheetScannedImageSourcePath = "ScannedSheetScannedImageSourcePath",
             ScannedSheetScannedImage = "ScannedSheetScannedImage",
+            ScannedSheetImageBase64 = "ScannedSheetImageBase64",
             ScannedSheetScannedBatchId = "ScannedSheetScannedBatchId",
             ScannedSheetScannedStatus = "ScannedSheetScannedStatus",
             ScannedSheetScannedSystemErrors = "ScannedSheetScannedSystemErrors",

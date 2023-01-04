@@ -71,5 +71,14 @@ namespace MVC
             public const string GridPage = "~/Views/Shared/GridPage.cshtml";
         }
 
+        public static class Workspace
+        {
+            public static class ScannedSheet
+            {
+                public const string ScannedSheetIndex = "~/Modules/Workspace/ScannedSheet/ScannedSheetIndex.cshtml";
+            }
+
+        }
+
     }
 }

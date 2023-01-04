@@ -16,6 +16,7 @@
         ScannedSystemErrors: Serenity.TextAreaEditor;
         ScannedUserErrors: Serenity.TextAreaEditor;
         ScannedComments: Serenity.TextAreaEditor;
+        ImageBase64: Serenity.StringEditor;
         ResultProcessed: Serenity.BooleanEditor;
         OCRData1Key: Serenity.StringEditor;
         OCRData1Value: Serenity.StringEditor;
@@ -67,6 +68,7 @@
                     'ScannedSystemErrors', w4,
                     'ScannedUserErrors', w4,
                     'ScannedComments', w4,
+                    'ImageBase64', w2,
                     'ResultProcessed', w3,
                     'OCRData1Key', w2,
                     'OCRData1Value', w2,

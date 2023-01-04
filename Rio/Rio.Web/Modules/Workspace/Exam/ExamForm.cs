@@ -26,6 +26,10 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public string ResultCriteria { get; set; }
         [HalfWidth]
+        public string QuestionPaper { get; set; }
+        [HalfWidth]
+        public string ModelAnswer { get; set; }
+        [HalfWidth]
         public int SelectedTenant { get; set; }
         
     }

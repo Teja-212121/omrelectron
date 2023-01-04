@@ -8,6 +8,8 @@
         NegativeMarks: Serenity.DecimalEditor;
         OptionsAvailable: Serenity.IntegerEditor;
         ResultCriteria: Serenity.StringEditor;
+        QuestionPaper: Serenity.ImageUploadEditor;
+        ModelAnswer: Serenity.ImageUploadEditor;
         SelectedTenant: Serenity.LookupEditor;
     }
 
@@ -26,7 +28,8 @@
                 var w1 = s.TextAreaEditor;
                 var w2 = s.IntegerEditor;
                 var w3 = s.DecimalEditor;
-                var w4 = s.LookupEditor;
+                var w4 = s.ImageUploadEditor;
+                var w5 = s.LookupEditor;
 
                 Q.initFormType(ExamForm, [
                     'Code', w0,
@@ -37,7 +40,9 @@
                     'NegativeMarks', w3,
                     'OptionsAvailable', w2,
                     'ResultCriteria', w0,
-                    'SelectedTenant', w4
+                    'QuestionPaper', w4,
+                    'ModelAnswer', w4,
+                    'SelectedTenant', w5
                 ]);
             }
         }

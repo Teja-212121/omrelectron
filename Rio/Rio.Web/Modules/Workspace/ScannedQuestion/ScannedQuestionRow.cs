@@ -143,6 +143,13 @@ namespace Rio.Workspace
             set => fields.ScannedSheetScannedImage[this] = value;
         }
 
+        [DisplayName("Scanned Sheet ImageBase64"), Expression("jScannedSheet.[ImageBase64]")]
+        public string ScannedSheetImageBase64
+        {
+            get => fields.ScannedSheetImageBase64[this];
+            set => fields.ScannedSheetImageBase64[this] = value;
+        }
+
         [DisplayName("Scanned Batch"), Expression("jScannedSheet.[ScannedBatchId]")]
         public Guid? ScannedSheetScannedBatchId
         {
@@ -265,6 +272,7 @@ namespace Rio.Workspace
             public StringField ScannedSheetExamSetNo;
             public StringField ScannedSheetScannedImageSourcePath;
             public StringField ScannedSheetScannedImage;
+            public StringField ScannedSheetImageBase64;
             public GuidField ScannedSheetScannedBatchId;
             public Int16Field ScannedSheetScannedStatus;
             public StringField ScannedSheetScannedSystemErrors;
