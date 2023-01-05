@@ -193,6 +193,12 @@
           "Identifier": "GetScanData",
           "Module": "Workspace",
           "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "vw_ExamResultReport",
+          "Identifier": "ResultReport",
+          "Module": "ResultReportView",
+          "PermissionKey": "Administration:General"
         }
       ]
     }

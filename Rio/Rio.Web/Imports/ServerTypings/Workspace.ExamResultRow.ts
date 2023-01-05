@@ -47,9 +47,7 @@
         ExamUpdateUserId?: number;
         ExamIsActive?: number;
         ExamTenantId?: number;
-        DetailList?: ExamQuestionResultRow[];
-        ExamQuestionList?: ExamQuestionRow[];
-        ScannedQuestionList?: ScannedQuestionRow[];
+        DetailList?: ResultReportView.ResultReportRow[];
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -115,8 +113,6 @@
             ExamIsActive = "ExamIsActive",
             ExamTenantId = "ExamTenantId",
             DetailList = "DetailList",
-            ExamQuestionList = "ExamQuestionList",
-            ScannedQuestionList = "ScannedQuestionList",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
