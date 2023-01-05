@@ -533,7 +533,7 @@ namespace Rio.Workspace.Endpoints
                             " from ExamQuestions as QA inner join Exams E on QA.ExamId=E.Id " +
                             " left join (select CorrectedRollNo,CorrectedExamNo,SheetNumber,id as ScannedSheetId,ScannedBatchId,TenantId FROM ScannedSheets where Id='" + id.ToString().ToUpper() + "') as SS " +
                             " on E.Code=ss.CorrectedExamNo AND E.TenantId=ss.TenantId left Join ( select 1 as TestId, QuestionIndex,  CorrectedOptions from ScannedQuestions where ScannedSheetId = '" + id.ToString().ToUpper() + "' ) as SQ " +
-                            " On QA.ExamId = SQ.TestId and QA.QuestionIndex = SQ.QuestionIndex  where QA.ExamId = " + Exams.Id + " and QA.RuleTypeId in (1,3,5,6) ) as StudentResult ";
+                            " On  QA.QuestionIndex = SQ.QuestionIndex  where QA.ExamId = " + Exams.Id + " and QA.RuleTypeId in (1,3,5,6) ) as StudentResult ";
 
                     if (!string.IsNullOrEmpty(query))
                         uow.Connection.Execute(query);
@@ -550,9 +550,9 @@ namespace Rio.Workspace.Endpoints
                         " (select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsAttempted=1 ) as TotalAttempted," +
                         " (SELECT e.TotalQuestions-(select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsAttempted=1)) as TotalNotAttempted," +
                         "  (select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsCorrect=1) as TotalRightAnswers," +
-                        "  (SELECT e.TotalQuestions-(select ifnull(count(Id),0) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsCorrect=1)) as TotalWrongAnswers," +
+                        "  ((select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsAttempted=1) -(select ifnull(count(Id),0) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsCorrect=1)) as TotalWrongAnswers," +
                         "  datetime('now'),1,1,ss.TenantId,ss.ScannedBatchId,ss.Id" +
-                        "  from  ScannedSheets SS inner join Exams E on ss.CorrectedExamNo=E.Code" +
+                        "  from  ScannedSheets SS inner join Exams E on ss.CorrectedExamNo=E.Code and ss.TenantId=E.TenantId" +
                         "  left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
                         " where ss.Id='" + id.ToString().ToUpper() + "'   and ss.tenantId=" + Scannedsheet.TenantId;
 
