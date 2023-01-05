@@ -1,3 +1,4 @@
+using Rio.ResultReportView;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -358,25 +359,11 @@ namespace Rio.Workspace
             set => fields.ExamTenantId[this] = value;
         }
 
-        [DisplayName("Details"), MasterDetailRelation(foreignKey: "ExamId"), NotMapped]
-        public List<ExamQuestionResultRow> DetailList
+        [DisplayName("Details"), MasterDetailRelation(foreignKey: "ScannedSheetId"), NotMapped]
+        public List<ResultReportRow> DetailList
         {
             get => fields.DetailList[this];
             set => fields.DetailList[this] = value;
-        }
-
-        [DisplayName("Exam Questions Details"), MasterDetailRelation(foreignKey: "ExamId"), NotMapped]
-        public List<ExamQuestionRow> ExamQuestionList
-        {
-            get => fields.ExamQuestionList[this];
-            set => fields.ExamQuestionList[this] = value;
-        }
-
-        [DisplayName("Scanned Question Details"), MasterDetailRelation(foreignKey: "ScannedSheetId"), NotMapped]
-        public List<ScannedQuestionRow> ScannedQuestionList
-        {
-            get => fields.ScannedQuestionList[this];
-            set => fields.ScannedQuestionList[this] = value;
         }
 
         public ExamResultRow()
@@ -441,9 +428,7 @@ namespace Rio.Workspace
             public Int16Field ExamIsActive;
             public Int32Field ExamTenantId;
 
-            public RowListField<ExamQuestionResultRow> DetailList;
-            public RowListField<ExamQuestionRow> ExamQuestionList;
-            public RowListField<ScannedQuestionRow> ScannedQuestionList;
+            public RowListField<ResultReportRow> DetailList;
         }
     }
 }

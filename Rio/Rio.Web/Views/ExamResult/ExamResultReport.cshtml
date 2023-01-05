@@ -17,21 +17,21 @@
     </div>
     <!-- info row -->
     @*<div class="row result-info">
-        <div class="col-sm-4 result-col">
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 result-col">
-            To
-            <student>
-                @Model.Student.RollNo<br>
-                @Model.Student.FullName<br>
-            </student>
-            <exam>
-                @Model.ExamResult.ExamId<br>
-                @Model.ExamResult.ExamCode<br>
-                @Model.ExamResult.ExamName<br>
-            </exam>
-        </div>
+    <div class="col-sm-4 result-col">
+    </div>
+    <!-- /.col -->
+    <div class="col-sm-4 result-col">
+    To
+    <student>
+    @Model.Student.RollNo<br>
+    @Model.Student.FullName<br>
+    </student>
+    <exam>
+    @Model.ExamResult.ExamId<br>
+    @Model.ExamResult.ExamCode<br>
+    @Model.ExamResult.ExamName<br>
+    </exam>
+    </div>
     </div>*@
     <!-- /.row -->
     <!-- Table row -->
@@ -72,7 +72,8 @@
         <div class="col-xs-12 col-12 table-responsive">
             <h2 class="page-header">
                 <small class="pull-right">Question Details: </small><br>
-                <small class="pull-right">Exam Id: @Model.ExamResult.ExamId </small>
+                <small class="pull-right">Exam Result Id: @Model.ExamResult.Id </small><br>
+                <small class="pull-right">Exam Id: @Model.ExamResult.ExamId </small><br>
             </h2>
             <table class="table table-striped">
                 <thead>
@@ -80,10 +81,11 @@
                         <th>Question Index</th>
                         <th>Is Attempted</th>
                         <th>Is Correct</th>
+                        <th>Right Options</th>
+                        <th>Selected Options</th>
                         <th>Obtained Marks</th>
-                        @*<th>Right Options</th>
                         <th>Score</th>
-                        <th>Selected Options</th>*@
+
                     </tr>
                 </thead>
                 <tbody>
@@ -93,7 +95,10 @@
                             <td>@(d.QuestionIndex.ToStringDefault())</td>
                             <td>@(d.IsAttempted)</td>
                             <td>@(d.IsCorrect)</td>
-                            <td>@(d.ObtainedMarks.ToStringDefault("#,##0.00"))</td>
+                            <td>@(d.RightOptions.ToString())</td>
+                            <td>@(d.CorrectedOptions.ToString())</td>
+                            <td>@(d.ObtainedMarks.ToString())</td>
+                            <td>@(d.Score.ToString())</td>
                         </tr>
                     }
                 </tbody>

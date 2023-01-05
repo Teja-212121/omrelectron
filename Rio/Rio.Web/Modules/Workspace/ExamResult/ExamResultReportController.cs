@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Rio.ResultReportView;
+using Rio.ResultReportView.Endpoints;
 using Rio.Web.Modules.Workspace.CommonController.Models;
 using Rio.Workspace;
 using Rio.Workspace.Endpoints;
@@ -24,9 +26,9 @@ namespace Rio.Web.Modules.Workspace.ExamResult
         public int ScannedQuestionId { get; set; }
 
         [Route("~/ExamResult/ExamResultReport")]
-        public IActionResult GetData(int ExamResultId,int ExamId,
+        public IActionResult GetData(int ExamResultId, Guid ScannedSheetId, int ExamId,
             [FromServices] ISqlConnections SqlConnections,
-            [FromServices] IExamQuestionResultListHandler handler,
+            [FromServices] IResultReportListHandler handler,
             [FromServices] IExamResultRetrieveHandler exhandler)
         {
             using (var connection = SqlConnections.NewByKey("Default"))
@@ -39,10 +41,10 @@ namespace Rio.Web.Modules.Workspace.ExamResult
                     request2.ColumnSelection = ColumnSelection.Details;
                     request2.EqualityFilter = new Dictionary<string, object>();
                     //request2.Sort =new SortBy[]();
-                    request2.EqualityFilter.Add("Id", ExamResultId);
-                    ExamQuestionResultController endpoint = new ExamQuestionResultController();
+                    request2.EqualityFilter.Add("ScannedSheetId", ScannedSheetId);
+                    ResultReportController endpoint = new ResultReportController();
                     var data = endpoint.List(connection, request2, handler);
-                    model.Details = new List<ExamQuestionResultRow>();
+                    model.Details = new List<ResultReportRow>();
                     model.Details = data.Entities;
 
                     RetrieveRequest retrieveRequest = new RetrieveRequest();
@@ -53,8 +55,8 @@ namespace Rio.Web.Modules.Workspace.ExamResult
                     var o = ExamResultRow.Fields;
                     model.ExamResult = connection.TryFirst<ExamResultRow>(new Criteria(o.Id) == ExamResultId);
 
-                    var eqr = ExamQuestionResultRow.Fields;
-                    model.Details = connection.List<ExamQuestionResultRow>(q => q.Select(eqr.QuestionIndex).Select(eqr.ObtainedMarks).Select(eqr.IsAttempted).Select(eqr.IsCorrect).Where(eqr.ExamId == ExamId));
+                    var eqr = ResultReportRow.Fields;
+                    model.Details = connection.List<ResultReportRow>(new Criteria(eqr.ScannedSheetId) == ScannedSheetId);
                 }
                 catch (Exception ex)
                 {
