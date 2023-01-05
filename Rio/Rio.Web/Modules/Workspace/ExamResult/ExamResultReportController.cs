@@ -26,7 +26,7 @@ namespace Rio.Web.Modules.Workspace.ExamResult
         public int ScannedQuestionId { get; set; }
 
         [Route("~/ExamResult/ExamResultReport")]
-        public IActionResult GetData(int ExamResultId, Guid ScannedSheetId, int ExamId,
+        public IActionResult GetData(int ExamResultId,
             [FromServices] ISqlConnections SqlConnections,
             [FromServices] IResultReportListHandler handler,
             [FromServices] IExamResultRetrieveHandler exhandler)
@@ -37,26 +37,24 @@ namespace Rio.Web.Modules.Workspace.ExamResult
                 try
                 {
 
-                    ListRequest request2 = new ListRequest();
-                    request2.ColumnSelection = ColumnSelection.Details;
-                    request2.EqualityFilter = new Dictionary<string, object>();
-                    //request2.Sort =new SortBy[]();
-                    request2.EqualityFilter.Add("ScannedSheetId", ScannedSheetId);
-                    ResultReportController endpoint = new ResultReportController();
-                    var data = endpoint.List(connection, request2, handler);
-                    model.Details = new List<ResultReportRow>();
-                    model.Details = data.Entities;
+                   
 
                     RetrieveRequest retrieveRequest = new RetrieveRequest();
                     retrieveRequest.ColumnSelection = RetrieveColumnSelection.Details;
                     retrieveRequest.EntityId = ExamResultId;
                     model.ExamResult = exhandler.Retrieve(connection, retrieveRequest).Entity;
-
-                    var o = ExamResultRow.Fields;
-                    model.ExamResult = connection.TryFirst<ExamResultRow>(new Criteria(o.Id) == ExamResultId);
-
-                    var eqr = ResultReportRow.Fields;
-                    model.Details = connection.List<ResultReportRow>(new Criteria(eqr.ScannedSheetId) == ScannedSheetId);
+                    if (model.ExamResult != null)
+                    {
+                        ListRequest request2 = new ListRequest();
+                        request2.ColumnSelection = ColumnSelection.Details;
+                        request2.EqualityFilter = new Dictionary<string, object>();
+                        //request2.Sort =new SortBy[]();
+                        request2.EqualityFilter.Add("ScannedSheetId", model.ExamResult.ScannedSheetId);
+                        ResultReportController endpoint = new ResultReportController();
+                        var data = endpoint.List(connection, request2, handler);
+                        model.Details = new List<ResultReportRow>();
+                        model.Details = data.Entities;
+                    }
                 }
                 catch (Exception ex)
                 {

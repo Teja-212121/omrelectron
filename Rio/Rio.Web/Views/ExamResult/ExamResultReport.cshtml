@@ -8,13 +8,13 @@
 }
 
 <section class="result">
-    <div class="row">
+   @* <div class="row">
         <div class="col-xs-12 col-12">
             <h2 class="page-header">
                 <small class="pull-right">Date: @DateTime.Now.ToShortDateString()</small>
             </h2>
         </div>
-    </div>
+    </div>*@
     <!-- info row -->
     @*<div class="row result-info">
     <div class="col-sm-4 result-col">
@@ -38,12 +38,38 @@
     <div class="row">
         <div class="col-xs-12 col-12 table-responsive">
             <h2 class="page-header">
+                <small class="pull-right">Student Info: </small>
+            </h2>
+            <table class="table table-striped">
+                <tr>
+                    <td colspan="2">Roll Number:</td>
+                    <td colspan="2">@Model.ExamResult.RollNumber</td>
+                    <td colspan="2"> </td>
+                    <td colspan="2">Student Name:</td>
+                    <td colspan="4">@Model.ExamResult.StudentFullName</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Exam Code:</td>
+                    <td colspan="2">@Model.ExamResult.ExamCode</td>
+                    <td colspan="2"> </td>
+                    <td colspan="2">Exam Name:</td>
+                    <td colspan="4">@Model.ExamResult.ExamName</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Marks Obtained:</td>
+                    <td colspan="2">@Model.ExamResult.ObtainedMarks</td>
+                    <td colspan="2"> </td>
+                    <td colspan="2">Out Of:</td>
+                    <td colspan="4">@Model.ExamResult.TotalMarks</td>
+                </tr>
+            </table>
+            <h2 class="page-header">
                 <small class="pull-right">Exam Analysis: </small>
             </h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Exam</th>
+                        
                         <th>Total Questions</th>
                         <th>Obtained Marks</th>
                         <th>Attempted</th>
@@ -54,7 +80,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>@Model.ExamResult.Id</td>
+                        
                         <td>@Model.ExamResult.TotalQuestions.ToStringDefault()</td>
                         <td>@Model.ExamResult.ObtainedMarks.ToStringDefault("#,##0.00")</td>
                         <td>@Model.ExamResult.TotalAttempted.ToStringDefault()</td>
@@ -72,8 +98,8 @@
         <div class="col-xs-12 col-12 table-responsive">
             <h2 class="page-header">
                 <small class="pull-right">Question Details: </small><br>
-                <small class="pull-right">Exam Result Id: @Model.ExamResult.Id </small><br>
-                <small class="pull-right">Exam Id: @Model.ExamResult.ExamId </small><br>
+                @*<small class="pull-right">Exam Result Id: @Model.ExamResult.Id </small><br>
+                <small class="pull-right">Exam Id: @Model.ExamResult.ExamId </small><br>*@
             </h2>
             <table class="table table-striped">
                 <thead>
@@ -96,7 +122,13 @@
                             <td>@(d.IsAttempted)</td>
                             <td>@(d.IsCorrect)</td>
                             <td>@(d.RightOptions.ToString())</td>
-                            <td>@(d.CorrectedOptions.ToString())</td>
+                            @if (!string.IsNullOrEmpty(d.CorrectedOptions))
+                            {
+                                <td>@(d.CorrectedOptions.ToString())</td>
+                            }else
+                            {
+                                <td></td>
+                            }
                             <td>@(d.ObtainedMarks.ToString())</td>
                             <td>@(d.Score.ToString())</td>
                         </tr>
@@ -104,5 +136,6 @@
                 </tbody>
             </table>
             <!-- /.col -->
+        </div>
         </div>
 </section>
