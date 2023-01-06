@@ -7,7 +7,7 @@ namespace Rio.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Alter.Table("ExamQuestionResults").AddColumn("ExamQuestionId").AsInt32().Nullable().ForeignKey("ExamQuestions", "Id")
+            Alter.Table("ExamQuestionResults").AddColumn("ExamQuestionId").AsInt64().Nullable().ForeignKey("ExamQuestions", "Id")
                 .AddColumn("ExamSectionId").AsInt32().Nullable().ForeignKey("ExamSections", "Id");
         }
         public override void Down() { }
