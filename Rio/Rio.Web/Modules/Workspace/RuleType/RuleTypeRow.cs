@@ -9,7 +9,7 @@ namespace Rio.Workspace
     [DisplayName("Rule Type"), InstanceName("Rule Type")]
     [ReadPermission(PermissionKeys.RuleTypeManagement.View)]
     [ModifyPermission("Administration.Security")]
-    [LookupScript("Workspace.RuleType")]
+    [LookupScript("Workspace.RuleType", Expiration = 1,Permission ="?")]
     public sealed class RuleTypeRow : Row<RuleTypeRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
