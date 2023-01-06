@@ -12,7 +12,6 @@ export interface SheetTypeForm {
     SheetImage: ImageUploadEditor;
     OverlayImage: ImageUploadEditor;
     Synced: BooleanEditor;
-    IsPublic: BooleanEditor;
     IsPrivate: BooleanEditor;
     SheetNumber: StringEditor;
     PdfTemplate: ImageUploadEditor;
@@ -46,7 +45,6 @@ export class SheetTypeForm extends PrefixedContext {
                 'SheetImage', w4,
                 'OverlayImage', w4,
                 'Synced', w5,
-                'IsPublic', w5,
                 'IsPrivate', w5,
                 'SheetNumber', w0,
                 'PdfTemplate', w4

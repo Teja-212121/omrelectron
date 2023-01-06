@@ -11,10 +11,12 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public int Id { get; set; }
         public string StudentFullName { get; set; }
+        [QuickFilter]
         public long RollNumber { get; set; }
         [EditLink]
         public string SheetNumber { get; set; }
         public Guid SheetGuid { get; set; }
+        [QuickFilter]
         public string ExamCode { get; set; }
         public float TotalMarks { get; set; }
         public float ObtainedMarks { get; set; }
@@ -29,6 +31,10 @@ namespace Rio.Workspace.Columns
         public DateTime UpdateDate { get; set; }
         public int UpdateUserId { get; set; }
         public short IsActive { get; set; }
-       
+        [QuickFilter]
+        public Guid ScannedBatchId { get; set; }
+        [Width(120), LookupEditor("Workspace.ScannedSheets")]
+        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ScannedBatchId")]
+        public Guid ScannedSheetId { get; set; }
     }
 }
