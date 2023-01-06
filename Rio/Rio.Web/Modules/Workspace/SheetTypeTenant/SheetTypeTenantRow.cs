@@ -11,6 +11,7 @@ namespace Rio.Workspace
     [DisplayName("My Sheet Types"), InstanceName("My Sheet Types")]
     [ReadPermission(PermissionKeys.SheetTypeTenant.View)]
     [ModifyPermission(PermissionKeys.SheetTypeTenant.Modify)]
+    [LookupScript("Workspace.SheetTypesTenants", Permission = "?", Expiration = 1)]
     public sealed class SheetTypeTenantRow : LoggingRow<SheetTypeTenantRow.RowFields>, IIdRow, INameRow, IMultiTenantRow,IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty,QuickSearch]
@@ -60,22 +61,21 @@ namespace Rio.Workspace
         }
 
 
-        [DisplayName("Sheet Design Pdf"), Size(2000), QuickSearch, NameProperty, FileUploadEditor(FilenameFormat = "SheetType/PdfTemplate/~")]
+        [DisplayName("Sheet Design Pdf"), Size(2000), QuickSearch, FileUploadEditor(FilenameFormat = "SheetType/PdfTemplate/~")]
         public string SheetDesignPdf
         {
             get => fields.SheetDesignPdf[this];
             set => fields.SheetDesignPdf[this] = value;
         }
 
-        [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(true
-            )]
+        [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(true)]
         public short? IsActive
         {
             get => fields.IsActive[this];
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Sheet Type Display Name"), Size(100), Expression("jSheetType.[SheetTypeDisplayName]")]
+        [DisplayName("Sheet Type Display Name"), NameProperty, Size(100), Expression("jSheetType.[SheetTypeDisplayName]")]
         public string SheetTypeDisplayName
         {
             get => fields.SheetTypeDisplayName[this];

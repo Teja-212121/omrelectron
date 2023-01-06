@@ -3,6 +3,7 @@
         Code: Serenity.StringEditor;
         Name: Serenity.StringEditor;
         Description: Serenity.TextAreaEditor;
+        SheetTypeId: Serenity.LookupEditor;
         TotalQuestions: Serenity.IntegerEditor;
         TotalMarks: Serenity.IntegerEditor;
         NegativeMarks: Serenity.DecimalEditor;
@@ -26,23 +27,24 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.TextAreaEditor;
-                var w2 = s.IntegerEditor;
-                var w3 = s.DecimalEditor;
-                var w4 = s.ImageUploadEditor;
-                var w5 = s.LookupEditor;
+                var w2 = s.LookupEditor;
+                var w3 = s.IntegerEditor;
+                var w4 = s.DecimalEditor;
+                var w5 = s.ImageUploadEditor;
 
                 Q.initFormType(ExamForm, [
                     'Code', w0,
                     'Name', w0,
                     'Description', w1,
-                    'TotalQuestions', w2,
-                    'TotalMarks', w2,
-                    'NegativeMarks', w3,
-                    'OptionsAvailable', w2,
+                    'SheetTypeId', w2,
+                    'TotalQuestions', w3,
+                    'TotalMarks', w3,
+                    'NegativeMarks', w4,
+                    'OptionsAvailable', w3,
                     'ResultCriteria', w0,
-                    'QuestionPaper', w4,
-                    'ModelAnswer', w4,
-                    'SelectedTenant', w5
+                    'QuestionPaper', w5,
+                    'ModelAnswer', w5,
+                    'SelectedTenant', w2
                 ]);
             }
         }
