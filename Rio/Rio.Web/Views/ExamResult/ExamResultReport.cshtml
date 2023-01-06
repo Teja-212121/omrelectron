@@ -35,8 +35,21 @@
     </div>*@
     <!-- /.row -->
     <!-- Table row -->
+    <div style="margin-top:10px; padding-bottom:10px; padding-left:70px;">
+
+    <button type="button" class="btn btn-info">
+        <a onclick="printDiv('divMain')" style="cursor: pointer; margin-right: 8px;color:white;">Print </a>
+    </button>
+
+
+
+</div>
+     <div id="divMain" class="keepTogether" style="page-break-inside: avoid; width: 925px;height:auto; margin: 0 auto; border: 1px solid black; padding:10px;">
     <div class="row">
         <div class="col-xs-12 col-12 table-responsive">
+                <h2 class="page-header">
+                    <small class="pull-right">@Model.ExamResult.TenantName</small>
+                </h2>
             <h2 class="page-header">
                 <small class="pull-right">Student Info: </small>
             </h2>
@@ -138,4 +151,24 @@
             <!-- /.col -->
         </div>
         </div>
+        </div>
 </section>
+<script>
+    function printDiv(divName) {
+        debugger;
+        $(".hideOnPrint").remove();
+
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+
+        window.print();
+        document.body.innerHTML = originalContents;
+        location.reload();
+    }
+
+
+
+
+
+</script>

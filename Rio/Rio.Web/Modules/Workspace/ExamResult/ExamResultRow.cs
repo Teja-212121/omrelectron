@@ -140,7 +140,7 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant Id"), NotNull, Insertable(false), Updatable(true)]
+        [DisplayName("Tenant Id"), NotNull, Insertable(false), Updatable(true), ForeignKey("[Tenants]", "TenantId"), LeftJoin("jTenant"), TextualField("TenantName")]
         public int? TenantId
         {
             get => fields.TenantId[this];
@@ -155,6 +155,13 @@ namespace Rio.Workspace
             get => fields.IsActive;
         }
 
+
+        [DisplayName("Tenant Name"), Expression("jTenant.[TenantName]")]
+        public string TenantName
+        {
+            get => fields.TenantName[this];
+            set => fields.TenantName[this] = value;
+        }
 
         [DisplayName("Student Roll No"), Expression("jStudent.[RollNo]")]
         public long? StudentRollNo
@@ -398,6 +405,7 @@ namespace Rio.Workspace
             public Int32Field TenantId;
 
             public Int64Field StudentRollNo;
+            public StringField TenantName;
             public StringField StudentFirstName;
             public StringField StudentMiddleName;
             public StringField StudentLastName;

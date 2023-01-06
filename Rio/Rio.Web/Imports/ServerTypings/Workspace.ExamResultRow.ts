@@ -19,6 +19,7 @@
         IsActive?: number;
         TenantId?: number;
         StudentRollNo?: number;
+        TenantName?: string;
         StudentFirstName?: string;
         StudentMiddleName?: string;
         StudentLastName?: string;
@@ -84,6 +85,7 @@
             IsActive = "IsActive",
             TenantId = "TenantId",
             StudentRollNo = "StudentRollNo",
+            TenantName = "TenantName",
             StudentFirstName = "StudentFirstName",
             StudentMiddleName = "StudentMiddleName",
             StudentLastName = "StudentLastName",
