@@ -100,7 +100,7 @@ namespace Rio.Workspace
             set => fields.Synced[this] = value;
         }
 
-        [DisplayName("Is Pbulic")]
+        [DisplayName("Is Pbulic"), Insertable(false), Updatable(false)]
         public bool? IsPublic
         {
             get => fields.IsPrivate[this];

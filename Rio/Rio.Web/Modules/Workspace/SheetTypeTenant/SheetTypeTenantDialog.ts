@@ -17,6 +17,7 @@ export class SheetTypeTenantDialog extends EntityDialog<SheetTypeTenantRow, any>
     updateInterface() {
         super.updateInterface();
 
+        EditorUtils.setReadOnly(this.form.SheetTypeId, true);
         EditorUtils.setReadOnly(this.form.SheetTypeDescription, true);
         EditorUtils.setReadOnly(this.form.SheetTypeTotalQuestions, true);
         EditorUtils.setReadOnly(this.form.SheetTypeEPaperSize, true);

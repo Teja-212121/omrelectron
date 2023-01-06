@@ -29,8 +29,8 @@ namespace Rio.Workspace.Forms
         public string OverlayImage { get; set; }
         [QuarterWidth]
         public bool Synced { get; set; }
-        [QuarterWidth]
-        public bool IsPublic { get; set; }
+/*        [QuarterWidth]
+        public bool IsPublic { get; set; }*/
         [QuarterWidth]
         public bool IsPrivate { get; set; }
         [HalfWidth]

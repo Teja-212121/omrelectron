@@ -1,7 +1,7 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { ExamResultColumns, ExamResultRow, ExamResultService } from '../../ServerTypes/Workspace';
 import { Column } from "@serenity-is/sleekgrid";
-import { ReportHelper } from "@serenity-is/extensions";
+import { ExcelExportHelper } from '@serenity-is/extensions';
 import { ExamResultDialog } from './ExamResultDialog';
 import { postToService, resolveUrl } from '@serenity-is/corelib/q';
 
@@ -41,6 +41,26 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
         });
 
         return columns;
+    }
+
+    protected createToolbarExtensions() {
+        super.createToolbarExtensions();
+        this.rowSelection = new GridRowSelectionMixin(this);
+    }
+
+    protected getButtons() {
+        var buttons = super.getButtons();
+        buttons.splice(0, 2);
+
+        buttons.push(ExcelExportHelper.createToolButton({
+            grid: this,
+            title: 'Export',
+            service: ExamResultService.baseUrl + '/ListExcel',
+            onViewSubmit: () => this.onViewSubmit(),
+            separator: true
+        }));
+
+        return buttons;
     }
 
     protected onClick(e: JQueryEventObject, row: number, cell: number) {

@@ -10,7 +10,6 @@
         SheetImage: Serenity.ImageUploadEditor;
         OverlayImage: Serenity.ImageUploadEditor;
         Synced: Serenity.BooleanEditor;
-        IsPublic: Serenity.BooleanEditor;
         IsPrivate: Serenity.BooleanEditor;
         SheetNumber: Serenity.StringEditor;
         PdfTemplate: Serenity.ImageUploadEditor;
@@ -45,7 +44,6 @@
                     'SheetImage', w4,
                     'OverlayImage', w4,
                     'Synced', w5,
-                    'IsPublic', w5,
                     'IsPrivate', w5,
                     'SheetNumber', w0,
                     'PdfTemplate', w4

@@ -95,6 +95,7 @@ export class ImportedScannedSheetDialog extends EntityDialog<ImportedScannedShee
     updateInterface() {
         super.updateInterface();
 
+        EditorUtils.setReadOnly(this.form.SheetTypeId, true);
         EditorUtils.setReadOnly(this.form.ScannedRollNo, true);
         EditorUtils.setReadOnly(this.form.ScannedExamNo, true);
     }

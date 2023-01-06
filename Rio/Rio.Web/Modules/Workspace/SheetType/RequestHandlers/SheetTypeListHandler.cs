@@ -31,7 +31,7 @@ namespace Rio.Workspace
             if (!permissions.HasPermission("Administration:Security"))
             {
                 var fld = MyRow.Fields;
-                query.Where(fld.IsPrivate == 0 && fld.IsPublic == 1);
+                query.Where(fld.IsPrivate == 0);
             }
         }
     }
