@@ -34,8 +34,7 @@ namespace Rio.Workspace.Lookups
                     .Where(fld.TenantId == UserAccessor.User.GetTenantId());
             }
             else
-            query.Select(fld.TenantId, fld.SheetTypeDisplayName, fld.SheetTypeId)
-                    .InnerJoin(sheetType, fld.SheetTypeId == sheetType.Id);
+            query.Select(fld.TenantId, fld.SheetTypeDisplayName, fld.SheetTypeId);
         }
     }
 }
