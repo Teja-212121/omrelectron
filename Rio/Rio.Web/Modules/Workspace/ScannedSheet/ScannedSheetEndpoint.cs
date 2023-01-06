@@ -595,6 +595,7 @@ namespace Rio.Workspace.Endpoints
                 string query = "";
                 string Deletequery1 = "";
                 string Deletequery2 = "";
+                string Deletequery3 = "";
                 Guid sheetid = new Guid(id.ToString().ToUpper());
                 string gid = id.ToString().ToUpper();
                 var Scannedsheet = uow.Connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
@@ -603,10 +604,13 @@ namespace Rio.Workspace.Endpoints
                 var ExamResult = uow.Connection.TryFirst<ExamResultRow>(ExamResultRow.Fields.ScannedSheetId == sheetid);
                 if (ExamResult != null)
                 {
+
                     Deletequery1 = "Delete from ExamResults where ScannedSheetId='" + id.ToString().ToUpper() + "'" ;
                     Deletequery2 = "Delete from ExamQuestionResults where ScannedSheetId='" + id.ToString().ToUpper() + "' ";
+                    Deletequery3 = "Delete from ExamSectionResults where SheetGuid='" + id.ToString().ToUpper() + "' ";
                     uow.Connection.Execute(Deletequery1);
                     uow.Connection.Execute(Deletequery2);
+                    uow.Connection.Execute(Deletequery3);
                 }
                
                     //string sqlQuery = "select Distinct RuleTypeId from ExamQuestions where Examid= " + Exams.Id.ToString();
