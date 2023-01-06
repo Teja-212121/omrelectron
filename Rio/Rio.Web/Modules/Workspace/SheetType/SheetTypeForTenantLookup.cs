@@ -26,6 +26,7 @@ namespace Rio.Workspace.Lookups
         {
             base.PrepareQuery(query);
             var fld = SheetTypeTenantRow.Fields;
+            var sheetType = SheetTypeRow.Fields;
             if (UserAccessor.User.Identity.Name.ToLower() != "admin")
             {
 
@@ -33,7 +34,8 @@ namespace Rio.Workspace.Lookups
                     .Where(fld.TenantId == UserAccessor.User.GetTenantId());
             }
             else
-            query.Select(fld.TenantId, fld.SheetTypeDisplayName, fld.SheetTypeId);
+            query.Select(fld.TenantId, fld.SheetTypeDisplayName, fld.SheetTypeId)
+                    .InnerJoin(sheetType, fld.SheetTypeId == sheetType.Id);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Rio.Workspace
             set => fields.StudentId[this] = value;
         }
 
-        [DisplayName("Roll Number"), NotNull]
+        [DisplayName("Roll Number"), NotNull, QuickSearch]
         public long? RollNumber
         {
             get => fields.RollNumber[this];

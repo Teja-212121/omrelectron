@@ -18,8 +18,8 @@ namespace Rio.Workspace
         protected override void BeforeSave()
         {
             base.BeforeSave();
-            if (!string.IsNullOrEmpty(Row.ScannedExamNo) && !string.IsNullOrEmpty(Row.ScannedRollNo))
-                Row.ScannedSheetDisplayName = Row.ScannedRollNo + " (" + Row.ScannedExamNo + ")";
+            if (!string.IsNullOrEmpty(Row.CorrectedExamNo) && !string.IsNullOrEmpty(Row.CorrectedRollNo))
+                Row.ScannedSheetDisplayName = Row.CorrectedRollNo + " (" + Row.CorrectedExamNo + ")";
 
             if (IsUpdate)
             {

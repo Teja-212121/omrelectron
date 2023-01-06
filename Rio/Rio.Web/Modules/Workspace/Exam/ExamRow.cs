@@ -37,7 +37,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Sheet Type"),ForeignKey("[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
-        [LookupEditor("Workspace.SheetTypes")]
+        [LookupEditor(typeof(Lookups.SheetTypeForTenantLookup))]
         public int? SheetTypeId
         {
             get => fields.SheetTypeId[this];
