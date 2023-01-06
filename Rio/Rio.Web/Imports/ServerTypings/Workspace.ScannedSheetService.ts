@@ -9,6 +9,7 @@
         export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ScannedSheetRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ScannedSheetRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function UpdateResult(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function RecalculateResult(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export declare const enum Methods {
             Create = "Workspace/ScannedSheet/Create",
@@ -17,7 +18,8 @@
             Delete = "Workspace/ScannedSheet/Delete",
             Retrieve = "Workspace/ScannedSheet/Retrieve",
             List = "Workspace/ScannedSheet/List",
-            UpdateResult = "Workspace/ScannedSheet/UpdateResult"
+            UpdateResult = "Workspace/ScannedSheet/UpdateResult",
+            RecalculateResult = "Workspace/ScannedSheet/RecalculateResult"
         }
 
         [
@@ -27,7 +29,8 @@
             'Delete', 
             'Retrieve', 
             'List', 
-            'UpdateResult'
+            'UpdateResult', 
+            'RecalculateResult'
         ].forEach(x => {
             (<any>ScannedSheetService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
