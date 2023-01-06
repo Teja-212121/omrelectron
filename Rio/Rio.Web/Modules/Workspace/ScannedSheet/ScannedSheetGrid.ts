@@ -279,6 +279,24 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
             separator: true
         });
 
+        buttons.push({
+            title: 'Recalculate Result',
+            cssClass: 'send-button',
+            onClick: () => {
+                var rowKeys = this.rowSelection.getSelectedKeys();
+                if (rowKeys.length == 0) {
+                    alert("Select Sheet To Process Result");
+                    return;
+                }
+
+                Q.confirm('Are you sure you want to Recalculate Result?', () => {
+                    serviceRequest('/Services/Workspace/ScannedSheet/RecalculateResult', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                });
+
+            },
+            separator: true
+        });
+
         return buttons;
     }
     protected onClick(e: JQueryEventObject, row: number, cell: number) {

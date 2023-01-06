@@ -564,6 +564,115 @@ namespace Rio.Workspace.Endpoints
                 throw new ValidationError("Result already generated for Roll number" +errorids +" .Other results generated successfully");
             return new SaveResponse();
         }
+
+        [AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse RecalculateResult(string[] ids, IUnitOfWork uow, [FromServices] IScannedSheetSaveHandler handler)
+        {
+            string errorids = "";
+            foreach (var id in ids)
+            {
+                string query = "";
+                string Deletequery1 = "";
+                string Deletequery2 = "";
+                Guid sheetid = new Guid(id.ToString().ToUpper());
+                string gid = id.ToString().ToUpper();
+                var Scannedsheet = uow.Connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
+                var Exams = uow.Connection.TryFirst<ExamRow>(ExamRow.Fields.Code == Scannedsheet.CorrectedExamNo && MyRow.Fields.TenantId == Scannedsheet.TenantId.Value);
+                var ExamResult = uow.Connection.TryFirst<ExamResultRow>(ExamResultRow.Fields.ScannedSheetId == sheetid);
+                if (ExamResult != null)
+                {
+                    Deletequery1 = "Delete from ExamResults where ScannedSheetId='" + id.ToString().ToUpper() + "'" ;
+                    Deletequery2 = "Delete from ExamQuestionResults where ScannedSheetId='" + id.ToString().ToUpper() + "' ";
+                    uow.Connection.Execute(Deletequery1);
+                    uow.Connection.Execute(Deletequery2);
+                }
+               
+                    //string sqlQuery = "select Distinct RuleTypeId from ExamQuestions where Examid= " + Exams.Id.ToString();
+
+                   
+                    //List<int> RuleTypes = uow.Connection.Query<int>(sqlQuery, commandType: System.Data.CommandType.Text).ToList();
+                   
+                    #region Old Logic
+                    query = "Insert into ExamQuestionResults (ExamId,StudentId,RollNumber,SheetNumber,SheetGuid,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,ScannedSheetId,ScannedBatchId,InsertDate,InsertUserId)" +
+                            " Select ExamId,(SELECT Id from Students s WHERE s.RollNo=CorrectedRollNo and s.TenantId=TenantId) as StudentId,CorrectedRollNo,SheetNumber, " +
+                            " ScannedSheetId, QuestionIndex,( case when CorrectedOptions is null then 0 else 1 end)as IsAttempted," +
+                            " ( Case When Result > 0 then 1 else 0 end) as IsCorrect,CAST(Result AS FLOAT) as Result,TenantId,ScannedSheetId,ScannedBatchId," +
+                            " datetime('now')," + User.GetIdentifier() + "" +
+                            " From  ( Select QA.ExamId,  QA.QuestionIndex,  SQ.CorrectedOptions, qa.RightOptions, QA.Score, " +
+                            " (Case when QA.RuleTypeId is null or QA.RuleTypeId = 1 then " +
+                            " Case when SQ.CorrectedOptions is null  then 0  when SQ.CorrectedOptions = qa.RightOptions then QA.Score else (Select(round((QA.Score * NegativeMarks),2) * -1) From Exams where id = " + Exams.Id + ")  End " +
+                            //" when QA.RuleTypeId = 2 then" +
+                            //" case when SQ.CorrectedOptions is null then 0 when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, 1, pos-1) AS A From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score " +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, pos+1, pos-1) AS B From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*2)+1, pos-1) AS C From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*3)+1, pos-1) AS D From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*4)+1, pos-1) AS E From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score" +
+                            //" else  (Select(round((QA.Score * NegativeMarks),2) * -1) From Exams where id = " + Exams.Id + ") End " +
+                            " when QA.RuleTypeId = 3 then  QA.Score " +
+                            //" when QA.RuleTypeId = 4 then " +
+                            //" Case when SQ.CorrectedOptions is null  then 0 " +
+                            //" when SQ.CorrectedOptions = 1 then (SELECT substr(qa.Score, 1, pos-1) AS A From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = 2 then (SELECT substr(qa.Score, pos+1, pos-1) AS B From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = 3 then (SELECT substr(qa.Score, (pos*2)+1, pos-1) AS C From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = 4 then (SELECT substr(qa.Score, (pos*3)+1, pos-1) AS D From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = 5 then (SELECT substr(qa.Score, (pos*4)+1, pos-1) AS E From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*5)+1, pos) AS F From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then (SELECT substr(qa.Score, (pos*5)+1, pos-1) AS F From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*6)+2, pos) AS G From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then (SELECT substr(qa.Score, (pos*6)+1, pos-1) AS G From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*7)+3, pos) AS H From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then (SELECT substr(qa.Score, (pos*7)+1, pos-1) AS H From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*8)+4, pos) AS I From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then (SELECT substr(qa.Score, (pos*8)+1, pos-1) AS I From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*9)+5, pos) AS J From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then (SELECT substr(qa.Score, (pos*9)+1, pos-1) AS J From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions))" +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*10)+6) AS K From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then (SELECT substr(qa.Score, (pos*10)+1, pos-1) AS K From(select qa.Score, instr(qa.Score, ',') AS pos from ExamQuestions)) " +
+                            //" else (Select(round((QA.Score * NegativeMarks),2) * -1) From Exams where id = " + Exams.Id + " )  End " +
+                            " when QA.RuleTypeId = 5 then " +
+                            " Case when SQ.CorrectedOptions is null  then 0 " +
+                            " when SQ.CorrectedOptions = qa.RightOptions then QA.Score " +
+                            " else (Select(round((QA.Score * NegativeMarks),2) * -1) From Exams where id = " + Exams.Id + ") End " +
+                            " when QA.RuleTypeId = 6 then " +
+                            " Case when SQ.CorrectedOptions is null  then 0  else  QA.Score  End " +
+                            //" when QA.RuleTypeId = 7 then " +
+                            //" case  when SQ.CorrectedOptions is null then 0 " +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, 1, pos-1) AS A From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score " +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, pos+1, pos-1) AS B From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score " +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*2)+1, pos-1) AS C From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score " +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*3)+1, pos-1) AS D From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score " +
+                            //" when SQ.CorrectedOptions = (SELECT substr(qa.RightOptions, (pos*4)+1, pos-1) AS E From(select qa.RightOptions, instr(qa.RightOptions, ',') AS pos from ExamQuestions)) then QA.Score " +
+                            //" when SQ.CorrectedOptions = (SELECT REPLACE(qa.RightOptions, ',', '')) then QA.Score " +
+                            //" else  (Select(round((QA.Score * NegativeMarks),2) * -1) From Exams where id = " + Exams.Id + ")  End " +
+                            " End ) as Result, TotalMarks, RuleTypeId, qa.RightOptions,ss.CorrectedRollNo,ss.CorrectedExamNo,ss.SheetNumber,ss.ScannedSheetId,ss.ScannedBatchId,ss.TenantId " +
+                            " from ExamQuestions as QA inner join Exams E on QA.ExamId=E.Id " +
+                            " left join (select CorrectedRollNo,CorrectedExamNo,SheetNumber,id as ScannedSheetId,ScannedBatchId,TenantId FROM ScannedSheets where Id='" + id.ToString().ToUpper() + "') as SS " +
+                            " on E.Code=ss.CorrectedExamNo AND E.TenantId=ss.TenantId left Join ( select 1 as TestId, QuestionIndex,  CorrectedOptions from ScannedQuestions where ScannedSheetId = '" + id.ToString().ToUpper() + "' ) as SQ " +
+                            " On  QA.QuestionIndex = SQ.QuestionIndex  where QA.ExamId = " + Exams.Id + " and QA.RuleTypeId in (1,3,5,6) ) as StudentResult ";
+
+                    if (!string.IsNullOrEmpty(query))
+                        uow.Connection.Execute(query);
+                    #endregion
+
+
+
+
+                    string Examresultquery = "  insert into ExamResults (StudentId, RollNumber,SheetNumber,SheetGuid,ExamId,TotalMarks,ObtainedMarks,Percentage,TotalQuestions,TotalAttempted," +
+                        "  TotalNotAttempted,TotalRightAnswers,TotalWrongAnswers,InsertDate,InsertUserId,IsActive,TenantId,ScannedBatchId,ScannedSheetId)" +
+                        "  select s.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,e.TotalMarks," +
+                        "  (select sum(ObtainedMarks) from ExamQuestionResults WHERE ScannedSheetId=ss.Id) as ObtainedMarks," +
+                        " ((select sum(ObtainedMarks) from ExamQuestionResults WHERE ScannedSheetId=ss.Id)/e.TotalMarks)*100 as Percentage, e.TotalQuestions, " +
+                        " (select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsAttempted=1 ) as TotalAttempted," +
+                        " (SELECT e.TotalQuestions-(select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsAttempted=1)) as TotalNotAttempted," +
+                        "  (select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsCorrect=1) as TotalRightAnswers," +
+                        "  ((select count(Id) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsAttempted=1) -(select ifnull(count(Id),0) from ExamQuestionResults WHERE ScannedSheetId=ss.Id and IsCorrect=1)) as TotalWrongAnswers," +
+                        "  datetime('now'),1,1,ss.TenantId,ss.ScannedBatchId,ss.Id" +
+                        "  from  ScannedSheets SS inner join Exams E on ss.CorrectedExamNo=E.Code and ss.TenantId=E.TenantId" +
+                        "  left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                        " where ss.Id='" + id.ToString().ToUpper() + "'   and ss.tenantId=" + Scannedsheet.TenantId;
+
+                    if (!string.IsNullOrEmpty(Examresultquery))
+                        uow.Connection.Execute(Examresultquery);
+                
+            }
+            if (!string.IsNullOrEmpty(errorids))
+                throw new ValidationError("Result already generated for Roll number" + errorids + " .Other results generated successfully");
+            return new SaveResponse();
+        }
     }
     public class ScannedData
     {
