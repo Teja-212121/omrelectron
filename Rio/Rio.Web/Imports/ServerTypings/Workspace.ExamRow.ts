@@ -15,6 +15,21 @@
         IsActive?: number;
         TenantId?: number;
         SelectedTenant?: number;
+        SheetTypeId?: number;
+        SheetTypeDisplayName?: string;
+        SheetTypeName?: string;
+        SheetTypeDescription?: string;
+        SheetTypeTotalQuestions?: number;
+        SheetTypeEPaperSize?: number;
+        SheetTypeHeightInPixel?: number;
+        SheetTypeWidthInPixel?: number;
+        SheetTypeSheetData?: string;
+        SheetTypeSheetImage?: string;
+        SheetTypeOverlayImage?: string;
+        SheetTypeSynced?: boolean;
+        SheetTypeIsPrivate?: boolean;
+        SheetTypePdfTemplate?: string;
+        SheetTypeSheetNumber?: number;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -52,6 +67,21 @@
             IsActive = "IsActive",
             TenantId = "TenantId",
             SelectedTenant = "SelectedTenant",
+            SheetTypeId = "SheetTypeId",
+            SheetTypeDisplayName = "SheetTypeDisplayName",
+            SheetTypeName = "SheetTypeName",
+            SheetTypeDescription = "SheetTypeDescription",
+            SheetTypeTotalQuestions = "SheetTypeTotalQuestions",
+            SheetTypeEPaperSize = "SheetTypeEPaperSize",
+            SheetTypeHeightInPixel = "SheetTypeHeightInPixel",
+            SheetTypeWidthInPixel = "SheetTypeWidthInPixel",
+            SheetTypeSheetData = "SheetTypeSheetData",
+            SheetTypeSheetImage = "SheetTypeSheetImage",
+            SheetTypeOverlayImage = "SheetTypeOverlayImage",
+            SheetTypeSynced = "SheetTypeSynced",
+            SheetTypeIsPrivate = "SheetTypeIsPrivate",
+            SheetTypePdfTemplate = "SheetTypePdfTemplate",
+            SheetTypeSheetNumber = "SheetTypeSheetNumber",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

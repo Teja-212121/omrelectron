@@ -36,6 +36,13 @@ namespace Rio.Workspace
             set => fields.Name[this] = value;
         }
 
+        [DisplayName("Sheet Type"),ForeignKey("[SheetTypes]", "Id"), LeftJoin("jSheetType"), TextualField("SheetTypeName")]
+        [LookupEditor("Workspace.SheetTypes")]
+        public int? SheetTypeId
+        {
+            get => fields.SheetTypeId[this];
+            set => fields.SheetTypeId[this] = value;
+        }
 
         [DisplayName("ExamDisplayName"), Size(500),  NameProperty, QuickSearch]
        
@@ -127,6 +134,104 @@ namespace Rio.Workspace
         {
             get => Fields.TenantId;
         }
+
+        [DisplayName("Sheet Type Display Name"), Size(100), Expression("jSheetType.[SheetTypeDisplayName]")]
+        public string SheetTypeDisplayName
+        {
+            get => fields.SheetTypeDisplayName[this];
+            set => fields.SheetTypeDisplayName[this] = value;
+        }
+
+        [DisplayName("Sheet Type Name"), Expression("jSheetType.[Name]"), QuickSearch]
+        public string SheetTypeName
+        {
+            get => fields.SheetTypeName[this];
+            set => fields.SheetTypeName[this] = value;
+        }
+
+        [DisplayName("Sheet Type Description"), Expression("jSheetType.[Description]")]
+        public string SheetTypeDescription
+        {
+            get => fields.SheetTypeDescription[this];
+            set => fields.SheetTypeDescription[this] = value;
+        }
+
+        [DisplayName(" Total Questions"), Expression("jSheetType.[TotalQuestions]")]
+        public int? SheetTypeTotalQuestions
+        {
+            get => fields.SheetTypeTotalQuestions[this];
+            set => fields.SheetTypeTotalQuestions[this] = value;
+        }
+
+        [DisplayName("Sheet Type E Paper Size"), Expression("jSheetType.[EPaperSize]")]
+        public int? SheetTypeEPaperSize
+        {
+            get => fields.SheetTypeEPaperSize[this];
+            set => fields.SheetTypeEPaperSize[this] = value;
+        }
+
+        [DisplayName("Sheet Type Height In Pixel"), Expression("jSheetType.[HeightInPixel]")]
+        public int? SheetTypeHeightInPixel
+        {
+            get => fields.SheetTypeHeightInPixel[this];
+            set => fields.SheetTypeHeightInPixel[this] = value;
+        }
+
+        [DisplayName("Sheet Type Width In Pixel"), Expression("jSheetType.[WidthInPixel]")]
+        public int? SheetTypeWidthInPixel
+        {
+            get => fields.SheetTypeWidthInPixel[this];
+            set => fields.SheetTypeWidthInPixel[this] = value;
+        }
+
+        [DisplayName("Sheet Type Sheet Data"), Expression("jSheetType.[SheetData]")]
+        public string SheetTypeSheetData
+        {
+            get => fields.SheetTypeSheetData[this];
+            set => fields.SheetTypeSheetData[this] = value;
+        }
+
+        [DisplayName("Sheet Type Sheet Image"), Expression("jSheetType.[SheetImage]")]
+        public string SheetTypeSheetImage
+        {
+            get => fields.SheetTypeSheetImage[this];
+            set => fields.SheetTypeSheetImage[this] = value;
+        }
+
+        [DisplayName("Sheet Type Overlay Image"), Expression("jSheetType.[OverlayImage]")]
+        public string SheetTypeOverlayImage
+        {
+            get => fields.SheetTypeOverlayImage[this];
+            set => fields.SheetTypeOverlayImage[this] = value;
+        }
+
+        [DisplayName("Sheet Type Synced"), Expression("jSheetType.[Synced]")]
+        public bool? SheetTypeSynced
+        {
+            get => fields.SheetTypeSynced[this];
+            set => fields.SheetTypeSynced[this] = value;
+        }
+
+        [DisplayName("Sheet Type Is Private"), Expression("jSheetType.[IsPrivate]")]
+        public bool? SheetTypeIsPrivate
+        {
+            get => fields.SheetTypeIsPrivate[this];
+            set => fields.SheetTypeIsPrivate[this] = value;
+        }
+
+        [DisplayName("Sheet Type Pdf Template"), Expression("jSheetType.[PdfTemplate]")]
+        public string SheetTypePdfTemplate
+        {
+            get => fields.SheetTypePdfTemplate[this];
+            set => fields.SheetTypePdfTemplate[this] = value;
+        }
+
+        [DisplayName("Sheet Type Sheet Number"), Expression("jSheetType.[SheetNumber]")]
+        public long? SheetTypeSheetNumber
+        {
+            get => fields.SheetTypeSheetNumber[this];
+            set => fields.SheetTypeSheetNumber[this] = value;
+        }
         Int16Field IIsActiveRow.IsActiveField
         {
             get => fields.IsActive;
@@ -160,6 +265,22 @@ namespace Rio.Workspace
             public Int16Field IsActive;
             public Int32Field TenantId;
             public Int32Field SelectedTenant;
+            public Int32Field SheetTypeId;
+
+            public StringField SheetTypeDisplayName;
+            public StringField SheetTypeName;
+            public StringField SheetTypeDescription;
+            public Int32Field SheetTypeTotalQuestions;
+            public Int32Field SheetTypeEPaperSize;
+            public Int32Field SheetTypeHeightInPixel;
+            public Int32Field SheetTypeWidthInPixel;
+            public StringField SheetTypeSheetData;
+            public StringField SheetTypeSheetImage;
+            public StringField SheetTypeOverlayImage;
+            public BooleanField SheetTypeSynced;
+            public BooleanField SheetTypeIsPrivate;
+            public StringField SheetTypePdfTemplate;
+            public Int64Field SheetTypeSheetNumber;
         }
     }
 }

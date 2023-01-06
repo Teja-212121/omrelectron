@@ -37,8 +37,13 @@
     export namespace SheetTypeTenantRow {
         export const idProperty = 'Id';
         export const isActiveProperty = 'IsActive';
-        export const nameProperty = 'SheetDesignPdf';
+        export const nameProperty = 'SheetTypeDisplayName';
         export const localTextPrefix = 'Workspace.SheetTypeTenant';
+        export const lookupKey = 'Workspace.SheetTypesTenants';
+
+        export function getLookup(): Q.Lookup<SheetTypeTenantRow> {
+            return Q.getLookup<SheetTypeTenantRow>('Workspace.SheetTypesTenants');
+        }
         export const deletePermission = 'Workspace:SheetTypeTenant:Modify';
         export const insertPermission = 'Workspace:SheetTypeTenant:Modify';
         export const readPermission = 'Workspace:SheetTypeTenant:View';
