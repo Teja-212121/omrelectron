@@ -185,6 +185,7 @@ namespace Rio.Workspace.Endpoints
                 string gid = id.ToString().ToUpper();
                 var Scannedsheet = uow.Connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
                 var Exams = uow.Connection.TryFirst<ExamRow>(ExamRow.Fields.Code == Scannedsheet.CorrectedExamNo && MyRow.Fields.TenantId == Scannedsheet.TenantId.Value);
+                var ExamSection = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.ExamId == Exams.Id.Value);
                 var ExamResult=uow.Connection.TryFirst<ExamResultRow>(ExamResultRow.Fields.ScannedSheetId== sheetid);
                 if (ExamResult != null)
                 {
@@ -484,12 +485,12 @@ namespace Rio.Workspace.Endpoints
                     //}
                     #endregion
                     #region Old Logic
-                    query = "Insert into ExamQuestionResults (ExamId,StudentId,RollNumber,SheetNumber,SheetGuid,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,ScannedSheetId,ScannedBatchId,InsertDate,InsertUserId)" +
-                            " Select ExamId,(SELECT Id from Students s WHERE s.RollNo=CorrectedRollNo and s.TenantId=TenantId) as StudentId,CorrectedRollNo,SheetNumber, " +
+                    query = "Insert into ExamQuestionResults (ExamId,ExamQuestionId,ExamSectionId,StudentId,RollNumber,SheetNumber,SheetGuid,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,ScannedSheetId,ScannedBatchId,InsertDate,InsertUserId)" +
+                            " Select ExamId,ExamQuestionId,ExamSectionId,(SELECT Id from Students s WHERE s.RollNo=CorrectedRollNo and s.TenantId=TenantId) as StudentId,CorrectedRollNo,SheetNumber, " +
                             " ScannedSheetId, QuestionIndex,( case when CorrectedOptions is null then 0 else 1 end)as IsAttempted," +
                             " ( Case When Result > 0 then 1 else 0 end) as IsCorrect,CAST(Result AS FLOAT) as Result,TenantId,ScannedSheetId,ScannedBatchId," +
                             " datetime('now')," + User.GetIdentifier() + "" +
-                            " From  ( Select QA.ExamId,  QA.QuestionIndex,  SQ.CorrectedOptions, qa.RightOptions, QA.Score, " +
+                            " From  ( Select QA.ExamId,QA.Id as ExamQuestionId,QA.ExamSectionId,  QA.QuestionIndex,  SQ.CorrectedOptions, qa.RightOptions, QA.Score, " +
                             " (Case when QA.RuleTypeId is null or QA.RuleTypeId = 1 then " +
                             " Case when SQ.CorrectedOptions is null  then 0  when SQ.CorrectedOptions = qa.RightOptions then QA.Score else (Select(round((QA.Score * NegativeMarks),2) * -1) From Exams where id = " + Exams.Id + ")  End " +
                             //" when QA.RuleTypeId = 2 then" +
@@ -558,6 +559,26 @@ namespace Rio.Workspace.Endpoints
 
                     if (!string.IsNullOrEmpty(Examresultquery))
                         uow.Connection.Execute(Examresultquery);
+                    if (ExamSection != null)
+                    {
+                        string ExamSectionresultquery = "  insert into ExamSectionResults (StudentId, RollNumber,SheetNumber,SheetGuid,ExamId,ExamSectionId,TotalMarks,ObtainedMarks,Percentage,TotalQuestions,TotalAttempted," +
+                            " TotalNotAttempted,TotalRightAnswers,TotalWrongAnswers,InsertDate,InsertUserId,IsActive,TenantId)" +
+                            "  select s.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,Es.Id," +
+                            "  (select sum(Score) from Examquestions WHERE ExamSectionId=ES.Id) as TotalMarks," +
+                            "  (select sum(ObtainedMarks) from ExamQuestionResults WHERE  ExamSectionId=ES.Id and ScannedSheetId=ss.Id) as ObtainedMarks," +
+                            " ((select sum(ObtainedMarks) from ExamQuestionResults WHERE  ExamSectionId=ES.Id and ScannedSheetId=ss.Id)/(select sum(Score) from Examquestions WHERE ExamSectionId=ES.Id))*100 as Percentage," +
+                            "  (select count(Id) from Examquestions WHERE ExamSectionId=ES.Id ) as TotalQuestions," +
+                            "  (select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsAttempted=1 ) as TotalAttempted," +
+                            "  ((select count(Id) from Examquestions WHERE ExamSectionId=ES.Id )-(select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsAttempted=1)) as TotalNotAttempted," +
+                            "   (select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsCorrect=1) as TotalRightAnswers," +
+                            "   ((select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsAttempted=1) -(select ifnull(count(Id),0) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsCorrect=1)) as TotalWrongAnswers," +
+                            "   datetime('now'),1,1,ss.TenantId   from  ScannedSheets SS inner join Exams E on ss.CorrectedExamNo=E.Code and ss.TenantId=E.TenantId" +
+                            "   inner join ExamSections Es on Es.ExamId=E.Id    left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                            "  where ss.Id='" + id.ToString().ToUpper() + "'   and ss.tenantId=" + Scannedsheet.TenantId;
+
+                        uow.Connection.Execute(ExamSectionresultquery);
+
+                    }
                 }
             }
             if(!string.IsNullOrEmpty(errorids))
@@ -578,6 +599,7 @@ namespace Rio.Workspace.Endpoints
                 string gid = id.ToString().ToUpper();
                 var Scannedsheet = uow.Connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
                 var Exams = uow.Connection.TryFirst<ExamRow>(ExamRow.Fields.Code == Scannedsheet.CorrectedExamNo && MyRow.Fields.TenantId == Scannedsheet.TenantId.Value);
+                var ExamSection = uow.Connection.TryFirst<ExamSectionRow>(ExamSectionRow.Fields.ExamId == Exams.Id.Value);
                 var ExamResult = uow.Connection.TryFirst<ExamResultRow>(ExamResultRow.Fields.ScannedSheetId == sheetid);
                 if (ExamResult != null)
                 {
@@ -593,12 +615,12 @@ namespace Rio.Workspace.Endpoints
                     //List<int> RuleTypes = uow.Connection.Query<int>(sqlQuery, commandType: System.Data.CommandType.Text).ToList();
                    
                     #region Old Logic
-                    query = "Insert into ExamQuestionResults (ExamId,StudentId,RollNumber,SheetNumber,SheetGuid,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,ScannedSheetId,ScannedBatchId,InsertDate,InsertUserId)" +
-                            " Select ExamId,(SELECT Id from Students s WHERE s.RollNo=CorrectedRollNo and s.TenantId=TenantId) as StudentId,CorrectedRollNo,SheetNumber, " +
+                    query = "Insert into ExamQuestionResults (ExamId,ExamQuestionId,ExamSectionId,StudentId,RollNumber,SheetNumber,SheetGuid,QuestionIndex,IsAttempted,IsCorrect,ObtainedMarks,TenantId,ScannedSheetId,ScannedBatchId,InsertDate,InsertUserId)" +
+                            " Select ExamId,ExamQuestionId,ExamSectionId,(SELECT Id from Students s WHERE s.RollNo=CorrectedRollNo and s.TenantId=TenantId) as StudentId,CorrectedRollNo,SheetNumber, " +
                             " ScannedSheetId, QuestionIndex,( case when CorrectedOptions is null then 0 else 1 end)as IsAttempted," +
                             " ( Case When Result > 0 then 1 else 0 end) as IsCorrect,CAST(Result AS FLOAT) as Result,TenantId,ScannedSheetId,ScannedBatchId," +
                             " datetime('now')," + User.GetIdentifier() + "" +
-                            " From  ( Select QA.ExamId,  QA.QuestionIndex,  SQ.CorrectedOptions, qa.RightOptions, QA.Score, " +
+                            " From  ( Select QA.ExamId,QA.Id as ExamQuestionId,QA.ExamSectionId,  QA.QuestionIndex,  SQ.CorrectedOptions, qa.RightOptions, QA.Score, " +
                             " (Case when QA.RuleTypeId is null or QA.RuleTypeId = 1 then " +
                             " Case when SQ.CorrectedOptions is null  then 0  when SQ.CorrectedOptions = qa.RightOptions then QA.Score else (Select(round((QA.Score * NegativeMarks),2) * -1) From Exams where id = " + Exams.Id + ")  End " +
                             //" when QA.RuleTypeId = 2 then" +
@@ -667,6 +689,26 @@ namespace Rio.Workspace.Endpoints
 
                     if (!string.IsNullOrEmpty(Examresultquery))
                         uow.Connection.Execute(Examresultquery);
+                if (ExamSection != null)
+                {
+                    string ExamSectionresultquery = "  insert into ExamSectionResults (StudentId, RollNumber,SheetNumber,SheetGuid,ExamId,ExamSectionId,TotalMarks,ObtainedMarks,Percentage,TotalQuestions,TotalAttempted," +
+                        " TotalNotAttempted,TotalRightAnswers,TotalWrongAnswers,InsertDate,InsertUserId,IsActive,TenantId)" +
+                        "  select s.Id,ss.CorrectedRollNo,ss.SheetNumber,ss.Id,e.Id,Es.Id," +
+                        "  (select sum(Score) from Examquestions WHERE ExamSectionId=ES.Id) as TotalMarks," +
+                        "  (select sum(ObtainedMarks) from ExamQuestionResults WHERE  ExamSectionId=ES.Id and ScannedSheetId=ss.Id) as ObtainedMarks," +
+                        " ((select sum(ObtainedMarks) from ExamQuestionResults WHERE  ExamSectionId=ES.Id and ScannedSheetId=ss.Id)/(select sum(Score) from Examquestions WHERE ExamSectionId=ES.Id))*100 as Percentage," +
+                        "  (select count(Id) from Examquestions WHERE ExamSectionId=ES.Id ) as TotalQuestions," +
+                        "  (select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsAttempted=1 ) as TotalAttempted," +
+                        "  ((select count(Id) from Examquestions WHERE ExamSectionId=ES.Id )-(select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsAttempted=1)) as TotalNotAttempted," +
+                        "   (select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsCorrect=1) as TotalRightAnswers," +
+                        "   ((select count(Id) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsAttempted=1) -(select ifnull(count(Id),0) from ExamQuestionResults WHERE ExamSectionId=ES.Id and ScannedSheetId=ss.Id and IsCorrect=1)) as TotalWrongAnswers," +
+                        "   datetime('now'),1,1,ss.TenantId   from  ScannedSheets SS inner join Exams E on ss.CorrectedExamNo=E.Code and ss.TenantId=E.TenantId" +
+                        "   inner join ExamSections Es on Es.ExamId=E.Id    left join Students s on ss.CorrectedRollNo=s.RollNo and ss.TenantId=s.TenantId" +
+                        "  where ss.Id='" + id.ToString().ToUpper() + "'   and ss.tenantId=" + Scannedsheet.TenantId;
+
+                    uow.Connection.Execute(ExamSectionresultquery);
+
+                }
                 
             }
             if (!string.IsNullOrEmpty(errorids))
