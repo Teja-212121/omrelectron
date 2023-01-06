@@ -4,6 +4,7 @@ using Serenity.Data.Mapping;
 using Serenity.Extensions.Entities;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Rio.Workspace
@@ -35,6 +36,19 @@ namespace Rio.Workspace
         {
             get => fields.Description[this];
             set => fields.Description[this] = value;
+        }
+
+        [NotMapped]
+        public List<ScannedSheetRow> ScannedSheets
+        {
+            get { return Fields.ScannedSheets[this]; }
+            set { Fields.ScannedSheets[this] = value; }
+        }
+        [NotMapped]
+        public List<ScannedQuestionRow> ScannedQuestions
+        {
+            get { return Fields.ScannedQuestions[this]; }
+            set { Fields.ScannedQuestions[this] = value; }
         }
 
         [DisplayName("Is Active"), NotNull,Insertable(false),Updatable(true)]
@@ -76,7 +90,8 @@ namespace Rio.Workspace
             public StringField Description;
             public Int16Field IsActive;
             public Int32Field TenantId;
-            
+            public ListField<ScannedSheetRow> ScannedSheets;
+            public ListField<ScannedQuestionRow> ScannedQuestions;
         }
     }
 }

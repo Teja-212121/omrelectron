@@ -34,6 +34,7 @@
         ICRData2Value?: string;
         ICRData3Key?: string;
         ICRData3Value?: string;
+        ScannedQuestions?: ScannedQuestionRow[];
         SheetTypeName?: string;
         SheetTypeDescription?: string;
         SheetTypeTotalQuestions?: number;
@@ -116,6 +117,7 @@
             ICRData2Value = "ICRData2Value",
             ICRData3Key = "ICRData3Key",
             ICRData3Value = "ICRData3Value",
+            ScannedQuestions = "ScannedQuestions",
             SheetTypeName = "SheetTypeName",
             SheetTypeDescription = "SheetTypeDescription",
             SheetTypeTotalQuestions = "SheetTypeTotalQuestions",

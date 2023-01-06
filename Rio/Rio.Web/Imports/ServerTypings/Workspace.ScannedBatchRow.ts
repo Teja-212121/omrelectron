@@ -5,6 +5,8 @@
         Description?: string;
         IsActive?: number;
         TenantId?: number;
+        ScannedSheets?: ScannedSheetRow[];
+        ScannedQuestions?: ScannedQuestionRow[];
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -32,6 +34,8 @@
             Description = "Description",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            ScannedSheets = "ScannedSheets",
+            ScannedQuestions = "ScannedQuestions",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

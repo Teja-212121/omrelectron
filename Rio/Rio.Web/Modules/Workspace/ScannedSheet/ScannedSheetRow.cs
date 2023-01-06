@@ -4,6 +4,7 @@ using Serenity.Data;
 using Serenity.Data.Mapping;
 using Serenity.Extensions.Entities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Rio.Workspace
@@ -92,6 +93,13 @@ namespace Rio.Workspace
         {
             get => fields.ScannedImageSourcePath[this];
             set => fields.ScannedImageSourcePath[this] = value;
+        }
+
+        [NotMapped]
+        public List<ScannedQuestionRow> ScannedQuestions
+        {
+            get { return Fields.ScannedQuestions[this]; }
+            set { Fields.ScannedQuestions[this] = value; }
         }
 
         [DisplayName("Scanned Image"), Size(2000), ImageUploadEditor(FilenameFormat = "ScannedSheet/ScannedImage/~")]
@@ -504,6 +512,7 @@ namespace Rio.Workspace
             public StringField ICRData3Key;
             public StringField ICRData3Value;
             /*public GuidField CascadeScannedBatchId;*/
+            public ListField<ScannedQuestionRow> ScannedQuestions;
 
 
             public StringField SheetTypeName;
