@@ -15,7 +15,7 @@ namespace Rio.Workspace
     public sealed class ExamQuestionResultRow : LoggingRow<ExamQuestionResultRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
-        [SortOrder(1, descending: true)]
+        [SortOrder(1, descending: false)]
         public long? Id
         {
             get => fields.Id[this];

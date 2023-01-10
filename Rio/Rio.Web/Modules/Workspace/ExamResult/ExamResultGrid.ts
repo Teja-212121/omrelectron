@@ -30,11 +30,21 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
         var columns = super.getColumns();
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
 
-        columns.splice(2, 0, {
+        columns.splice(1, 0, {
             field: 'Print Result',
             name: '',
             format: ctx => '<a class="inline-action print-result" title="Result">' +
                 '<i class="fa fa-file-pdf-o text-red"></i></a>',
+            width: 36,
+            minWidth: 36,
+            maxWidth: 36
+        });
+
+        columns.splice(2, 0, {
+            field: 'Download Result',
+            name: '',
+            format: ctx => '<a class="inline-action download-result" title="Download">' +
+                '<i class="fa fa-arrow-down text-blue"></i></a>',
             width: 36,
             minWidth: 36,
             maxWidth: 36
@@ -86,6 +96,11 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
                 };
                 var url = "/ExamResult/ExamResultReport";
                 postToService({ url: resolveUrl('~/ExamResult/ExamResultReport?ExamResultId=' + item.Id), request: '', target: '_blank' });
+            }
+
+            if (target.hasClass('download-result')) {
+                var url = "~/Workspace/ExamResult/DownloadFile:";
+                postToService({ url: resolveUrl(url), request: '', target: '_blank' });
             }
 /*
             if (target.hasClass('print-result')) {

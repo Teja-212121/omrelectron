@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
-import { Authorization, postToService, serviceRequest } from '@serenity-is/corelib/q';
+import { Authorization, postToService, resolveUrl, serviceRequest } from '@serenity-is/corelib/q';
 import { ExcelExportHelper } from '@serenity-is/extensions';
 import { StudentColumns, StudentRow, StudentService } from '../../ServerTypes/Workspace';
 import { GroupStudentsForStudentsDialog } from '../GroupStudent/GroupStudentsForStudentsDialog';
@@ -87,7 +87,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
             onClick: () => {
                 var url = "~/Workspace/Student/StudentSample";
 
-                postToService({ url: Q.resolveUrl(url), request: '', target: '_blank' });
+                postToService({ url: resolveUrl(url), request: '', target: '_blank' });
             },
             separator: true
         });

@@ -14,7 +14,7 @@ namespace Rio.Workspace
     public sealed class ImportedScannedQuestionRow :LoggingRow<ImportedScannedQuestionRow.RowFields>, IIdRow,IMultiTenantRow, IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty,QuickSearch]
-        [SortOrder(1, descending: true)]
+        [SortOrder(1, descending: false)]
         public long? Id
         {
             get => fields.Id[this];
