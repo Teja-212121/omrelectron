@@ -22,11 +22,11 @@ namespace Rio.Workspace.Columns
         public DateTime ScannedAt { get; set; }
         [EditLink]
         public string SheetNumber { get; set; }
-        [QuickFilter]
         public long ScannedRollNo { get; set; }
         [QuickFilter]
         public long ScannedExamNo { get; set; }
         public long CorrectedRollNo { get; set; }
+        [QuickFilter]
         public long CorrectedExamNo { get; set; }
         public int ExamSetNo { get; set; }
         public string ScannedImageSourcePath { get; set; }
