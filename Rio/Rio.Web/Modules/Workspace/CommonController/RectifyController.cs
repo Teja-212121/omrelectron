@@ -18,7 +18,7 @@ namespace Rio.Web.Modules.Orders.CommonController
         }
 
         [Route("~/Rectify/ScanQuestions")]
-        public IActionResult ScanQuestions(string ScannedSheetId, [FromServices] ISqlConnections sqlConnections,[FromServices] IScannedQuestionListHandler handler)
+        public IActionResult ScanQuestions(string ScannedSheetId, [FromServices] ISqlConnections sqlConnections,[FromServices] IScannedQuestionListHandler handler,[FromServices] IScannedSheetRetrieveHandler retrievehandler)
         {
             
             using (var Connection = sqlConnections.NewByKey("Default"))
@@ -48,6 +48,12 @@ namespace Rio.Web.Modules.Orders.CommonController
                         }
                         
                     }
+
+                    RetrieveRequest retrieveRequest = new RetrieveRequest();
+                    retrieveRequest.ColumnSelection = RetrieveColumnSelection.Details;
+                    retrieveRequest.EntityId = ScannedSheetId;
+                    ScannedQuestion.scannedSheetRow = retrievehandler.Retrieve(Connection, retrieveRequest).Entity;
+
                     var e = ScannedSheetRow.Fields;
                     var nextScansheet = Connection.TryFirst<ScannedSheetRow>(q => q
                      .Select(e.Id).Take(1)
@@ -61,6 +67,8 @@ namespace Rio.Web.Modules.Orders.CommonController
                     if (PrevScansheet != null)
                         ScannedQuestion.PrevScannedSheetId = PrevScansheet.Id.ToString();
                     //var nextScansheet=Connection.TryFirst<ScannedSheetRow>()
+
+
                 }
                 finally
                 {

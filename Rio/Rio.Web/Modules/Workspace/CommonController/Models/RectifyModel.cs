@@ -14,6 +14,7 @@ namespace Rio.Web.Modules.Workspace.CommonController.Models
         public class ScannedQuestionDatamodel
         {
           public List<ScannedQuestionRow> ScanQuestionList { get; set; }
+          public ScannedSheetRow scannedSheetRow { get; set; }
             public string PrevScannedSheetId { get; set; }
             public string NextScannedSheetId { get; set; }
         }
