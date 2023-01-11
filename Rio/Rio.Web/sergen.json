@@ -195,6 +195,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "Settings",
+          "Identifier": "Settings",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "vw_ExamResultReport",
           "Identifier": "ResultReport",
           "Module": "ResultReportView",

@@ -49,3 +49,4 @@ using MyPage = Rio.Common.Pages;
 //[assembly: NavigationLink(2002, "Sheets/Select Sheet Type", typeof(MyPages.SelectSheetTypeController), icon: "fa-circle-o")]
 //[assembly: NavigationLink(int.MaxValue, "Workspace/Scanned Batch As Per Date", typeof(MyPages.ScannedBatchAsPerDateController), icon: null)]
 [assembly: NavigationLink(int.MaxValue, "Workspace/Get Scan Data", typeof(MyPages.GetScanDataController), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Settings", typeof(MyPages.SettingsController), icon: null)]
