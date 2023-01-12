@@ -1,7 +1,7 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { ExamResultColumns, ExamResultRow, ExamResultService } from '../../ServerTypes/Workspace';
 import { Column } from "@serenity-is/sleekgrid";
-import { ExcelExportHelper } from '@serenity-is/extensions';
+import { ExcelExportHelper, ReportHelper } from '@serenity-is/extensions';
 import { ExamResultDialog } from './ExamResultDialog';
 import { postToService, resolveUrl } from '@serenity-is/corelib/q';
 
@@ -99,11 +99,17 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             }
 
             if (target.hasClass('download-result')) {
-                var url = "~/Workspace/ExamResult/DownloadFile:";
-                postToService({ url: resolveUrl(url), request: '', target: '_blank' });
+                ReportHelper.execute({
+                    reportKey: 'Workspace.ExamResult',
+                    download: true,
+                    params: {
+                        ExamResultId: item.Id
+                    },
+                    target: '_blank'
+                });
             }
-/*
-            if (target.hasClass('print-result')) {
+
+            /*if (target.hasClass('print-result')) {
                 ReportHelper.execute({
                     reportKey: 'Workspace.ExamResult',
                     extension: 'html',

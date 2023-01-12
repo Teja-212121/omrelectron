@@ -7,13 +7,15 @@
         "~/Views/Shared/_LayoutNoNavigation.cshtml";
 }
 
+<section>
+</section>
 <section class="result">
-   @* <div class="row">
-        <div class="col-xs-12 col-12">
-            <h2 class="page-header">
-                <small class="pull-right">Date: @DateTime.Now.ToShortDateString()</small>
-            </h2>
-        </div>
+    @* <div class="row">
+    <div class="col-xs-12 col-12">
+    <h2 class="page-header">
+    <small class="pull-right">Date: @DateTime.Now.ToShortDateString()</small>
+    </h2>
+    </div>
     </div>*@
     <!-- info row -->
     @*<div class="row result-info">
@@ -37,124 +39,136 @@
     <!-- Table row -->
     <div style="margin-top:10px; padding-bottom:10px; padding-left:70px;">
 
-    <button type="button" class="btn btn-info">
-        <a onclick="printDiv('divMain')" style="cursor: pointer; margin-right: 8px;color:white;">Print </a>
-    </button>
-    <button type="button" class="btn btn-info">
-        <a onclick="downloadDiv('divMain')" style="cursor: pointer; margin-right: 8px;color:white;">Download </a>
-    </button>
+        <button type="button" class="btn btn-info">
+            <a onclick="printDiv('divMain')" style="cursor: pointer; margin-right: 8px;color:white;">Print </a>
+        </button>
+        <button type="button" class="btn btn-info">
+            <a onclick="downloadDiv('divMain')" style="cursor: pointer; margin-right: 8px;color:white;">Download </a>
+        </button>
+    </div>
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-md-4">
 
+            <img width="100%" height="80%" src="@Model.ScannedQuestion.ScannedSheetImageBase64" />
 
-
-</div>
-     <div id="divMain" class="keepTogether" style="page-break-inside: avoid; width: 925px;height:auto; margin: 0 auto; border: 1px solid black; padding:10px;">
-    <div class="row">
-        <div class="col-xs-12 col-12 table-responsive">
-                <h2 class="page-header">
-                    <small class="pull-right">@Model.ExamResult.TenantName</small>
-                </h2>
-            <h2 class="page-header">
-                <small class="pull-right">Student Info: </small>
-            </h2>
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="2">Roll Number:</td>
-                    <td colspan="2">@Model.ExamResult.RollNumber</td>
-                    <td colspan="2"> </td>
-                    <td colspan="2">Student Name:</td>
-                    <td colspan="4">@Model.ExamResult.StudentFullName</td>
-                </tr>
-                <tr>
-                    <td colspan="2">Exam Code:</td>
-                    <td colspan="2">@Model.ExamResult.ExamCode</td>
-                    <td colspan="2"> </td>
-                    <td colspan="2">Exam Name:</td>
-                    <td colspan="4">@Model.ExamResult.ExamName</td>
-                </tr>
-                <tr>
-                    <td colspan="2">Marks Obtained:</td>
-                    <td colspan="2">@Model.ExamResult.ObtainedMarks</td>
-                    <td colspan="2"> </td>
-                    <td colspan="2">Out Of:</td>
-                    <td colspan="4">@Model.ExamResult.TotalMarks</td>
-                </tr>
-            </table>
-            <h2 class="page-header">
-                <small class="pull-right">Exam Analysis: </small>
-            </h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        
-                        <th>Total Questions</th>
-                        <th>Obtained Marks</th>
-                        <th>Attempted</th>
-                        <th>Not Attempted</th>
-                        <th>Right</th>
-                        <th>Wrong</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        
-                        <td>@Model.ExamResult.TotalQuestions.ToStringDefault()</td>
-                        <td>@Model.ExamResult.ObtainedMarks.ToStringDefault("#,##0.00")</td>
-                        <td>@Model.ExamResult.TotalAttempted.ToStringDefault()</td>
-                        <td>@Model.ExamResult.TotalNotAttempted.ToStringDefault()</td>
-                        <td>@Model.ExamResult.TotalRightAnswers.ToStringDefault()</td>
-                        <td>@Model.ExamResult.TotalWrongAnswers.ToStringDefault()</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
-        <!-- /.col -->
+        <div class="col-md-8" style="overflow-y: scroll;height:600px;">
+            <div class="row" style="margin-left:5px;">
+                <div id="divMain" class="keepTogether" style="page-break-inside: avoid; width: 925px;height:auto; margin: 0 auto; border: 1px solid black; padding:10px;">
+                    <div class="row">
+                        <div class="col-xs-12 col-12 table-responsive">
+                            <h2 class="page-header">
+                                <small class="pull-right">@Model.ExamResult.TenantName</small>
+                            </h2>
+                            <h2 class="page-header">
+                                <small class="pull-right">Student Info: </small>
+                            </h2>
+                            <table class="table table-striped">
+                                <tr>
+                                    <td colspan="2">Roll Number:</td>
+                                    <td colspan="2">@Model.ExamResult.RollNumber</td>
+                                    <td colspan="2"> </td>
+                                    <td colspan="2">Student Name:</td>
+                                    <td colspan="4">@Model.ExamResult.StudentFullName</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Exam Code:</td>
+                                    <td colspan="2">@Model.ExamResult.ExamCode</td>
+                                    <td colspan="2"> </td>
+                                    <td colspan="2">Exam Name:</td>
+                                    <td colspan="4">@Model.ExamResult.ExamName</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Marks Obtained:</td>
+                                    <td colspan="2">@Model.ExamResult.ObtainedMarks</td>
+                                    <td colspan="2"> </td>
+                                    <td colspan="2">Out Of:</td>
+                                    <td colspan="4">@Model.ExamResult.TotalMarks</td>
+                                </tr>
+                            </table>
+                            <h2 class="page-header">
+                                <small class="pull-right">Exam Analysis: </small>
+                            </h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+
+                                        <th>Total Questions</th>
+                                        <th>Obtained Marks</th>
+                                        <th>Attempted</th>
+                                        <th>Not Attempted</th>
+                                        <th>Right</th>
+                                        <th>Wrong</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td>@Model.ExamResult.TotalQuestions.ToStringDefault()</td>
+                                        <td>@Model.ExamResult.ObtainedMarks.ToStringDefault("#,##0.00")</td>
+                                        <td>@Model.ExamResult.TotalAttempted.ToStringDefault()</td>
+                                        <td>@Model.ExamResult.TotalNotAttempted.ToStringDefault()</td>
+                                        <td>@Model.ExamResult.TotalRightAnswers.ToStringDefault()</td>
+                                        <td>@Model.ExamResult.TotalWrongAnswers.ToStringDefault()</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-12 table-responsive">
+                            <h2 class="page-header">
+                                <small class="pull-right">Question Details: </small><br>
+                                @*<small class="pull-right">Exam Result Id: @Model.ExamResult.Id </small><br>
+                                <small class="pull-right">Exam Id: @Model.ExamResult.ExamId </small><br>*@
+                            </h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Question Index</th>
+                                        <th>Is Attempted</th>
+                                        <th>Is Correct</th>
+                                        <th>Right Options</th>
+                                        <th>Selected Options</th>
+                                        <th>Obtained Marks</th>
+                                        <th>Score</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in Model.Details)
+                                    {
+                                        <tr>
+                                            <td>@(d.QuestionIndex.ToStringDefault())</td>
+                                            <td>@(d.IsAttempted)</td>
+                                            <td>@(d.IsCorrect)</td>
+                                            <td>@(d.RightOptions.ToString())</td>
+                                            @if (!string.IsNullOrEmpty(d.CorrectedOptions))
+                                            {
+                                                <td>@(d.CorrectedOptions.ToString())</td>
+                                            }
+                                            else
+                                            {
+                                                <td></td>
+                                            }
+                                            <td>@(d.ObtainedMarks.ToString())</td>
+                                            <td>@(d.Score.ToString())</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="row">
-        <div class="col-xs-12 col-12 table-responsive">
-            <h2 class="page-header">
-                <small class="pull-right">Question Details: </small><br>
-                @*<small class="pull-right">Exam Result Id: @Model.ExamResult.Id </small><br>
-                <small class="pull-right">Exam Id: @Model.ExamResult.ExamId </small><br>*@
-            </h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Question Index</th>
-                        <th>Is Attempted</th>
-                        <th>Is Correct</th>
-                        <th>Right Options</th>
-                        <th>Selected Options</th>
-                        <th>Obtained Marks</th>
-                        <th>Score</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var d in Model.Details)
-                    {
-                        <tr>
-                            <td>@(d.QuestionIndex.ToStringDefault())</td>
-                            <td>@(d.IsAttempted)</td>
-                            <td>@(d.IsCorrect)</td>
-                            <td>@(d.RightOptions.ToString())</td>
-                            @if (!string.IsNullOrEmpty(d.CorrectedOptions))
-                            {
-                                <td>@(d.CorrectedOptions.ToString())</td>
-                            }else
-                            {
-                                <td></td>
-                            }
-                            <td>@(d.ObtainedMarks.ToString())</td>
-                            <td>@(d.Score.ToString())</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <!-- /.col -->
-        </div>
-        </div>
-        </div>
 </section>
 <script>
     function printDiv(divName) {

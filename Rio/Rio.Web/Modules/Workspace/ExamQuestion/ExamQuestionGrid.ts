@@ -10,7 +10,6 @@ import { ExamQuestionUpdateDialog } from './ExamQuestionUpdateDialog';
 const fld = ExamQuestionRow.Fields;
 
 @Decorators.registerClass()
-@Decorators.filterable()
 export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
     protected getColumnsKey() { return ExamQuestionColumns.columnsKey; }
     protected getDialogType() { return <any>ExamQuestionDialog; }

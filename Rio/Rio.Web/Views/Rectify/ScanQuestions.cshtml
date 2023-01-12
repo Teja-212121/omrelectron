@@ -14,7 +14,7 @@
     
    <lable>Corrected ExamNo</lable>
     <input type="text" id="CorrectedExamNo" value="@Model.ScanQuestionList[0].ScannedSheetCorrectedExamNo" />
-    <br/>
+    <br /><br />
     <lable>Corrected RollNo</lable>
     <input type="text" id="CorrectedRollNo" value="@Model.ScanQuestionList[0].ScannedSheetCorrectedRollNo" />
     <br/>
@@ -22,6 +22,17 @@
         Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper()
     </h5>
     
+    <br />
+
+    <button id="btnsave" style="float:right;margin-right:150px;" class="btn btn-info">Save Data</button>
+    @if (!string.IsNullOrEmpty(Model.PrevScannedSheetId))
+    {
+        <button id="btnback" style="float:right;margin-right:150px;" class="btn btn-info">Previous</button>
+    }
+    @if (!string.IsNullOrEmpty(Model.NextScannedSheetId))
+    {
+        <button id="btnnext" style="float:right;margin-right:150px;" class="btn btn-info">Next</button>
+    }
     <br /><br />
     <div class="row" style="margin-bottom:10px;">
         <div class="col-md-6">
@@ -59,16 +70,6 @@
         </div>
 
     </div>
-    
-    <button id="btnsave" style="float:left;margin-right:150px;" class="btn btn-info">Save Data</button>
-    @if (!string.IsNullOrEmpty(Model.PrevScannedSheetId))
-    {
-        <button id="btnback" style="float:left;margin-right:150px;" class="btn btn-info">Previous</button>
-    }
-    @if (!string.IsNullOrEmpty(Model.NextScannedSheetId))
-    {
-        <button id="btnnext" style="float:left;margin-right:150px;" class="btn btn-info">Next</button>
-    }
 </div>
 
 <script type="text/javascript">

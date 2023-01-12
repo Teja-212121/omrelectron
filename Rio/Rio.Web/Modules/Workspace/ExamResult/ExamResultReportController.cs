@@ -29,20 +29,19 @@ namespace Rio.Web.Modules.Workspace.ExamResult
         public IActionResult GetData(int ExamResultId,
             [FromServices] ISqlConnections SqlConnections,
             [FromServices] IResultReportListHandler handler,
-            [FromServices] IExamResultRetrieveHandler exhandler)
+            [FromServices] IExamResultRetrieveHandler exhandler,
+            [FromServices] IScannedQuestionRetrieveHandler scanquestionhandler)
         {
             using (var connection = SqlConnections.NewByKey("Default"))
             {
                 var model = new ExamResultReportModel();
                 try
                 {
-
-                   
-
                     RetrieveRequest retrieveRequest = new RetrieveRequest();
                     retrieveRequest.ColumnSelection = RetrieveColumnSelection.Details;
                     retrieveRequest.EntityId = ExamResultId;
                     model.ExamResult = exhandler.Retrieve(connection, retrieveRequest).Entity;
+                    model.ScannedQuestion = scanquestionhandler.Retrieve(connection, retrieveRequest).Entity;
                     if (model.ExamResult != null)
                     {
                         ListRequest request2 = new ListRequest();
