@@ -11,13 +11,13 @@ export namespace GroupStudentService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<GroupStudentRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<GroupStudentRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
-        Create = "Workspace/GroupStudent/Create",
-        Update = "Workspace/GroupStudent/Update",
-        Delete = "Workspace/GroupStudent/Delete",
-        Retrieve = "Workspace/GroupStudent/Retrieve",
-        List = "Workspace/GroupStudent/List"
-    }
+    export const Methods = {
+        Create: "Workspace/GroupStudent/Create",
+        Update: "Workspace/GroupStudent/Update",
+        Delete: "Workspace/GroupStudent/Delete",
+        Retrieve: "Workspace/GroupStudent/Retrieve",
+        List: "Workspace/GroupStudent/List"
+    } as const;
 
     [
         'Create', 
