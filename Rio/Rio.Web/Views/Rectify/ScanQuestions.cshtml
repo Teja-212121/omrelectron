@@ -11,36 +11,55 @@
 }
 
 <div class="container">
+    <div class="labels" style="border: 1px solid black; padding:10px; margin-bottom: 20px;">
+        <lable style="text-align: left">Corrected ExamNo</lable>
+        @if (Model.scannedSheetRow.CorrectedExamNo != null)
+        {
+            <input type="text" id="CorrectedExamNo" value="@Model.scannedSheetRow.CorrectedExamNo" />
+        }
+        <br /><br />
+        <lable style="text-align: left">Corrected RollNo</lable>
+        @if (Model.scannedSheetRow.CorrectedRollNo != null)
+        {
+            <input type="text" id="CorrectedRollNo" value="@Model.scannedSheetRow.CorrectedRollNo" />
+        }
+        <br />
+        @if (Model.scannedSheetRow.SheetTypeName != null)
+        {
+        <h5 style="text-align:right">
+            Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper()
+            </h5>
+        }
+        @if (Model.scannedSheetRow.ScannedImageSourcePath != null)
+        {
+            <h5 style="text-align:right">
+                Image Path: @Model.scannedSheetRow.ScannedImageSourcePath
+        </h5>
+        }
+        <br />
+    </div>
     
-   <lable>Corrected ExamNo</lable>
-    <input type="text" id="CorrectedExamNo" value="@Model.ScanQuestionList[0].ScannedSheetCorrectedExamNo" />
-    <br /><br />
-    <lable>Corrected RollNo</lable>
-    <input type="text" id="CorrectedRollNo" value="@Model.ScanQuestionList[0].ScannedSheetCorrectedRollNo" />
-    <br/>
-    <h5 style="text-align:center">
-        Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper()
-    </h5>
-    
-    <br />
+    <div id="buttons" style="border: 1px solid black; padding:10px; margin-bottom: 20px;">
+        <button id="btnsave" style="float:right;margin-right:150px;" class="btn btn-info">Save Data</button>
+        @if (!string.IsNullOrEmpty(Model.PrevScannedSheetId))
+        {
+            <button id="btnback" style="float:right;margin-right:150px;" class="btn btn-info">Previous</button>
+        }
+        @if (!string.IsNullOrEmpty(Model.NextScannedSheetId))
+        {
+            <button id="btnnext" style="float:right;margin-right:150px;" class="btn btn-info">Next</button>
+        }
+        <br /><br />
+    </div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-6" style="border: 1px solid black; padding:10px;">
+            @if (Model.scannedSheetRow.ImageBase64 != null)
+            {
+                <img width="100%" height="80%" src="@Model.scannedSheetRow.ImageBase64" />
+            }
 
-    <button id="btnsave" style="float:right;margin-right:150px;" class="btn btn-info">Save Data</button>
-    @if (!string.IsNullOrEmpty(Model.PrevScannedSheetId))
-    {
-        <button id="btnback" style="float:right;margin-right:150px;" class="btn btn-info">Previous</button>
-    }
-    @if (!string.IsNullOrEmpty(Model.NextScannedSheetId))
-    {
-        <button id="btnnext" style="float:right;margin-right:150px;" class="btn btn-info">Next</button>
-    }
-    <br /><br />
-    <div class="row" style="margin-bottom:10px;">
-        <div class="col-md-6">
-            
-            <img width="100%" height="80%" src="@Model.ScanQuestionList[0].ScannedSheetImageBase64" />
-            
         </div>
-        <div class="col-md-6" style="overflow-y: scroll;height:600px;">
+        <div class="col-md-6" style="overflow-y: scroll;height:600px; border: 1px solid black; padding:10px; margin-bottom: 20px;" ">
             <div class="row" style="margin-left:5px;">
                 <div class="col-md-2">
                     <label> Question Index</label>
@@ -52,60 +71,67 @@
                     <label> Corrected Option</label>
                 </div>
             </div>
+            @if(Model.ScanQuestionList.Count>0)
+            {
             @for (int i = 0; i < @Model.ScanQuestionList.Count; i++)
             {
-                <div class="row" style="margin-left:5px;">
+                <div class="row" style="margin-left:10px;">
                     <div class="col-md-2">
-                       <label>@Model.ScanQuestionList[i].QuestionIndex </label> 
+                        <label>@Model.ScanQuestionList[i].QuestionIndex </label>
                     </div>
                     <div class="col-md-2">
                         <label>@Model.ScanQuestionList[i].ScannedOptions </label>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" id="Correctoption@(i)" value="@Model.ScanQuestionList[i].CorrectedOptions"/>
+                        <input type="text" id="Correctoption@(i)" value="@Model.ScanQuestionList[i].CorrectedOptions" />
                         <input type="hidden" id="ScannQuestion@(i)" value="@Model.ScanQuestionList[i].Id" />
                     </div>
                 </div>
+            }
             }
         </div>
 
     </div>
 </div>
 
-<script type="text/javascript">
+<script >
 
     $("#btnsave").click(function () {
         var param = [];
         var CorrectedExamno = "";
         var CorrectedRollno = "";
         var Questionlist = "";
+        if(@Model.ScanQuestionList.Count>0)
+        {
         if ($("#CorrectedExamNo").val() == "") {
             alert("Please Enter Corrected Exam number");
-                    return;
+            return;
         }
         if ($("#CorrectedRollNo").val() == "") {
             alert("Please Enter Corrected Roll number");
-                    return;
+            return;
         }
+        
         for (var i = 0; i < parseInt("@rowcount"); i++) {
             var subid = "-1";
             var CorrectOption = "";
-            CorrectOption = $("#Correctoption" + i.toString()).val();          
+            CorrectOption = $("#Correctoption" + i.toString()).val();
 
-            Questionlist +=   CorrectOption + "#;#" + $("#ScannQuestion" + i.toString()).val() + "#$#";
+            Questionlist += CorrectOption + "#;#" + $("#ScannQuestion" + i.toString()).val() + "#$#";
 
         }
 
         CorrectedExamno = $("#CorrectedExamNo").val();
         CorrectedRollno = $("#CorrectedRollNo").val();
         $.post("UpdateScanQuestions", {
-            
-            "Questionlist": Questionlist, "CorrectedExamno": CorrectedExamno, "CorrectedRollno": CorrectedRollno, "ScannedSheetId": "@Model.ScanQuestionList[0].ScannedSheetId.ToString()"
-        }, function (data) {
-             Q.alert("Data Saved");
-           
-        });
 
+            "Questionlist": Questionlist, "CorrectedExamno": CorrectedExamno, "CorrectedRollno": CorrectedRollno, "ScannedSheetId": "@Model.scannedSheetRow.Id.ToString()"
+        }, function (data) {
+            Q.alert("Data Saved");
+
+        });
+        
+        }
 
 
     });
@@ -124,26 +150,28 @@
             }
         }
         document.body.appendChild(form);
-        //window.open(url, name, windowoption);
+        window.open(url, name, windowoption);
         form.submit();
         document.body.removeChild(form);
     }
     $("#btnback").click(function () {
-        var  PrevScannedSheetId="@Model.PrevScannedSheetId.ToString()";
-        var param = {
-            'ScannedSheetId': PrevScannedSheetId.toString()
-        };
-        var url = "/Rectify/ScanQuestions";
-        OpenWindowWithPostData(url, "", "ScanQuestion", param);
+        
+        var PrevScannedSheetId = "@Model.PrevScannedSheetId";
+        //var param = {
+        //    'ScannedSheetId': PrevScannedSheetId.toString()
+        //};
+        //var url = '/Rectify/ScanQuestions';
+        //OpenWindowWithPostData(url, "", "ScanQuestion", param);
+        var url = '@Url.Action("ScanQuestions", "Rectify", new { ScannedSheetId = "__id__" })';
+        window.location.href = url.replace('__id__', PrevScannedSheetId);
+       
     });
 
     $("#btnnext").click(function () {
         var NextScannedSheetId = "@Model.NextScannedSheetId";
-        var param = {
-            'ScannedSheetId': NextScannedSheetId.toString()
-        };
-        var url = "/Rectify/ScanQuestions";
-        OpenWindowWithPostData(url, "", "ScanQuestion", param);
-    });
         
+        var url = '@Url.Action("ScanQuestions", "Rectify", new { ScannedSheetId = "__id__" })';
+        window.location.href = url.replace('__id__', NextScannedSheetId);       
+    });
+
 </script>

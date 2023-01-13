@@ -29,41 +29,43 @@ namespace Rio.Web.Modules.Orders.CommonController
                 try
                 {
 
-
+                    string scannedsheetIdUpperCase = ScannedSheetId.ToUpper();
                     ListRequest request2 = new ListRequest();
                     request2.ColumnSelection = ColumnSelection.Details;
                     request2.EqualityFilter = new Dictionary<string, object>();
                     //request2.Sort =new SortBy[]();
-                    request2.EqualityFilter.Add("ScannedSheetId", ScannedSheetId);
+                    request2.EqualityFilter.Add("ScannedSheetId", ScannedSheetId.ToUpper());
                     ScannedQuestionController endpoint = new ScannedQuestionController();
                     var data = endpoint.List(Connection, request2, handler);
                     ScannedQuestion.ScanQuestionList = new List<ScannedQuestionRow>();
                     ScannedQuestion.ScanQuestionList = data.Entities;
-                    if (data.Entities != null)
-                    {
-                        if (!string.IsNullOrEmpty(data.Entities[0].ScannedSheetImageBase64))
-                        {
-                            if (!data.Entities[0].ScannedSheetImageBase64.StartsWith("data:image/jpeg;base64,"))
-                                data.Entities[0].ScannedSheetImageBase64 = "data:image/jpeg;base64," + data.Entities[0].ScannedSheetImageBase64;
-                        }
+                   
+                    
                         
-                    }
+                        
+                    
 
                     RetrieveRequest retrieveRequest = new RetrieveRequest();
                     retrieveRequest.ColumnSelection = RetrieveColumnSelection.Details;
-                    retrieveRequest.EntityId = ScannedSheetId;
+                    retrieveRequest.EntityId = ScannedSheetId.ToUpper();
+                    ScannedQuestion.scannedSheetRow = new ScannedSheetRow();
                     ScannedQuestion.scannedSheetRow = retrievehandler.Retrieve(Connection, retrieveRequest).Entity;
-
+                    if(ScannedQuestion.scannedSheetRow!=null)
+                    if (!string.IsNullOrEmpty(ScannedQuestion.scannedSheetRow.ImageBase64))
+                    {
+                        if (!ScannedQuestion.scannedSheetRow.ImageBase64.StartsWith("data:image/jpeg;base64,"))
+                                ScannedQuestion.scannedSheetRow.ImageBase64 = "data:image/jpeg;base64," + ScannedQuestion.scannedSheetRow.ImageBase64;
+                    }
                     var e = ScannedSheetRow.Fields;
                     var nextScansheet = Connection.TryFirst<ScannedSheetRow>(q => q
                      .Select(e.Id).Take(1)
-                    .Where(e.Id >ScannedSheetId));
+                    .Where(e.ScannedBatchId== ScannedQuestion.scannedSheetRow.ScannedBatchId.Value && e.InsertDate > ScannedQuestion.scannedSheetRow.InsertDate.Value));
 
                     if (nextScansheet != null)
                         ScannedQuestion.NextScannedSheetId = nextScansheet.Id.ToString();
                     var PrevScansheet = Connection.TryFirst<ScannedSheetRow>(q => q
                     .Select(e.Id).Take(1)
-                   .Where(e.Id < ScannedSheetId));
+                   .Where(e.ScannedBatchId == ScannedQuestion.scannedSheetRow.ScannedBatchId.Value && e.InsertDate < ScannedQuestion.scannedSheetRow.InsertDate.Value));
                     if (PrevScansheet != null)
                         ScannedQuestion.PrevScannedSheetId = PrevScansheet.Id.ToString();
                     //var nextScansheet=Connection.TryFirst<ScannedSheetRow>()

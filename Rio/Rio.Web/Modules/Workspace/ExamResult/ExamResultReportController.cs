@@ -41,9 +41,17 @@ namespace Rio.Web.Modules.Workspace.ExamResult
                     retrieveRequest.ColumnSelection = RetrieveColumnSelection.Details;
                     retrieveRequest.EntityId = ExamResultId;
                     model.ExamResult = exhandler.Retrieve(connection, retrieveRequest).Entity;
+                   
                     model.ScannedQuestion = scanquestionhandler.Retrieve(connection, retrieveRequest).Entity;
                     if (model.ExamResult != null)
                     {
+                        if (!string.IsNullOrEmpty(model.ExamResult.ScannedSheetImageBase64))
+                        {
+                            if (!model.ExamResult.ScannedSheetImageBase64.StartsWith("data:image/jpeg;base64,"))
+                                model.ExamResult.ScannedSheetImageBase64 = "data:image/jpeg;base64," + model.ExamResult.ScannedSheetImageBase64;
+
+                        }
+                        
                         ListRequest request2 = new ListRequest();
                         request2.ColumnSelection = ColumnSelection.Details;
                         request2.EqualityFilter = new Dictionary<string, object>();

@@ -156,6 +156,13 @@ namespace Rio.Workspace
         }
 
 
+        [DisplayName("Scanned Sheet ImageBase64"), Expression("jScannedSheet.[ImageBase64]")]
+        public string ScannedSheetImageBase64
+        {
+            get => fields.ScannedSheetImageBase64[this];
+            set => fields.ScannedSheetImageBase64[this] = value;
+        }
+
         [DisplayName("Tenant Name"), Expression("jTenant.[TenantName]")]
         public string TenantName
         {
@@ -406,6 +413,7 @@ namespace Rio.Workspace
 
             public Int64Field StudentRollNo;
             public StringField TenantName;
+            public StringField ScannedSheetImageBase64;
             public StringField StudentFirstName;
             public StringField StudentMiddleName;
             public StringField StudentLastName;
