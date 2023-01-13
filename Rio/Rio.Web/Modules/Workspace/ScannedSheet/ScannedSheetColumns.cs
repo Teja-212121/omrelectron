@@ -38,9 +38,8 @@ namespace Rio.Workspace.Columns
         public string ScannedComments { get; set; }
         public bool ResultProcessed { get; set; }
         [QuickFilter]
-        public bool IsRectified { get; set; }
-        [SortOrder(1, descending: true)]
-        public DateTime InsertDate { get; set; }
+        public bool IsRectified { get; set; }       
+        
         public string ScannedBatchName { get; set; }
         public int TenantId { get; set; }
         public string OCRData1Key { get; set; }

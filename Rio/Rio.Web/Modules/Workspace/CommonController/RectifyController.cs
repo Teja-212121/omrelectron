@@ -65,7 +65,7 @@ namespace Rio.Web.Modules.Orders.CommonController
                         ScannedQuestion.NextScannedSheetId = nextScansheet.Id.ToString();
                     var PrevScansheet = Connection.TryFirst<ScannedSheetRow>(q => q
                     .Select(e.Id).Take(1)
-                   .Where(e.ScannedBatchId == ScannedQuestion.scannedSheetRow.ScannedBatchId.Value && e.InsertDate < ScannedQuestion.scannedSheetRow.InsertDate.Value));
+                   .Where(e.ScannedBatchId == ScannedQuestion.scannedSheetRow.ScannedBatchId.Value && e.InsertDate < ScannedQuestion.scannedSheetRow.InsertDate.Value).OrderBy (e.InsertDate,true));
                     if (PrevScansheet != null)
                         ScannedQuestion.PrevScannedSheetId = PrevScansheet.Id.ToString();
                     //var nextScansheet=Connection.TryFirst<ScannedSheetRow>()

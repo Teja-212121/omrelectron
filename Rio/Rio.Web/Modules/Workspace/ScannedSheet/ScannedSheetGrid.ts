@@ -19,7 +19,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
     protected getService() { return ScannedSheetService.baseUrl; }
 
     private pendingChanges: Dictionary<any> = {};
-    private rowSelection: GridRowSelectionMixin;
+    public rowSelection: GridRowSelectionMixin;
 
     private ScannedBatchInsertDate;
     constructor(container: JQuery) {
@@ -260,6 +260,22 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
             onViewSubmit: () => this.onViewSubmit(),
             separator: true
         }));
+
+        buttons.push({
+            title: 'Update DisplayName',
+            cssClass: 'send-button',
+            onClick: () => {
+                var rowKeys = this.rowSelection.getSelectedKeys();
+                if (rowKeys.length == 0) {
+                    alert("Select Sheet To Update DisplayName");
+                    return;
+                }
+                serviceRequest('/Services/Workspace/ScannedSheet/UpdateDisplayname', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+               
+
+            },
+            separator: true
+        });
 
         buttons.push({
             title: 'Generate Result',

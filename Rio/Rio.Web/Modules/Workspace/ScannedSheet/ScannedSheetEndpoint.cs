@@ -175,7 +175,7 @@ namespace Rio.Workspace.Endpoints
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
         }
 
-        [AuthorizeUpdate(typeof(MyRow))]
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse UpdateResult(string[] ids, IUnitOfWork uow, [FromServices] IScannedSheetSaveHandler handler)
         {
             string errorids = "";
@@ -586,7 +586,31 @@ namespace Rio.Workspace.Endpoints
             return new SaveResponse();
         }
 
-        [AuthorizeUpdate(typeof(MyRow))]
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse UpdateDisplayname(string[] ids, [FromServices] ISqlConnections SqlConnections, [FromServices] IScannedSheetSaveHandler handler)
+        {
+
+
+            using (var connection = SqlConnections.NewByKey("Default"))
+            {
+                foreach (var id in ids)
+                {
+                    Guid sheetid = new Guid(id.ToString().ToUpper());
+                    var scannedsheet = connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
+                    if (scannedsheet != null)
+                    {
+                        if (!string.IsNullOrEmpty(scannedsheet.CorrectedExamNo) && !string.IsNullOrEmpty(scannedsheet.CorrectedRollNo))
+                            scannedsheet.ScannedSheetDisplayName = scannedsheet.CorrectedRollNo + " (" + scannedsheet.CorrectedExamNo + ")";
+                        connection.UpdateById<MyRow>(scannedsheet);
+                    }
+
+                }
+            }
+            
+            return new SaveResponse();
+        }
+
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse RecalculateResult(string[] ids, IUnitOfWork uow, [FromServices] IScannedSheetSaveHandler handler)
         {
             string errorids = "";

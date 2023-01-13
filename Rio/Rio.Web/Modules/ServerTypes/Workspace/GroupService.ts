@@ -12,14 +12,14 @@ export namespace GroupService {
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<GroupRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function DeleteGroup(request: string[], onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export const Methods = {
-        Create: "Workspace/Group/Create",
-        Update: "Workspace/Group/Update",
-        Delete: "Workspace/Group/Delete",
-        Retrieve: "Workspace/Group/Retrieve",
-        List: "Workspace/Group/List",
-        DeleteGroup: "Workspace/Group/DeleteGroup"
-    } as const;
+    export declare const enum Methods {
+        Create = "Workspace/Group/Create",
+        Update = "Workspace/Group/Update",
+        Delete = "Workspace/Group/Delete",
+        Retrieve = "Workspace/Group/Retrieve",
+        List = "Workspace/Group/List",
+        DeleteGroup = "Workspace/Group/DeleteGroup"
+    }
 
     [
         'Create', 

@@ -1,5 +1,4 @@
 ﻿import { StringEditor, EnumEditor, PrefixedContext } from "@serenity-is/corelib";
-import { EApprovalStatus } from "../Web/Enums.EApprovalStatus";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface TenantForm {
@@ -27,5 +26,3 @@ export class TenantForm extends PrefixedContext {
         }
     }
 }
-
-[EApprovalStatus]; // referenced types
