@@ -40,31 +40,31 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.2" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.3" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.8.4">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serenity.Assets" Version="6.3.3" />
-    <PackageReference Include="Serenity.Scripts" Version="6.3.3" />
-    <PackageReference Include="Serenity.Net.Web" Version="6.3.3" />
+    <PackageReference Include="Serenity.Assets" Version="6.4.4" />
+    <PackageReference Include="Serenity.Scripts" Version="6.4.4" />
+    <PackageReference Include="Serenity.Net.Web" Version="6.4.4" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serenity.Extensions" Version="6.3.3" />
+    <PackageReference Include="Serenity.Extensions" Version="6.4.4" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serenity.Pro.Coder" Version="6.3.3">
+    <PackageReference Include="Serenity.Pro.Coder" Version="6.4.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Serenity.Pro.Extensions" Version="6.3.3" />
-    <PackageReference Include="Serenity.Pro.Theme" Version="6.3.3" />
-    <PackageReference Include="Serenity.Pro.UI" Version="6.3.3" />
-    <PackageReference Include="Serenity.Pro.DataAuditLog" Version="6.3.3" />
-    <PackageReference Include="Serenity.Pro.DataExplorer" Version="6.3.3" />
-    <PackageReference Include="Serenity.Pro.EmailClient" Version="6.3.3" />
-    <PackageReference Include="Serenity.Pro.EmailQueue" Version="6.3.3" />
+    <PackageReference Include="Serenity.Pro.Extensions" Version="6.4.4" />
+    <PackageReference Include="Serenity.Pro.Theme" Version="6.4.4" />
+    <PackageReference Include="Serenity.Pro.UI" Version="6.4.4" />
+    <PackageReference Include="Serenity.Pro.DataAuditLog" Version="6.4.4" />
+    <PackageReference Include="Serenity.Pro.DataExplorer" Version="6.4.4" />
+    <PackageReference Include="Serenity.Pro.EmailClient" Version="6.4.4" />
+    <PackageReference Include="Serenity.Pro.EmailQueue" Version="6.4.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Namespaces\Administration\" />
