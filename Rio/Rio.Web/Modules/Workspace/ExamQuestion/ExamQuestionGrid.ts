@@ -248,8 +248,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
         buttons.push({
             title: 'Save Changes',
             cssClass: 'apply-changes-button disabled',
-            onClick: e => this.saveClick(),
-            separator: true
+            onClick: e => this.saveClick()
         });
 
         buttons.push({
@@ -277,8 +276,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
                     dialog = null;
                 });
                 dialog.dialogOpen();
-            },
-            separator: true
+            }
         });
 
         buttons.push({
