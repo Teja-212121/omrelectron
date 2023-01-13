@@ -20,7 +20,6 @@
         TenantId?: number;
         StudentRollNo?: number;
         TenantName?: string;
-        ScannedSheetImageBase64?: string;
         StudentFirstName?: string;
         StudentMiddleName?: string;
         StudentLastName?: string;
@@ -87,7 +86,6 @@
             TenantId = "TenantId",
             StudentRollNo = "StudentRollNo",
             TenantName = "TenantName",
-            ScannedSheetImageBase64 = "ScannedSheetImageBase64",
             StudentFirstName = "StudentFirstName",
             StudentMiddleName = "StudentMiddleName",
             StudentLastName = "StudentLastName",
