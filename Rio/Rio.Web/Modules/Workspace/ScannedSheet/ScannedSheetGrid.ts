@@ -5,10 +5,9 @@ import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { EScannedStatus, ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
 
-
 const fld = ScannedSheetRow.Fields;
 
-@Decorators.registerClass()
+@Decorators.registerClass('Rio.Workspace.ScannedSheetGrid')
 @Decorators.filterable()
 export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
     protected getColumnsKey() { return ScannedSheetColumns.columnsKey; }
@@ -353,7 +352,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
             klass += " failedsheet";
         else if (item.ScannedStatus == EScannedStatus.OpenSheet)
             klass += " Opensheet";
-        return Q.trimToNull(klass);
+        return trimToNull(klass);
     }
 
     //protected getQuickFilters() {
