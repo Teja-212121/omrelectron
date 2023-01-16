@@ -20,6 +20,7 @@
         SerializedMessage?: number[];
         AwsUserId?: string;
         AwsPassword?: string;
+        UseXOAUTH2?: boolean;
     }
 
     export namespace MailRow {
@@ -51,7 +52,8 @@
             InsertDate = "InsertDate",
             SerializedMessage = "SerializedMessage",
             AwsUserId = "AwsUserId",
-            AwsPassword = "AwsPassword"
+            AwsPassword = "AwsPassword",
+            UseXOAUTH2 = "UseXOAUTH2"
         }
     }
 }

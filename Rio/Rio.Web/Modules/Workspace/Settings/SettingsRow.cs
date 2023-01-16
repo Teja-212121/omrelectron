@@ -90,6 +90,13 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
+        [DisplayName("UseXOAUTH2"),DefaultValue(false)]
+        public Boolean? UseXOAUTH2
+        {
+            get => fields.UseXOAUTH2[this];
+            set => fields.UseXOAUTH2[this] = value;
+        }
+
         [DisplayName("Tenant Id")]
         [LookupEditor("Administration.Tenant")]
         public int? TenantId
@@ -132,6 +139,7 @@ namespace Rio.Workspace
             public StringField GatewayUrl;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public BooleanField UseXOAUTH2;
         }
     }
 }

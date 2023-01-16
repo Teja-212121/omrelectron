@@ -12,6 +12,7 @@
         GatewayUrl?: string;
         IsActive?: number;
         TenantId?: number;
+        UseXOAUTH2?: boolean;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -41,6 +42,7 @@
             GatewayUrl = "GatewayUrl",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            UseXOAUTH2 = "UseXOAUTH2",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

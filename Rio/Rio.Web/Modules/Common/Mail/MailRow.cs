@@ -153,6 +153,13 @@ namespace Rio.Common
             set => fields.AwsPassword[this] = value;
         }
 
+        [DisplayName("UseXOAUTH2"), DefaultValue(false)]
+        public Boolean? UseXOAUTH2
+        {
+            get => fields.UseXOAUTH2[this];
+            set => fields.UseXOAUTH2[this] = value;
+        }
+
         public MailRow()
             : base()
         {
@@ -185,6 +192,7 @@ namespace Rio.Common
             public ByteArrayField SerializedMessage;
             public StringField AwsUserId;
             public StringField AwsPassword;
+            public BooleanField UseXOAUTH2;
         }
     }
 }

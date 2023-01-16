@@ -164,6 +164,35 @@ namespace Rio.Workspace.Endpoints
             return handler.List(connection, request);
         }
 
+        [HttpPost]
+        public SaveResponse InsertScannedBatchData(IUnitOfWork uow, SaveRequest<List<MyRow>> request, [FromServices] IScannedSheetSaveHandler ScannedSheethandler)
+        {
+
+            var resp = new SaveResponse();
+
+            foreach (ScannedSheetRow ScannedSheet in request.Entity)
+            {
+                List<ScannedQuestionRow> questions = new List<ScannedQuestionRow>();
+                questions = ScannedSheet.ScannedQuestions;
+                //ScanSheetRow scanSheet = ScannedSheet;
+
+                uow.Connection.Insert<MyRow>(ScannedSheet);
+                //ScannedSheet.ScannedQuestions = questions;
+                //ScannedSheethandler.Create(uow, request1);
+                if (questions != null)
+                {
+                    foreach (ScannedQuestionRow ScannedQuestion in questions)
+                    {
+                        uow.Connection.Insert<ScannedQuestionRow>(ScannedQuestion);
+                    }
+
+                }
+
+            }
+
+            return resp;
+        }
+
         [AuthorizeList(typeof(MyRow))]
         public FileContentResult ListExcel(IDbConnection connection, ListRequest request,
             [FromServices] IScannedSheetListHandler handler,
