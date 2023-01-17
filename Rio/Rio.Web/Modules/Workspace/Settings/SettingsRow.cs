@@ -9,8 +9,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("Settings")]
     [DisplayName("Settings"), InstanceName("Settings")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.ExamsAndSectionManagement.View)]
+    [ModifyPermission(PermissionKeys.ExamsAndSectionManagement.Modify)]
     public sealed class SettingsRow : LoggingRow<SettingsRow.RowFields>, IIdRow, INameRow, IMultiTenantRow, IIsActiveRow
     {
         [DisplayName("Id"), Identity, IdProperty]

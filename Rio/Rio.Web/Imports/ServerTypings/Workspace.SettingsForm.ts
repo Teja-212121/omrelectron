@@ -9,6 +9,7 @@
         ApiKey: Serenity.StringEditor;
         Sender: Serenity.StringEditor;
         GatewayUrl: Serenity.StringEditor;
+        UseXOAUTH2: Serenity.BooleanEditor;
     }
 
     export class SettingsForm extends Serenity.PrefixedContext {
@@ -35,7 +36,8 @@
                     'Password', w0,
                     'ApiKey', w0,
                     'Sender', w0,
-                    'GatewayUrl', w0
+                    'GatewayUrl', w0,
+                    'UseXOAUTH2', w2
                 ]);
             }
         }
