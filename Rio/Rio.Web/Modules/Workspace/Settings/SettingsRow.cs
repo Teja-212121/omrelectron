@@ -41,7 +41,7 @@ namespace Rio.Workspace
             set => fields.UseSsl[this] = value;
         }
 
-        [DisplayName("From")]
+        [DisplayName("From Email")]
         public string From
         {
             get => fields.From[this];
