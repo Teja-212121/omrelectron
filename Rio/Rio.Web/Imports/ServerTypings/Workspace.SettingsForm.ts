@@ -2,7 +2,7 @@
     export interface SettingsForm {
         Host: Serenity.StringEditor;
         Port: Serenity.IntegerEditor;
-        UseSsl: Serenity.IntegerEditor;
+        UseSsl: Serenity.BooleanEditor;
         From: Serenity.StringEditor;
         UserName: Serenity.StringEditor;
         Password: Serenity.StringEditor;
@@ -24,11 +24,12 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.IntegerEditor;
+                var w2 = s.BooleanEditor;
 
                 Q.initFormType(SettingsForm, [
                     'Host', w0,
                     'Port', w1,
-                    'UseSsl', w1,
+                    'UseSsl', w2,
                     'From', w0,
                     'UserName', w0,
                     'Password', w0,
