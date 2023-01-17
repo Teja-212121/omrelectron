@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Rio.Administration;
 using Rio.Administration.Repositories;
@@ -147,6 +148,10 @@ namespace Rio.Membership.Pages
                 mail.MailFrom = FromEmail;
                 mail.AwsUserId = AwsuserId;
                 mail.AwsPassword = AwsPassword;
+                mail.Host = "email-smtp.us-west-2.amazonaws.com";
+                mail.Port = 465;
+                mail.FromName = "Antargyan";
+                mail.UseXOAUTH2 = false;
                 mail.MailTo = email;
                 //if (message.CC.Count > 0)
                 //    mail.Cc = string.Join(";", message.CC.Select(x => x.ToString()));

@@ -24,10 +24,10 @@
         export const isActiveProperty = 'IsActive';
         export const nameProperty = 'Host';
         export const localTextPrefix = 'Workspace.Settings';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const deletePermission = 'Workspace:ExamsAndSectionManagement:Modify';
+        export const insertPermission = 'Workspace:ExamsAndSectionManagement:Modify';
+        export const readPermission = 'Workspace:ExamsAndSectionManagement:View';
+        export const updatePermission = 'Workspace:ExamsAndSectionManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",
