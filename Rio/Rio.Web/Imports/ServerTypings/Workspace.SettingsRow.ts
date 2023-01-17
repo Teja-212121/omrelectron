@@ -3,7 +3,7 @@
         Id?: number;
         Host?: string;
         Port?: number;
-        UseSsl?: number;
+        UseSsl?: boolean;
         From?: string;
         UserName?: string;
         Password?: string;

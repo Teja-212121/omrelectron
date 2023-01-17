@@ -9,7 +9,10 @@
         ReplyTo?: string;
         Cc?: string;
         Bcc?: string;
+        Host?: string;
+        FromName?: string;
         Priority?: MailQueuePriority;
+        Port?: number;
         Status?: MailStatus;
         RetryCount?: number;
         ErrorMessage?: string;
@@ -42,7 +45,10 @@
             ReplyTo = "ReplyTo",
             Cc = "Cc",
             Bcc = "Bcc",
+            Host = "Host",
+            FromName = "FromName",
             Priority = "Priority",
+            Port = "Port",
             Status = "Status",
             RetryCount = "RetryCount",
             ErrorMessage = "ErrorMessage",

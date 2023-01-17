@@ -3,6 +3,7 @@ import { ExamResultColumns, ExamResultRow, ExamResultService } from '../../Serve
 import { Column } from "@serenity-is/sleekgrid";
 import { ExcelExportHelper, ReportHelper } from '@serenity-is/extensions';
 import { ExamResultDialog } from './ExamResultDialog';
+
 import { postToService, resolveUrl } from '@serenity-is/corelib/q';
 
 @Decorators.registerClass()
@@ -70,6 +71,21 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             separator: true
         }));
 
+        buttons.push({
+            title: 'Send Email',
+            cssClass: 'send-button',
+            onClick: () => {
+                var rowKeys = this.rowSelection.getSelectedKeys();
+                if (rowKeys.length == 0) {
+                    alert("Select Sheet To Update DisplayName");
+                    return;
+                }
+                Q.serviceRequest('/Services/Workspace/ExamResult/SendEmails', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+
+
+            },
+            separator: true
+        });
         return buttons;
     }
 

@@ -76,6 +76,26 @@ namespace Rio.Common
             set => fields.Bcc[this] = value;
         }
 
+        [DisplayName("FromName"), Size(500)]
+        public string FromName
+        {
+            get => fields.FromName[this];
+            set => fields.FromName[this] = value;
+        }
+        [DisplayName("Host"), Size(500)]
+        public string Host
+        {
+            get => fields.Host[this];
+            set => fields.Host[this] = value;
+        }
+
+        [DisplayName("Port")]
+        public int? Port
+        {
+            get => fields.Port[this];
+            set => fields.Port[this] = value;
+        }
+
         [DisplayName("Priority"), NotNull, ReadOnly(true)]
         public MailQueuePriority? Priority
         {
@@ -153,7 +173,7 @@ namespace Rio.Common
             set => fields.AwsPassword[this] = value;
         }
 
-        [DisplayName("UseXOAUTH2"), DefaultValue(false)]
+        [DisplayName("UseXOAUTH2"), DefaultValue(true)]
         public Boolean? UseXOAUTH2
         {
             get => fields.UseXOAUTH2[this];
@@ -181,7 +201,10 @@ namespace Rio.Common
             public StringField ReplyTo;
             public StringField Cc;
             public StringField Bcc;
+            public StringField Host;
+            public StringField FromName;
             public Int32Field Priority;
+            public Int32Field Port;
             public Int32Field Status;
             public Int32Field RetryCount;
             public StringField ErrorMessage;

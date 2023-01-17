@@ -120,9 +120,10 @@ namespace Rio.Common.Services
                 //if (!string.IsNullOrEmpty(config.Host))
                 //{
                     var client = new MailKit.Net.Smtp.SmtpClient();
-                    message.From.Add(new MailboxAddress("", mail.MailFrom));
+                    message.From.Add(new MailboxAddress(mail.FromName, mail.MailFrom));
 
-                    client.Connect("email-smtp.us-west-2.amazonaws.com", 465);
+                    client.Connect(mail.Host, mail.Port.Value);
+                 if(mail.UseXOAUTH2==false)
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
                     client.Authenticate(new NetworkCredential(mail.AwsUserId, mail.AwsPassword));
                     client.Send(message);

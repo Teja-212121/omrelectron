@@ -63,8 +63,8 @@ namespace Rio.Common.Services
                 {
                     using (var uow = new UnitOfWork(connection))
                     {
-                        if (SqlApplicationLock.Get(uow, "BackgroundJob_EmailQueueSend_" + mail.MailId.Value) < 0)
-                            continue;
+                        //if (SqlApplicationLock.Get(uow, "BackgroundJob_EmailQueueSend_" + mail.MailId.Value) < 0)
+                        //    continue;
 
                         if (new SqlUpdate(m.TableName)
                             .Set(m.LockExpiration, DateTime.Now.Add(lockDuration))

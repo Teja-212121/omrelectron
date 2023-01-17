@@ -19,6 +19,7 @@ namespace MVC
 
         public static class ExamResult
         {
+            public const string ExamResultEmail = "~/Views/ExamResult/ExamResultEmail.cshtml";
             public const string ExamResultReport = "~/Views/ExamResult/ExamResultReport.cshtml";
         }
 

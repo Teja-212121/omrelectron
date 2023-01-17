@@ -35,7 +35,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Use Ssl")]
-        public int? UseSsl
+        public Boolean? UseSsl
         {
             get => fields.UseSsl[this];
             set => fields.UseSsl[this] = value;
@@ -90,7 +90,7 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("UseXOAUTH2"),DefaultValue(false)]
+        [DisplayName("UseXOAUTH2"),DefaultValue(true)]
         public Boolean? UseXOAUTH2
         {
             get => fields.UseXOAUTH2[this];
@@ -130,7 +130,7 @@ namespace Rio.Workspace
             public Int32Field Id;
             public StringField Host;
             public Int32Field Port;
-            public Int32Field UseSsl;
+            public BooleanField UseSsl;
             public StringField From;
             public StringField UserName;
             public StringField Password;
