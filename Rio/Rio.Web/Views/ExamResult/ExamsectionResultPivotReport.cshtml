@@ -1,0 +1,165 @@
+@model Rio.Web.Modules.Workspace.CommonController.Models.SectionReportModel
+
+@{
+    ViewData["Printing"] = true;
+    Layout = User.IsLoggedIn() ?
+        "~/Views/Shared/_Layout.cshtml" :
+        "~/Views/Shared/_LayoutNoNavigation.cshtml";
+}
+
+<section>
+</section>
+<section class="result">
+
+
+    <div style="margin-top:10px; padding-bottom:10px; padding-left:70px;">
+
+        <button type="button" class="btn btn-info">
+            <a onclick="printDiv('divMain')" style="cursor: pointer; margin-right: 8px;color:white;">Print </a>
+        </button>
+        <button type="button" class="btn btn-info">
+            <a onclick="downloadDiv('divMain')" style="cursor: pointer; margin-right: 8px;color:white;">Download </a>
+        </button>
+    </div>
+    <div class="row" style="margin-bottom:10px;">
+       
+        <div class="col-md-12" style="overflow-y: scroll;height:800px;">
+            <div class="row" style="margin-left:5px;">
+                <div id="divMain" class="keepTogether" style="page-break-inside: avoid; width: 925px;height:auto; margin: 0 auto; border: 1px solid black; padding:10px;">
+                    <div class="row">
+                        <div class="col-xs-12 col-12 table-responsive">
+                            <h2 class="page-header">
+                                <small class="pull-right">@Model.ExamResult.TenantName</small>
+                            </h2>
+                            <h2 class="page-header">
+                                <small class="pull-right">Student Info: </small>
+                            </h2>
+                            <table class="table table-striped">
+                                <tr>
+                                    <td colspan="2">Roll Number:</td>
+                                    <td colspan="2">@Model.ExamResult.RollNumber</td>
+                                    <td colspan="2"> </td>
+                                    <td colspan="2">Student Name:</td>
+                                    <td colspan="4">@Model.ExamResult.StudentFullName</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Exam Code:</td>
+                                    <td colspan="2">@Model.ExamResult.ExamCode</td>
+                                    <td colspan="2"> </td>
+                                    <td colspan="2">Exam Name:</td>
+                                    <td colspan="4">@Model.ExamResult.ExamName</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Marks Obtained:</td>
+                                    <td colspan="2">@Model.ExamResult.ObtainedMarks</td>
+                                    <td colspan="2"> </td>
+                                    <td colspan="2">Out Of:</td>
+                                    <td colspan="4">@Model.ExamResult.TotalMarks</td>
+                                </tr>
+                            </table>
+                            <h2 class="page-header">
+                                <small class="pull-right">Section Analysis: </small>
+                            </h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+
+                                        <th>Section Name</th>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.ExamSectionName</th>
+                                        }
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Total Marks</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.TotalMarks</th>
+                                        }                                        
+                                    </tr>
+                                    <tr>
+                                        <td>Obtained Marks</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.ObtainedMarks</th>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Percentage</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.Percentage</th>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Total Questions</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.TotalQuestions</th>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>total Attempted</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.TotalAttempted</th>
+                                        }
+                                    </tr>
+                                     <tr>
+                                        <td>total Unattempted</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.TotalNotAttempted</th>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>total Right</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.TotalRightAnswers</th>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>total Wrong</td>
+                                        @foreach (var sectionresult in Model.ExamSectionResultList)
+                                        {
+                                            <th>@sectionresult.TotalWrongAnswers</th>
+                                        }
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<script>
+    function printDiv(divName) {
+        debugger;
+        $(".hideOnPrint").remove();
+
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+
+        window.print();
+        document.body.innerHTML = originalContents;
+        location.reload();
+    }
+
+
+
+
+
+</script>
