@@ -97,7 +97,7 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             separator: true
         });
 
-        buttons.push({
+        /*buttons.push({
             title: 'Generate Question Pivot Report',
             cssClass: 'view-button',
             onClick: () => {
@@ -111,7 +111,7 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
 
             },
             separator: true
-        });
+        });*/
         return buttons;
     }
 
