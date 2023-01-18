@@ -152,6 +152,8 @@ namespace Rio.Workspace.Endpoints
                         sheetRow.CorrectedExamNo = Convert.ToString(worksheet.Cells[row, 9].Value ?? null);
                         sheetRow.ExamSetNo = Convert.ToString(worksheet.Cells[row, 10].Value ?? null);
                         sheetRow.ScannedImageSourcePath = Convert.ToString(worksheet.Cells[row, 11].Value ?? "").Trim();
+                        if (!string.IsNullOrEmpty(sheetRow.CorrectedExamNo) && !string.IsNullOrEmpty(sheetRow.CorrectedRollNo))
+                            sheetRow.ImportScannedSheetDisplayName = sheetRow.CorrectedRollNo + " (" + sheetRow.CorrectedExamNo + ")";
                         Int16? ScannedStatus = Convert.ToInt16(worksheet.Cells[row, 12].Value ?? null);
                         if (ScannedStatus != null)
                         {

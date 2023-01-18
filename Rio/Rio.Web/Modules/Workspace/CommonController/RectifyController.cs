@@ -106,6 +106,8 @@ namespace Rio.Web.Modules.Orders.CommonController
                         srow.Id=scannedsheet.Id;
                         srow.CorrectedRollNo = CorrectedRollno;
                         srow.CorrectedExamNo = CorrectedExamno;
+                        if (!string.IsNullOrEmpty(srow.CorrectedExamNo) && !string.IsNullOrEmpty(srow.CorrectedRollNo))
+                            srow.ScannedSheetDisplayName = srow.CorrectedRollNo + " (" + srow.CorrectedExamNo + ")";
                         Connection.UpdateById<ScannedSheetRow>(srow);
                     }
 
