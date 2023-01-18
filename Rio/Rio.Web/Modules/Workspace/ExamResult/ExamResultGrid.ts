@@ -4,7 +4,7 @@ import { Column } from "@serenity-is/sleekgrid";
 import { ExcelExportHelper, ReportHelper } from '@serenity-is/extensions';
 import { ExamResultDialog } from './ExamResultDialog';
 
-import { postToService, resolveUrl } from '@serenity-is/corelib/q';
+import { postToService, resolveUrl, serviceRequest } from '@serenity-is/corelib/q';
 
 @Decorators.registerClass()
 export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
@@ -51,6 +51,16 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             maxWidth: 36
         });
 
+        columns.splice(3, 0, {
+            field: 'Pivot Report',
+            name: '',
+            format: ctx => '<a class="inline-action pivot-report" title="Pivot">' +
+                '<i class="fa fa-file-text-o text-blue"></i></a>',
+            width: 36,
+            minWidth: 36,
+            maxWidth: 36
+        });
+
         return columns;
     }
 
@@ -80,7 +90,23 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
                     alert("Select Sheet To Update DisplayName");
                     return;
                 }
-                Q.serviceRequest('/Services/Workspace/ExamResult/SendEmails', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+                serviceRequest('/Services/Workspace/ExamResult/SendEmails', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+
+
+            },
+            separator: true
+        });
+
+        buttons.push({
+            title: 'Generate Question Pivot Report',
+            cssClass: 'view-button',
+            onClick: () => {
+                var rowKeys = this.rowSelection.getSelectedKeys();
+                if (rowKeys.length == 0) {
+                    alert("Select Exam to Generate Pivot Result");
+                    return;
+                }
+                serviceRequest('/Services/Workspace/ExamResult/GeneratePivotReport', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
 
 
             },
@@ -123,6 +149,15 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
                     },
                     target: '_blank'
                 });
+            }
+
+            if (target.hasClass('pivot-report')) {
+                var param = {
+                    'ExamResultId': item.Id,
+                    'ExamId': item.ExamId
+                };
+                var url = "/ExamQuestionResult/ExamQuestionResultPivot";
+                postToService({ url: resolveUrl('~/ExamQuestionResult/ExamQuestionResultPivot?ExamResultId=' + item.Id), request: '', target: '_blank' });
             }
 
             /*if (target.hasClass('print-result')) {

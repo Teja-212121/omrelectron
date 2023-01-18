@@ -13,5 +13,6 @@ namespace Rio.Web.Modules.Workspace.CommonController.Models
         public ScannedQuestionRow ScannedQuestion { get; set; }
         public ExamQuestionRow ExamQuestion { get; set; }
         public ExamResultRow ExamResult { get; set; }
+        public ExamQuestionResultRow ExamQuestionResult { get; set; }
     }
 }

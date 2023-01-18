@@ -17,6 +17,11 @@ namespace MVC
             public const string ValidationError = "~/Views/Errors/ValidationError.cshtml";
         }
 
+        public static class ExamQuestionResult
+        {
+            public const string ExamQuestionResultPivot = "~/Views/ExamQuestionResult/ExamQuestionResultPivot.cshtml";
+        }
+
         public static class ExamResult
         {
             public const string ExamResultEmail = "~/Views/ExamResult/ExamResultEmail.cshtml";
