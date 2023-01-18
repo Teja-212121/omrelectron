@@ -26,6 +26,7 @@ namespace MVC
         {
             public const string ExamResultEmail = "~/Views/ExamResult/ExamResultEmail.cshtml";
             public const string ExamResultReport = "~/Views/ExamResult/ExamResultReport.cshtml";
+            public const string ExamsectionResultPivotReport = "~/Views/ExamResult/ExamsectionResultPivotReport.cshtml";
         }
 
         public static class Membership
