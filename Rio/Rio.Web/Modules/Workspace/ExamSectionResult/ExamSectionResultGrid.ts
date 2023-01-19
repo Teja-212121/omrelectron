@@ -2,6 +2,7 @@ import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/core
 import { ExamSectionResultColumns, ExamSectionResultRow, ExamSectionResultService } from '../../ServerTypes/Workspace';
 import { ExcelExportHelper, ReportHelper } from '@serenity-is/extensions';
 import { ExamSectionResultDialog } from './ExamSectionResultDialog';
+import { postToService, resolveUrl } from '@serenity-is/corelib/q';
 
 @Decorators.registerClass()
 export class ExamSectionResultGrid extends EntityGrid<ExamSectionResultRow, any> {
@@ -27,6 +28,16 @@ export class ExamSectionResultGrid extends EntityGrid<ExamSectionResultRow, any>
             field: 'Pivot Report',
             name: '',
             format: ctx => '<a class="inline-action pivot-report" title="Pivot Report">' +
+                '<i class="fa fa-file-text-o text-blue"></i></a>',
+            width: 36,
+            minWidth: 36,
+            maxWidth: 36
+        });
+
+        columns.splice(1, 0, {
+            field: 'Section Normal Report',
+            name: '',
+            format: ctx => '<a class="inline-action normal-report" title="Normal Report">' +
                 '<i class="fa fa-file-pdf-o text-red"></i></a>',
             width: 36,
             minWidth: 36,
@@ -73,12 +84,13 @@ export class ExamSectionResultGrid extends EntityGrid<ExamSectionResultRow, any>
 
             if (target.hasClass('pivot-report')) {
                
-                Q.postToService({ url: Q.resolveUrl('~/SectionReport/Pivotreport?ScannedSheetId=' + item.SheetGuid), request: '', target: '_blank' });
+                postToService({ url: resolveUrl('~/SectionReport/Pivotreport?ScannedSheetId=' + item.SheetGuid), request: '', target: '_blank' });
             }
 
-            
-
-           
+            if (target.hasClass('normal-report')) {
+               
+                postToService({ url: resolveUrl('~/SectionReport/NormalReport?ScannedSheetId=' + item.SheetGuid), request: '', target: '_blank' });
+            }
         }
     }
 }

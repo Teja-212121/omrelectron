@@ -159,17 +159,6 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
                 var url = "/ExamQuestionResult/ExamQuestionResultPivot";
                 postToService({ url: resolveUrl('~/ExamQuestionResult/ExamQuestionResultPivot?ExamResultId=' + item.Id), request: '', target: '_blank' });
             }
-
-            /*if (target.hasClass('print-result')) {
-                ReportHelper.execute({
-                    reportKey: 'Workspace.ExamResult',
-                    extension: 'html',
-                    params: {
-                        ExamId: item.ExamId
-                    },
-                    target: '_blank'
-                });
-            }*/
         }
     }
 }
