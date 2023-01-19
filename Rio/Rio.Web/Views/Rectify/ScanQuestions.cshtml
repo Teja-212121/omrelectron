@@ -17,8 +17,7 @@
         {
             <input type="text" id="CorrectedExamNo" value="@Model.scannedSheetRow.CorrectedExamNo" />
         }
-        <br /><br />
-        <lable style="text-align: left">Corrected RollNo</lable>
+        <lable style="text-align:center">Corrected RollNo</lable>
         @if (Model.scannedSheetRow.CorrectedRollNo != null)
         {
             <input type="text" id="CorrectedRollNo" value="@Model.scannedSheetRow.CorrectedRollNo" />
@@ -26,19 +25,15 @@
         <br />
         @if (Model.scannedSheetRow.SheetTypeName != null)
         {
-        <h5 style="text-align:right">
-            Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper()
-            </h5>
+            <p>Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper()</p>
         }
         @if (Model.scannedSheetRow.ScannedImageSourcePath != null)
         {
-            <h5 style="text-align:right">
-                Image Name: @Model.scannedSheetRow.ScannedImageSourcePath
-        </h5>
+            <p>Image Name: @Model.scannedSheetRow.ScannedImageSourcePath</p>
         }
         <br />
     </div>
-    
+
     <div id="buttons" style="border: 1px solid black; padding:10px; margin-bottom: 20px;">
         <button id="btnsave" style="float:right;margin-right:150px;" class="btn btn-info">Save Data</button>
         @if (!string.IsNullOrEmpty(Model.PrevScannedSheetId))
@@ -75,18 +70,18 @@
             {
             @for (int i = 0; i < @Model.ScanQuestionList.Count; i++)
             {
-                <div class="row" style="margin-left:10px;">
-                    <div class="col-md-2">
-                        <label>@Model.ScanQuestionList[i].QuestionIndex </label>
-                    </div>
-                    <div class="col-md-2">
-                        <label>@Model.ScanQuestionList[i].ScannedOptions </label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" id="Correctoption@(i)" value="@Model.ScanQuestionList[i].CorrectedOptions" />
-                        <input type="hidden" id="ScannQuestion@(i)" value="@Model.ScanQuestionList[i].Id" />
-                    </div>
+            <div class="row" style="margin-left:10px;">
+                <div class="col-md-2">
+                    <label>@Model.ScanQuestionList[i].QuestionIndex </label>
                 </div>
+                <div class="col-md-2">
+                    <label>@Model.ScanQuestionList[i].ScannedOptions </label>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" id="Correctoption@(i)" value="@Model.ScanQuestionList[i].CorrectedOptions" />
+                    <input type="hidden" id="ScannQuestion@(i)" value="@Model.ScanQuestionList[i].Id" />
+                </div>
+            </div>
             }
             }
         </div>
@@ -94,43 +89,42 @@
     </div>
 </div>
 
-<script >
+<script>
 
     $("#btnsave").click(function () {
         var param = [];
         var CorrectedExamno = "";
         var CorrectedRollno = "";
         var Questionlist = "";
-        if(@Model.ScanQuestionList.Count>0)
-        {
-        if ($("#CorrectedExamNo").val() == "") {
-            alert("Please Enter Corrected Exam number");
-            return;
-        }
-        if ($("#CorrectedRollNo").val() == "") {
-            alert("Please Enter Corrected Roll number");
-            return;
-        }
-        
-        for (var i = 0; i < parseInt("@rowcount"); i++) {
-            var subid = "-1";
-            var CorrectOption = "";
-            CorrectOption = $("#Correctoption" + i.toString()).val();
+        if (@Model.ScanQuestionList.Count> 0) {
+            if ($("#CorrectedExamNo").val() == "") {
+                alert("Please Enter Corrected Exam number");
+                return;
+            }
+            if ($("#CorrectedRollNo").val() == "") {
+                alert("Please Enter Corrected Roll number");
+                return;
+            }
 
-            Questionlist += CorrectOption + "#;#" + $("#ScannQuestion" + i.toString()).val() + "#$#";
+            for (var i = 0; i < parseInt("@rowcount"); i++) {
+                var subid = "-1";
+                var CorrectOption = "";
+                CorrectOption = $("#Correctoption" + i.toString()).val();
 
-        }
+                Questionlist += CorrectOption + "#;#" + $("#ScannQuestion" + i.toString()).val() + "#$#";
 
-        CorrectedExamno = $("#CorrectedExamNo").val();
-        CorrectedRollno = $("#CorrectedRollNo").val();
-        $.post("UpdateScanQuestions", {
+            }
 
-            "Questionlist": Questionlist, "CorrectedExamno": CorrectedExamno, "CorrectedRollno": CorrectedRollno, "ScannedSheetId": "@Model.scannedSheetRow.Id.ToString()"
-        }, function (data) {
-            Q.alert("Data Saved");
+            CorrectedExamno = $("#CorrectedExamNo").val();
+            CorrectedRollno = $("#CorrectedRollNo").val();
+            $.post("UpdateScanQuestions", {
 
-        });
-        
+                "Questionlist": Questionlist, "CorrectedExamno": CorrectedExamno, "CorrectedRollno": CorrectedRollno, "ScannedSheetId": "@Model.scannedSheetRow.Id.ToString()"
+            }, function (data) {
+                Q.alert("Data Saved");
+
+            });
+
         }
 
 
@@ -155,7 +149,7 @@
         document.body.removeChild(form);
     }
     $("#btnback").click(function () {
-        
+
         var PrevScannedSheetId = "@Model.PrevScannedSheetId";
         //var param = {
         //    'ScannedSheetId': PrevScannedSheetId.toString()
@@ -164,14 +158,14 @@
         //OpenWindowWithPostData(url, "", "ScanQuestion", param);
         var url = '@Url.Action("ScanQuestions", "Rectify", new { ScannedSheetId = "__id__" })';
         window.location.href = url.replace('__id__', PrevScannedSheetId);
-       
+
     });
 
     $("#btnnext").click(function () {
         var NextScannedSheetId = "@Model.NextScannedSheetId";
-        
+
         var url = '@Url.Action("ScanQuestions", "Rectify", new { ScannedSheetId = "__id__" })';
-        window.location.href = url.replace('__id__', NextScannedSheetId);       
+        window.location.href = url.replace('__id__', NextScannedSheetId);
     });
 
 </script>

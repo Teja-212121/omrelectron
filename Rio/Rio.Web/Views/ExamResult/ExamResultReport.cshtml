@@ -1,14 +1,10 @@
 @model Rio.Web.Modules.Workspace.CommonController.Models.ExamResultReportModel
 
-@{
-    ViewData["Printing"] = true;
-    Layout = User.IsLoggedIn() ?
-        "~/Views/Shared/_Layout.cshtml" :
-        "~/Views/Shared/_LayoutNoNavigation.cshtml";
+@if ((bool?)ViewData["Printing"] == true)
+{
+    Layout = "_LayoutNoNavigation";
 }
 
-<section>
-</section>
 <section class="result">
     @* <div class="row">
     <div class="col-xs-12 col-12">

@@ -228,11 +228,19 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Student Tenant Id"), Expression("jStudent.[TenantId]")]
+        [LookupEditor("Administration.Tenant")]
         public int? StudentTenantId
         {
             get => fields.StudentTenantId[this];
             set => fields.StudentTenantId[this] = value;
         }
+
+        /*[DisplayName("Tenant Name"), Expression("jStudent.[TenantName]")]
+        public string StudentTenantName
+        {
+            get => fields.StudentTenantName[this];
+            set => fields.StudentTenantName[this] = value;
+        }*/
 
         public Int32Field TenantIdField
         {
@@ -288,6 +296,7 @@ namespace Rio.Workspace
             public Int32Field StudentUpdateUserId;
             public Int16Field StudentIsActive;
             public Int32Field StudentTenantId;
+            /*public StringField StudentTenantName;*/
 
             public StringField RowIds;
         }

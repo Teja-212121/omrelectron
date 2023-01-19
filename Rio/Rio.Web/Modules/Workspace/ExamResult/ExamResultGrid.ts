@@ -41,7 +41,7 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             maxWidth: 36
         });
 
-        columns.splice(2, 0, {
+        /*columns.splice(2, 0, {
             field: 'Download Result',
             name: '',
             format: ctx => '<a class="inline-action download-result" title="Download">' +
@@ -49,9 +49,9 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             width: 36,
             minWidth: 36,
             maxWidth: 36
-        });
+        });*/
 
-        columns.splice(3, 0, {
+        /*columns.splice(3, 0, {
             field: 'Pivot Report',
             name: '',
             format: ctx => '<a class="inline-action pivot-report" title="Pivot">' +
@@ -59,7 +59,7 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             width: 36,
             minWidth: 36,
             maxWidth: 36
-        });
+        });*/
 
         return columns;
     }
@@ -143,22 +143,21 @@ export class ExamResultGrid extends EntityGrid<ExamResultRow, any> {
             if (target.hasClass('download-result')) {
                 ReportHelper.execute({
                     reportKey: 'Workspace.ExamResult',
-                    download: true,
                     params: {
-                        ExamResultId: item.Id
+                        'ExamResultId': item.Id
                     },
                     target: '_blank'
                 });
             }
 
-            if (target.hasClass('pivot-report')) {
+            /*if (target.hasClass('pivot-report')) {
                 var param = {
                     'ExamResultId': item.Id,
                     'ExamId': item.ExamId
                 };
                 var url = "/ExamQuestionResult/ExamQuestionResultPivot";
                 postToService({ url: resolveUrl('~/ExamQuestionResult/ExamQuestionResultPivot?ExamResultId=' + item.Id), request: '', target: '_blank' });
-            }
+            }*/
         }
     }
 }

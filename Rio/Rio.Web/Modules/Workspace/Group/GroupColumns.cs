@@ -1,4 +1,5 @@
 using Serenity.ComponentModel;
+using Serenity.Data;
 using System;
 using System.ComponentModel;
 
@@ -19,6 +20,6 @@ namespace Rio.Workspace.Columns
         public DateTime InsertDate { get; set; }
         [QuickFilter]
         [DisplayName("Tenant")]
-        public int TenantId { get; set; }
+        public string TenantName { get; set; }
     }
 }

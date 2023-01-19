@@ -1,6 +1,6 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { Authorization, postToService, resolveUrl } from '@serenity-is/corelib/q';
-import { ExamQuestionColumns, ExamQuestionRow, ExamQuestionService, RuleTypeRow } from '../../ServerTypes/Workspace';
+import { ExamQuestionColumns, ExamQuestionRow, ExamQuestionService, ExamSectionRow, RuleTypeRow } from '../../ServerTypes/Workspace';
 import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { ExamQuestionDialog } from './ExamQuestionDialog';
@@ -231,6 +231,10 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
         var category = first(columns, x => x.field === fld.RuleTypeName);
         category.referencedFields = [fld.RuleTypeId];
         category.format = ctx => this.selectFormatter(ctx, fld.RuleTypeId, RuleTypeRow.getLookup());
+
+        var category = first(columns, x => x.field === fld.ExamSectionId);
+        category.referencedFields = [fld.ExamSectionId];
+        category.format = ctx => this.selectFormatter(ctx, fld.ExamSectionId, ExamSectionRow.getLookup());
 
         first(columns, x => x.field === fld.RightOptions).format = str;
 

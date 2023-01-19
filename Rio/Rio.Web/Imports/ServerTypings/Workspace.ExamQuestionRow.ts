@@ -11,6 +11,7 @@
         ExamSectionId?: number;
         IsActive?: number;
         TenantId?: number;
+        TenantName?: string;
         ExamCode?: string;
         ExamName?: string;
         ExamDescription?: string;
@@ -65,6 +66,7 @@
             ExamSectionId = "ExamSectionId",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            TenantName = "TenantName",
             ExamCode = "ExamCode",
             ExamName = "ExamName",
             ExamDescription = "ExamDescription",

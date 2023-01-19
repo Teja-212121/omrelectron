@@ -11,23 +11,23 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
         /*[Width(130), LookupEditor(typeof(ExamRow)), QuickFilter(CssClass = "hidden-xs")]*/
-        public long ExamId { get; set; }
+        public string ExamCode { get; set; }
+        [Width(100)]
         public string ExamName { get; set; }
         public int QuestionIndex { get; set; }
-        public string DisplayIndex { get; set; }
+        [Width(80)]
         public string RightOptions { get; set; }
+        [Width(80)]
         public string Score { get; set; }
-        [EditLink]
-        public string Tags { get; set; }
         public string RuleTypeName { get; set; }
-        [Width(120), LookupEditor("Workspace.ExamSection")]
-        [QuickFilter/*(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ExamId")*/]
-        public int ExamSectionId { get; set; }
-        public string ExamSectionName { get; set; }
+        [Width(180), LookupEditor("Workspace.ExamSection")]
         [QuickFilter]
+        public int ExamSectionId { get; set; }
+/*        [QuickFilter]
         [DisplayName("Insert Date")]
-        public DateTime InsertDate { get; set; }
+        public DateTime InsertDate { get; set; }*/
         [DisplayName("Tenant")]
-        public int TenantId { get; set; }
+        public int TenantName { get; set; }
+        public string Tags { get; set; }
     }
 }

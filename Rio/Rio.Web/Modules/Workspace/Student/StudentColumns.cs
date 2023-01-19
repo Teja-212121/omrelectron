@@ -11,7 +11,6 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
-        public Guid StudentId { get; set; }
         public long RollNo { get; set; }
         [EditLink]
         /*public string FirstName { get; set; }
@@ -28,7 +27,7 @@ namespace Rio.Workspace.Columns
         public DateTime InsertDate { get; set; }
         [QuickFilter]
         [DisplayName("Tenant")]
-        public int TenantId { get; set; }
+        public int TenantName { get; set; }
         public string Comments { get; set; }
     }
 }

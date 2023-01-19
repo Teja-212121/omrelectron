@@ -229,7 +229,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         first(columns, x => x.field === fld.CorrectedRollNo).format = str;
         first(columns, x => x.field === fld.CorrectedExamNo).format = str;
 
-        columns.splice(2, 0, {
+        columns.splice(1, 0, {
             field: 'View Sheet Question',
             name: '',
             format: ctx => `<a class="inline-action view-sheet-question" title="view sheet question">

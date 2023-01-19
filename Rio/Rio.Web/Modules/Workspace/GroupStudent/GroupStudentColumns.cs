@@ -19,6 +19,6 @@ namespace Rio.Workspace.Columns
         public DateTime StudentDob { get; set; }
         public short StudentGender { get; set; }
         public string StudentNote { get; set; }
-        public int StudentTenantId { get; set; }
+        /*public int StudentTenantName { get; set; }*/
     }
 }

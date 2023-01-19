@@ -51,12 +51,19 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant Id")]
+        [DisplayName("Tenant Id"), ForeignKey("[Tenants]", "TenantId"), LeftJoin("jTenant"), TextualField("TenantName")]
         [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {
             get => fields.TenantId[this];
             set => fields.TenantId[this] = value;
+        }
+
+        [DisplayName("Tenant Name"), Expression("jTenant.[TenantName]")]
+        public string TenantName
+        {
+            get => fields.TenantName[this];
+            set => fields.TenantName[this] = value;
         }
 
         [DisplayName("Tenant Id"), NotMapped]
@@ -158,6 +165,7 @@ namespace Rio.Workspace
             public Int32Field ParentId;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public StringField TenantName;
             public Int32Field SelectedTenant;
 
             public StringField ParentName;

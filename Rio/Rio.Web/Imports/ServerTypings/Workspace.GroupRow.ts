@@ -6,6 +6,7 @@
         ParentId?: number;
         IsActive?: number;
         TenantId?: number;
+        TenantName?: string;
         SelectedTenant?: number;
         ParentName?: string;
         ParentDescription?: string;
@@ -44,6 +45,7 @@
             ParentId = "ParentId",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            TenantName = "TenantName",
             SelectedTenant = "SelectedTenant",
             ParentName = "ParentName",
             ParentDescription = "ParentDescription",

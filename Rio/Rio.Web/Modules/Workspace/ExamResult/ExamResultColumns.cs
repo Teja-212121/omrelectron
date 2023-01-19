@@ -26,10 +26,8 @@ namespace Rio.Workspace.Columns
         public int TotalNotAttempted { get; set; }
         public int TotalRightAnswers { get; set; }
         public int TotalWrongAnswers { get; set; }
+        [DisplayName("Insert Date")]
         public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
         public short IsActive { get; set; }
         [QuickFilter]
         public Guid ScannedBatchId { get; set; }

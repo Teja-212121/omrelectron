@@ -15,6 +15,7 @@
         Comments?: string;
         IsActive?: number;
         TenantId?: number;
+        TenantName?: string;
         SelectedTenant?: number;
         InsertUserId?: number;
         InsertDate?: string;
@@ -53,6 +54,7 @@
             Comments = "Comments",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            TenantName = "TenantName",
             SelectedTenant = "SelectedTenant",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",

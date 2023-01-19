@@ -17,6 +17,7 @@ export interface StudentRow {
     Comments?: string;
     IsActive?: number;
     TenantId?: number;
+    TenantName?: string;
     SelectedTenant?: number;
     InsertUserId?: number;
     InsertDate?: string;
