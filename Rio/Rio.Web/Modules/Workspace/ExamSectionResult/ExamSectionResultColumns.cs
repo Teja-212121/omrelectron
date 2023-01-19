@@ -10,12 +10,13 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public int Id { get; set; }
-        [EditLink]
-        public string StudentFullName { get; set; }
+        public string StudentFirstName { get; set; }
+        [QuickFilter]
         public long RollNumber { get; set; }
         [EditLink]
         public string SheetNumber { get; set; }
-        public Guid SheetGuid { get; set; }
+       
+        [QuickFilter]
         public string ExamCode { get; set; }
         public string ExamSectionName { get; set; }
         public float TotalMarks { get; set; }
@@ -26,6 +27,10 @@ namespace Rio.Workspace.Columns
         public int TotalNotAttempted { get; set; }
         public int TotalRightAnswers { get; set; }
         public int TotalWrongAnswers { get; set; }
-        
+        [QuickFilter]
+        public Guid ScannedBatchId { get; set; }
+        [Width(120), LookupEditor("Workspace.ScannedSheets")]
+        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "ScannedBatchId")]
+        public Guid SheetGuid { get; set; }
     }
 }

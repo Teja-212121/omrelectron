@@ -17,6 +17,9 @@
         TotalWrongAnswers?: number;
         IsActive?: number;
         TenantId?: number;
+        ScannedSheetCorrectedRollNo?: string;
+        ScannedSheetCorrectedExamNo?: string;
+        ScannedBatchId?: string;
         StudentRollNo?: number;
         StudentFirstName?: string;
         StudentMiddleName?: string;
@@ -90,6 +93,9 @@
             TotalWrongAnswers = "TotalWrongAnswers",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            ScannedSheetCorrectedRollNo = "ScannedSheetCorrectedRollNo",
+            ScannedSheetCorrectedExamNo = "ScannedSheetCorrectedExamNo",
+            ScannedBatchId = "ScannedBatchId",
             StudentRollNo = "StudentRollNo",
             StudentFirstName = "StudentFirstName",
             StudentMiddleName = "StudentMiddleName",

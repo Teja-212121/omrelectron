@@ -44,11 +44,21 @@ namespace Rio.Workspace
             set => fields.SheetNumber[this] = value;
         }
 
-        [DisplayName("Sheet Guid"), NotNull]
+        //[DisplayName("Sheet Guid"), NotNull]
+        [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[ScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
+        [LookupEditor("Workspace.ScannedSheets", CascadeFrom = "ScannedBatchId", CascadeField = "ScannedBatchId")]
         public Guid? SheetGuid
         {
             get => fields.SheetGuid[this];
             set => fields.SheetGuid[this] = value;
+        }
+
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [LookupEditor("Workspace.ScannedBatchs"), Expression("jScannedSheet.[ScannedBatchId]")]
+        public Guid? ScannedBatchId
+        {
+            get => fields.ScannedBatchId[this];
+            set => fields.ScannedBatchId[this] = value;
         }
 
         [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
@@ -145,6 +155,20 @@ namespace Rio.Workspace
         Int16Field IIsActiveRow.IsActiveField
         {
             get => fields.IsActive;
+        }
+
+        [DisplayName("Roll No"), Expression("jScannedSheet.[CorrectedRollNo]"), QuickSearch]
+        public string ScannedSheetCorrectedRollNo
+        {
+            get => fields.ScannedSheetCorrectedRollNo[this];
+            set => fields.ScannedSheetCorrectedRollNo[this] = value;
+        }
+
+        [DisplayName("Scanned Sheet Corrected Exam No"), Expression("jScannedSheet.[CorrectedExamNo]")]
+        public string ScannedSheetCorrectedExamNo
+        {
+            get => fields.ScannedSheetCorrectedExamNo[this];
+            set => fields.ScannedSheetCorrectedExamNo[this] = value;
         }
 
         [DisplayName("Student Roll No"), Expression("jStudent.[RollNo]")]
@@ -451,6 +475,9 @@ namespace Rio.Workspace
             public Int16Field IsActive;
             public Int32Field TenantId;
 
+            public StringField ScannedSheetCorrectedRollNo;
+            public StringField ScannedSheetCorrectedExamNo;
+            public GuidField ScannedBatchId;
             public Int64Field StudentRollNo;
             public StringField StudentFirstName;
             public StringField StudentMiddleName;
