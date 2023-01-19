@@ -3,7 +3,7 @@
         StudentId: Serenity.LookupEditor;
         RollNumber: Serenity.StringEditor;
         SheetNumber: Serenity.StringEditor;
-        SheetGuid: Serenity.StringEditor;
+        SheetGuid: Serenity.LookupEditor;
         ExamId: Serenity.LookupEditor;
         ExamSectionId: Serenity.LookupEditor;
         TotalMarks: Serenity.DecimalEditor;
@@ -36,7 +36,7 @@
                     'StudentId', w0,
                     'RollNumber', w1,
                     'SheetNumber', w1,
-                    'SheetGuid', w1,
+                    'SheetGuid', w0,
                     'ExamId', w0,
                     'ExamSectionId', w0,
                     'TotalMarks', w2,
