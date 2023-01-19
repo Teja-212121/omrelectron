@@ -15,7 +15,7 @@ namespace Rio.Workspace
     
     {
         [DisplayName("Id"), Identity, IdProperty]
-        [SortOrder(1, descending: true)]
+        [SortOrder(1, descending: false)]
         public int? Id
         {
             get => fields.Id[this];

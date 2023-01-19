@@ -22,7 +22,7 @@
         </button>
     </div>
     <div class="row" style="margin-bottom:10px;">
-       
+
         <div class="col-md-12" style="overflow-y: scroll;height:800px;">
             <div class="row" style="margin-left:5px;">
                 <div id="divMain" class="keepTogether" style="page-break-inside: avoid; width: 925px;height:auto; margin: 0 auto; border: 1px solid black; padding:10px;">
@@ -63,80 +63,44 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-
-                                        <th>Section Name</th>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.ExamSectionName</th>
-                                        }
+                                        <th>Student Name:</th>
+                                        <th>Roll Number:</th>
+                                        <th>Section Name:</th>
+                                        <th>Total Questions:</th>
+                                        <th>Total Attempted:</th>
+                                        <th>Total UnAttempted:</th>
+                                        <th>Total Right:</th>
+                                        <th>Total Wrong:</th>
+                                        <th>Total Marks:</th>
+                                        <th>Obtained Marks:</th>
+                                        <th>Percentage:</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Total Marks</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.TotalMarks</th>
-                                        }                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Obtained Marks</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.ObtainedMarks</th>
-                                        }
-                                    </tr>
-                                    <tr>
-                                        <td>Percentage</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.Percentage</th>
-                                        }
-                                    </tr>
-                                    <tr>
-                                        <td>Total Questions</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.TotalQuestions</th>
-                                        }
-                                    </tr>
-                                    <tr>
-                                        <td>total Attempted</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.TotalAttempted</th>
-                                        }
-                                    </tr>
-                                     <tr>
-                                        <td>total Unattempted</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.TotalNotAttempted</th>
-                                        }
-                                    </tr>
-                                    <tr>
-                                        <td>total Right</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.TotalRightAnswers</th>
-                                        }
-                                    </tr>
-                                    <tr>
-                                        <td>total Wrong</td>
-                                        @foreach (var sectionresult in Model.ExamSectionResultList)
-                                        {
-                                            <th>@sectionresult.TotalWrongAnswers</th>
-                                        }
-                                    </tr>
-
+                                    @foreach (var sectionresult in Model.ExamSectionResultList)
+                                    {
+                                        <tr>
+                                            <td>@sectionresult.StudentFullName</td>
+                                            <td>@sectionresult.RollNumber</td>
+                                            <td>@sectionresult.ExamSectionName</td>
+                                            <td>@sectionresult.TotalQuestions</td>
+                                            <td>@sectionresult.TotalAttempted</td>
+                                            <td>@sectionresult.TotalNotAttempted</td>
+                                            <td>@sectionresult.TotalRightAnswers</td>
+                                            <td>@sectionresult.TotalWrongAnswers</td>
+                                            <td>@sectionresult.TotalMarks</td>
+                                            <td>@sectionresult.ObtainedMarks</td>
+                                            <td>@sectionresult.Percentage</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
                         <!-- /.col -->
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
