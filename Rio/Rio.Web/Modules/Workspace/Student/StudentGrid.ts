@@ -27,6 +27,7 @@ export class StudentGrid extends EntityGrid<StudentRow, any> {
 
         if (!Authorization.hasPermission("Administration:Security")) {
             columns = columns.filter(f => f.field != StudentRow.Fields.TenantId);
+            columns = columns.filter(f => f.field != StudentRow.Fields.TenantName);
         }
         return columns;
     }

@@ -1,6 +1,7 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { Authorization, serviceRequest } from '@serenity-is/corelib/q';
 import { ExcelExportHelper } from '@serenity-is/extensions';
+import { Group } from '@serenity-is/sleekgrid';
 import { GroupColumns, GroupRow, GroupService } from '../../ServerTypes/Workspace';
 import { GroupDialog } from './GroupDialog';
 
@@ -23,6 +24,7 @@ export class GroupGrid extends EntityGrid<GroupRow, any> {
         var columns = super.getColumns();
         if (!Authorization.hasPermission("Administration:Security")) {
             columns = columns.filter(f => f.field != GroupRow.Fields.TenantId);
+            columns = columns.filter(f => f.field != GroupRow.Fields.TenantName);
         }
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
         return columns;
