@@ -12,7 +12,7 @@ namespace Rio.Workspace.Forms
         public string RowIds { get; set; }
         [HalfWidth]
         [DisplayName("Group Name"), QuickSearch, NameProperty]
-        [LookupEditor(typeof(GroupRow), InplaceAdd = true, DialogType = "Workspace.Groups")]
+        [LookupEditor(typeof(GroupRow), InplaceAdd = true)]
         public Int32Field GroupId { get; set; }
     }
 }

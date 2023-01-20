@@ -44,6 +44,14 @@ namespace Rio.Workspace
             set => fields.SheetNumber[this] = value;
         }
 
+        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
+        [LookupEditor("Workspace.ScannedBatchs"), Expression("jScannedSheet.[ScannedBatchId]")]
+        public Guid? ScannedBatchId
+        {
+            get => fields.ScannedBatchId[this];
+            set => fields.ScannedBatchId[this] = value;
+        }
+
         //[DisplayName("Sheet Guid"), NotNull]
         [DisplayName("Scanned Sheet"), NotNull, ForeignKey("[ScannedSheets]", "Id"), LeftJoin("jScannedSheet"), TextualField("ScannedSheetSheetNumber")]
         [LookupEditor("Workspace.ScannedSheets", CascadeFrom = "ScannedBatchId", CascadeField = "ScannedBatchId")]
@@ -51,14 +59,6 @@ namespace Rio.Workspace
         {
             get => fields.SheetGuid[this];
             set => fields.SheetGuid[this] = value;
-        }
-
-        [DisplayName("Scanned Batch"), NotNull, ForeignKey("[ScannedBatches]", "Id"), LeftJoin("jScannedBatch"), TextualField("ScannedBatchName")]
-        [LookupEditor("Workspace.ScannedBatchs"), Expression("jScannedSheet.[ScannedBatchId]")]
-        public Guid? ScannedBatchId
-        {
-            get => fields.ScannedBatchId[this];
-            set => fields.ScannedBatchId[this] = value;
         }
 
         [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]

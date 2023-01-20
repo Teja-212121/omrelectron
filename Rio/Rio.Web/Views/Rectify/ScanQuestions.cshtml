@@ -23,13 +23,10 @@
             <input type="text" id="CorrectedRollNo" value="@Model.scannedSheetRow.CorrectedRollNo" />
         }
         <br />
-        @if (Model.scannedSheetRow.SheetTypeName != null)
+        @if (Model.scannedSheetRow.SheetTypeName != null && Model.scannedSheetRow.ScannedImageSourcePath != null)
         {
-            <p>Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper()</p>
-        }
-        @if (Model.scannedSheetRow.ScannedImageSourcePath != null)
-        {
-            <p>Image Name: @Model.scannedSheetRow.ScannedImageSourcePath</p>
+            <p>Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Image Name: @Model.scannedSheetRow.ScannedImageSourcePath</p>
         }
         <br />
     </div>

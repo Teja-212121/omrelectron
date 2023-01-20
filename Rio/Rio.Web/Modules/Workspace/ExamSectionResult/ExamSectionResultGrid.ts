@@ -24,7 +24,7 @@ export class ExamSectionResultGrid extends EntityGrid<ExamSectionResultRow, any>
         var columns = super.getColumns();
 
         columns.splice(0, 0, GridRowSelectionMixin.createSelectColumn(() => this.rowSelection));
-        columns.splice(1, 0, {
+        /*columns.splice(1, 0, {
             field: 'Pivot Report',
             name: '',
             format: ctx => '<a class="inline-action pivot-report" title="Pivot Report">' +
@@ -32,7 +32,7 @@ export class ExamSectionResultGrid extends EntityGrid<ExamSectionResultRow, any>
             width: 36,
             minWidth: 36,
             maxWidth: 36
-        });
+        });*/
 
         columns.splice(1, 0, {
             field: 'Section Normal Report',
@@ -82,10 +82,10 @@ export class ExamSectionResultGrid extends EntityGrid<ExamSectionResultRow, any>
         if (target.hasClass('inline-action')) {
             e.preventDefault();
 
-            if (target.hasClass('pivot-report')) {
+            /*if (target.hasClass('pivot-report')) {
                
                 postToService({ url: resolveUrl('~/SectionReport/Pivotreport?ScannedSheetId=' + item.SheetGuid), request: '', target: '_blank' });
-            }
+            }*/
 
             if (target.hasClass('normal-report')) {
                

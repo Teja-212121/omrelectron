@@ -2,6 +2,7 @@
     export interface ExamSectionResultForm {
         StudentId: Serenity.LookupEditor;
         RollNumber: Serenity.StringEditor;
+        ScannedBatchId: Serenity.LookupEditor;
         SheetNumber: Serenity.StringEditor;
         SheetGuid: Serenity.LookupEditor;
         ExamId: Serenity.LookupEditor;
@@ -35,6 +36,7 @@
                 Q.initFormType(ExamSectionResultForm, [
                     'StudentId', w0,
                     'RollNumber', w1,
+                    'ScannedBatchId', w0,
                     'SheetNumber', w1,
                     'SheetGuid', w0,
                     'ExamId', w0,

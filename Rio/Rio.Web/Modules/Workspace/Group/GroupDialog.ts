@@ -2,7 +2,7 @@ import { Decorators, EntityDialog } from '@serenity-is/corelib';
 import { Authorization } from '@serenity-is/corelib/q';
 import { GroupForm, GroupRow, GroupService } from '../../ServerTypes/Workspace';
 
-@Decorators.registerClass()
+@Decorators.registerClass("Workspace.Group")
 export class GroupDialog extends EntityDialog<GroupRow, any> {
     protected getFormKey() { return GroupForm.formKey; }
     protected getIdProperty() { return GroupRow.idProperty; }

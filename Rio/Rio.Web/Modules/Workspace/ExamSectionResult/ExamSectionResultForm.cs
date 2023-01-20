@@ -13,6 +13,8 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public long RollNumber { get; set; }
         [HalfWidth]
+        public Guid ScannedBatchId { get; set; }
+        [HalfWidth]
         public string SheetNumber { get; set; }
         [HalfWidth]
         public Guid SheetGuid { get; set; }
