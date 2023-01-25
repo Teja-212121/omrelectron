@@ -8,6 +8,8 @@ namespace Rio.Workspace.Columns
     [BasedOnRow(typeof(ExamResultRow), CheckNames = true)]
     public class ExamResultColumns
     {
+        [QuickFilter,EditLink,Width(100)]
+        public string OCRData1Value { get; set; }
         [QuickFilter, EditLink, Width(90)]
         public long RollNumber { get; set; }
         [QuickFilter, EditLink, Width(80)]

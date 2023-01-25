@@ -67,6 +67,20 @@ namespace Rio.Workspace
             set => fields.ScannedSheetId[this] = value;
         }
 
+        /*[DisplayName("OCR Data 1 Key"), Expression("jScannedSheet.OCRData1Key")]
+        public string OCRData1Key
+        {
+            get => fields.OCRData1Key[this];
+            set => fields.OCRData1Key[this] = value;
+        }*/
+
+        [DisplayName("OCR Value"), Expression("jScannedSheet.OCRData1Value")]
+        public string OCRData1Value
+        {
+            get => fields.OCRData1Value[this];
+            set => fields.OCRData1Value[this] = value;
+        }
+
         [DisplayName("Exam"), NotNull, ForeignKey("[Exams]", "Id"), LeftJoin("jExam"), TextualField("ExamCode")]
         [LookupEditor(typeof(ExamRow))]
         public long? ExamId
@@ -408,6 +422,8 @@ namespace Rio.Workspace
             public Int32Field TotalWrongAnswers;
             public GuidField ScannedBatchId;
             public GuidField ScannedSheetId;
+            /*public StringField OCRData1Key;*/
+            public StringField OCRData1Value;
             public Int16Field IsActive;
             public Int32Field TenantId;
 
