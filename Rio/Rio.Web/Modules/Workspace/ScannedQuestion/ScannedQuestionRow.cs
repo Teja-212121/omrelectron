@@ -227,6 +227,20 @@ namespace Rio.Workspace
             set => fields.ScannedSheetIsActive[this] = value;
         }
 
+        [DisplayName("OCR Data 1 Key"), Expression("jScannedSheet.[OCRData1Key]")]
+        public string ScannedSheetOCRData1Key
+        {
+            get => fields.ScannedSheetOCRData1Key[this];
+            set => fields.ScannedSheetOCRData1Key[this] = value;
+        }
+
+        [DisplayName("OCR Data 1 Value"), Expression("jScannedSheet.[OCRData1Value]")]
+        public string ScannedSheetOCRData1Value
+        {
+            get => fields.ScannedSheetOCRData1Value[this];
+            set => fields.ScannedSheetOCRData1Value[this] = value;
+        }
+
         [DisplayName("Scanned Sheet Tenant Id"), Expression("jScannedSheet.[TenantId]")]
         public int? ScannedSheetTenantId
         {
@@ -284,6 +298,8 @@ namespace Rio.Workspace
             public DateTimeField ScannedSheetUpdateDate;
             public Int32Field ScannedSheetUpdateUserId;
             public Int16Field ScannedSheetIsActive;
+            public StringField ScannedSheetOCRData1Key;
+            public StringField ScannedSheetOCRData1Value;
             public Int32Field ScannedSheetTenantId;
         }
     }

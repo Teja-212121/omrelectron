@@ -11,6 +11,7 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
         public string ScannedSheetSheetNumber { get; set; }
+        public string ScannedSheetOCRData1Value { get; set; }
         public string ScannedSheetCorrectedRollNo { get; set; }
         public string ScannedSheetCorrectedExamNo { get; set; }
         public int QuestionIndex { get; set; }

@@ -16,6 +16,7 @@
         TotalWrongAnswers?: number;
         ScannedBatchId?: string;
         ScannedSheetId?: string;
+        OCRData1Value?: string;
         IsActive?: number;
         TenantId?: number;
         StudentRollNo?: number;
@@ -83,6 +84,7 @@
             TotalWrongAnswers = "TotalWrongAnswers",
             ScannedBatchId = "ScannedBatchId",
             ScannedSheetId = "ScannedSheetId",
+            OCRData1Value = "OCRData1Value",
             IsActive = "IsActive",
             TenantId = "TenantId",
             StudentRollNo = "StudentRollNo",

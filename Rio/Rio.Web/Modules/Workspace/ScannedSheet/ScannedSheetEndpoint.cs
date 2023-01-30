@@ -640,6 +640,26 @@ namespace Rio.Workspace.Endpoints
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse CheckOCRandRollNumber(string[] ids, [FromServices] ISqlConnections SqlConnections, [FromServices] IScannedSheetSaveHandler handler)
+        {
+            using (var connection = SqlConnections.NewByKey("Default"))
+            {
+                foreach (var id in ids)
+                {
+                    Guid sheetid = new Guid(id.ToString().ToUpper());
+                    var scannedsheet = connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
+                    if (scannedsheet != null)
+                    {
+                        if (!string.IsNullOrEmpty(scannedsheet.OCRData1Value) && !string.IsNullOrEmpty(scannedsheet.CorrectedRollNo))
+                            scannedsheet.CorrectedRollNo = scannedsheet.OCRData1Value;
+                        connection.UpdateById<MyRow>(scannedsheet);
+                    }
+                }
+            }
+            return new SaveResponse();
+        }
+
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse RecalculateResult(string[] ids, IUnitOfWork uow, [FromServices] IScannedSheetSaveHandler handler)
         {
             string errorids = "";

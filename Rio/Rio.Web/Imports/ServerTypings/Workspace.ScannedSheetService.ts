@@ -11,6 +11,7 @@
         export declare function InsertScannedBatchData(request: Serenity.SaveRequest<ScannedSheetRow[]>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function UpdateResult(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function UpdateDisplayname(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function CheckOCRandRollNumber(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function RecalculateResult(request: string[], onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export declare const enum Methods {
@@ -23,6 +24,7 @@
             InsertScannedBatchData = "Workspace/ScannedSheet/InsertScannedBatchData",
             UpdateResult = "Workspace/ScannedSheet/UpdateResult",
             UpdateDisplayname = "Workspace/ScannedSheet/UpdateDisplayname",
+            CheckOCRandRollNumber = "Workspace/ScannedSheet/CheckOCRandRollNumber",
             RecalculateResult = "Workspace/ScannedSheet/RecalculateResult"
         }
 
@@ -36,6 +38,7 @@
             'InsertScannedBatchData', 
             'UpdateResult', 
             'UpdateDisplayname', 
+            'CheckOCRandRollNumber', 
             'RecalculateResult'
         ].forEach(x => {
             (<any>ScannedSheetService)[x] = function (r, s, o) {

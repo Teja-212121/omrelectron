@@ -30,6 +30,8 @@
         ScannedSheetUpdateDate?: string;
         ScannedSheetUpdateUserId?: number;
         ScannedSheetIsActive?: number;
+        ScannedSheetOCRData1Key?: string;
+        ScannedSheetOCRData1Value?: string;
         ScannedSheetTenantId?: number;
         InsertUserId?: number;
         InsertDate?: string;
@@ -77,6 +79,8 @@
             ScannedSheetUpdateDate = "ScannedSheetUpdateDate",
             ScannedSheetUpdateUserId = "ScannedSheetUpdateUserId",
             ScannedSheetIsActive = "ScannedSheetIsActive",
+            ScannedSheetOCRData1Key = "ScannedSheetOCRData1Key",
+            ScannedSheetOCRData1Value = "ScannedSheetOCRData1Value",
             ScannedSheetTenantId = "ScannedSheetTenantId",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",

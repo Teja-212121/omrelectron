@@ -1,6 +1,7 @@
 ﻿namespace Rio.Workspace {
     export interface ExamResultForm {
         StudentId: Serenity.LookupEditor;
+        OCRData1Value: Serenity.StringEditor;
         RollNumber: Serenity.StringEditor;
         SheetNumber: Serenity.StringEditor;
         SheetGuid: Serenity.StringEditor;
@@ -33,6 +34,7 @@
 
                 Q.initFormType(ExamResultForm, [
                     'StudentId', w0,
+                    'OCRData1Value', w1,
                     'RollNumber', w1,
                     'SheetNumber', w1,
                     'SheetGuid', w1,
