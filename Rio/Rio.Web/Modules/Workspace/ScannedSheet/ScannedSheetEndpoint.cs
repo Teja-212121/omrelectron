@@ -640,7 +640,7 @@ namespace Rio.Workspace.Endpoints
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse CheckOCRandRollNumber(string[] ids, [FromServices] ISqlConnections SqlConnections, [FromServices] IScannedSheetSaveHandler handler)
+        public SaveResponse UpdateCorrectedRollNumber(string[] ids, [FromServices] ISqlConnections SqlConnections, [FromServices] IScannedSheetSaveHandler handler)
         {
             using (var connection = SqlConnections.NewByKey("Default"))
             {

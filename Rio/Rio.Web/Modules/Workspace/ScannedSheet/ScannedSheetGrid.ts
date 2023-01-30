@@ -1,6 +1,6 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { ExcelExportHelper } from '@serenity-is/extensions';
-import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
+import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, postToService, resolveUrl, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { EScannedStatus, ScannedSheetColumns, ScannedSheetRow, ScannedSheetService } from '../../ServerTypes/Workspace';
 import { ScannedSheetDialog } from './ScannedSheetDialog';
@@ -277,6 +277,20 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         });
 
         buttons.push({
+            title: 'Update CorrectedRollNo',
+            cssClass: 'send-button',
+            onClick: () => {
+                var rowKeys = this.rowSelection.getSelectedKeys();
+                if (rowKeys.length == 0) {
+                    alert("Select Sheet To Update CorrectedRollNo");
+                    return;
+                }
+                serviceRequest('/Services/Workspace/ScannedSheet/UpdateCorrectedRollNumber', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+            },
+            separator: true
+        });
+
+        buttons.push({
             title: 'Generate Result',
             cssClass: 'send-button',
             onClick: () => {
@@ -336,7 +350,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
                 };
                 var url = "/Rectify/ScanQuestions";
                 //this.OpenWindowWithPostData(url, "", "ScanQuestions", param);
-                Q.postToService({ url: Q.resolveUrl('~/Rectify/ScanQuestions?ScannedSheetId=' + item.Id), request: '', target: '_blank' });
+                postToService({ url: resolveUrl('~/Rectify/ScanQuestions?ScannedSheetId=' + item.Id), request: '', target: '_blank' });
             }
         }
     }
