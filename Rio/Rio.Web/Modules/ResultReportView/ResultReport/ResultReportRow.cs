@@ -28,7 +28,7 @@ namespace Rio.ResultReportView
         }
 
         [DisplayName("Roll Number")]
-        public string RollNumber
+        public long? RollNumber
         {
             get => fields.RollNumber[this];
             set => fields.RollNumber[this] = value;
@@ -91,7 +91,7 @@ namespace Rio.ResultReportView
         }
 
         [DisplayName("Obtained Marks")]
-        public string ObtainedMarks
+        public float? ObtainedMarks
         {
             get => fields.ObtainedMarks[this];
             set => fields.ObtainedMarks[this] = value;
@@ -111,7 +111,7 @@ namespace Rio.ResultReportView
         {
             public Int32Field Id;
             public GuidField ScannedSheetId;
-            public StringField RollNumber;
+            public Int64Field RollNumber;
             public Int32Field ExamId;
             public StringField ExamCode;
             public Int32Field QuestionIndex;
@@ -120,7 +120,7 @@ namespace Rio.ResultReportView
             public StringField RightOptions;
             public StringField CorrectedOptions;
             public StringField Score;
-            public StringField ObtainedMarks;
+            public SingleField ObtainedMarks;
         }
     }
 }

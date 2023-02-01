@@ -387,7 +387,7 @@ namespace Rio.Workspace
             set => fields.ExamTenantId[this] = value;
         }
 
-        [DisplayName("Details"), MasterDetailRelation(foreignKey: "ScannedSheetId"), NotMapped]
+        [DisplayName("Details"), MasterDetailRelation(foreignKey: "Id"), NotMapped]
         public List<ResultReportRow> DetailList
         {
             get => fields.DetailList[this];

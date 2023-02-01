@@ -1,4 +1,4 @@
-import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
+import { Decorators, EntityGrid, GridRowSelectionMixin, QuickFilter, SelectEditor, SelectEditorOptions } from '@serenity-is/corelib';
 import { ExcelExportHelper } from '@serenity-is/extensions';
 import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, postToService, resolveUrl, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
@@ -19,12 +19,37 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
 
     private pendingChanges: Dictionary<any> = {};
     public rowSelection: GridRowSelectionMixin;
+    private checkOCRandCorrectedRollNo: QuickFilter<SelectEditor, SelectEditorOptions>;
 
     private ScannedBatchInsertDate;
     constructor(container: JQuery) {
         super(container);
         this.rowSelection = new GridRowSelectionMixin(this);
         this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e));
+
+        this.checkOCRandCorrectedRollNo = {
+            type: SelectEditor,
+            title: "Check OCR and CorrectedRollNo",
+            options: {
+                items: ["yes", "no"]
+            },
+            handler: h => {
+                var request = (h.request as CustomGridListRequest);
+                var value = (h.widget as SelectEditor).value;
+
+                if (trimToNull(value) !== null) {
+                    request.OCRandCorrectedRollNo = value == "yes" ? true : false;
+                    h.active = true;
+                }
+                else {
+                    h.active = false;
+                }
+
+                h.handled = true;
+            }
+        };
+
+        this.addQuickFilter(this.checkOCRandCorrectedRollNo);
     }
 
     get selectedItems() {

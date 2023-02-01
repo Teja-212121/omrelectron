@@ -2,7 +2,7 @@
     export interface ResultReportRow {
         Id?: number;
         ScannedSheetId?: string;
-        RollNumber?: string;
+        RollNumber?: number;
         ExamId?: number;
         ExamCode?: string;
         QuestionIndex?: number;
@@ -11,7 +11,7 @@
         RightOptions?: string;
         CorrectedOptions?: string;
         Score?: string;
-        ObtainedMarks?: string;
+        ObtainedMarks?: number;
     }
 
     export namespace ResultReportRow {

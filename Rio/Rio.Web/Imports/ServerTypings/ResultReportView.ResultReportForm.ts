@@ -1,7 +1,7 @@
 ﻿namespace Rio.ResultReportView {
     export interface ResultReportForm {
         ScannedSheetId: Serenity.StringEditor;
-        RollNumber: Serenity.IntegerEditor;
+        RollNumber: Serenity.StringEditor;
         ExamId: Serenity.IntegerEditor;
         ExamCode: Serenity.StringEditor;
         QuestionIndex: Serenity.IntegerEditor;
@@ -30,7 +30,7 @@
 
                 Q.initFormType(ResultReportForm, [
                     'ScannedSheetId', w0,
-                    'RollNumber', w1,
+                    'RollNumber', w0,
                     'ExamId', w1,
                     'ExamCode', w0,
                     'QuestionIndex', w1,
