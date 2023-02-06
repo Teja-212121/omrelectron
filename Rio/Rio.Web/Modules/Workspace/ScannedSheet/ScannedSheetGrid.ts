@@ -341,20 +341,6 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         });
 
         buttons.push({
-            title: 'Update OCR Number',
-            cssClass: 'send-button',
-            onClick: () => {
-                var rowKeys = this.rowSelection.getSelectedKeys();
-                if (rowKeys.length == 0) {
-                    alert("Select Sheet To Update OCR Number");
-                    return;
-                }
-                serviceRequest('/Services/Workspace/ScannedSheet/UpdateOCRNumber', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
-            },
-            separator: true
-        });
-
-        buttons.push({
             title: 'Generate Result',
             cssClass: 'send-button',
             onClick: () => {

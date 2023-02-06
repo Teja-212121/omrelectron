@@ -776,28 +776,6 @@ namespace Rio.Workspace.Endpoints
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse UpdateOCRNumber(string[] ids, [FromServices] ISqlConnections SqlConnections, [FromServices] IScannedSheetSaveHandler handler)
-        {
-            using (var connection = SqlConnections.NewByKey("Default"))
-            {
-                foreach (var id in ids)
-                {
-                    Guid sheetid = new Guid(id.ToString().ToUpper());
-                    var scannedsheet = connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
-                    if (scannedsheet != null)
-                    {
-                        if (!string.IsNullOrEmpty(scannedsheet.OCRData1Value))
-                        {
-                            scannedsheet.OCRData1Value = scannedsheet.OCRData1Value.Replace("!","").Replace("@","").Replace("#","").Replace("$","").Replace("%","").Replace("^","").Replace("&","").Replace("*","").Replace("(","").Replace(")","").Replace("_","").Replace("-","").Replace("=","").Replace("+","").Replace(",","").Replace(".","").Replace(";","").Replace(":","").Replace("'","");
-                        }
-                        connection.UpdateById<MyRow>(scannedsheet);
-                    }
-                }
-            }
-            return new SaveResponse();
-        }
-
-        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse RecalculateResult(string[] ids, IUnitOfWork uow, [FromServices] IScannedSheetSaveHandler handler)
         {
             ISqlDialect sqlDialect = uow.Connection.GetDialect();
