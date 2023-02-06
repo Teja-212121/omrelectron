@@ -766,7 +766,7 @@ namespace Rio.Workspace.Endpoints
                     {
                         if (!string.IsNullOrEmpty(scannedsheet.OCRData1Value) && !string.IsNullOrEmpty(scannedsheet.CorrectedRollNo))
                         {
-                            scannedsheet.CorrectedRollNo = scannedsheet.OCRData1Value.Replace("!","").Replace("@","").Replace("#","").Replace("$","").Replace("%","").Replace("^","").Replace("&","").Replace("*","").Replace("(","").Replace(")","").Replace("_","").Replace("-","").Replace("=","").Replace("+","").Replace(",","").Replace(".","").Replace(";","").Replace(":","").Replace("'","");
+                            scannedsheet.CorrectedRollNo = scannedsheet.OCRData1Value.Replace("!","").Replace("@","").Replace("#","").Replace("$","").Replace("%","").Replace("^","").Replace("&","").Replace("*","").Replace("(","").Replace(")","").Replace("_","").Replace("-","").Replace("=","").Replace("+","").Replace(",","").Replace(".","").Replace(";","").Replace(":","").Replace("'","").Replace("<","").Replace(">","").Replace("/","").Replace("\\","").Replace("|","").Replace("\"","").Replace("~","").Replace("`","").Replace("{","").Replace("}","").Replace("[","").Replace("]","");
                         }
                         connection.UpdateById<MyRow>(scannedsheet);
                     }
