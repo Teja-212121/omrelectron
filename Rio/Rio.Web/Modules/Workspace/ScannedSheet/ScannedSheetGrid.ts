@@ -20,6 +20,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
     private pendingChanges: Dictionary<any> = {};
     public rowSelection: GridRowSelectionMixin;
     private checkOCRandCorrectedRollNo: QuickFilter<SelectEditor, SelectEditorOptions>;
+    private checkRepeatedCorrectedRollNo: QuickFilter<SelectEditor, SelectEditorOptions>;
 
     private ScannedBatchInsertDate;
     constructor(container: JQuery) {
@@ -29,7 +30,7 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
 
         this.checkOCRandCorrectedRollNo = {
             type: SelectEditor,
-            title: "Check OCR and CorrectedRollNo",
+            title: "CorrectedRollNo Equal to OCR",
             options: {
                 items: ["yes", "no"]
             },
@@ -50,6 +51,30 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
         };
 
         this.addQuickFilter(this.checkOCRandCorrectedRollNo);
+
+        /*this.checkRepeatedCorrectedRollNo = {
+            type: SelectEditor,
+            title: "CorrectedRollNo Already Exists",
+            options: {
+                items: ["yes", "no"]
+            },
+            handler: h => {
+                var request = (h.request as CustomGridListRequest);
+                var value = (h.widget as SelectEditor).value;
+
+                if (trimToNull(value) !== null) {
+                    request.RepeatedCorrectedRollNo = value == "yes" ? true : false;
+                    h.active = true;
+                }
+                else {
+                    h.active = false;
+                }
+
+                h.handled = true;
+            }
+        };
+
+        this.addQuickFilter(this.checkRepeatedCorrectedRollNo);*/
     }
 
     get selectedItems() {
@@ -311,6 +336,20 @@ export class ScannedSheetGrid extends EntityGrid<ScannedSheetRow, any> {
                     return;
                 }
                 serviceRequest('/Services/Workspace/ScannedSheet/UpdateCorrectedRollNumber', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
+            },
+            separator: true
+        });
+
+        buttons.push({
+            title: 'Update OCR Number',
+            cssClass: 'send-button',
+            onClick: () => {
+                var rowKeys = this.rowSelection.getSelectedKeys();
+                if (rowKeys.length == 0) {
+                    alert("Select Sheet To Update OCR Number");
+                    return;
+                }
+                serviceRequest('/Services/Workspace/ScannedSheet/UpdateOCRNumber', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
             },
             separator: true
         });

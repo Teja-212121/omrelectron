@@ -175,6 +175,7 @@ namespace Rio.Workspace.Endpoints
         public class MyCustomListRequest : ListRequest
         {
             public bool OCRandCorrectedRollNo { get; set; }
+            /*public bool RepeatedCorrectedRollNo { get; set; }*/
         }
 
         [HttpPost]
@@ -765,7 +766,29 @@ namespace Rio.Workspace.Endpoints
                     {
                         if (!string.IsNullOrEmpty(scannedsheet.OCRData1Value) && !string.IsNullOrEmpty(scannedsheet.CorrectedRollNo))
                         {
-                            scannedsheet.CorrectedRollNo = scannedsheet.OCRData1Value.Replace("*","").Replace("@","");
+                            scannedsheet.CorrectedRollNo = scannedsheet.OCRData1Value.Replace("!","").Replace("@","").Replace("#","").Replace("$","").Replace("%","").Replace("^","").Replace("&","").Replace("*","").Replace("(","").Replace(")","").Replace("_","").Replace("-","").Replace("=","").Replace("+","").Replace(",","").Replace(".","").Replace(";","").Replace(":","").Replace("'","");
+                        }
+                        connection.UpdateById<MyRow>(scannedsheet);
+                    }
+                }
+            }
+            return new SaveResponse();
+        }
+
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse UpdateOCRNumber(string[] ids, [FromServices] ISqlConnections SqlConnections, [FromServices] IScannedSheetSaveHandler handler)
+        {
+            using (var connection = SqlConnections.NewByKey("Default"))
+            {
+                foreach (var id in ids)
+                {
+                    Guid sheetid = new Guid(id.ToString().ToUpper());
+                    var scannedsheet = connection.TryFirst<MyRow>(MyRow.Fields.Id == sheetid);
+                    if (scannedsheet != null)
+                    {
+                        if (!string.IsNullOrEmpty(scannedsheet.OCRData1Value))
+                        {
+                            scannedsheet.OCRData1Value = scannedsheet.OCRData1Value.Replace("!","").Replace("@","").Replace("#","").Replace("$","").Replace("%","").Replace("^","").Replace("&","").Replace("*","").Replace("(","").Replace(")","").Replace("_","").Replace("-","").Replace("=","").Replace("+","").Replace(",","").Replace(".","").Replace(";","").Replace(":","").Replace("'","");
                         }
                         connection.UpdateById<MyRow>(scannedsheet);
                     }
