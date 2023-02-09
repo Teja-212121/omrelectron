@@ -9,7 +9,7 @@ namespace Rio.ResultReportView.Forms
     public class ResultReportForm
     {
         public Guid ScannedSheetId { get; set; }
-        public long RollNumber { get; set; }
+        public string RollNumber { get; set; }
         public int ExamId { get; set; }
         public string ExamCode { get; set; }
         public int QuestionIndex { get; set; }

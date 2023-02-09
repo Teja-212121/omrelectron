@@ -11,7 +11,7 @@ namespace Rio.ResultReportView.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public int Id { get; set; }
         public Guid ScannedSheetId { get; set; }
-        public long RollNumber { get; set; }
+        public string RollNumber { get; set; }
         public int ExamId { get; set; }
         [EditLink]
         public string ExamCode { get; set; }

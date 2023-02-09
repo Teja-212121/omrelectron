@@ -11,7 +11,7 @@ namespace Rio.Workspace.Columns
         [QuickFilter,EditLink,Width(100)]
         public string OCRData1Value { get; set; }
         [QuickFilter, EditLink, Width(90)]
-        public long RollNumber { get; set; }
+        public string RollNumber { get; set; }
         [QuickFilter, EditLink, Width(80)]
         public string ExamCode { get; set; }
         [Width(130)]

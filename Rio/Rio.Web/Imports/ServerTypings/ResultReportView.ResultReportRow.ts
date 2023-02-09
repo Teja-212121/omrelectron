@@ -2,7 +2,7 @@
     export interface ResultReportRow {
         Id?: number;
         ScannedSheetId?: string;
-        RollNumber?: number;
+        RollNumber?: string;
         ExamId?: number;
         ExamCode?: string;
         QuestionIndex?: number;

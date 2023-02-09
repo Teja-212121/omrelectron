@@ -13,7 +13,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public string OCRData1Value { get; set; }
         [HalfWidth]
-        public long RollNumber { get; set; }
+        public string RollNumber { get; set; }
         [HalfWidth]
         public string SheetNumber { get; set; }
         [HalfWidth]

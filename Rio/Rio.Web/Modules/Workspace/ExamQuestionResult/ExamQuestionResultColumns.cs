@@ -12,7 +12,7 @@ namespace Rio.Workspace.Columns
         public long Id { get; set; }
         public string StudentFirstName { get; set; }
         [QuickFilter]
-        public long RollNumber { get; set; }
+        public string RollNumber { get; set; }
         [EditLink]
         public string SheetNumber { get; set; }
         public Guid SheetGuid { get; set; }

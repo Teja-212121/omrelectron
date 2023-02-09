@@ -11,7 +11,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public long StudentId { get; set; }
         [HalfWidth]
-        public long RollNumber { get; set; }
+        public string RollNumber { get; set; }
         [HalfWidth]
         public string SheetNumber { get; set; }
         [HalfWidth]

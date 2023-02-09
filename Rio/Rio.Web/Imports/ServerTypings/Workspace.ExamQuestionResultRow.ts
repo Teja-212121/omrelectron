@@ -2,7 +2,7 @@
     export interface ExamQuestionResultRow {
         Id?: number;
         StudentId?: number;
-        RollNumber?: number;
+        RollNumber?: string;
         SheetNumber?: string;
         SheetGuid?: string;
         ExamId?: number;

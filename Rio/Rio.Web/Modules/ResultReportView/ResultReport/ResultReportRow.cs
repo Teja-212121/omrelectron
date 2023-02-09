@@ -28,7 +28,7 @@ namespace Rio.ResultReportView
         }
 
         [DisplayName("Roll Number")]
-        public long? RollNumber
+        public string RollNumber
         {
             get => fields.RollNumber[this];
             set => fields.RollNumber[this] = value;
@@ -111,7 +111,7 @@ namespace Rio.ResultReportView
         {
             public Int32Field Id;
             public GuidField ScannedSheetId;
-            public Int64Field RollNumber;
+            public StringField RollNumber;
             public Int32Field ExamId;
             public StringField ExamCode;
             public Int32Field QuestionIndex;

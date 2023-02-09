@@ -31,7 +31,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Roll Number"), NotNull]
-        public long? RollNumber
+        public string RollNumber
         {
             get => fields.RollNumber[this];
             set => fields.RollNumber[this] = value;
@@ -458,7 +458,7 @@ namespace Rio.Workspace
         {
             public Int32Field Id;
             public Int64Field StudentId;
-            public Int64Field RollNumber;
+            public StringField RollNumber;
             public StringField SheetNumber;
             public GuidField SheetGuid;
             public Int64Field ExamId;

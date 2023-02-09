@@ -11,7 +11,7 @@ namespace Rio.Workspace.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public long Id { get; set; }
         public string StudentFirstName { get; set; }
-        public long RollNumber { get; set; }
+        public string RollNumber { get; set; }
         [EditLink]
         public string SheetNumber { get; set; }
         public Guid SheetGuid { get; set; }
