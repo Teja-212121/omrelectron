@@ -11,6 +11,7 @@ export interface SheetTypeForm {
     SheetData: TextAreaEditor;
     SheetImage: ImageUploadEditor;
     OverlayImage: ImageUploadEditor;
+    OverlayImageOpenCV: ImageUploadEditor;
     Synced: BooleanEditor;
     IsPrivate: BooleanEditor;
     SheetNumber: StringEditor;
@@ -44,6 +45,7 @@ export class SheetTypeForm extends PrefixedContext {
                 'SheetData', w1,
                 'SheetImage', w4,
                 'OverlayImage', w4,
+                'OverlayImageOpenCV', w4,
                 'Synced', w5,
                 'IsPrivate', w5,
                 'SheetNumber', w0,

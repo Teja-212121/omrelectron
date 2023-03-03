@@ -21,6 +21,7 @@ namespace Rio.Workspace.Columns
         public string SheetData { get; set; }
         public string SheetImage { get; set; }
         public string OverlayImage { get; set; }
+        public string OverlayImageOpenCV { get; set; }
         public bool Synced { get; set; }
         [Hidden]
         public bool IsPublic { get; set; }

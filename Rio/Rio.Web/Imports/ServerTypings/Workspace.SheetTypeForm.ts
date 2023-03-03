@@ -9,6 +9,7 @@
         SheetData: Serenity.TextAreaEditor;
         SheetImage: Serenity.ImageUploadEditor;
         OverlayImage: Serenity.ImageUploadEditor;
+        OverlayImageOpenCV: Serenity.ImageUploadEditor;
         Synced: Serenity.BooleanEditor;
         IsPrivate: Serenity.BooleanEditor;
         SheetNumber: Serenity.StringEditor;
@@ -43,6 +44,7 @@
                     'SheetData', w1,
                     'SheetImage', w4,
                     'OverlayImage', w4,
+                    'OverlayImageOpenCV', w4,
                     'Synced', w5,
                     'IsPrivate', w5,
                     'SheetNumber', w0,

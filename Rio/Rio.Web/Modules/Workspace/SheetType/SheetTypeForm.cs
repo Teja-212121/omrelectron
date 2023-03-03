@@ -35,9 +35,12 @@ namespace Rio.Workspace.Forms
         public bool IsPrivate { get; set; }
         [HalfWidth]
         public long SheetNumber { get; set; }
+        [HalfWidth]
         public string PdfTemplate { get; set; }
+        [HalfWidth]
+        public string OverlayImageOpenCV { get; set; }
 
-        
+
         /*public DateTime InsertDate { get; set; }
         public int InsertUserId { get; set; }
         public DateTime UpdateDate { get; set; }

@@ -93,6 +93,13 @@ namespace Rio.Workspace
             set => fields.OverlayImage[this] = value;
         }
 
+        [DisplayName("Overlay Image Open CV"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/OverlayImageOpenCV/~")]
+        public string OverlayImageOpenCV
+        {
+            get => fields.OverlayImageOpenCV[this];
+            set => fields.OverlayImageOpenCV[this] = value;
+        }
+
         [DisplayName("Synced")]
         public bool? Synced
         {
@@ -160,6 +167,7 @@ namespace Rio.Workspace
             public StringField SheetData;
             public StringField SheetImage;
             public StringField OverlayImage;
+            public StringField OverlayImageOpenCV;
             public BooleanField Synced;
             public BooleanField IsPublic;
             public BooleanField IsPrivate;

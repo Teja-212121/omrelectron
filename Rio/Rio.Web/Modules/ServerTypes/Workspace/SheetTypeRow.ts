@@ -13,6 +13,7 @@ export interface SheetTypeRow {
     SheetData?: string;
     SheetImage?: string;
     OverlayImage?: string;
+    OverlayImageOpenCV?: string;
     Synced?: boolean;
     IsPublic?: boolean;
     IsPrivate?: boolean;

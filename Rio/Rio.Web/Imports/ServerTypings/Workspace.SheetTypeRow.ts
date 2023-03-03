@@ -11,6 +11,7 @@
         SheetData?: string;
         SheetImage?: string;
         OverlayImage?: string;
+        OverlayImageOpenCV?: string;
         Synced?: boolean;
         IsPublic?: boolean;
         IsPrivate?: boolean;
@@ -49,6 +50,7 @@
             SheetData = "SheetData",
             SheetImage = "SheetImage",
             OverlayImage = "OverlayImage",
+            OverlayImageOpenCV = "OverlayImageOpenCV",
             Synced = "Synced",
             IsPublic = "IsPublic",
             IsPrivate = "IsPrivate",
