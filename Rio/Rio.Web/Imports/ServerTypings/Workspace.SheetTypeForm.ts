@@ -9,11 +9,11 @@
         SheetData: Serenity.TextAreaEditor;
         SheetImage: Serenity.ImageUploadEditor;
         OverlayImage: Serenity.ImageUploadEditor;
-        OverlayImageOpenCV: Serenity.ImageUploadEditor;
         Synced: Serenity.BooleanEditor;
         IsPrivate: Serenity.BooleanEditor;
         SheetNumber: Serenity.StringEditor;
         PdfTemplate: Serenity.ImageUploadEditor;
+        OverlayImageOpenCV: Serenity.ImageUploadEditor;
     }
 
     export class SheetTypeForm extends Serenity.PrefixedContext {
@@ -44,11 +44,11 @@
                     'SheetData', w1,
                     'SheetImage', w4,
                     'OverlayImage', w4,
-                    'OverlayImageOpenCV', w4,
                     'Synced', w5,
                     'IsPrivate', w5,
                     'SheetNumber', w0,
-                    'PdfTemplate', w4
+                    'PdfTemplate', w4,
+                    'OverlayImageOpenCV', w4
                 ]);
             }
         }

@@ -11,11 +11,11 @@ export interface SheetTypeForm {
     SheetData: TextAreaEditor;
     SheetImage: ImageUploadEditor;
     OverlayImage: ImageUploadEditor;
-    OverlayImageOpenCV: ImageUploadEditor;
     Synced: BooleanEditor;
     IsPrivate: BooleanEditor;
     SheetNumber: StringEditor;
     PdfTemplate: ImageUploadEditor;
+    OverlayImageOpenCV: ImageUploadEditor;
 }
 
 export class SheetTypeForm extends PrefixedContext {
@@ -45,11 +45,11 @@ export class SheetTypeForm extends PrefixedContext {
                 'SheetData', w1,
                 'SheetImage', w4,
                 'OverlayImage', w4,
-                'OverlayImageOpenCV', w4,
                 'Synced', w5,
                 'IsPrivate', w5,
                 'SheetNumber', w0,
-                'PdfTemplate', w4
+                'PdfTemplate', w4,
+                'OverlayImageOpenCV', w4
             ]);
         }
     }

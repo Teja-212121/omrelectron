@@ -23,6 +23,7 @@ namespace Rio.Workspace
         protected override MyRow ProcessEntity(MyRow row)
         {
             Row.OverlayImage = VirtualPathUtility.ToAbsolute("","~/upload/" + Row.OverlayImage);
+            Row.OverlayImageOpenCV = VirtualPathUtility.ToAbsolute("", "~/upload/" + Row.OverlayImageOpenCV);
             return base.ProcessEntity(row);
         }
         protected override void PrepareQuery(SqlQuery query)
