@@ -27,6 +27,7 @@ export interface ExamRow {
     SheetTypeSheetData?: string;
     SheetTypeSheetImage?: string;
     SheetTypeOverlayImage?: string;
+    SheetTypeOverlayImageOpenCV?: string;
     SheetTypeSynced?: boolean;
     SheetTypeIsPrivate?: boolean;
     SheetTypePdfTemplate?: string;

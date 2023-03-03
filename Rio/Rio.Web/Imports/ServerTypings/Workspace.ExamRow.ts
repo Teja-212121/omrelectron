@@ -26,6 +26,7 @@
         SheetTypeSheetData?: string;
         SheetTypeSheetImage?: string;
         SheetTypeOverlayImage?: string;
+        SheetTypeOverlayImageOpenCV?: string;
         SheetTypeSynced?: boolean;
         SheetTypeIsPrivate?: boolean;
         SheetTypePdfTemplate?: string;
@@ -78,6 +79,7 @@
             SheetTypeSheetData = "SheetTypeSheetData",
             SheetTypeSheetImage = "SheetTypeSheetImage",
             SheetTypeOverlayImage = "SheetTypeOverlayImage",
+            SheetTypeOverlayImageOpenCV = "SheetTypeOverlayImageOpenCV",
             SheetTypeSynced = "SheetTypeSynced",
             SheetTypeIsPrivate = "SheetTypeIsPrivate",
             SheetTypePdfTemplate = "SheetTypePdfTemplate",

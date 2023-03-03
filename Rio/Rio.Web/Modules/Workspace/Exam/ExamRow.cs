@@ -205,6 +205,13 @@ namespace Rio.Workspace
             set => fields.SheetTypeOverlayImage[this] = value;
         }
 
+        [DisplayName("Sheet Type Overlay Image Open CV"), Expression("jSheetType.[OverlayImageOpenCV]")]
+        public string SheetTypeOverlayImageOpenCV
+        {
+            get => fields.SheetTypeOverlayImageOpenCV[this];
+            set => fields.SheetTypeOverlayImageOpenCV[this] = value;
+        }
+
         [DisplayName("Sheet Type Synced"), Expression("jSheetType.[Synced]")]
         public bool? SheetTypeSynced
         {
@@ -277,6 +284,7 @@ namespace Rio.Workspace
             public StringField SheetTypeSheetData;
             public StringField SheetTypeSheetImage;
             public StringField SheetTypeOverlayImage;
+            public StringField SheetTypeOverlayImageOpenCV;
             public BooleanField SheetTypeSynced;
             public BooleanField SheetTypeIsPrivate;
             public StringField SheetTypePdfTemplate;
