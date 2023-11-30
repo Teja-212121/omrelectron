@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
@@ -10,7 +11,7 @@ namespace Rio.Workspace.Forms
     {
         
         public string SerialKey { get; set; }
-        public int EStatus { get; set; }
+        public KeyStatus EStatus { get; set; }
         
     }
 }

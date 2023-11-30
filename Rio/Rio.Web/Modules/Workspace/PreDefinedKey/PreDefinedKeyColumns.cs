@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ namespace Rio.Workspace.Columns
         public int Id { get; set; }
         [EditLink]
         public string SerialKey { get; set; }
-        public int EStatus { get; set; }
+        public KeyStatus EStatus { get; set; }
        
     }
 }

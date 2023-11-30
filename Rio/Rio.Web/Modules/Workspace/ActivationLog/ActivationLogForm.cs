@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
@@ -21,7 +22,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public string DeviceDetails { get; set; }
         [HalfWidth]
-        public int EStatus { get; set; }
+        public KeyStatus EStatus { get; set; }
         [TextAreaEditor(Rows =3)]
         public string Note { get; set; }
         

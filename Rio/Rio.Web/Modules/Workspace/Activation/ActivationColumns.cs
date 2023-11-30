@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace Rio.Workspace.Columns
         public string DeviceDetails { get; set; }
         public DateTime ActivationDate { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public int EStatus { get; set; }
+        public KeyStatus EStatus { get; set; }
        
     }
 }

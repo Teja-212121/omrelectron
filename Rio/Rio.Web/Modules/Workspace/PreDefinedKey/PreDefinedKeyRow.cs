@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -28,10 +29,10 @@ namespace Rio.Workspace
         }
 
         [DisplayName("E Status"), Column("eStatus")]
-        public int? EStatus
+        public PreDefinedKeyStatus? EStatus
         {
-            get => fields.EStatus[this];
-            set => fields.EStatus[this] = value;
+            get => (PreDefinedKeyStatus?)fields.EStatus[this];
+            set => fields.EStatus[this] = (short?)value;
         }
 
         [DisplayName("Is Active"), DefaultValue(1)]
