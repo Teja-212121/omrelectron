@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Web;
 using System;
 
@@ -8,18 +8,22 @@ namespace Rio.Workspace.Forms
     [BasedOnRow(typeof(ActivationLogRow), CheckNames = true)]
     public class ActivationLogForm
     {
+        [HalfWidth]
         public string Code { get; set; }
+        [HalfWidth]
         public string SerialKey { get; set; }
+        [HalfWidth]
         public int TeacherId { get; set; }
+        [HalfWidth]
         public int ExamListId { get; set; }
+        [HalfWidth]
         public string DeviceId { get; set; }
+        [HalfWidth]
         public string DeviceDetails { get; set; }
+        [HalfWidth]
         public int EStatus { get; set; }
+        [TextAreaEditor(Rows =3)]
         public string Note { get; set; }
-        public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
-        public int IsActive { get; set; }
+        
     }
 }

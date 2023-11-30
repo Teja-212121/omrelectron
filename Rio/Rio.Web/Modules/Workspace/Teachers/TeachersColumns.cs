@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
 
@@ -22,11 +22,8 @@ namespace Rio.Workspace.Columns
         public string Address { get; set; }
         public string City { get; set; }
         public int UserId { get; set; }
-        public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
-        public short IsActive { get; set; }
+        public string SchoolOrInstitute { get; set; }
+      
         public int TenantId { get; set; }
     }
 }

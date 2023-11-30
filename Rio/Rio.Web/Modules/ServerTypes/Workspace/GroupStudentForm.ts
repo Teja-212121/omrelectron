@@ -4,6 +4,7 @@ import { initFormType } from "@serenity-is/corelib/q";
 export interface GroupStudentForm {
     GroupId: LookupEditor;
     StudentId: LookupEditor;
+    TeacherId: LookupEditor;
 }
 
 export class GroupStudentForm extends PrefixedContext {
@@ -20,7 +21,8 @@ export class GroupStudentForm extends PrefixedContext {
 
             initFormType(GroupStudentForm, [
                 'GroupId', w0,
-                'StudentId', w0
+                'StudentId', w0,
+                'TeacherId', w0
             ]);
         }
     }

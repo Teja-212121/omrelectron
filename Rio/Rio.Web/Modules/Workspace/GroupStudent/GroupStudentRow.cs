@@ -43,7 +43,13 @@ namespace Rio.Workspace
             get => fields.StudentId[this];
             set => fields.StudentId[this] = value;
         }
-
+        [DisplayName("Teacher"), NotNull, ForeignKey("Teachers", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
+        [LookupEditor("Workspace.Teachers")]
+        public int? TeacherId
+        {
+            get => fields.TeacherId[this];
+            set => fields.TeacherId[this] = value;
+        }
         [DisplayName("Is Active"), NotNull, Insertable(false), Updatable(true)]
         public short? IsActive
         {
@@ -297,6 +303,7 @@ namespace Rio.Workspace
             public Int16Field StudentIsActive;
             public Int32Field StudentTenantId;
             /*public StringField StudentTenantName;*/
+            public Int32Field TeacherId;
 
             public StringField RowIds;
         }

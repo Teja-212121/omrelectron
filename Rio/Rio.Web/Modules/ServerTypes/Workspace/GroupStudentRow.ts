@@ -31,6 +31,7 @@ export interface GroupStudentRow {
     StudentUpdateUserId?: number;
     StudentIsActive?: number;
     StudentTenantId?: number;
+    TeacherId?: number;
     RowIds?: string;
     InsertUserId?: number;
     InsertDate?: string;

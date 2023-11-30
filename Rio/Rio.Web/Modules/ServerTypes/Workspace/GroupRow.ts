@@ -9,6 +9,7 @@ export interface GroupRow {
     TenantId?: number;
     TenantName?: string;
     SelectedTenant?: number;
+    TeacherId?: number;
     ParentName?: string;
     ParentDescription?: string;
     ParentParentId?: number;

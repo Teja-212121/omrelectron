@@ -21,5 +21,7 @@ namespace Rio.Workspace.Columns
         [QuickFilter]
         [DisplayName("Tenant")]
         public string TenantName { get; set; }
+    
+        public int TeacherId { get; set; }
     }
 }

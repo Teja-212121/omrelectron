@@ -17,6 +17,7 @@ namespace Rio.Workspace.Forms
         public DateTime Dob { get; set; }
         public string AllowedIps { get; set; }
         public string Address { get; set; }
+         public string SchoolOrInstitute { get; set; }
         public string City { get; set; }
        // public int UserId { get; set; }
        

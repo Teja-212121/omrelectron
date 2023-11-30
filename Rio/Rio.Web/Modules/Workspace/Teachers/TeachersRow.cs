@@ -116,7 +116,12 @@ namespace Rio.Workspace
             get => fields.TenantId[this];
             set => fields.TenantId[this] = value;
         }
-
+        [DisplayName(" School Or Institute")]
+        public string SchoolOrInstitute
+        {
+            get => fields.SchoolOrInstitute[this];
+            set => fields.SchoolOrInstitute[this] = value;
+        }
         public TeachersRow()
             : base()
         {
@@ -143,6 +148,7 @@ namespace Rio.Workspace
             public Int32Field UserId;
             public Int16Field IsActive;
             public Int32Field TenantId;
+            public StringField SchoolOrInstitute;
         }
     }
 }

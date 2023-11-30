@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
 
@@ -18,10 +18,6 @@ namespace Rio.Workspace.Columns
         public DateTime ActivationDate { get; set; }
         public DateTime ExpiryDate { get; set; }
         public int EStatus { get; set; }
-        public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
-        public int IsActive { get; set; }
+       
     }
 }

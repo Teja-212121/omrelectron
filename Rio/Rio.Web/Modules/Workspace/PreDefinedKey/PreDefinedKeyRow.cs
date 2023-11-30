@@ -1,6 +1,7 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
+using Serenity.Extensions.Entities;
 using System;
 using System.ComponentModel;
 
@@ -10,7 +11,7 @@ namespace Rio.Workspace
     [DisplayName("Pre Defined Key"), InstanceName("Pre Defined Key")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
-    public sealed class PreDefinedKeyRow : Row<PreDefinedKeyRow.RowFields>, IIdRow, INameRow
+    public sealed class PreDefinedKeyRow : LoggingRow<PreDefinedKeyRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         public int? Id
@@ -33,34 +34,6 @@ namespace Rio.Workspace
             set => fields.EStatus[this] = value;
         }
 
-        [DisplayName("Insert Date"), NotNull]
-        public DateTime? InsertDate
-        {
-            get => fields.InsertDate[this];
-            set => fields.InsertDate[this] = value;
-        }
-
-        [DisplayName("Insert User Id"), NotNull]
-        public int? InsertUserId
-        {
-            get => fields.InsertUserId[this];
-            set => fields.InsertUserId[this] = value;
-        }
-
-        [DisplayName("Update Date")]
-        public DateTime? UpdateDate
-        {
-            get => fields.UpdateDate[this];
-            set => fields.UpdateDate[this] = value;
-        }
-
-        [DisplayName("Update User Id")]
-        public int? UpdateUserId
-        {
-            get => fields.UpdateUserId[this];
-            set => fields.UpdateUserId[this] = value;
-        }
-
         [DisplayName("Is Active"), NotNull]
         public int? IsActive
         {
@@ -78,15 +51,12 @@ namespace Rio.Workspace
         {
         }
 
-        public class RowFields : RowFieldsBase
+        public class RowFields : LoggingRowFields
         {
             public Int32Field Id;
             public StringField SerialKey;
             public Int32Field EStatus;
-            public DateTimeField InsertDate;
-            public Int32Field InsertUserId;
-            public DateTimeField UpdateDate;
-            public Int32Field UpdateUserId;
+          
             public Int32Field IsActive;
         }
     }
