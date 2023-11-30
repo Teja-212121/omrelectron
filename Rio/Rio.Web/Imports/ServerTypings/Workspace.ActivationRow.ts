@@ -8,10 +8,6 @@
         ActivationDate?: string;
         ExpiryDate?: string;
         EStatus?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;
@@ -39,6 +35,10 @@
         TeacherIsActive?: number;
         TeacherTenantId?: number;
         TeacherSchoolOrInstitute?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace ActivationRow {
@@ -59,10 +59,6 @@
             ActivationDate = "ActivationDate",
             ExpiryDate = "ExpiryDate",
             EStatus = "EStatus",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
@@ -89,7 +85,11 @@
             TeacherUpdateUserId = "TeacherUpdateUserId",
             TeacherIsActive = "TeacherIsActive",
             TeacherTenantId = "TeacherTenantId",
-            TeacherSchoolOrInstitute = "TeacherSchoolOrInstitute"
+            TeacherSchoolOrInstitute = "TeacherSchoolOrInstitute",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

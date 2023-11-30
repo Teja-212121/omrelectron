@@ -14,6 +14,7 @@
         UserId?: number;
         IsActive?: number;
         TenantId?: number;
+        SchoolOrInstitute?: string;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -49,6 +50,7 @@
             UserId = "UserId",
             IsActive = "IsActive",
             TenantId = "TenantId",
+            SchoolOrInstitute = "SchoolOrInstitute",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

@@ -8,6 +8,7 @@
         TenantId?: number;
         TenantName?: string;
         SelectedTenant?: number;
+        TeacherId?: number;
         ParentName?: string;
         ParentDescription?: string;
         ParentParentId?: number;
@@ -47,6 +48,7 @@
             TenantId = "TenantId",
             TenantName = "TenantName",
             SelectedTenant = "SelectedTenant",
+            TeacherId = "TeacherId",
             ParentName = "ParentName",
             ParentDescription = "ParentDescription",
             ParentParentId = "ParentParentId",

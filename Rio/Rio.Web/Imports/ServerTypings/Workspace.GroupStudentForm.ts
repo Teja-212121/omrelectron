@@ -2,6 +2,7 @@
     export interface GroupStudentForm {
         GroupId: Serenity.LookupEditor;
         StudentId: Serenity.LookupEditor;
+        TeacherId: Serenity.LookupEditor;
     }
 
     export class GroupStudentForm extends Serenity.PrefixedContext {
@@ -19,7 +20,8 @@
 
                 Q.initFormType(GroupStudentForm, [
                     'GroupId', w0,
-                    'StudentId', w0
+                    'StudentId', w0,
+                    'TeacherId', w0
                 ]);
             }
         }

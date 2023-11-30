@@ -3,21 +3,26 @@
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TenantId?: number;
         TenantTenantName?: string;
         TenantEApprovalStatus?: number;
         TenantIsActive?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace ExamListRow {
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Workspace.ExamList';
+        export const lookupKey = 'Workspace.ExamList';
+
+        export function getLookup(): Q.Lookup<ExamListRow> {
+            return Q.getLookup<ExamListRow>('Workspace.ExamList');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
@@ -27,15 +32,15 @@
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             TenantId = "TenantId",
             TenantTenantName = "TenantTenantName",
             TenantEApprovalStatus = "TenantEApprovalStatus",
-            TenantIsActive = "TenantIsActive"
+            TenantIsActive = "TenantIsActive",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

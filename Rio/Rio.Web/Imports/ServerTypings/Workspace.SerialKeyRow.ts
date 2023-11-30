@@ -8,10 +8,6 @@
         ValidDate?: string;
         Note?: string;
         EStatus?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;
@@ -21,6 +17,10 @@
         ExamListUpdateUserId?: number;
         ExamListIsActive?: number;
         ExamListTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace SerialKeyRow {
@@ -41,10 +41,6 @@
             ValidDate = "ValidDate",
             Note = "Note",
             EStatus = "EStatus",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
@@ -53,7 +49,11 @@
             ExamListUpdateDate = "ExamListUpdateDate",
             ExamListUpdateUserId = "ExamListUpdateUserId",
             ExamListIsActive = "ExamListIsActive",
-            ExamListTenantId = "ExamListTenantId"
+            ExamListTenantId = "ExamListTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

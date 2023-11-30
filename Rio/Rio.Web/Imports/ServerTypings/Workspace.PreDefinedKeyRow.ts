@@ -3,11 +3,11 @@
         Id?: number;
         SerialKey?: string;
         EStatus?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace PreDefinedKeyRow {
@@ -23,11 +23,11 @@
             Id = "Id",
             SerialKey = "SerialKey",
             EStatus = "EStatus",
-            InsertDate = "InsertDate",
+            IsActive = "IsActive",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            IsActive = "IsActive"
+            UpdateDate = "UpdateDate"
         }
     }
 }

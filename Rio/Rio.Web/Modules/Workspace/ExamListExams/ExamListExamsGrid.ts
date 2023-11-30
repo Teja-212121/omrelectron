@@ -1,4 +1,4 @@
-﻿import { Decorators, EntityGrid } from '@serenity-is/corelib';
+import { Decorators, EntityGrid } from '@serenity-is/corelib';
 import { ExamListExamsColumns, ExamListExamsRow, ExamListExamsService } from '../../ServerTypes/Workspace';
 import { ExamListExamsDialog } from './ExamListExamsDialog';
 
@@ -13,5 +13,32 @@ export class ExamListExamsGrid extends EntityGrid<ExamListExamsRow, any> {
 
     constructor(container: JQuery) {
         super(container);
+    }
+
+    protected addButtonClick() {
+        this.editItem({ ExamListId: this.ExamListId });
+    }
+
+    protected usePager() {
+        return false;
+    }
+
+    protected getGridCanLoad() {
+        return this.ExamListId != null;
+    }
+
+    private _ExamListId: number;
+
+    get ExamListId() {
+        return this._ExamListId;
+    }
+
+    set ExamListId(value: number) {
+        //debugger;
+        if (this._ExamListId != value) {
+            this._ExamListId = value;
+            this.setEquality(ExamListExamsRow.Fields.ExamListId, value);
+            this.refresh();
+        }
     }
 }

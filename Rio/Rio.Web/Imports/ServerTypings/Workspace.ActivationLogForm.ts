@@ -2,17 +2,12 @@
     export interface ActivationLogForm {
         Code: Serenity.StringEditor;
         SerialKey: Serenity.StringEditor;
-        TeacherId: Serenity.IntegerEditor;
-        ExamListId: Serenity.IntegerEditor;
+        TeacherId: Serenity.LookupEditor;
+        ExamListId: Serenity.LookupEditor;
         DeviceId: Serenity.StringEditor;
         DeviceDetails: Serenity.StringEditor;
         EStatus: Serenity.IntegerEditor;
-        Note: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
+        Note: Serenity.TextAreaEditor;
     }
 
     export class ActivationLogForm extends Serenity.PrefixedContext {
@@ -27,8 +22,9 @@
 
                 var s = Serenity;
                 var w0 = s.StringEditor;
-                var w1 = s.IntegerEditor;
-                var w2 = s.DateEditor;
+                var w1 = s.LookupEditor;
+                var w2 = s.IntegerEditor;
+                var w3 = s.TextAreaEditor;
 
                 Q.initFormType(ActivationLogForm, [
                     'Code', w0,
@@ -37,13 +33,8 @@
                     'ExamListId', w1,
                     'DeviceId', w0,
                     'DeviceDetails', w0,
-                    'EStatus', w1,
-                    'Note', w0,
-                    'InsertDate', w2,
-                    'InsertUserId', w1,
-                    'UpdateDate', w2,
-                    'UpdateUserId', w1,
-                    'IsActive', w1
+                    'EStatus', w2,
+                    'Note', w3
                 ]);
             }
         }

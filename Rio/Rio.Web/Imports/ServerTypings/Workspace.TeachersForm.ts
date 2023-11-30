@@ -8,6 +8,7 @@
         Dob: Serenity.DateEditor;
         AllowedIps: Serenity.StringEditor;
         Address: Serenity.StringEditor;
+        SchoolOrInstitute: Serenity.StringEditor;
         City: Serenity.StringEditor;
     }
 
@@ -35,6 +36,7 @@
                     'Dob', w2,
                     'AllowedIps', w0,
                     'Address', w0,
+                    'SchoolOrInstitute', w0,
                     'City', w0
                 ]);
             }

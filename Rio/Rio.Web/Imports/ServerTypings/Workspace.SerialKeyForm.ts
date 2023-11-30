@@ -1,17 +1,12 @@
 ﻿namespace Rio.Workspace {
     export interface SerialKeyForm {
         SerialKey: Serenity.StringEditor;
-        ExamListId: Serenity.IntegerEditor;
+        ExamListId: Serenity.LookupEditor;
         ValidityType: Serenity.IntegerEditor;
         ValidityInDays: Serenity.IntegerEditor;
         ValidDate: Serenity.DateEditor;
-        Note: Serenity.StringEditor;
+        Note: Serenity.TextAreaEditor;
         EStatus: Serenity.IntegerEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
     }
 
     export class SerialKeyForm extends Serenity.PrefixedContext {
@@ -26,22 +21,19 @@
 
                 var s = Serenity;
                 var w0 = s.StringEditor;
-                var w1 = s.IntegerEditor;
-                var w2 = s.DateEditor;
+                var w1 = s.LookupEditor;
+                var w2 = s.IntegerEditor;
+                var w3 = s.DateEditor;
+                var w4 = s.TextAreaEditor;
 
                 Q.initFormType(SerialKeyForm, [
                     'SerialKey', w0,
                     'ExamListId', w1,
-                    'ValidityType', w1,
-                    'ValidityInDays', w1,
-                    'ValidDate', w2,
-                    'Note', w0,
-                    'EStatus', w1,
-                    'InsertDate', w2,
-                    'InsertUserId', w1,
-                    'UpdateDate', w2,
-                    'UpdateUserId', w1,
-                    'IsActive', w1
+                    'ValidityType', w2,
+                    'ValidityInDays', w2,
+                    'ValidDate', w3,
+                    'Note', w4,
+                    'EStatus', w2
                 ]);
             }
         }

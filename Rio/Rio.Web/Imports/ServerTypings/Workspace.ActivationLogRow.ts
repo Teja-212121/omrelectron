@@ -9,10 +9,6 @@
         DeviceDetails?: string;
         EStatus?: number;
         Note?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         TeacherFirstName?: string;
         TeacherMiddleName?: string;
@@ -40,6 +36,10 @@
         ExamListUpdateUserId?: number;
         ExamListIsActive?: number;
         ExamListTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace ActivationLogRow {
@@ -61,10 +61,6 @@
             DeviceDetails = "DeviceDetails",
             EStatus = "EStatus",
             Note = "Note",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             TeacherFirstName = "TeacherFirstName",
             TeacherMiddleName = "TeacherMiddleName",
@@ -91,7 +87,11 @@
             ExamListUpdateDate = "ExamListUpdateDate",
             ExamListUpdateUserId = "ExamListUpdateUserId",
             ExamListIsActive = "ExamListIsActive",
-            ExamListTenantId = "ExamListTenantId"
+            ExamListTenantId = "ExamListTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

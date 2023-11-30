@@ -9,8 +9,8 @@ using MyPage = Rio.Common.Pages;
 [assembly: NavigationMenu(3000, "Exams", icon: "fa-pencil-square-o")]
 [assembly: NavigationLink(3001, "Exams/Exams", typeof(MyPages.ExamController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3002, "Exams/Exam List", typeof(MyPages.ExamListController), icon: "fa-circle-o")]
-[assembly: NavigationLink(3003, "Exams/Exam List Exams", typeof(MyPages.ExamListExamsController), icon: "fa-circle-o")]
-/*[assembly: NavigationLink(3002, "Exams/Exam Sections", typeof(MyPages.ExamSectionController), icon: "fa-circle-o")]
+/*[assembly: NavigationLink(3003, "Exams/Exam List Exams", typeof(MyPages.ExamListExamsController), icon: "fa-circle-o")]
+[assembly: NavigationLink(3002, "Exams/Exam Sections", typeof(MyPages.ExamSectionController), icon: "fa-circle-o")]
 [assembly: NavigationLink(3003, "Exams/Exam Questions", typeof(MyPages.ExamQuestionController), icon: "fa-circle-o")]*/
 
 [assembly: NavigationMenu(4000, "Activation", icon: "fa fa-check")]
@@ -18,7 +18,7 @@ using MyPage = Rio.Common.Pages;
 [assembly: NavigationLink(4002, "Activation/Serial Key", typeof(MyPages.SerialKeyController), icon: "fa-circle-o")]
 [assembly: NavigationLink(4003, "Activation/Coupon Code", typeof(MyPages.CouponCodeController), icon: "fa-circle-o")]
 [assembly: NavigationLink(4004, "Activation/Activation", typeof(MyPages.ActivationController), icon: "fa-circle-o")]
-[assembly: NavigationLink(4005, "Activation/Activation Log", typeof(MyPages.ActivationLogController), icon: "fa-circle-o")]
+//[assembly: NavigationLink(4005, "Activation/Activation Log", typeof(MyPages.ActivationLogController), icon: "fa-circle-o")]
 
 [assembly: NavigationMenu(5000, "Students", icon: "fa-users")]
 [assembly: NavigationLink(5001, "Students/Students", typeof(MyPages.StudentController), icon: "fa-circle-o")]

@@ -33,11 +33,9 @@ namespace Rio.Workspace
         {
             get => fields.Description[this];
             set => fields.Description[this] = value;
-        }
+        }      
 
-       
-
-        [DisplayName("Is Active"), NotNull]
+        [DisplayName("Is Active"), DefaultValue(1)]
         public int? IsActive
         {
             get => fields.IsActive[this];
@@ -45,6 +43,7 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Tenant"), NotNull, ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
+        [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {
             get => fields.TenantId[this];

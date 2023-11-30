@@ -9,11 +9,6 @@
         ValidDate: Serenity.DateEditor;
         ConsumedCount: Serenity.IntegerEditor;
         CouponValidityDate: Serenity.DateEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        IsActive: Serenity.IntegerEditor;
     }
 
     export class CouponCodeForm extends Serenity.PrefixedContext {
@@ -40,12 +35,7 @@
                     'ValidityInDays', w1,
                     'ValidDate', w2,
                     'ConsumedCount', w1,
-                    'CouponValidityDate', w2,
-                    'InsertDate', w2,
-                    'InsertUserId', w1,
-                    'UpdateDate', w2,
-                    'UpdateUserId', w1,
-                    'IsActive', w1
+                    'CouponValidityDate', w2
                 ]);
             }
         }

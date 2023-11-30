@@ -79,7 +79,7 @@ namespace Rio.Workspace
             set => fields.Note[this] = value;
         }
 
-        [DisplayName("Is Active"), NotNull]
+        [DisplayName("Is Active"), DefaultValue(1)]
         public int? IsActive
         {
             get => fields.IsActive[this];

@@ -30,6 +30,7 @@
         StudentUpdateUserId?: number;
         StudentIsActive?: number;
         StudentTenantId?: number;
+        TeacherId?: number;
         RowIds?: string;
         InsertUserId?: number;
         InsertDate?: string;
@@ -77,6 +78,7 @@
             StudentUpdateUserId = "StudentUpdateUserId",
             StudentIsActive = "StudentIsActive",
             StudentTenantId = "StudentTenantId",
+            TeacherId = "TeacherId",
             RowIds = "RowIds",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",

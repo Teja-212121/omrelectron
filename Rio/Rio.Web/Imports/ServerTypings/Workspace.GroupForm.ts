@@ -4,6 +4,7 @@
         ParentId: Serenity.LookupEditor;
         Description: Serenity.TextAreaEditor;
         SelectedTenant: Serenity.LookupEditor;
+        TeacherId: Serenity.LookupEditor;
     }
 
     export class GroupForm extends Serenity.PrefixedContext {
@@ -25,7 +26,8 @@
                     'Name', w0,
                     'ParentId', w1,
                     'Description', w2,
-                    'SelectedTenant', w1
+                    'SelectedTenant', w1,
+                    'TeacherId', w1
                 ]);
             }
         }

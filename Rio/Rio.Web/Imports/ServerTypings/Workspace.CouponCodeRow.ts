@@ -10,10 +10,6 @@
         ValidDate?: string;
         ConsumedCount?: number;
         CouponValidityDate?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;
@@ -23,6 +19,10 @@
         ExamListUpdateUserId?: number;
         ExamListIsActive?: number;
         ExamListTenantId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace CouponCodeRow {
@@ -45,10 +45,6 @@
             ValidDate = "ValidDate",
             ConsumedCount = "ConsumedCount",
             CouponValidityDate = "CouponValidityDate",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             IsActive = "IsActive",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
@@ -57,7 +53,11 @@
             ExamListUpdateDate = "ExamListUpdateDate",
             ExamListUpdateUserId = "ExamListUpdateUserId",
             ExamListIsActive = "ExamListIsActive",
-            ExamListTenantId = "ExamListTenantId"
+            ExamListTenantId = "ExamListTenantId",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

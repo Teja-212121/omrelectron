@@ -69,10 +69,8 @@ namespace Rio.Workspace
             get => fields.EStatus[this];
             set => fields.EStatus[this] = value;
         }
-
         
-
-        [DisplayName("Is Active"), NotNull]
+        [DisplayName("Is Active"), DefaultValue(1)]
         public int? IsActive
         {
             get => fields.IsActive[this];
