@@ -15,6 +15,18 @@
       "Key": "Default",
       "Tables": [
         {
+          "Tablename": "ActivationLog",
+          "Identifier": "ActivationLog",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "Activations",
+          "Identifier": "Activation",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.ExamGroupWiseResults",
           "Identifier": "ExamGroupWiseResult",
           "Module": "Workspace",
@@ -189,8 +201,32 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "ExamListExams",
+          "Identifier": "ExamListExams",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "ExamLists",
+          "Identifier": "ExamList",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "GetScanData",
           "Identifier": "GetScanData",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "PreDefinedKeys",
+          "Identifier": "PreDefinedKey",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "SerialKeys",
+          "Identifier": "SerialKey",
           "Module": "Workspace",
           "PermissionKey": "Administration:General"
         },
