@@ -7,6 +7,7 @@
         ActivationDate: Serenity.DateEditor;
         ExpiryDate: Serenity.DateEditor;
         EStatus: Serenity.EnumEditor;
+        SerialKeyId: Serenity.LookupEditor;
     }
 
     export class ActivationForm extends Serenity.PrefixedContext {
@@ -32,7 +33,8 @@
                     'DeviceDetails', w1,
                     'ActivationDate', w2,
                     'ExpiryDate', w2,
-                    'EStatus', w3
+                    'EStatus', w3,
+                    'SerialKeyId', w0
                 ]);
             }
         }

@@ -1,6 +1,7 @@
 ﻿namespace Rio.Workspace {
     export interface ActivationRow {
         Id?: number;
+        SerialKeyId?: number;
         ExamListId?: number;
         TeacherId?: number;
         DeviceId?: string;
@@ -52,6 +53,7 @@
 
         export declare const enum Fields {
             Id = "Id",
+            SerialKeyId = "SerialKeyId",
             ExamListId = "ExamListId",
             TeacherId = "TeacherId",
             DeviceId = "DeviceId",

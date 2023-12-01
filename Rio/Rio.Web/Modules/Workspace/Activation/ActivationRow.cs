@@ -21,6 +21,14 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
+        [DisplayName("Serial Key"), NotNull, ForeignKey("SerialKeys", "Id"), LeftJoin("jSerialKey"), TextualField("SerialKey")]
+        [LookupEditor("Workspace.SerialKey")]
+        public int? SerialKeyId
+        {
+            get => fields.SerialKeyId[this];
+            set => fields.SerialKeyId[this] = value;
+        }
+
         [DisplayName("Exam List"), NotNull, ForeignKey("ExamLists", "Id"), LeftJoin("jExamList"), TextualField("ExamListName")]
         [LookupEditor("Workspace.ExamList")]
         public int? ExamListId
@@ -274,6 +282,7 @@ namespace Rio.Workspace
         public class RowFields : LoggingRowFields
         {
             public Int32Field Id;
+            public Int32Field SerialKeyId;
             public Int32Field ExamListId;
             public Int64Field TeacherId;
             public StringField DeviceId;

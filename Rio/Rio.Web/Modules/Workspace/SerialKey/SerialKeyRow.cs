@@ -12,6 +12,7 @@ namespace Rio.Workspace
     [DisplayName("Serial Key"), InstanceName("Serial Key")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("Workspace.SerialKey")]
     public sealed class SerialKeyRow : LoggingRow<SerialKeyRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]

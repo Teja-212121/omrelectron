@@ -8,6 +8,7 @@
         StartDate?: string;
         EndDate?: string;
         ModelAnswerPaperStartDate?: string;
+        RowIds?: string;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;
@@ -66,6 +67,7 @@
             StartDate = "StartDate",
             EndDate = "EndDate",
             ModelAnswerPaperStartDate = "ModelAnswerPaperStartDate",
+            RowIds = "RowIds",
             IsActive = "IsActive",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
