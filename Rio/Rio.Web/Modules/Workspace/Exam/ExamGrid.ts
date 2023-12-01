@@ -1,6 +1,7 @@
 import { Decorators, EntityGrid, GridRowSelectionMixin } from '@serenity-is/corelib';
 import { Authorization, serviceRequest } from '@serenity-is/corelib/q';
 import { ExamColumns, ExamRow, ExamService } from '../../ServerTypes/Workspace';
+import { ExamListExamsForExamListDialog } from '../ExamListExams/ExamListExamsForExamListDialog';
 import { ExamDialog } from './ExamDialog';
 
 @Decorators.registerClass()
@@ -51,9 +52,23 @@ export class ExamGrid extends EntityGrid<ExamRow, any> {
 
                         serviceRequest('/Services/Workspace/Exam/DeleteExam', rowKeys, (response) => { this.rowSelection.resetCheckedAndRefresh(), this.refresh() });
                     });
-
                 }
             }
+        });
+
+        buttons.push({
+            title: 'Assign to ExamList',
+            cssClass: 'add-button',
+            //icon: 'fa-plus',
+            onClick: () => {
+                var SelectedKeys = this.rowSelection.getSelectedKeys();
+                if (SelectedKeys.length == 0) {
+                    alert("Please select atleast one ExamList!");
+                    return;
+                }
+                new ExamListExamsForExamListDialog(this.refresh(), true, SelectedKeys).loadNewAndOpenDialog();
+            },
+            separator: true
         });
 
         return buttons;
