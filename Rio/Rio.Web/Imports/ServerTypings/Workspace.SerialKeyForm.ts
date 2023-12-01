@@ -2,7 +2,7 @@
     export interface SerialKeyForm {
         SerialKey: Serenity.StringEditor;
         ExamListId: Serenity.LookupEditor;
-        ValidityType: Serenity.IntegerEditor;
+        ValidityType: Serenity.EnumEditor;
         ValidityInDays: Serenity.IntegerEditor;
         ValidDate: Serenity.DateEditor;
         Note: Serenity.TextAreaEditor;
@@ -22,19 +22,19 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.LookupEditor;
-                var w2 = s.IntegerEditor;
-                var w3 = s.DateEditor;
-                var w4 = s.TextAreaEditor;
-                var w5 = s.EnumEditor;
+                var w2 = s.EnumEditor;
+                var w3 = s.IntegerEditor;
+                var w4 = s.DateEditor;
+                var w5 = s.TextAreaEditor;
 
                 Q.initFormType(SerialKeyForm, [
                     'SerialKey', w0,
                     'ExamListId', w1,
                     'ValidityType', w2,
-                    'ValidityInDays', w2,
-                    'ValidDate', w3,
-                    'Note', w4,
-                    'EStatus', w5
+                    'ValidityInDays', w3,
+                    'ValidDate', w4,
+                    'Note', w5,
+                    'EStatus', w2
                 ]);
             }
         }

@@ -3,7 +3,7 @@
         Id?: number;
         SerialKey?: string;
         ExamListId?: number;
-        ValidityType?: number;
+        ValidityType?: Web.Enums.EValidityType;
         ValidityInDays?: number;
         ValidDate?: string;
         Note?: string;

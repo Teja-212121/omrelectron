@@ -37,10 +37,10 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Validity Type")]
-        public int? ValidityType
+        public EValidityType? ValidityType
         {
-            get => fields.ValidityType[this];
-            set => fields.ValidityType[this] = value;
+            get => (EValidityType?)fields.ValidityType[this];
+            set => fields.ValidityType[this] = (short?)value;
         }
 
         [DisplayName("Validity In Days")]

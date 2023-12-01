@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -35,17 +36,17 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Validity Type")]
-        public int? ValidityType
+        public EValidityType? ValidityType
         {
-            get => fields.ValidityType[this];
-            set => fields.ValidityType[this] = value;
+            get => (EValidityType?)fields.ValidityType[this];
+            set => fields.ValidityType[this] = (short?)value;
         }
 
         [DisplayName("Count Type")]
-        public int? CountType
+        public ECountType? CountType
         {
-            get => fields.CountType[this];
-            set => fields.CountType[this] = value;
+            get => (ECountType?)fields.CountType[this];
+            set => fields.CountType[this] = (short?)value;
         }
 
         [DisplayName("Count")]

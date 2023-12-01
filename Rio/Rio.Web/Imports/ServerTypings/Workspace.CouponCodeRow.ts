@@ -3,8 +3,8 @@
         Id?: number;
         Code?: string;
         ExamListId?: number;
-        ValidityType?: number;
-        CountType?: number;
+        ValidityType?: Web.Enums.EValidityType;
+        CountType?: Web.Enums.ECountType;
         Count?: number;
         ValidityInDays?: number;
         ValidDate?: string;
