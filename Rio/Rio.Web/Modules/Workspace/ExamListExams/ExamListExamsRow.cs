@@ -142,6 +142,12 @@ namespace Rio.Workspace
             get => fields.ExamCode[this];
             set => fields.ExamCode[this] = value;
         }
+        [NotMapped]
+        public String RowIds
+        {
+            get => fields.RowIds[this];
+            set => fields.RowIds[this] = value;
+        }
 
         [DisplayName("Exam Name"), Expression("jExam.[Name]")]
         public string ExamName
@@ -303,7 +309,8 @@ namespace Rio.Workspace
             public DateTimeField StartDate;
             public DateTimeField EndDate;
             public DateTimeField ModelAnswerPaperStartDate;
-           
+
+            public StringField RowIds;
             public Int32Field IsActive;
 
             public StringField ExamListName;
