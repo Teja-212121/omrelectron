@@ -1,7 +1,7 @@
 ﻿namespace Rio.Workspace {
     export interface PreDefinedKeyForm {
         SerialKey: Serenity.StringEditor;
-        EStatus: Serenity.IntegerEditor;
+        EStatus: Serenity.EnumEditor;
     }
 
     export class PreDefinedKeyForm extends Serenity.PrefixedContext {
@@ -16,7 +16,7 @@
 
                 var s = Serenity;
                 var w0 = s.StringEditor;
-                var w1 = s.IntegerEditor;
+                var w1 = s.EnumEditor;
 
                 Q.initFormType(PreDefinedKeyForm, [
                     'SerialKey', w0,

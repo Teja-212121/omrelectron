@@ -6,7 +6,7 @@
         ExamListId: Serenity.LookupEditor;
         DeviceId: Serenity.StringEditor;
         DeviceDetails: Serenity.StringEditor;
-        EStatus: Serenity.IntegerEditor;
+        EStatus: Serenity.EnumEditor;
         Note: Serenity.TextAreaEditor;
     }
 
@@ -23,7 +23,7 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.LookupEditor;
-                var w2 = s.IntegerEditor;
+                var w2 = s.EnumEditor;
                 var w3 = s.TextAreaEditor;
 
                 Q.initFormType(ActivationLogForm, [

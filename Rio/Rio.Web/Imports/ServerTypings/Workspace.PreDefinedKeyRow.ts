@@ -2,7 +2,7 @@
     export interface PreDefinedKeyRow {
         Id?: number;
         SerialKey?: string;
-        EStatus?: number;
+        EStatus?: Web.Enums.PreDefinedKeyStatus;
         IsActive?: number;
         InsertUserId?: number;
         InsertDate?: string;

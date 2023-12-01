@@ -7,7 +7,7 @@
         DeviceDetails?: string;
         ActivationDate?: string;
         ExpiryDate?: string;
-        EStatus?: number;
+        EStatus?: Web.Enums.KeyStatus;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;

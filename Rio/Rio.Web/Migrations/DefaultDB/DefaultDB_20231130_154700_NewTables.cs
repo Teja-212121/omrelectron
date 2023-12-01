@@ -81,7 +81,7 @@ namespace Rio.Migrations.DefaultDB
             this.CreateTableWithId32("Activations", "Id", s => s
                 .WithColumn("ExamListId").AsInt32().NotNullable()
                     .ForeignKey("ExamLists", "Id")
-                .WithColumn("TeacherId").AsInt32().NotNullable()
+                .WithColumn("TeacherId").AsInt64().NotNullable()
                     .ForeignKey("Teachers", "Id")
                 .WithColumn("DeviceId").AsString(200).Nullable()
                 .WithColumn("DeviceDetails").AsString(500).Nullable()
@@ -97,7 +97,7 @@ namespace Rio.Migrations.DefaultDB
             this.CreateTableWithId32("ActivationLog", "Id", s => s
                 .WithColumn("Code").AsString(100).NotNullable()
                 .WithColumn("SerialKey").AsString(100).NotNullable()
-                .WithColumn("TeacherId").AsInt32().Nullable()
+                .WithColumn("TeacherId").AsInt64().Nullable()
                     .ForeignKey("Teachers", "Id")
                 .WithColumn("ExamListId").AsInt32().NotNullable()
                     .ForeignKey("ExamLists", "Id")
@@ -112,11 +112,11 @@ namespace Rio.Migrations.DefaultDB
                 .WithColumn("IsActive").AsInt16().NotNullable().WithDefaultValue(1));
 
             Alter.Table("Groups")
-                .AddColumn("TeacherId").AsInt32().Nullable()
+                .AddColumn("TeacherId").AsInt64().Nullable()
                     .ForeignKey("Teachers", "Id");
 
             Alter.Table("GroupStudents")
-                .AddColumn("TeacherId").AsInt32().Nullable()
+                .AddColumn("TeacherId").AsInt64().Nullable()
                     .ForeignKey("Teachers", "Id");
 
             Alter.Table("Teachers")

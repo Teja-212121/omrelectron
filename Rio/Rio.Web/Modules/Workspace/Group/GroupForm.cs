@@ -17,6 +17,6 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public int SelectedTenant { get; set; }
         [HalfWidth]
-        public int TeacherId { get; set; }
+        public long TeacherId { get; set; }
     }
 }

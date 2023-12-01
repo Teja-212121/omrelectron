@@ -45,7 +45,7 @@ namespace Rio.Workspace
         }
         [DisplayName("Teacher"), NotNull, ForeignKey("Teachers", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
         [LookupEditor("Workspace.Teachers")]
-        public int? TeacherId
+        public long? TeacherId
         {
             get => fields.TeacherId[this];
             set => fields.TeacherId[this] = value;
@@ -303,7 +303,7 @@ namespace Rio.Workspace
             public Int16Field StudentIsActive;
             public Int32Field StudentTenantId;
             /*public StringField StudentTenantName;*/
-            public Int32Field TeacherId;
+            public Int64Field TeacherId;
 
             public StringField RowIds;
         }

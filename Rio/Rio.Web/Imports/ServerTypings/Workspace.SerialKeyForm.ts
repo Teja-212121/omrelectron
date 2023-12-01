@@ -6,7 +6,7 @@
         ValidityInDays: Serenity.IntegerEditor;
         ValidDate: Serenity.DateEditor;
         Note: Serenity.TextAreaEditor;
-        EStatus: Serenity.IntegerEditor;
+        EStatus: Serenity.EnumEditor;
     }
 
     export class SerialKeyForm extends Serenity.PrefixedContext {
@@ -25,6 +25,7 @@
                 var w2 = s.IntegerEditor;
                 var w3 = s.DateEditor;
                 var w4 = s.TextAreaEditor;
+                var w5 = s.EnumEditor;
 
                 Q.initFormType(SerialKeyForm, [
                     'SerialKey', w0,
@@ -33,7 +34,7 @@
                     'ValidityInDays', w2,
                     'ValidDate', w3,
                     'Note', w4,
-                    'EStatus', w2
+                    'EStatus', w5
                 ]);
             }
         }

@@ -7,7 +7,7 @@
         ExamListId?: number;
         DeviceId?: string;
         DeviceDetails?: string;
-        EStatus?: number;
+        EStatus?: Web.Enums.KeyStatus;
         Note?: string;
         IsActive?: number;
         TeacherFirstName?: string;

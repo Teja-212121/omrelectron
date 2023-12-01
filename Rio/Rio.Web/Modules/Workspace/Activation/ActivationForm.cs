@@ -12,7 +12,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public int ExamListId { get; set; }
         [HalfWidth]
-        public int TeacherId { get; set; }
+        public long TeacherId { get; set; }
         [HalfWidth]
         public string DeviceId { get; set; }
         [HalfWidth]

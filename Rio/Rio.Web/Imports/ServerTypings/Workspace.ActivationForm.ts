@@ -6,7 +6,7 @@
         DeviceDetails: Serenity.StringEditor;
         ActivationDate: Serenity.DateEditor;
         ExpiryDate: Serenity.DateEditor;
-        EStatus: Serenity.IntegerEditor;
+        EStatus: Serenity.EnumEditor;
     }
 
     export class ActivationForm extends Serenity.PrefixedContext {
@@ -23,7 +23,7 @@
                 var w0 = s.LookupEditor;
                 var w1 = s.StringEditor;
                 var w2 = s.DateEditor;
-                var w3 = s.IntegerEditor;
+                var w3 = s.EnumEditor;
 
                 Q.initFormType(ActivationForm, [
                     'ExamListId', w0,

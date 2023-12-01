@@ -7,7 +7,7 @@
         ValidityInDays?: number;
         ValidDate?: string;
         Note?: string;
-        EStatus?: number;
+        EStatus?: Web.Enums.KeyStatus;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;
