@@ -2,8 +2,8 @@ using FluentMigrator;
 
 namespace Rio.Migrations.DefaultDB
 {
-    [Migration(20231204151300)]
-    public class DefaultDB_20231204_151300_AlterRolePermissionforTeachers : Migration
+    [Migration(20231204163300)]
+    public class DefaultDB_20231204_163300_UpdateRolePermissionforTeachers : Migration
     {
         public override void Up()
         {
@@ -265,6 +265,26 @@ namespace Rio.Migrations.DefaultDB
                     PermissionKey = "Workspace:ExamListManagement:View"
                 });
 
+            Insert.IntoTable("RolePermissions")
+                .Row(new
+                {
+                    RoleId = "2",
+                    PermissionKey = "Workspace:ActivationManagement:Delete"
+                });
+
+            Insert.IntoTable("RolePermissions")
+                .Row(new
+                {
+                    RoleId = "2",
+                    PermissionKey = "Workspace:ActivationManagement:Modify"
+                });
+
+            Insert.IntoTable("RolePermissions")
+                .Row(new
+                {
+                    RoleId = "2",
+                    PermissionKey = "Workspace:ActivationManagement:View"
+                });
             #endregion
 
             #region Manager Role

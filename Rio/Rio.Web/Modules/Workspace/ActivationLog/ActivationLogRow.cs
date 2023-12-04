@@ -10,9 +10,9 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("ActivationLog")]
     [DisplayName("Activation Log"), InstanceName("Activation Log")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
-   
+    [ReadPermission(PermissionKeys.ActivationManagement.View)]
+    [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
+    [LookupScript("Workspace.ActivationLog", Permission = "*", Expiration = 1)]
     public sealed class ActivationLogRow : LoggingRow<ActivationLogRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
@@ -35,7 +35,19 @@ namespace Rio.Workspace
             get => fields.SerialKey[this];
             set => fields.SerialKey[this] = value;
         }
-
+        [DisplayName("Serial Key"), NotNull, ForeignKey("SerialKeys", "Id"), LeftJoin("jSerialKey"), TextualField("SerialKey")]
+        [LookupEditor("Workspace.SerialKey")]
+        public int? SerialKeyId
+        {
+            get => fields.SerialKeyId[this];
+            set => fields.SerialKeyId[this] = value;
+        }
+        [DisplayName("Activation"), ForeignKey("[dbo].[Activations]", "Id"), LeftJoin("jActivation")]
+        public Int32? ActivationId
+        {
+            get { return Fields.ActivationId[this]; }
+            set { Fields.ActivationId[this] = value; }
+        }
         [DisplayName("Teacher"), ForeignKey("Teachers", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
         [LookupEditor("Workspace.Teachers")]
         public long? TeacherId
@@ -290,7 +302,7 @@ namespace Rio.Workspace
             public StringField DeviceDetails;
             public Int32Field EStatus;
             public StringField Note;
-          
+            public Int32Field SerialKeyId;
             public Int32Field IsActive;
 
             public StringField TeacherFirstName;
@@ -311,7 +323,7 @@ namespace Rio.Workspace
             public Int32Field TeacherIsActive;
             public Int32Field TeacherTenantId;
             public StringField TeacherSchoolOrInstitute;
-
+            public Int32Field ActivationId;
             public StringField ExamListName;
             public StringField ExamListDescription;
             public DateTimeField ExamListInsertDate;

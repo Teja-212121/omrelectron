@@ -10,8 +10,9 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("Activations")]
     [DisplayName("Activation"), InstanceName("Activation")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.ActivationManagement.View)]
+    [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
+    [LookupScript("Workspace.Activation", Permission = "*", Expiration = 1)]
     public sealed class ActivationRow : LoggingRow<ActivationRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
