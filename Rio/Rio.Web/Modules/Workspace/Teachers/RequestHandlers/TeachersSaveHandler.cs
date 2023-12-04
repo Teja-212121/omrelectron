@@ -64,11 +64,11 @@ namespace Rio.Workspace
                 });
                 Row.UserId = userId;
 
-                Connection.Execute(string.Format(@"INSERT INTO dbo.UserPermissions (UserId, PermissionKey, Granted)
-                                                       VALUES ({0}, 'Administration:Tenants', 1)", userId));
+                Connection.Execute(string.Format(@"INSERT INTO UserPermissions (UserId, PermissionKey, Granted)
+                                                       VALUES ({0}, 'Administration:Teachers', 1)", userId));
 
-                Connection.Execute(string.Format(@"INSERT INTO dbo.UserRoles (UserId, RoleId)
-                                                       VALUES ({0}, 3)", userId));
+                Connection.Execute(string.Format(@"INSERT INTO UserRoles (UserId, RoleId)
+                                                       VALUES ({0}, 2)", userId));
                 byte[] bytes;
                 using (var ms = new MemoryStream())
                 using (var bw = new BinaryWriter(ms))

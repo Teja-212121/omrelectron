@@ -71,6 +71,26 @@ namespace Rio.Workspace
             public const string View = "Workspace:ExamQuestionManagement:View";
         }
 
+        [DisplayName("ExamList Management")]
+        public class ExamListManagement
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:ExamListManagement:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:ExamListManagement:Modify";
+            public const string View = "Workspace:ExamListManagement:View";
+        }
+/*
+        [DisplayName("Activation Management")]
+        public class ActivationManagement
+        {
+            [ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Delete = "Workspace:ActivationManagement:Delete";
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
+            public const string Modify = "Workspace:ActivationManagement:Modify";
+            public const string View = "Workspace:ActivationManagement:View";
+        }
+*/
         [DisplayName("Exam Result Management")]
         public class ExamResultManagement
         {

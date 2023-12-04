@@ -38,6 +38,18 @@
             export const View = "Workspace:ExamQuestionManagement:View";
         }
 
+        namespace ExamListManagement {
+            export const Delete = "Workspace:ExamListManagement:Delete";
+            export const Modify = "Workspace:ExamListManagement:Modify";
+            export const View = "Workspace:ExamListManagement:View";
+        }
+
+        namespace ActivationManagement {
+            export const Delete = "Workspace:ActivationManagement:Delete";
+            export const Modify = "Workspace:ActivationManagement:Modify";
+            export const View = "Workspace:ActivationManagement:View";
+        }
+
         namespace ExamResultManagement {
             export const View = "Workspace:ExamResultManagement:View";
         }

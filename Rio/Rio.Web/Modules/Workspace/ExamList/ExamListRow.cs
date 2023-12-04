@@ -9,9 +9,9 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("ExamLists")]
     [DisplayName("Exam List"), InstanceName("Exam List")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
-    [LookupScript("Workspace.ExamList")]
+    [ReadPermission(PermissionKeys.ExamListManagement.View)]
+    [ModifyPermission(PermissionKeys.ExamListManagement.Modify)]
+    [LookupScript("Workspace.ExamList", Permission = "*")]
     public sealed class ExamListRow : LoggingRow<ExamListRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
