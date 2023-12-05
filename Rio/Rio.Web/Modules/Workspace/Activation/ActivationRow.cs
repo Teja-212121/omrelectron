@@ -45,7 +45,12 @@ namespace Rio.Workspace
             get => fields.TeacherId[this];
             set => fields.TeacherId[this] = value;
         }
-
+        [DisplayName("ActivationLogId"), ForeignKey("[dbo].[ActivationLog]", "Id"), LeftJoin("jActivationLog")]
+        public Int32? ActivationLogId
+        {
+            get { return Fields.ActivationLogId[this]; }
+            set { Fields.ActivationLogId[this] = value; }
+        }
         [DisplayName("Device Id"), QuickSearch, NameProperty]
         public string DeviceId
         {
@@ -291,7 +296,7 @@ namespace Rio.Workspace
             public DateTimeField ActivationDate;
             public DateTimeField ExpiryDate;
             public Int32Field EStatus;
-           
+            public Int32Field ActivationLogId;
             public Int32Field IsActive;
 
             public StringField ExamListName;

@@ -9,6 +9,7 @@
         ActivationDate?: string;
         ExpiryDate?: string;
         EStatus?: Web.Enums.KeyStatus;
+        ActivationLogId?: number;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;
@@ -66,6 +67,7 @@
             ActivationDate = "ActivationDate",
             ExpiryDate = "ExpiryDate",
             EStatus = "EStatus",
+            ActivationLogId = "ActivationLogId",
             IsActive = "IsActive",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
