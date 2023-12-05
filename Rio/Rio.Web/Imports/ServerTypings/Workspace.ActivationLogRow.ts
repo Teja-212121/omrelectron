@@ -9,6 +9,7 @@
         DeviceDetails?: string;
         EStatus?: Web.Enums.KeyStatus;
         Note?: string;
+        SerialKeyId?: number;
         IsActive?: number;
         TeacherFirstName?: string;
         TeacherMiddleName?: string;
@@ -28,6 +29,7 @@
         TeacherIsActive?: number;
         TeacherTenantId?: number;
         TeacherSchoolOrInstitute?: string;
+        ActivationId?: number;
         ExamListName?: string;
         ExamListDescription?: string;
         ExamListInsertDate?: string;
@@ -46,10 +48,15 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Code';
         export const localTextPrefix = 'Workspace.ActivationLog';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const lookupKey = 'Workspace.ActivationLog';
+
+        export function getLookup(): Q.Lookup<ActivationLogRow> {
+            return Q.getLookup<ActivationLogRow>('Workspace.ActivationLog');
+        }
+        export const deletePermission = 'Workspace:ActivationManagement:Modify';
+        export const insertPermission = 'Workspace:ActivationManagement:Modify';
+        export const readPermission = 'Workspace:ActivationManagement:View';
+        export const updatePermission = 'Workspace:ActivationManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",
@@ -61,6 +68,7 @@
             DeviceDetails = "DeviceDetails",
             EStatus = "EStatus",
             Note = "Note",
+            SerialKeyId = "SerialKeyId",
             IsActive = "IsActive",
             TeacherFirstName = "TeacherFirstName",
             TeacherMiddleName = "TeacherMiddleName",
@@ -80,6 +88,7 @@
             TeacherIsActive = "TeacherIsActive",
             TeacherTenantId = "TeacherTenantId",
             TeacherSchoolOrInstitute = "TeacherSchoolOrInstitute",
+            ActivationId = "ActivationId",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
             ExamListInsertDate = "ExamListInsertDate",

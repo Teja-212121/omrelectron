@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Dapper;
+using Microsoft.AspNetCore.Mvc;
+using Rio.Web.Enums;
+using Serenity;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 using MyRow = Rio.Workspace.SerialKeyRow;
 
 namespace Rio.Workspace.Endpoints
@@ -59,5 +64,46 @@ namespace Rio.Workspace.Endpoints
             return ExcelContentResult.Create(bytes, "SerialKeyList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
         }
+        [AuthorizeUpdate(typeof(MyRow))]
+        public ExcelImportResponse GenerateSerialKey(GenerateCodeRequest request, [FromServices] ISqlConnections sqlConnections)
+        {
+            var response = new ExcelImportResponse();
+            response.ErrorList = new List<string>();
+            using (var Connection = sqlConnections.NewByKey("Default"))
+            {
+                var predefinekey = Connection.TryFirst<PreDefinedKeyRow>(PreDefinedKeyRow.Fields.Id == request.SerialKey && PreDefinedKeyRow.Fields.EStatus == Convert.ToInt16(KeyStatus.Open));
+                var examlist = Connection.TryFirst<ExamListRow>(ExamListRow.Fields.Id == request.ExamListId);
+                int rowCount = Connection.ExecuteScalar<int>("SELECT COUNT(Id) FROM SerialKeys;");
+                for (int i = 0; i < request.Quantity; i++)
+                {
+                    MyRow codeRow = new MyRow();
+
+                        codeRow.SerialKey = predefinekey.SerialKey;
+                        codeRow.ExamListId =examlist.Id;
+                       
+                        codeRow.EStatus = KeyStatus.Open;
+                        codeRow.InsertDate = DateTime.Now;
+                        codeRow.InsertUserId = Convert.ToInt32(User.GetIdentifier());
+                        codeRow.IsActive = 1;
+                        Connection.Insert<MyRow>(codeRow);
+                        rowCount++;
+                    
+                }
+                predefinekey.EStatus = (PreDefinedKeyStatus?)KeyStatus.Created;
+                Connection.UpdateById(predefinekey);
+            }
+            return response;
+        }
+
+     
+
+        public class GenerateCodeRequest : ServiceRequest
+        {
+            public string Estatus { get; set; }
+            public int ExamListId { get; set; }
+            public int Quantity { get; set; }
+            public int SerialKey { get; set; }
+        }
     }
+    
 }

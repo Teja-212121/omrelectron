@@ -50,7 +50,7 @@ namespace Rio.Workspace
             get => fields.IsActive[this];
             set => fields.IsActive[this] = value;
         }
-        [DisplayName("Teacher"), NotNull, ForeignKey("Teachers", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
+        [DisplayName("Teacher"),  ForeignKey("Teachers", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
         [LookupEditor("Workspace.Teachers")]
         public long? TeacherId
         {

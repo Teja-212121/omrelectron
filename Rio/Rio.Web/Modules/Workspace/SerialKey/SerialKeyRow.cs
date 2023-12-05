@@ -37,7 +37,7 @@ namespace Rio.Workspace
             set => fields.ExamListId[this] = value;
         }
 
-        [DisplayName("Validity Type")]
+        [DisplayName("Validity Type"), NotNull]
         public EValidityType? ValidityType
         {
             get => (EValidityType?)fields.ValidityType[this];

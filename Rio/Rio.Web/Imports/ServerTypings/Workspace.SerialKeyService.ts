@@ -7,13 +7,15 @@
         export declare function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<SerialKeyRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SerialKeyRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function GenerateSerialKey(request: GenerateCodeRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export declare const enum Methods {
             Create = "Workspace/SerialKey/Create",
             Update = "Workspace/SerialKey/Update",
             Delete = "Workspace/SerialKey/Delete",
             Retrieve = "Workspace/SerialKey/Retrieve",
-            List = "Workspace/SerialKey/List"
+            List = "Workspace/SerialKey/List",
+            GenerateSerialKey = "Workspace/SerialKey/GenerateSerialKey"
         }
 
         [
@@ -21,7 +23,8 @@
             'Update', 
             'Delete', 
             'Retrieve', 
-            'List'
+            'List', 
+            'GenerateSerialKey'
         ].forEach(x => {
             (<any>SerialKeyService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);

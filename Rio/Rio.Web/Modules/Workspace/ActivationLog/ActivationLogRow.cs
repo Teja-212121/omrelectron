@@ -323,7 +323,7 @@ namespace Rio.Workspace
             public Int32Field TeacherIsActive;
             public Int32Field TeacherTenantId;
             public StringField TeacherSchoolOrInstitute;
-            public Int32Field ActivationId;
+           public Int32Field ActivationId;
             public StringField ExamListName;
             public StringField ExamListDescription;
             public DateTimeField ExamListInsertDate;

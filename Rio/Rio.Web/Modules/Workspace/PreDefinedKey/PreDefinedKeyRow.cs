@@ -12,6 +12,7 @@ namespace Rio.Workspace
     [DisplayName("Pre Defined Key"), InstanceName("Pre Defined Key")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("Workspace.PreDefinedKey")]
     public sealed class PreDefinedKeyRow : LoggingRow<PreDefinedKeyRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]

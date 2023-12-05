@@ -14,6 +14,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'SerialKey';
         export const localTextPrefix = 'Workspace.PreDefinedKey';
+        export const lookupKey = 'Workspace.PreDefinedKey';
+
+        export function getLookup(): Q.Lookup<PreDefinedKeyRow> {
+            return Q.getLookup<PreDefinedKeyRow>('Workspace.PreDefinedKey');
+        }
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';

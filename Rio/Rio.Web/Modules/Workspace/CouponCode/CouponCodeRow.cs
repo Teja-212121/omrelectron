@@ -29,13 +29,14 @@ namespace Rio.Workspace
         }
 
         [DisplayName("Exam List"), NotNull, ForeignKey("ExamLists", "Id"), LeftJoin("jExamList"), TextualField("ExamListName")]
+        [LookupEditor("Workspace.ExamList")]
         public int? ExamListId
         {
             get => fields.ExamListId[this];
             set => fields.ExamListId[this] = value;
         }
 
-        [DisplayName("Validity Type")]
+        [DisplayName("Validity Type"), NotNull]
         public EValidityType? ValidityType
         {
             get => (EValidityType?)fields.ValidityType[this];
