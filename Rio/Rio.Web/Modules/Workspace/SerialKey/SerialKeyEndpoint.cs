@@ -32,7 +32,7 @@ namespace Rio.Workspace.Endpoints
         {
             return handler.Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
             [FromServices] ISerialKeyDeleteHandler handler)
@@ -71,31 +71,38 @@ namespace Rio.Workspace.Endpoints
             response.ErrorList = new List<string>();
             using (var Connection = sqlConnections.NewByKey("Default"))
             {
-                var predefinekey = Connection.TryFirst<PreDefinedKeyRow>(PreDefinedKeyRow.Fields.Id == request.SerialKey && PreDefinedKeyRow.Fields.EStatus == Convert.ToInt16(KeyStatus.Open));
-                var examlist = Connection.TryFirst<ExamListRow>(ExamListRow.Fields.Id == request.ExamListId);
-                int rowCount = Connection.ExecuteScalar<int>("SELECT COUNT(Id) FROM SerialKeys;");
-                for (int i = 0; i < request.Quantity; i++)
+                var predefinekey = Connection.List<PreDefinedKeyRow>(PreDefinedKeyRow.Fields.EStatus == Convert.ToInt16(KeyStatus.Open));
+                foreach (var key in predefinekey)
                 {
-                    MyRow codeRow = new MyRow();
+                    var examlist = Connection.TryFirst<ExamListRow>(ExamListRow.Fields.Id == request.ExamListId);
+                    int rowCount = Connection.ExecuteScalar<int>("SELECT Id FROM PredefinedKeys LIMIT 3;");
+                    for (int i = 0; i <= rowCount; i++)
+                    {
+                        for (int j = 0; j < request.Quantity; j++)
+                        {
+                            MyRow codeRow = new MyRow();
 
-                        codeRow.SerialKey = predefinekey.SerialKey;
-                        codeRow.ExamListId =examlist.Id;
-                       
-                        codeRow.EStatus = KeyStatus.Open;
-                        codeRow.InsertDate = DateTime.Now;
-                        codeRow.InsertUserId = Convert.ToInt32(User.GetIdentifier());
-                        codeRow.IsActive = 1;
-                        Connection.Insert<MyRow>(codeRow);
+                            codeRow.SerialKey = key.SerialKey;
+                            codeRow.ExamListId = examlist.Id;
+
+                            codeRow.EStatus = KeyStatus.Open;
+                            codeRow.InsertDate = DateTime.Now;
+                            codeRow.InsertUserId = Convert.ToInt32(User.GetIdentifier());
+                            codeRow.IsActive = 1;
+                            Connection.Insert<MyRow>(codeRow);
+                        }
                         rowCount++;
-                    
+
+                    }
+                    key.EStatus = (PreDefinedKeyStatus?)KeyStatus.Created;
+                    Connection.UpdateById(key);
                 }
-                predefinekey.EStatus = (PreDefinedKeyStatus?)KeyStatus.Created;
-                Connection.UpdateById(predefinekey);
+               
             }
             return response;
         }
 
-     
+
 
         public class GenerateCodeRequest : ServiceRequest
         {
@@ -105,5 +112,5 @@ namespace Rio.Workspace.Endpoints
             public int SerialKey { get; set; }
         }
     }
-    
+
 }

@@ -18,7 +18,7 @@ export class GenerateSerialKeyDialog extends PropertyDialog<SerialKeyRow, any> {
                 click: () => {
                     
                     SerialKeyService.GenerateSerialKey({
-                        SerialKey: Number(this.form.SerialKey.value),
+                       
                         Quantity: this.form.Quantity.value,
                         ExamListId: Number(this.form.ExamListId.value),
                     }, response => {

@@ -2,21 +2,26 @@
 
 <html>
 <head>
-    <title>Publisher Account Login Details</title>
+    <title>Activate your Teacher account</title>
 </head>
 <body>
-    <p>Congratulations..!! Teacher Account Created Successfully</p>
+    <p>@Model.DisplayName,</p>
 
-    <p>Dear @Model.DisplayName,</p>
+    <p>We received a request to create a new account on Rio with your e-mail address.</p>
 
-    <p>Your UserName:@Model.Username </p>
-    <p>Your Password:@Model.Password </p>
+    <p>Click the link below to activate your account:</p>
 
+    <p><a href="@Model.ActivateLink">@Model.ActivateLink</a></p>
 
+    <p>Login Url: <a href="https://omrapp.azurewebsites.net/">https://omrapp.azurewebsites.net/</a></p>
+
+    <p>UserName : @Model.Username</p>
+
+    <p>Password : @Model.Password</p>
 
     <p>If it wasn't you who requested this, you can ignore this email.</p>
 
     Thanks,
-    <p> Team OMR </p>
+    The "OMR" Team
 </body>
 </html>

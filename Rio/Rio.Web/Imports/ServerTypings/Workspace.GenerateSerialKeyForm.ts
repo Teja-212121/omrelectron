@@ -1,6 +1,5 @@
 ﻿namespace Rio.Workspace {
     export interface GenerateSerialKeyForm {
-        SerialKey: Serenity.LookupEditor;
         Quantity: Serenity.IntegerEditor;
         ExamListId: Serenity.LookupEditor;
     }
@@ -16,13 +15,12 @@
                 GenerateSerialKeyForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.LookupEditor;
-                var w1 = s.IntegerEditor;
+                var w0 = s.IntegerEditor;
+                var w1 = s.LookupEditor;
 
                 Q.initFormType(GenerateSerialKeyForm, [
-                    'SerialKey', w0,
-                    'Quantity', w1,
-                    'ExamListId', w0
+                    'Quantity', w0,
+                    'ExamListId', w1
                 ]);
             }
         }

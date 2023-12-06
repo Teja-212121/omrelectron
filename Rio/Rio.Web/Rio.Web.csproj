@@ -16,6 +16,7 @@
   <ItemGroup>
     <TypeScriptCompile Remove="node_modules\**"></TypeScriptCompile>
     <EmbeddedResource Include="Migrations\**\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <Compile Remove="Modules\Membership\Publisher\SignUp\TeacherActivateEmailModel.cs" />
     <None Remove="Uploads\ExamQuestionSample.xlsx" />
     <None Remove="Uploads\StudentSample.xlsx" />
     <None Update="wwwroot\**\*">
@@ -36,6 +37,7 @@
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
+    <PackageReference Include="IKVM" Version="8.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.2" />
@@ -44,6 +46,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NEST" Version="7.17.5" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Serenity.Assets" Version="6.3.3" />

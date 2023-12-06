@@ -1,12 +1,15 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using System;
 
 namespace Rio.Membership
 {
     public class SignUpRequest : ServiceRequest
     {
-        public String DisplayName { get; set; }
-        public String Email { get; set; }
-        public String Password { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string DisplayName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Mobile { get; set; }
     }
 }
