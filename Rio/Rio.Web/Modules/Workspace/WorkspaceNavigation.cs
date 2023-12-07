@@ -1,4 +1,4 @@
-using Serenity.Navigation;
+﻿using Serenity.Navigation;
 using MyPages = Rio.Workspace.Pages;
 using MyPage = Rio.Common.Pages;
 
@@ -59,3 +59,4 @@ using MyPage = Rio.Common.Pages;
 //[assembly: NavigationLink(int.MaxValue, "Workspace/Scanned Batch As Per Date", typeof(MyPages.ScannedBatchAsPerDateController), icon: null)]
 [assembly: NavigationLink(10008, "Workspace/Get Scan Data", typeof(MyPages.GetScanDataController), icon: "fa-circle-o")]
 [assembly: NavigationLink(10009, "Workspace/Settings", typeof(MyPages.SettingsController), icon: "fa-circle-o")]
+[assembly: NavigationLink(int.MaxValue, "Workspace/Key Gen As", typeof(MyPages.KeyGenAsController), icon: null)]

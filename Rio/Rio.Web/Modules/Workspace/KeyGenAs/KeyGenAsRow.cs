@@ -8,12 +8,11 @@ using System.ComponentModel;
 
 namespace Rio.Workspace
 {
-    [ConnectionKey("Default"), Module("Workspace"), TableName("SerialKeys")]
-    [DisplayName("Serial Key"), InstanceName("Serial Key")]
+    [ConnectionKey("Default"), Module("Workspace"), TableName("KeyGenAs")]
+    [DisplayName("Key Gen As"), InstanceName("Key Gen As")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
-    [LookupScript("Workspace.SerialKey")]
-    public sealed class SerialKeyRow : LoggingRow<SerialKeyRow.RowFields>, IIdRow, INameRow
+    public sealed class KeyGenAsRow : LoggingRow<KeyGenAsRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         public int? Id
@@ -22,11 +21,11 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Serial Key"),  QuickSearch, NameProperty]
-        public string SerialKey
+        [DisplayName("Quantity"), NotNull]
+        public int? Quantity
         {
-            get => fields.SerialKey[this];
-            set => fields.SerialKey[this] = value;
+            get => fields.Quantity[this];
+            set => fields.Quantity[this] = value;
         }
 
         [DisplayName("Exam List"), NotNull, ForeignKey("ExamLists", "Id"), LeftJoin("jExamList"), TextualField("ExamListName")]
@@ -58,28 +57,23 @@ namespace Rio.Workspace
             set => fields.ValidDate[this] = value;
         }
 
-        [DisplayName("Note")]
+        [DisplayName("Note"), QuickSearch, NameProperty]
         public string Note
         {
             get => fields.Note[this];
             set => fields.Note[this] = value;
         }
 
-        [DisplayName("E Status"), Column("eStatus")]
+        [DisplayName("E Status"), Column("eStatus"),DefaultValue(2)]
         public KeyStatus? EStatus
         {
             get => (KeyStatus?)fields.EStatus[this];
             set => fields.EStatus[this] = (short?)value;
         }
 
-        [DisplayName("KeyGenAsId")]
-        public Int32? KeyGenAsId
-        {
-            get { return Fields.KeyGenAsId[this]; }
-            set { Fields.KeyGenAsId[this] = value; }
-        }
 
-        [DisplayName("Is Active"), DefaultValue(1)]
+
+        [DisplayName("Is Active"), NotNull,DefaultValue(1)]
         public int? IsActive
         {
             get => fields.IsActive[this];
@@ -142,24 +136,23 @@ namespace Rio.Workspace
             set => fields.ExamListTenantId[this] = value;
         }
 
-        public SerialKeyRow()
+        public KeyGenAsRow()
             : base()
         {
         }
 
-        public SerialKeyRow(RowFields fields)
+        public KeyGenAsRow(RowFields fields)
             : base(fields)
         {
         }
 
-        public class RowFields :LoggingRowFields
+        public class RowFields : LoggingRowFields
         {
             public Int32Field Id;
-            public StringField SerialKey;
+            public Int32Field Quantity;
             public Int32Field ExamListId;
             public Int32Field ValidityType;
             public Int32Field ValidityInDays;
-            public Int32Field KeyGenAsId;
             public DateTimeField ValidDate;
             public StringField Note;
             public Int32Field EStatus;

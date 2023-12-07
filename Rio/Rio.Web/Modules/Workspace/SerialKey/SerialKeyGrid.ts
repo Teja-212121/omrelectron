@@ -2,6 +2,7 @@ import { Decorators, EntityGrid } from '@serenity-is/corelib';
 import { SerialKeyColumns, SerialKeyRow, SerialKeyService } from '../../ServerTypes/Workspace';
 import { SerialKeyDialog } from './SerialKeyDialog';
 import { GenerateSerialKeyDialog } from './GenerateSerialKeyDialog';
+import { KeyGenAsDialog } from '../KeyGenAs/KeyGenAsDialog';
 
 @Decorators.registerClass()
 export class SerialKeyGrid extends EntityGrid<SerialKeyRow, any> {
@@ -24,7 +25,7 @@ export class SerialKeyGrid extends EntityGrid<SerialKeyRow, any> {
             title: 'Generate SerialKey',
             cssClass: 'edit-button',
             onClick: () => {
-                var dialog = new GenerateSerialKeyDialog(this);
+                var dialog = new KeyGenAsDialog(this);
                 dialog.element.on('dialogclose', () => {
                     this.refresh();
                     dialog = null;

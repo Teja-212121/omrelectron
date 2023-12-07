@@ -219,6 +219,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "KeyGenAs",
+          "Identifier": "KeyGenAs",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "PreDefinedKeys",
           "Identifier": "PreDefinedKey",
           "Module": "Workspace",

@@ -1,11 +1,10 @@
 ﻿namespace Rio.Workspace {
-    export interface SerialKeyRow {
+    export interface KeyGenAsRow {
         Id?: number;
-        SerialKey?: string;
+        Quantity?: number;
         ExamListId?: number;
         ValidityType?: Web.Enums.EValidityType;
         ValidityInDays?: number;
-        KeyGenAsId?: number;
         ValidDate?: string;
         Note?: string;
         EStatus?: Web.Enums.KeyStatus;
@@ -24,15 +23,10 @@
         UpdateDate?: string;
     }
 
-    export namespace SerialKeyRow {
+    export namespace KeyGenAsRow {
         export const idProperty = 'Id';
-        export const nameProperty = 'SerialKey';
-        export const localTextPrefix = 'Workspace.SerialKey';
-        export const lookupKey = 'Workspace.SerialKey';
-
-        export function getLookup(): Q.Lookup<SerialKeyRow> {
-            return Q.getLookup<SerialKeyRow>('Workspace.SerialKey');
-        }
+        export const nameProperty = 'Note';
+        export const localTextPrefix = 'Workspace.KeyGenAs';
         export const deletePermission = 'Administration:General';
         export const insertPermission = 'Administration:General';
         export const readPermission = 'Administration:General';
@@ -40,11 +34,10 @@
 
         export declare const enum Fields {
             Id = "Id",
-            SerialKey = "SerialKey",
+            Quantity = "Quantity",
             ExamListId = "ExamListId",
             ValidityType = "ValidityType",
             ValidityInDays = "ValidityInDays",
-            KeyGenAsId = "KeyGenAsId",
             ValidDate = "ValidDate",
             Note = "Note",
             EStatus = "EStatus",
