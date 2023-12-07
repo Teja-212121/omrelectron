@@ -386,7 +386,7 @@ namespace Rio.Membership.Pages
         #endregion
 
 
-        [AllowAnonymous, HttpPost, IgnoreAntiforgeryToken]
+        [AllowAnonymous, HttpPost]
         public Result<ServiceResponse> SignUpAsTeacher(SignUpRequest request , [FromServices] IOptions<EnvironmentSettings> options = null)
 
         {
@@ -452,6 +452,7 @@ namespace Rio.Membership.Pages
                                                VALUES ({0}, 2)", userId));
 
                 var mobile = request.Mobile.TrimToEmpty();
+                var users = uow.Connection.TryFirst<UserRow>(UserRow.Fields.Username == request.Email);
 
                 TeachersRow teachersRow = new TeachersRow();
                 teachersRow.FirstName = request.FirstName;
@@ -461,7 +462,7 @@ namespace Rio.Membership.Pages
                 teachersRow.Email = request.Email;
                 teachersRow.UserId = userId;
                 teachersRow.IsActive = 1;
-                teachersRow.TenantId = User.GetTenantId();
+                teachersRow.TenantId = users.TenantId;
                 teachersRow.InsertDate = DateTime.Now;
                 teachersRow.InsertUserId = Convert.ToInt32(User.GetIdentifier());
                 long teachersId = (long)connection.InsertAndGetID(teachersRow);
