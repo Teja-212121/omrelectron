@@ -78,7 +78,7 @@ namespace Rio.Workspace.Endpoints
                     int rowCount = Connection.ExecuteScalar<int>("SELECT Id FROM PredefinedKeys LIMIT 3;");
                     for (int i = 0; i <= rowCount; i++)
                     {
-                        for (int j = 0; j < request.Quantity; j++)
+                        if(rowCount<request.Quantity)
                         {
                             MyRow codeRow = new MyRow();
 

@@ -17,6 +17,7 @@ namespace Rio.Workspace.Columns
         public long CorrectedRollNo { get; set; }
         [QuickFilter, Width(180)]
         public long CorrectedExamNo { get; set; }
+        public string OCRData1Value { get; set; }
         public string ScannedBatchName { get; set; }
         public int ExamSetNo { get; set; }
         public string ScannedImageSourcePath { get; set; }
@@ -31,7 +32,6 @@ namespace Rio.Workspace.Columns
         public bool IsRectified { get; set; }
         public int TenantId { get; set; }
         public string OCRData1Key { get; set; }
-        public string OCRData1Value { get; set; }
         public string OCRData2Key { get; set; }
         public string OCRData2Value { get; set; }
         public string OCRData3Key { get; set; }

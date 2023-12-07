@@ -22,6 +22,11 @@
         {
             <input type="text" id="CorrectedRollNo" value="@Model.scannedSheetRow.CorrectedRollNo" />
         }
+        <lable style="text-align:center">OCRData1 Value</lable>
+        @if (Model.scannedSheetRow.OCRData1Value != null)
+        {
+            <input type="text" id="OCRData1Value" value="@Model.scannedSheetRow.OCRData1Value" />
+        }
         <br />
         @if (Model.scannedSheetRow.SheetTypeName != null && Model.scannedSheetRow.ScannedImageSourcePath != null)
         {
