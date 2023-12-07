@@ -9,7 +9,9 @@ namespace Rio.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Execute.Sql(@"ALTER TABLE ActivationLog DROP CONSTRAINT FK_ActivationLog_ActivationId_Activations_Id;");
+            IfDatabase("SqlClient")
+                .Execute.Sql(@"ALTER TABLE ActivationLog DROP CONSTRAINT FK_ActivationLog_ActivationId_Activations_Id;");
+
             Delete.Column("ActivationId").FromTable("ActivationLog");
             Alter.Table("Activations")
                 .AddColumn("ActivationLogId").AsInt32().Nullable()
