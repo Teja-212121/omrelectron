@@ -29,12 +29,15 @@ namespace Rio.Workspace
             base.BeforeSave();
 
             var SerialKey = Connection.TryFirst<SerialKeyRow>(SerialKeyRow.Fields.SerialKey == Row.SerialKey);
+           
             if (SerialKey == null)
             {
                 Row.Note = "Serial Key does not exist";
             }
             else
             {
+                Row.Code = Row.SerialKey;
+                Row.ExamListId =SerialKey.ExamListId.Value;
                 if (Connection.Exists<SerialKeyRow>(SerialKeyRow.Fields.EStatus == Convert.ToInt16(KeyStatus.Activated) && SerialKeyRow.Fields.SerialKey == Row.SerialKey))
                 {
                     Row.Note = "This  SerialKey is already Activated!!!";
@@ -96,7 +99,7 @@ namespace Rio.Workspace
 
                                     productSerial.EStatus = KeyStatus.Activated;
                                     Connection.UpdateById(productSerial);
-                                    Row.Code = productSerial.SerialKey;
+                                    Row.Code = Row.SerialKey;
                                     Row.ExamListId= examlist.Id;
                                     Row.Note = "Serial Key: " + Row.SerialKey + " is Successfully Activated!!";
                                     // ...
@@ -142,7 +145,7 @@ namespace Rio.Workspace
                 var actvation = Connection.TryFirst<ActivationRow>(ActivationRow.Fields.Id == ActvtnId);
                 if (actvation != null)
                 {
-
+                   
                     Connection.UpdateById<ActivationRow>(actvation);
                     Response.EntityId = ActvtnId;
                 }
