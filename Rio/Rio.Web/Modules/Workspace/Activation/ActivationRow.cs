@@ -30,7 +30,7 @@ namespace Rio.Workspace
             set => fields.SerialKeyId[this] = value;
         }
 
-        [DisplayName("Exam List"), NotNull, ForeignKey("ExamLists", "Id"), LeftJoin("jExamList"), TextualField("ExamListName")]
+        [DisplayName("Exam List"), ForeignKey("ExamLists", "Id"), LeftJoin("jExamList"), TextualField("ExamListName")]
         [LookupEditor("Workspace.ExamList")]
         public int? ExamListId
         {
@@ -38,7 +38,7 @@ namespace Rio.Workspace
             set => fields.ExamListId[this] = value;
         }
 
-        [DisplayName("Teacher"), NotNull, ForeignKey("Teachers", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
+        [DisplayName("Teacher"), ForeignKey("Teachers", "Id"), LeftJoin("jTeacher"), TextualField("TeacherFirstName")]
         [LookupEditor("Workspace.Teachers")]
         public long? TeacherId
         {

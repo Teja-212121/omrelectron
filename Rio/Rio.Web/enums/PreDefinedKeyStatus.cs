@@ -10,9 +10,9 @@ namespace Rio.Web.Enums
 {
     public enum PreDefinedKeyStatus
     {
-        [Description("Consumed")]
-        Consumed = 1,
-        [Description("Not Consumed")]
-        NotConsumed = 2
+        [Description("Open")]
+        Open = 1,
+        [Description("Created")]
+        Created = 2
     }
 }

@@ -13,7 +13,7 @@ namespace Rio.Workspace.Columns
         public int Id { get; set; }
         [EditLink]
         public string SerialKey { get; set; }
-        public KeyStatus EStatus { get; set; }
+        public PreDefinedKeyStatus EStatus { get; set; }
        
     }
 }

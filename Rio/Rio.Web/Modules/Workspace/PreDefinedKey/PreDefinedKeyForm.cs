@@ -11,7 +11,7 @@ namespace Rio.Workspace.Forms
     {
         
         public string SerialKey { get; set; }
-        public KeyStatus EStatus { get; set; }
+        public PreDefinedKeyStatus EStatus { get; set; }
         
     }
 }

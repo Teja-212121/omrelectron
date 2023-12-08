@@ -22,7 +22,7 @@ namespace Rio.Workspace
             set => fields.Id[this] = value;
         }
 
-        [DisplayName("Code"), NotNull, QuickSearch, NameProperty]
+        [DisplayName("Code"), QuickSearch, NameProperty]
         public string Code
         {
             get => fields.Code[this];
@@ -35,7 +35,7 @@ namespace Rio.Workspace
             get => fields.SerialKey[this];
             set => fields.SerialKey[this] = value;
         }
-        [DisplayName("Serial Key"), NotNull, ForeignKey("SerialKeys", "Id"), LeftJoin("jSerialKey"), TextualField("SerialKey")]
+        [DisplayName("Serial Key"), ForeignKey("SerialKeys", "Id"), LeftJoin("jSerialKey"), TextualField("SerialKey")]
         [LookupEditor("Workspace.SerialKey")]
         public int? SerialKeyId
         {
@@ -56,7 +56,7 @@ namespace Rio.Workspace
             set => fields.TeacherId[this] = value;
         }
 
-        [DisplayName("Exam List"), NotNull, ForeignKey("ExamLists", "Id"), LeftJoin("jExamList"), TextualField("ExamListName")]
+        [DisplayName("Exam List"), ForeignKey("ExamLists", "Id"), LeftJoin("jExamList"), TextualField("ExamListName")]
         [LookupEditor("Workspace.ExamList")]
         public int? ExamListId
         {

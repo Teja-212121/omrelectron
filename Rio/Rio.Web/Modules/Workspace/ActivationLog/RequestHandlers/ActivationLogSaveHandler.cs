@@ -39,20 +39,21 @@ namespace Rio.Workspace
                 {
                     Row.Note = "This  SerialKey is already Activated!!!";
                 }
-                else if (!Connection.Exists<SerialKeyRow>(SerialKeyRow.Fields.SerialKey == Row.SerialKey && SerialKeyRow.Fields.EStatus == Convert.ToInt32(KeyStatus.Open) && SerialKeyRow.Fields.ExamListId == Convert.ToInt32(Row.ExamListId)))
+                else if (!Connection.Exists<SerialKeyRow>(SerialKeyRow.Fields.SerialKey == Row.SerialKey && SerialKeyRow.Fields.EStatus == Convert.ToInt32(KeyStatus.Open) && SerialKeyRow.Fields.ExamListId == SerialKey.ExamListId.Value))
                 {
                     Row.Note = "This Serial key and Examlist Mismatched";
                 }
                 else if (Connection.Exists<UserRow>(UserRow.Fields.UserId == Convert.ToInt32(User.GetIdentifier())))
                 {
                     //throw new ValidationError("EmailInUse", Texts.Validation.CantFindUserWithEmail);
-                    var teacher = Connection.TryFirst<TeachersRow>(TeachersRow.Fields.UserId == Convert.ToInt32(User.GetIdentifier()));
+                    var user = Connection.TryFirst<UserRow>(UserRow.Fields.UserId == Convert.ToInt32(User.GetIdentifier()));
+                    var teacher = Connection.TryFirst<TeachersRow>(TeachersRow.Fields.UserId == user.UserId.Value);
 
                     var serialkeyrow = Connection.TryFirst<SerialKeyRow>(SerialKeyRow.Fields.SerialKey == Row.SerialKey);
                     ExamListRow examList = Connection.Single<ExamListRow>(ExamListRow.Fields.Id == serialkeyrow.ExamListId.Value);
 
                     //CHECK FOR SERIALKEY
-                    var activation = Connection.TryFirst<ActivationRow>(ActivationRow.Fields.SerialKeyId == serialkeyrow.Id.Value && ActivationRow.Fields.ExamListId == serialkeyrow.ExamListId.Value && ActivationRow.Fields.TeacherId == teacher.Id.Value);
+                    var activation = Connection.TryFirst<ActivationRow>(ActivationRow.Fields.SerialKeyId == serialkeyrow.Id.Value && ActivationRow.Fields.ExamListId == serialkeyrow.ExamListId.Value && ActivationRow.Fields.TeacherId == Convert.ToInt32(User.GetIdentifier()));
                     if (activation != null)
                     {
                         throw new ValidationError("ERROR: Teacher already have activated SerialKey " + serialkeyrow.SerialKey + " for " + examList.Name);
@@ -69,13 +70,14 @@ namespace Rio.Workspace
                                 var serialId = Convert.ToInt32(productSerial.Id);
                                 var examlist = Connection.TryFirst<ExamListRow>(ExamListRow.Fields.Id == productSerial.ExamListId.Value);
 
+
                                 // Check if the referenced SerialKeyRow exists before inserting into ActivationRow
                                 if (Connection.Exists<SerialKeyRow>(SerialKeyRow.Fields.Id == serialId))
                                 {
                                     int activationId = (int)Connection.InsertAndGetID(new ActivationRow()
                                     {
                                         SerialKeyId = serialId,
-                                        TeacherId = Row.TeacherId,
+                                        TeacherId = teacher.Id,
                                         ExamListId = examlist.Id,
                                         EStatus = KeyStatus.Activated,
                                         InsertDate = DateTime.Now,
@@ -86,7 +88,6 @@ namespace Rio.Workspace
 
                                     GroupRow group = new GroupRow();
                                     group.Name = examlist.Name + "_" + activationId;
-                                    group.TeacherId = Row.TeacherId;
                                     group.InsertDate = DateTime.Now;
                                     group.InsertUserId = Convert.ToInt32(User.GetIdentifier());
                                     group.IsActive = 1;
@@ -95,7 +96,8 @@ namespace Rio.Workspace
 
                                     productSerial.EStatus = KeyStatus.Activated;
                                     Connection.UpdateById(productSerial);
-
+                                    Row.Code = productSerial.SerialKey;
+                                    Row.ExamListId= examlist.Id;
                                     Row.Note = "Serial Key: " + Row.SerialKey + " is Successfully Activated!!";
                                     // ...
                                 }
@@ -120,7 +122,7 @@ namespace Rio.Workspace
 
                         }
                     }
-                }                
+                }
             }
 
             if (!Connection.Exists<SerialKeyRow>(SerialKeyRow.Fields.SerialKey == Row.SerialKey))

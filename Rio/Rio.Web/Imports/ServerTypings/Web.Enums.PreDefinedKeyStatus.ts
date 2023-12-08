@@ -1,7 +1,7 @@
 ﻿namespace Rio.Web.Enums {
     export enum PreDefinedKeyStatus {
-        Consumed = 1,
-        NotConsumed = 2
+        Open = 1,
+        Created = 2
     }
     Serenity.Decorators.registerEnumType(PreDefinedKeyStatus, 'Rio.Web.Enums.PreDefinedKeyStatus');
 }
