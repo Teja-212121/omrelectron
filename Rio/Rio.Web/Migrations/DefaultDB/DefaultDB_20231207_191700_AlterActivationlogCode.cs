@@ -9,7 +9,7 @@ namespace Rio.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Alter.Table("ActivationsLog")
+            Alter.Table("ActivationLog")
                 .AlterColumn("Code").AsString(100).Nullable() ;
         }
         public override void Down()
