@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 using MyRow = Rio.Workspace.ExamListExamsRow;
 
 namespace Rio.Workspace.Endpoints
@@ -62,13 +63,15 @@ namespace Rio.Workspace.Endpoints
             foreach (var row in response.Entities)
             {
                 if (row.ExamListId == examListId)
-                {
-                    var slir = MyRow.Fields;
-                    List<MyRow> examsList = connection.List<MyRow>(q => q
-                         .Select(slir.Id, slir.ExamListId, slir.ExamId, slir.TenantId, slir.Priority, slir.StartDate, slir.EndDate, slir.ModelAnswerPaperStartDate)
-                         .Where(slir.ExamListId == row.ExamListId.Value));
 
-                    response.Entities = examsList;
+                {
+                    var examsList = connection.Query<MyRow>(@"SELECT MR.Id, MR.ExamListId, MR.ExamId, MR.TenantId, MR.Priority, MR.StartDate, MR.EndDate, MR.ModelAnswerPaperStartDate,MR.TenantId, ST.SheetTypeDisplayName, ST.Name, ST.Description, ST.SheetData, ST.SheetImage, ST.OverlayImageOpenCV, ST.PdfTemplate, ST.Id AS SheetTypeId, ST.TotalQuestions, ST.EPaperSize, ST.HeightInPixel, ST.WidthInPixel, ST.Synced, ST.IsPrivate, ST.SheetNumber
+                     FROM ExamListExams MR
+                      INNER JOIN Exams ER ON MR.ExamId = ER.Id
+                     INNER JOIN SheetTypes ST ON ER.SheetTypeId = ST.Id where MR.ExamListId =" + examListId);
+            
+                    List<MyRow> examListExams = examsList.ToList();
+                    response.Entities = examListExams;
                 }
             }
             return response;

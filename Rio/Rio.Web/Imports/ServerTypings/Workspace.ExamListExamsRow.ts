@@ -39,6 +39,20 @@
         TenantTenantName?: string;
         TenantEApprovalStatus?: number;
         TenantIsActive?: number;
+        SheetTypeDisplayName?: string;
+        Description?: string;
+        TotalQuestions?: number;
+        EPaperSize?: Workspace.enums.EPaperSize;
+        HeightInPixel?: number;
+        WidthInPixel?: number;
+        SheetData?: string;
+        SheetImage?: string;
+        OverlayImage?: string;
+        OverlayImageOpenCV?: string;
+        Synced?: boolean;
+        IsPrivate?: boolean;
+        PdfTemplate?: string;
+        SheetNumber?: number;
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -47,6 +61,7 @@
 
     export namespace ExamListExamsRow {
         export const idProperty = 'Id';
+        export const nameProperty = 'SheetTypeDisplayName';
         export const localTextPrefix = 'Workspace.ExamListExams';
         export const lookupKey = 'Workspace.ExamListExams';
 
@@ -98,6 +113,20 @@
             TenantTenantName = "TenantTenantName",
             TenantEApprovalStatus = "TenantEApprovalStatus",
             TenantIsActive = "TenantIsActive",
+            SheetTypeDisplayName = "SheetTypeDisplayName",
+            Description = "Description",
+            TotalQuestions = "TotalQuestions",
+            EPaperSize = "EPaperSize",
+            HeightInPixel = "HeightInPixel",
+            WidthInPixel = "WidthInPixel",
+            SheetData = "SheetData",
+            SheetImage = "SheetImage",
+            OverlayImage = "OverlayImage",
+            OverlayImageOpenCV = "OverlayImageOpenCV",
+            Synced = "Synced",
+            IsPrivate = "IsPrivate",
+            PdfTemplate = "PdfTemplate",
+            SheetNumber = "SheetNumber",
             InsertUserId = "InsertUserId",
             InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",

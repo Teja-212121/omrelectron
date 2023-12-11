@@ -1,3 +1,4 @@
+using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -288,6 +289,104 @@ namespace Rio.Workspace
             get => fields.TenantIsActive[this];
             set => fields.TenantIsActive[this] = value;
         }
+        [NotMapped]
+        [DisplayName("Sheet Type Display Name"), Size(100), QuickSearch, NameProperty]
+        public string SheetTypeDisplayName
+        {
+            get => fields.SheetTypeDisplayName[this];
+            set => fields.SheetTypeDisplayName[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Description"), Size(1000)]
+        public string Description
+        {
+            get => fields.Description[this];
+            set => fields.Description[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Total Questions"), NotNull]
+        public int? TotalQuestions
+        {
+            get => fields.TotalQuestions[this];
+            set => fields.TotalQuestions[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("E Paper Size"), NotNull]
+        public EPaperSize? EPaperSize
+        {
+            get => (EPaperSize?)fields.EPaperSize[this];
+            set => fields.EPaperSize[this] = (short?)value;
+        }
+        [NotMapped]
+        [DisplayName("Height In Pixel")]
+        public int? HeightInPixel
+        {
+            get => fields.HeightInPixel[this];
+            set => fields.HeightInPixel[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Width In Pixel")]
+        public int? WidthInPixel
+        {
+            get => fields.WidthInPixel[this];
+            set => fields.WidthInPixel[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Sheet Data"), NotNull]
+        public string SheetData
+        {
+            get => fields.SheetData[this];
+            set => fields.SheetData[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Sheet Image"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/SheetImage/~")]
+        public string SheetImage
+        {
+            get => fields.SheetImage[this];
+            set => fields.SheetImage[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Overlay Image"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/OverlayImageImage/~")]
+        public string OverlayImage
+        {
+            get => fields.OverlayImage[this];
+            set => fields.OverlayImage[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Overlay Image Open CV"), Size(1000), ImageUploadEditor(FilenameFormat = "SheetType/OverlayImageOpenCV/~")]
+        public string OverlayImageOpenCV
+        {
+            get => fields.OverlayImageOpenCV[this];
+            set => fields.OverlayImageOpenCV[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Synced")]
+        public bool? Synced
+        {
+            get => fields.Synced[this];
+            set => fields.Synced[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Is Private")]
+        public bool? IsPrivate
+        {
+            get => fields.IsPrivate[this];
+            set => fields.IsPrivate[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Pdf Template"), Size(1000), FileUploadEditor(FilenameFormat = "SheetType/PdfTemplate/~")]
+        public string PdfTemplate
+        {
+            get => fields.PdfTemplate[this];
+            set => fields.PdfTemplate[this] = value;
+        }
+        [NotMapped]
+        [DisplayName("Sheet Number"), NotNull]
+        public long? SheetNumber
+        {
+            get => fields.SheetNumber[this];
+            set => fields.SheetNumber[this] = value;
+        }
 
         public ExamListExamsRow()
             : base()
@@ -344,6 +443,21 @@ namespace Rio.Workspace
             public StringField TenantTenantName;
             public Int32Field TenantEApprovalStatus;
             public Int32Field TenantIsActive;
+            public StringField SheetTypeDisplayName;
+            public StringField Description;
+            public Int32Field TotalQuestions;
+            public Int32Field EPaperSize;
+            public Int32Field HeightInPixel;
+            public Int32Field WidthInPixel;
+            public StringField SheetData;
+            public StringField SheetImage;
+            public StringField OverlayImage;
+            public StringField OverlayImageOpenCV;
+            public BooleanField Synced;
+          
+            public BooleanField IsPrivate;
+            public StringField PdfTemplate;
+            public Int64Field SheetNumber;
         }
     }
 }
