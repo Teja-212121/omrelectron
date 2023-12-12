@@ -65,9 +65,18 @@ namespace Rio.Workspace.Endpoints
                 if (row.ExamListId == examListId)
 
                 {
-                    var examsList = connection.Query<MyRow>(@"SELECT MR.Id, MR.ExamListId, MR.ExamId, MR.TenantId, MR.Priority, MR.StartDate, MR.EndDate, MR.ModelAnswerPaperStartDate,MR.TenantId, ST.SheetTypeDisplayName, ST.Name, ST.Description, ST.SheetData, ST.SheetImage, ST.OverlayImageOpenCV, ST.PdfTemplate, ST.Id AS SheetTypeId, ST.TotalQuestions, ST.EPaperSize, ST.HeightInPixel, ST.WidthInPixel, ST.Synced, ST.IsPrivate, ST.SheetNumber
+                    var examsList = connection.Query<MyRow>(@"SELECT MR.Id, MR.ExamListId, MR.ExamId, MR.TenantId, MR.Priority, MR.StartDate, MR.EndDate, MR.ModelAnswerPaperStartDate,MR.TenantId,MR.IsActive,EL.Name as ExamListName,El.Description as 
+ExamListDescription,EL.InsertDate  as ExamListInsertDate, EL.InsertUserId as 	ExamListInsertUserId,EL.UpdateDate as ExamListUpdateDate,EL.UpdateUserId as ExamListUpdateUserId,
+EL.IsActive as ExamListIsActive,EL.TenantId as ExamListTenantId,ER.Code as ExamCode,ER.Name as ExamName,ER.Description as ExamDescription,ER.TotalMarks as ExamTotalMarks,ER.NegativeMarks as ExamNegativeMarks,ER.OptionsAvailable as ExamOptionsAvailable ,ER.ResultCriteria as ExamResultCriteria,ER.InsertDate as ExamInsertDate, ER.InsertUserId as ExamInsertUserId,ER.UpdateDate as ExamUpdateDate,ER.UpdateUserId  as ExamUpdateUserId,ER.IsActive as ExamIsActive,
+ER.TenantId as ExamTenantId,ER.TotalQuestions as ExamTotalQuestions,ER.Name as ExamExamDisplayName,
+ER.QuestionPaper as ExamQuestionPaper,ER.ModelAnswer as ExamModelAnswer,ER.SheetTypeId as ExamSheetTypeId,T.TenantName AS TenantName,T.EApprovalStatus AS EApprovalStatus ,T.IsActive AS TenantIsActive,
+MR.InsertDate as InsertDate ,MR.InsertUserId as InsertUserId,
+MR.UpdateUserId as UpdateUserId,MR.UpdateDate as UpdateDate
+,ST.SheetTypeDisplayName, ST.Name, ST.Description, ST.SheetData, ST.SheetImage, ST.OverlayImageOpenCV, ST.PdfTemplate, ST.Id AS SheetTypeId, ST.TotalQuestions, ST.EPaperSize, ST.HeightInPixel, ST.WidthInPixel, ST.Synced, ST.IsPrivate, ST.SheetNumber
                      FROM ExamListExams MR
                       INNER JOIN Exams ER ON MR.ExamId = ER.Id
+					  INNER JOIN ExamLists EL ON EL.Id=MR.ExamListId
+					  INNER JOIN Tenants T ON T.TenantId =MR.TenantId
                      INNER JOIN SheetTypes ST ON ER.SheetTypeId = ST.Id where MR.ExamListId =" + examListId);
             
                     List<MyRow> examListExams = examsList.ToList();

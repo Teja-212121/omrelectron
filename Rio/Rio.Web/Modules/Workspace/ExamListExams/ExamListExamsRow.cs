@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Rio.Workspace.enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
@@ -268,7 +269,19 @@ namespace Rio.Workspace
             get => fields.ExamSheetTypeId[this];
             set => fields.ExamSheetTypeId[this] = value;
         }
+        [DisplayName("Tenant Name"), NotMapped]
+        public string TenantName
+        {
+            get => fields.TenantName[this];
+            set => fields.TenantName[this] = value;
+        }
 
+        [DisplayName("ApprovalStatus"), NotMapped]
+        public EApprovalStatus? EApprovalStatus
+        {
+            get => (EApprovalStatus?)fields.EApprovalStatus[this];
+            set => fields.EApprovalStatus[this] = (short?)value;
+        }
         [DisplayName("Tenant Tenant Name"), Expression("jTenant.[TenantName]")]
         public string TenantTenantName
         {
@@ -387,7 +400,7 @@ namespace Rio.Workspace
             get => fields.SheetNumber[this];
             set => fields.SheetNumber[this] = value;
         }
-
+ 
         public ExamListExamsRow()
             : base()
         {
@@ -439,7 +452,8 @@ namespace Rio.Workspace
             public StringField ExamQuestionPaper;
             public StringField ExamModelAnswer;
             public Int32Field ExamSheetTypeId;
-
+            public StringField TenantName;
+            public Int16Field EApprovalStatus;
             public StringField TenantTenantName;
             public Int32Field TenantEApprovalStatus;
             public Int32Field TenantIsActive;
@@ -458,6 +472,7 @@ namespace Rio.Workspace
             public BooleanField IsPrivate;
             public StringField PdfTemplate;
             public Int64Field SheetNumber;
+           
         }
     }
 }
