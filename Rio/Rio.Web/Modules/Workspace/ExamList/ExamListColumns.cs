@@ -12,9 +12,10 @@ namespace Rio.Workspace.Columns
         public int Id { get; set; }
         [EditLink]
         public string Name { get; set; }
-        public string Description { get; set; }
-      
+        public string Description { get; set; }      
         public int IsActive { get; set; }
+        [QuickFilter, FilterOnly]
+        public int TenantId { get; set; }
         public string TenantTenantName { get; set; }
     }
 }
