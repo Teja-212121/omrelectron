@@ -12,7 +12,7 @@ namespace Rio.Workspace
     [ReadPermission(PermissionKeys.ExamListManagement.View)]
     [ModifyPermission(PermissionKeys.ExamListManagement.Modify)]
     [LookupScript("Workspace.ExamList", Permission = "*")]
-    public sealed class ExamListRow : LoggingRow<ExamListRow.RowFields>, IIdRow, INameRow
+    public sealed class ExamListRow : LoggingRow<ExamListRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         public int? Id
@@ -48,6 +48,11 @@ namespace Rio.Workspace
         {
             get => fields.TenantId[this];
             set => fields.TenantId[this] = value;
+        }
+
+        public Int32Field TenantIdField
+        {
+            get => Fields.TenantId;
         }
 
         [DisplayName("Tenant Tenant Name"), Expression("jTenant.[TenantName]")]
