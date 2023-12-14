@@ -1,4 +1,4 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 using MyPages = Rio.Workspace.Pages;
 using MyPage = Rio.Common.Pages;
 
@@ -14,7 +14,7 @@ using MyPage = Rio.Common.Pages;
 [assembly: NavigationLink(3003, "Exams/Exam Questions", typeof(MyPages.ExamQuestionController), icon: "fa-circle-o")]*/
 
 [assembly: NavigationMenu(4000, "Activation", icon: "fa fa-check")]
-[assembly: NavigationLink(4001, "Activation/Pre Defined Key", typeof(MyPages.PreDefinedKeyController), icon: "fa-circle-o")]
+[assembly: NavigationLink(4001, "Activation/Pre Defined Key", typeof(MyPages.PreDefinedKeyController), icon: "fa-circle-o", Permission = ("Administrattion:Security"))]
 [assembly: NavigationLink(4002, "Activation/Serial Key", typeof(MyPages.SerialKeyController), icon: "fa-circle-o")]
 [assembly: NavigationLink(4003, "Activation/Coupon Code", typeof(MyPages.CouponCodeController), icon: "fa-circle-o")]
 [assembly: NavigationLink(4004, "Activation/Activation", typeof(MyPages.ActivationController), icon: "fa-circle-o")]

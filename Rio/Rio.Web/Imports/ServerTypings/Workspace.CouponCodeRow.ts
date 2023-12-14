@@ -29,10 +29,10 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Code';
         export const localTextPrefix = 'Workspace.CouponCode';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const deletePermission = 'Workspace:ExamListManagement:Modify';
+        export const insertPermission = 'Workspace:ExamListManagement:Modify';
+        export const readPermission = 'Workspace:ExamListManagement:View';
+        export const updatePermission = 'Workspace:ExamListManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",
