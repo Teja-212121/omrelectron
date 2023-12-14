@@ -36,6 +36,8 @@
         ExamQuestionPaper?: string;
         ExamModelAnswer?: string;
         ExamSheetTypeId?: number;
+        TenantName?: string;
+        EApprovalStatus?: Web.Enums.EApprovalStatus;
         TenantTenantName?: string;
         TenantEApprovalStatus?: number;
         TenantIsActive?: number;
@@ -110,6 +112,8 @@
             ExamQuestionPaper = "ExamQuestionPaper",
             ExamModelAnswer = "ExamModelAnswer",
             ExamSheetTypeId = "ExamSheetTypeId",
+            TenantName = "TenantName",
+            EApprovalStatus = "EApprovalStatus",
             TenantTenantName = "TenantTenantName",
             TenantEApprovalStatus = "TenantEApprovalStatus",
             TenantIsActive = "TenantIsActive",
