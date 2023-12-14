@@ -30,8 +30,13 @@
         <br />
         @if (Model.scannedSheetRow.SheetTypeName != null && Model.scannedSheetRow.ScannedImageSourcePath != null)
         {
-            <p>Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Image Name: @Model.scannedSheetRow.ScannedImageSourcePath</p>
+            <p>
+                Scanned Sheet Name: @Model.scannedSheetRow.SheetTypeName.ToUpper() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Image Name: @Model.scannedSheetRow.ScannedImageSourcePath
+                <img id="scannedImage" style="width: 100%; height: auto; max-height: 400px;" />
+                <input type="hidden" id="imagePath" value="@Model.scannedSheetRow.ScannedImageSourcePath" />
+                <button id="btnopen" style="float:right;margin-right:150px;" class="btn btn-info">Open</button>
+            </p>            
         }
         <br />
     </div>
@@ -68,30 +73,47 @@
                     <label> Corrected Option</label>
                 </div>
             </div>
-            @if(Model.ScanQuestionList.Count>0)
-            {
+        @if (Model.ScanQuestionList.Count > 0)
+        {
             @for (int i = 0; i < @Model.ScanQuestionList.Count; i++)
             {
-            <div class="row" style="margin-left:10px;">
-                <div class="col-md-2">
-                    <label>@Model.ScanQuestionList[i].QuestionIndex </label>
-                </div>
-                <div class="col-md-2">
-                    <label>@Model.ScanQuestionList[i].ScannedOptions </label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" id="Correctoption@(i)" value="@Model.ScanQuestionList[i].CorrectedOptions" />
-                    <input type="hidden" id="ScannQuestion@(i)" value="@Model.ScanQuestionList[i].Id" />
-                </div>
-            </div>
+                    <div class="row" style="margin-left:10px;">
+                        <div class="col-md-2">
+                            <label>@Model.ScanQuestionList[i].QuestionIndex </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label>@Model.ScanQuestionList[i].ScannedOptions </label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" id="Correctoption@(i)" value="@Model.ScanQuestionList[i].CorrectedOptions" />
+                            <input type="hidden" id="ScannQuestion@(i)" value="@Model.ScanQuestionList[i].Id" />
+                        </div>
+                    </div>
             }
-            }
+        }
         </div>
 
     </div>
 </div>
 
 <script>
+    $("#btnopen").click(function () {
+        var imagePath = $("#imagePath").val();
+        var dialog = $("<div>").dialog({
+            modal: true,
+            title: "Scanned Image",
+            width: "auto",
+            height: "auto",
+            open: function () {
+                // Append an image tag to the dialog
+                $(this).html("<img src='" + imagePath + "' style='max-width: 100%; max-height: 100%;' />");
+            },
+            close: function () {
+                // Destroy the dialog when closed
+                $(this).dialog("destroy").remove();
+            }
+        });
+    });
 
     $("#btnsave").click(function () {
         var param = [];
