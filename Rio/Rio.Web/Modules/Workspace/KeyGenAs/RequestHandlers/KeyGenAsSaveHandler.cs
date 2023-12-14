@@ -23,7 +23,7 @@ namespace Rio.Workspace
             base.AfterSave();
             if (IsCreate)
             {
-                int days = 0;
+            
                 for (int i=0;i<Row.Quantity;i++)
                 {
 

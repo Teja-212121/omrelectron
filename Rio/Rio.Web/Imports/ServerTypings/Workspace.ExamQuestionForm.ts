@@ -3,7 +3,7 @@
         ExamId: Serenity.LookupEditor;
         QuestionIndex: Serenity.IntegerEditor;
         DisplayIndex: Serenity.StringEditor;
-        RightOptions: Serenity.StringEditor;
+        RightOption: Serenity.StringEditor;
         Score: Serenity.StringEditor;
         Tags: Serenity.StringEditor;
         RuleTypeId: Serenity.LookupEditor;
@@ -29,7 +29,7 @@
                     'ExamId', w0,
                     'QuestionIndex', w1,
                     'DisplayIndex', w2,
-                    'RightOptions', w2,
+                    'RightOption', w2,
                     'Score', w2,
                     'Tags', w2,
                     'RuleTypeId', w0,

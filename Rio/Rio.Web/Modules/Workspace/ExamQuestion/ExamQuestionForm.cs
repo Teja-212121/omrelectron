@@ -15,7 +15,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public string DisplayIndex { get; set; }
         [HalfWidth]
-        public string RightOptions { get; set; }
+        public string RightOption { get; set; }
         [HalfWidth]
         public string Score { get; set; }
         [HalfWidth]

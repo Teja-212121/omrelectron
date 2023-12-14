@@ -54,7 +54,7 @@ namespace Rio.Workspace
 
             }
 
-            if(Row.RuleTypeId == 1 && Row.RightOptions.Length > 1)
+            if(Row.RuleTypeId == 1 && Row.RightOption.Length > 1)
             {
                 throw new ValidationError("Right Options should not contain Multiple Options!");
             }

@@ -4,7 +4,7 @@
         ExamId?: number;
         QuestionIndex?: number;
         DisplayIndex?: string;
-        RightOptions?: string;
+        RightOption?: string;
         Score?: string;
         Tags?: string;
         RuleTypeId?: number;
@@ -59,7 +59,7 @@
             ExamId = "ExamId",
             QuestionIndex = "QuestionIndex",
             DisplayIndex = "DisplayIndex",
-            RightOptions = "RightOptions",
+            RightOption = "RightOption",
             Score = "Score",
             Tags = "Tags",
             RuleTypeId = "RuleTypeId",

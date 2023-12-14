@@ -50,11 +50,11 @@ namespace Rio.Workspace
             set => fields.DisplayIndex[this] = value;
         }
 
-        [DisplayName("Right Options")]
-        public string RightOptions
+        [DisplayName("Right Option")]
+        public string RightOption
         {
-            get => fields.RightOptions[this];
-            set => fields.RightOptions[this] = value;
+            get => fields.RightOption[this];
+            set => fields.RightOption[this] = value;
         }
 
         [DisplayName("Score")]
@@ -306,7 +306,7 @@ namespace Rio.Workspace
             public Int64Field ExamId;
             public Int32Field QuestionIndex;
             public StringField DisplayIndex;
-            public StringField RightOptions;
+            public StringField RightOption;
             public StringField Score;
             public StringField Tags;
             public Int32Field RuleTypeId;

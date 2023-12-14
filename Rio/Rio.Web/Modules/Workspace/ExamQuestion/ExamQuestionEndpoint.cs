@@ -137,8 +137,8 @@ namespace Rio.Workspace.Endpoints
                         response.ErrorList.Add("Error On Row " + row + ": DisplayIndex Not found");
                         continue;
                     }
-                    Row.RightOptions = Convert.ToString(worksheet.Cells[row, 2].Value ?? null);
-                    if (string.IsNullOrEmpty(Row.RightOptions))
+                    Row.RightOption = Convert.ToString(worksheet.Cells[row, 2].Value ?? null);
+                    if (string.IsNullOrEmpty(Row.RightOption))
                     {
                         response.ErrorList.Add("Error On Row " + row + ": RightOptions Not found");
                         continue;
@@ -221,7 +221,7 @@ namespace Rio.Workspace.Endpoints
                         else
                             Row.RuleTypeId = ruletypeid.Id;
 
-                        if (Row.RuleTypeId == 1 && Row.RightOptions.Length > 1)
+                        if (Row.RuleTypeId == 1 && Row.RightOption.Length > 1)
                         {
 
                             response.ErrorList.Add("Error On Row " + row + ": Right Options should not contain Multiple Options!!!");

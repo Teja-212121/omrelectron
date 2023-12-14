@@ -236,7 +236,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
         category.referencedFields = [fld.ExamSectionId];
         category.format = ctx => this.selectFormatter(ctx, fld.ExamSectionId, ExamSectionRow.getLookup());
 
-        first(columns, x => x.field === fld.RightOptions).format = str;
+        first(columns, x => x.field === fld.RightOption).format = str;
 
         if (!Authorization.hasPermission("Administration:Security")) {
             columns = columns.filter(f => f.field != ExamQuestionRow.Fields.TenantId);
