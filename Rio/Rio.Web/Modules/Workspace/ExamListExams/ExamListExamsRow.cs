@@ -322,14 +322,14 @@ namespace Rio.Workspace
             set => fields.Description[this] = value;
         }
         [NotMapped]
-        [DisplayName("Total Questions"), NotNull]
+        [DisplayName("Total Questions")]
         public int? TotalQuestions
         {
             get => fields.TotalQuestions[this];
             set => fields.TotalQuestions[this] = value;
         }
         [NotMapped]
-        [DisplayName("E Paper Size"), NotNull]
+        [DisplayName("E Paper Size")]
         public EPaperSize? EPaperSize
         {
             get => (EPaperSize?)fields.EPaperSize[this];
@@ -350,7 +350,7 @@ namespace Rio.Workspace
             set => fields.WidthInPixel[this] = value;
         }
         [NotMapped]
-        [DisplayName("Sheet Data"), NotNull]
+        [DisplayName("Sheet Data")]
         public string SheetData
         {
             get => fields.SheetData[this];
@@ -399,7 +399,7 @@ namespace Rio.Workspace
             set => fields.PdfTemplate[this] = value;
         }
         [NotMapped]
-        [DisplayName("Sheet Number"), NotNull]
+        [DisplayName("Sheet Number")]
         public long? SheetNumber
         {
             get => fields.SheetNumber[this];
