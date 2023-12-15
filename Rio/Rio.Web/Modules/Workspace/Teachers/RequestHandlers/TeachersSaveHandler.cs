@@ -46,6 +46,7 @@ namespace Rio.Workspace
                 var displayName = Row.FullName;
                 var email = Row.Email;
                 var username = Row.Email;
+                var mobile = Row.Mobile;
 
                 var fld = UserRow.Fields;
                 var userId = (int)Connection.InsertAndGetID(new UserRow
@@ -54,6 +55,7 @@ namespace Rio.Workspace
                     Source = "sign",
                     DisplayName = displayName,
                     Email = email,
+                    MobilePhoneNumber = mobile,
                     PasswordHash = hash,
                     PasswordSalt = salt,
                     IsActive = 1,

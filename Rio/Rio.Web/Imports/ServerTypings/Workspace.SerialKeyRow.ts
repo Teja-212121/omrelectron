@@ -33,10 +33,10 @@
         export function getLookup(): Q.Lookup<SerialKeyRow> {
             return Q.getLookup<SerialKeyRow>('Workspace.SerialKey');
         }
-        export const deletePermission = 'Workspace:ExamListManagement:Modify';
-        export const insertPermission = 'Workspace:ExamListManagement:Modify';
-        export const readPermission = 'Workspace:ExamListManagement:View';
-        export const updatePermission = 'Workspace:ExamListManagement:Modify';
+        export const deletePermission = 'Workspace:ActivationManagement:Modify';
+        export const insertPermission = 'Workspace:ActivationManagement:Modify';
+        export const readPermission = 'Workspace:ActivationManagement:View';
+        export const updatePermission = 'Workspace:ActivationManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",

@@ -23,6 +23,7 @@ namespace Rio.Workspace.Columns
         [QuickFilter]
         public KeyStatus EStatus { get; set; }
         public int? SerialKeyId { get; set; }
-
+        public int TenantId { get; set; }
+        public string TenantTenantName { get; set; }
     }
 }

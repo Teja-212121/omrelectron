@@ -13,7 +13,7 @@ namespace Rio.Workspace
     [ReadPermission(PermissionKeys.ActivationManagement.View)]
     [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
     [LookupScript("Workspace.Activation", Permission = "*", Expiration = 1)]
-    public sealed class ActivationRow : LoggingRow<ActivationRow.RowFields>, IIdRow, INameRow
+    public sealed class ActivationRow : LoggingRow<ActivationRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         [SortOrder(1, descending: true)]
@@ -85,6 +85,19 @@ namespace Rio.Workspace
         {
             get => (KeyStatus?)fields.EStatus[this];
             set => fields.EStatus[this] = (short?)value;
+        }
+
+        [DisplayName("Tenant"), NotNull, ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
+        [LookupEditor("Administration.Tenant")]
+        public int? TenantId
+        {
+            get => fields.TenantId[this];
+            set => fields.TenantId[this] = value;
+        }
+
+        public Int32Field TenantIdField
+        {
+            get => Fields.TenantId;
         }
 
         [DisplayName("Is Active"), DefaultValue(1)]
@@ -276,6 +289,13 @@ namespace Rio.Workspace
             set => fields.TeacherSchoolOrInstitute[this] = value;
         }
 
+        [DisplayName("Tenant Tenant Name"), Expression("jTenant.[TenantName]")]
+        public string TenantTenantName
+        {
+            get => fields.TenantTenantName[this];
+            set => fields.TenantTenantName[this] = value;
+        }
+
         public ActivationRow()
             : base()
         {
@@ -299,6 +319,9 @@ namespace Rio.Workspace
             public Int32Field EStatus;
             public Int32Field ActivationLogId;
             public Int32Field IsActive;
+            public Int32Field TenantId;
+
+            public StringField TenantTenantName;
 
             public StringField ExamListName;
             public StringField ExamListDescription;

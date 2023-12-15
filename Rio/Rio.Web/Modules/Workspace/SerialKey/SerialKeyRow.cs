@@ -10,8 +10,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("SerialKeys")]
     [DisplayName("Serial Key"), InstanceName("Serial Key")]
-    [ReadPermission(PermissionKeys.ExamListManagement.View)]
-    [ModifyPermission(PermissionKeys.ExamListManagement.Modify)]
+    [ReadPermission(PermissionKeys.ActivationManagement.View)]
+    [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
     [LookupScript("Workspace.SerialKey")]
     public sealed class SerialKeyRow : LoggingRow<SerialKeyRow.RowFields>, IIdRow, INameRow
     {

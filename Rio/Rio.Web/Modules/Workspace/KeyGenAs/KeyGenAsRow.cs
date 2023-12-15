@@ -10,8 +10,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("KeyGenAs")]
     [DisplayName("Key Gen As"), InstanceName("Key Gen As")]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(PermissionKeys.ActivationManagement.View)]
+    [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
     public sealed class KeyGenAsRow : LoggingRow<KeyGenAsRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
