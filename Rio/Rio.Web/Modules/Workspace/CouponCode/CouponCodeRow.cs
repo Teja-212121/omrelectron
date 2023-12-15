@@ -10,8 +10,8 @@ namespace Rio.Workspace
 {
     [ConnectionKey("Default"), Module("Workspace"), TableName("CouponCodes")]
     [DisplayName("Coupon Code"), InstanceName("Coupon Code")]
-    [ReadPermission(PermissionKeys.ExamListManagement.View)]
-    [ModifyPermission(PermissionKeys.ExamListManagement.Modify)]
+    [ReadPermission(PermissionKeys.ActivationManagement.View)]
+    [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
     public sealed class CouponCodeRow : LoggingRow<CouponCodeRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]

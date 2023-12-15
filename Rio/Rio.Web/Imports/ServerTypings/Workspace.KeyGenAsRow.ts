@@ -27,10 +27,10 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Note';
         export const localTextPrefix = 'Workspace.KeyGenAs';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const deletePermission = 'Workspace:ActivationManagement:Modify';
+        export const insertPermission = 'Workspace:ActivationManagement:Modify';
+        export const readPermission = 'Workspace:ActivationManagement:View';
+        export const updatePermission = 'Workspace:ActivationManagement:Modify';
 
         export declare const enum Fields {
             Id = "Id",

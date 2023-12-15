@@ -25,6 +25,8 @@ namespace Rio.Workspace.Forms
         public KeyStatus EStatus { get; set; }
         [HalfWidth]
         public int? SerialKeyId { get; set; }
+        [HalfWidth]
+        public int TenantId { get; set; }
 
     }
 }

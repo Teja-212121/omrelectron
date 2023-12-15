@@ -90,8 +90,7 @@ namespace Rio.Workspace
         {
             public Int32Field Id;
             public StringField Name;
-            public StringField Description;
-          
+            public StringField Description;          
             public Int32Field IsActive;
             public Int32Field TenantId;
 

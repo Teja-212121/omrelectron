@@ -20,6 +20,7 @@ namespace Rio.Workspace.Columns
         public DateTime ExpiryDate { get; set; }
         public KeyStatus EStatus { get; set; }
         public int? SerialKeyId { get; set; }
-
+        public int TenantId { get; set; }
+        public string TenantTenantName { get; set; }
     }
 }

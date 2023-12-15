@@ -11,6 +11,8 @@
         EStatus?: Web.Enums.KeyStatus;
         ActivationLogId?: number;
         IsActive?: number;
+        TenantId?: number;
+        TenantTenantName?: string;
         ExamListName?: string;
         ExamListDescription?: string;
         ExamListInsertDate?: string;
@@ -69,6 +71,8 @@
             EStatus = "EStatus",
             ActivationLogId = "ActivationLogId",
             IsActive = "IsActive",
+            TenantId = "TenantId",
+            TenantTenantName = "TenantTenantName",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
             ExamListInsertDate = "ExamListInsertDate",
