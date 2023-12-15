@@ -82,6 +82,7 @@ namespace Rio.Workspace
                                         SerialKeyId = serialId,
                                         TeacherId = teacher.Id,
                                         ExamListId = examlist.Id,
+                                        TenantId=examlist.TenantId,
                                         EStatus = KeyStatus.Activated,
                                         InsertDate = DateTime.Now,
                                         InsertUserId = Convert.ToInt32(User.GetIdentifier()),
