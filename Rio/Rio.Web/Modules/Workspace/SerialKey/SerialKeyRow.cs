@@ -16,6 +16,7 @@ namespace Rio.Workspace
     public sealed class SerialKeyRow : LoggingRow<SerialKeyRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
+        [SortOrder(1, descending: true)]
         public int? Id
         {
             get => fields.Id[this];

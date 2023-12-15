@@ -22,7 +22,7 @@ export class SerialKeyDialog extends EntityDialog<SerialKeyRow, any> {
         //debugger;
         if (this.isNew()) {
             this.form.EStatus.set_readOnly(true);
-            this.form.EStatus.value = '2';
+           /* this.form.EStatus.value = '2';*/
             this.form.ValidityType.changeSelect2(e => {
                 var vValidityType = this.form.ValidityType.value;
                 if (isEmptyOrNull(vValidityType)) {

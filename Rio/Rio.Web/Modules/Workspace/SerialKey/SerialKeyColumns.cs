@@ -14,10 +14,13 @@ namespace Rio.Workspace.Columns
         [EditLink]
         public string SerialKey { get; set; }
         public string ExamListName { get; set; }
+        [QuickFilter]
         public int ValidityType { get; set; }
         public int ValidityInDays { get; set; }
+        [QuickFilter]
         public DateTime ValidDate { get; set; }
         public string Note { get; set; }
+        [QuickFilter]
         public KeyStatus EStatus { get; set; }
         
     }

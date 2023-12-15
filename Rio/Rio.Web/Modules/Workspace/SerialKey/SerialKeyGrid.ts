@@ -3,6 +3,8 @@ import { SerialKeyColumns, SerialKeyRow, SerialKeyService } from '../../ServerTy
 import { SerialKeyDialog } from './SerialKeyDialog';
 import { GenerateSerialKeyDialog } from './GenerateSerialKeyDialog';
 import { KeyGenAsDialog } from '../KeyGenAs/KeyGenAsDialog';
+import { trimToNull } from '@serenity-is/corelib/q';
+import { KeyStatus } from '../../ServerTypes/Web';
 
 @Decorators.registerClass()
 export class SerialKeyGrid extends EntityGrid<SerialKeyRow, any> {
@@ -23,6 +25,7 @@ export class SerialKeyGrid extends EntityGrid<SerialKeyRow, any> {
 
         buttons.push({
             title: 'Generate SerialKey',
+            separator: true,
             cssClass: 'edit-button',
             onClick: () => {
                 var dialog = new KeyGenAsDialog(this);
@@ -34,6 +37,24 @@ export class SerialKeyGrid extends EntityGrid<SerialKeyRow, any> {
             }
         });
         return buttons;
+    }
+
+    protected getItemCssClass(item: SerialKeyRow ,index: number): string {
+        let klass: string = "";
+
+        if (item.EStatus == KeyStatus.Created)
+            klass += " created";
+        else if (item.EStatus == KeyStatus.Open)
+            klass += " open";
+        else if (item.EStatus == KeyStatus.Activated)
+            klass += " activated";
+        else if (item.EStatus == KeyStatus.Disabled)
+            klass += " disabled";
+        else if (item.EStatus == KeyStatus.Expired)
+            klass += " expired";
+        else if (item.EStatus == KeyStatus.OfflineActivated)
+            klass += " offlineactivated";
+        return trimToNull(klass);
     }
 
 }

@@ -16,8 +16,11 @@ namespace Rio.Workspace.Columns
         [EditLink]
         public string DeviceId { get; set; }
         public string DeviceDetails { get; set; }
+        [QuickFilter]
         public DateTime ActivationDate { get; set; }
+        [QuickFilter]
         public DateTime ExpiryDate { get; set; }
+        [QuickFilter]
         public KeyStatus EStatus { get; set; }
         public int? SerialKeyId { get; set; }
 

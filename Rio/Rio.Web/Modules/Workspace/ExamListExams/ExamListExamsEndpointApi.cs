@@ -72,7 +72,7 @@ ER.TenantId as ExamTenantId,ER.TotalQuestions as ExamTotalQuestions,ER.Name as E
 ER.QuestionPaper as ExamQuestionPaper,ER.ModelAnswer as ExamModelAnswer,ER.SheetTypeId as ExamSheetTypeId,T.TenantName AS TenantName,T.EApprovalStatus AS EApprovalStatus ,T.IsActive AS TenantIsActive,
 MR.InsertDate as InsertDate ,MR.InsertUserId as InsertUserId,
 MR.UpdateUserId as UpdateUserId,MR.UpdateDate as UpdateDate
-,ST.SheetTypeDisplayName, ST.Name, ST.Description, ST.SheetData, ST.SheetImage, ST.OverlayImageOpenCV, ST.PdfTemplate, ST.Id AS SheetTypeId, ST.TotalQuestions, ST.EPaperSize, ST.HeightInPixel, ST.WidthInPixel, ST.Synced, ST.IsPrivate, ST.SheetNumber
+,ST.SheetTypeDisplayName, ST.Name, ST.Description, ST.SheetData, ST.SheetImage,ST.OverlayImage, ST.OverlayImageOpenCV, ST.PdfTemplate, ST.Id AS SheetTypeId, ST.TotalQuestions, ST.EPaperSize, ST.HeightInPixel, ST.WidthInPixel, ST.Synced, ST.IsPrivate, ST.SheetNumber
                      FROM ExamListExams MR
                       INNER JOIN Exams ER ON MR.ExamId = ER.Id
 					  INNER JOIN ExamLists EL ON EL.Id=MR.ExamListId

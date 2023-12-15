@@ -38,4 +38,28 @@
 .s-Workspace-ScannedSheetGrid .Opensheet .slick-cell a {
   background-color: lightgrey;
 }
+.s-Workspace-SerialKeyGrid .created .slick-cell,
+.s-Workspace-SerialKeyGrid .created .slick-cell a {
+  background-color: dodgerblue;
+}
+.s-Workspace-SerialKeyGrid .open .slick-cell,
+.s-Workspace-SerialKeyGrid .open .slick-cell a {
+    background-color: orange;
+}
+.s-Workspace-SerialKeyGrid .activated .slick-cell,
+.s-Workspace-SerialKeyGrid .activated .slick-cell a {
+      background-color: green;
+ }
+.s-Workspace-SerialKeyGrid .disabled .slick-cell,
+.s-Workspace-SerialKeyGrid .disabled .slick-cell a {
+  background-color: orange;
+}
+.s-Workspace-SerialKeyGrid .expired .slick-cell,
+.s-Workspace-SerialKeyGrid .expired .slick-cell a {
+        background-color: red;
+}
 
+.s-Workspace-SerialKeyGrid .offlineactivated .slick-cell,
+.s-Workspace-SerialKeyGrid .offlineactivated .slick-cell a {
+  background-color: orange;
+}
