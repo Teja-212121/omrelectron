@@ -57,24 +57,25 @@ namespace Rio.Workspace.Endpoints
             return handler.List(connection, request);
         }
         [HttpPost, AuthorizeList(typeof(MyRow)), IgnoreAntiforgeryToken]
-        public ListResponse<MyRow> ListExamQuestion(long examId, IDbConnection connection, ListRequest request,
+        public ListResponse<MyRow> ListExamQuestion( IDbConnection connection, ListRequest request,
             [FromServices] IExamQuestionListHandler handler)
         {
-            var response = handler.List(connection, request);
-            foreach (var row in response.Entities)
-            {
-                if (row.ExamId == examId)
+           // var response = handler.List(connection, request);
+            int? ExamId = null;
 
-                {
-                    var examsList = connection.Query<MyRow>(@"
+            var response = new ListResponse<MyRow>();
+            if (request.EqualityFilter["ExamId"].ToString() != "")
+            {
+                ExamId = Convert.ToInt32(request.EqualityFilter["ExamId"].ToString());
+                var examsList = connection.Query<MyRow>(@"
                      SELECT EQ.Id,E.Code as ExamCode,E.Name as ExamName,EQ.QuestionIndex,EQ.RightOption,EQ.Score,EQ.ExamSectionId,EQ.RuleTypeId
                      FROM ExamQuestions EQ 
 					 Inner join Exams E ON E.ID=EQ.ExamId
-					 where ExamId =" + examId);
+					 where ExamId =" + ExamId);
 
                     List<MyRow> examListQuestion = examsList.ToList();
                     response.Entities = examListQuestion;
-                }
+                
             }
             return response;
         }
