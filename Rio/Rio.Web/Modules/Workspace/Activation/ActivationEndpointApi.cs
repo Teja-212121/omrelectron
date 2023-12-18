@@ -58,10 +58,14 @@ namespace Rio.Workspace.Endpoints
         public ListResponse<MyRow> ListExamList(int userId, IDbConnection connection, ListRequest request,
             [FromServices] IActivationListHandler handler)
         {
-            var response = handler.List(connection, request);
-            foreach (var row in response.Entities)
+            int? teacherid = null;
+           
+            var response = new ListResponse<MyRow>();
+            if (request.EqualityFilter["TeacherId"].ToString() != "")
             {
-                var teacher = connection.TryFirst<TeachersRow>(TeachersRow.Fields.Id == row.TeacherId.Value);
+                teacherid = Convert.ToInt32(request.EqualityFilter["TeacherId"].ToString());
+                var teacher = connection.TryFirst<TeachersRow>(TeachersRow.Fields.Id == teacherid.Value);
+
                 if (teacher != null)
                 {
                     var examsList = connection.Query<MyRow>(@"select ac.ExamListId as ExamListId, el.Name as ExamListName, sr.SerialKey, ac.ActivationDate, ac.ExpiryDate, ac.TenantId, tn.TenantName as TenantTenantName from Activations ac
@@ -69,12 +73,13 @@ INNER JOIN ExamLists el on el.Id = ac.ExamListId
 INNER JOIN Teachers tr on tr.Id = ac.TeacherId
 INNER JOIN SerialKeys sr on sr.Id = ac.SerialKeyId
 INNER JOIN Tenants tn on tn.TenantId = ac.TenantId
-where tr.UserId =" + userId);
+where tr.UserId =" + teacher.UserId);
 
                     List<MyRow> examList = examsList.ToList();
                     response.Entities = examList;
                 }
             }
+            
             return response;
         }
 
