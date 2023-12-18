@@ -55,7 +55,7 @@ namespace Rio.Workspace.Endpoints
         }
 
         [HttpPost, AuthorizeList(typeof(MyRow))]
-        public ListResponse<MyRow> ListExamList(int userId, IDbConnection connection, ListRequest request,
+        public ListResponse<MyRow> ListExamList( IDbConnection connection, ListRequest request,
             [FromServices] IActivationListHandler handler)
         {
             int? teacherid = null;
