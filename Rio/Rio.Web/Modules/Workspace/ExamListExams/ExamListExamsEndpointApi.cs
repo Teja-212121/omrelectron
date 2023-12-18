@@ -56,15 +56,19 @@ namespace Rio.Workspace.Endpoints
         }
 
         [HttpPost, AuthorizeList(typeof(MyRow)), IgnoreAntiforgeryToken]
-        public ListResponse<MyRow> ListExams(int examListId, IDbConnection connection, ListRequest request,
+        public ListResponse<MyRow> ListExams( IDbConnection connection, ListRequest request,
             [FromServices] IExamListExamsListHandler handler)
         {
-            var response = handler.List(connection, request);
-            foreach (var row in response.Entities)
-            {
-                if (row.ExamListId == examListId)
+           
+            int? ExamListId = null;
 
-                {
+            var response = new ListResponse<MyRow>();
+            if (request.EqualityFilter["ExamListId"].ToString() != "")
+            {
+                ExamListId = Convert.ToInt32(request.EqualityFilter["ExamListId"].ToString());
+               // var teacher = connection.TryFirst<TeachersRow>(TeachersRow.Fields.Id == teacherid.Value);
+
+               
                     var examsList = connection.Query<MyRow>(@"SELECT MR.Id, MR.ExamListId, MR.ExamId, MR.TenantId, MR.Priority, MR.StartDate, MR.EndDate, MR.ModelAnswerPaperStartDate,MR.TenantId,MR.IsActive,EL.Name as ExamListName,El.Description as 
 ExamListDescription,EL.InsertDate  as ExamListInsertDate, EL.InsertUserId as 	ExamListInsertUserId,EL.UpdateDate as ExamListUpdateDate,EL.UpdateUserId as ExamListUpdateUserId,
 EL.IsActive as ExamListIsActive,EL.TenantId as ExamListTenantId,ER.Code as ExamCode,ER.Name as ExamName,ER.Description as ExamDescription,ER.TotalMarks as ExamTotalMarks,ER.NegativeMarks as ExamNegativeMarks,ER.OptionsAvailable as ExamOptionsAvailable ,ER.ResultCriteria as ExamResultCriteria,ER.InsertDate as ExamInsertDate, ER.InsertUserId as ExamInsertUserId,ER.UpdateDate as ExamUpdateDate,ER.UpdateUserId  as ExamUpdateUserId,ER.IsActive as ExamIsActive,
@@ -77,11 +81,11 @@ MR.UpdateUserId as UpdateUserId,MR.UpdateDate as UpdateDate
                       INNER JOIN Exams ER ON MR.ExamId = ER.Id
 					  INNER JOIN ExamLists EL ON EL.Id=MR.ExamListId
 					  INNER JOIN Tenants T ON T.TenantId =MR.TenantId
-                     INNER JOIN SheetTypes ST ON ER.SheetTypeId = ST.Id where MR.ExamListId =" + examListId);
+                     LEFT JOIN SheetTypes ST ON ER.SheetTypeId = ST.Id where MR.ExamListId =" + ExamListId);
             
                     List<MyRow> examListExams = examsList.ToList();
                     response.Entities = examListExams;
-                }
+                
             }
             return response;
         }

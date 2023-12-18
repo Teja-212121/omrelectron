@@ -377,6 +377,9 @@ namespace Rio.Membership.Pages
                     }
 
                 }
+                var teacher=connection.TryFirst<TeachersRow>(TeachersRow.Fields.UserId == userDefinition.UserId);
+                if (teacher != null)
+                    userDefinition.TeacherId =Convert.ToInt32( teacher.Id);
             }
             response.Entity = userDefinition;
             return response;
