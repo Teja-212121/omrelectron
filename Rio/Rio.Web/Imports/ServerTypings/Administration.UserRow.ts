@@ -13,6 +13,8 @@
         UserImage?: string;
         LastDirectoryUpdate?: string;
         IsActive?: number;
+        Countrycode?: Web.Enums.CountryCode;
+        SMSVerificationCode?: string;
         Password?: string;
         PasswordConfirm?: string;
         ImpersonationToken?: string;
@@ -54,6 +56,8 @@
             UserImage = "UserImage",
             LastDirectoryUpdate = "LastDirectoryUpdate",
             IsActive = "IsActive",
+            Countrycode = "Countrycode",
+            SMSVerificationCode = "SMSVerificationCode",
             Password = "Password",
             PasswordConfirm = "PasswordConfirm",
             ImpersonationToken = "ImpersonationToken",

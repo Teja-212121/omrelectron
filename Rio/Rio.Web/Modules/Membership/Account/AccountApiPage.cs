@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Rio.Administration;
 using Rio.Common;
 using Rio.Web;
+using Rio.Web.Enums;
 using Rio.Workspace;
 
 using Serenity;
@@ -23,6 +24,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -388,6 +390,111 @@ namespace Rio.Membership.Pages
 
         #endregion
 
+        [HttpPost,  Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme), IgnoreAntiforgeryToken]
+        public RetrieveResponse<GetOTPResponse> GetVerificationCode( [FromServices] ISqlConnections sqlConnections)
+        {
+            //var entity = new MyRow();
+            using (var connectionT = sqlConnections.NewFor<UserRow>())
+            {
+                var user = connectionT.TryFirst<UserRow>(UserRow.Fields.UserId == User.GetIdentifier());
+                var emailotp = Password.RandomNumber(6);
+                var smsOtp = Password.RandomNumber(6);
+                //user.EmailVerificationCode = emailotp;
+                user.SMSVerificationCode = smsOtp;
+                connectionT.UpdateById<UserRow>(user);
+                var response = new RetrieveResponse<GetOTPResponse>();
+                response.Entity = new GetOTPResponse();
+                response.Entity.SMSVerificationCode = smsOtp;
+                response.Entity.EmailVerificationCode = emailotp;
+                response.Entity.UserId = user.UserId.Value;
+
+                #region SMS
+                if (user.Countrycode != null)
+                    if (user.Countrycode == CountryCode.India91)
+                    {
+                        try
+                        {
+                            string source = "RioPlay";
+                            // string requestUrl = "http://vas.mobinext.in/vendorsms/pushsms.aspx?";
+                            string requestUrl = "http://vas.sevenomedia.com/domestic/sendsms/bulksms_v2.php";
+                            HttpWebRequest SMSrequest = (HttpWebRequest)WebRequest.Create(requestUrl);
+                            SMSrequest.Method = "POST";
+                            SMSrequest.ContentType = "application/x-www-form-urlencoded";
+                            //MobileNo = "91" + request.Phone;
+                            string MobileNo = user.MobilePhoneNumber;
+                            MobileNo = "91" + MobileNo;
+                            user.DisplayName = user.DisplayName.Replace(" ", "");
+                            string content = "Dear " + user.DisplayName + " your SMS Verification Code for Rioplay is: " + smsOtp;
+                            //string postData = "user=dilipk&password=qwerty123&msisdn=" + row.To + "&sid=BLBHRT&msg=" + row.Body + "&fl=0&gwid=2";
+                            //string postData = "authkey=325575AKW63CoJc35e8c23e4&&mobiles=" + MobileNo + "&message=" + row.Body + "&sender=BLBHRT&route=4&country=91";
+                            string postData = "apikey=YW50YXJneWFuOjNxMllQZ09J&type=TEXT&sender=RIOPLY&entityId=1201161191548157480&templateId=1207163963160871141&mobile=" + MobileNo + "&message=" + content;
+                            postData = postData.Replace("##toMobile##", MobileNo);
+                            postData = postData.Replace("##smsBody##", content);
+                            postData = postData.Replace("##source##", source);
+                            byte[] SMSbytes = Encoding.ASCII.GetBytes(postData);
+
+                            //byte[] SMSbytes = Encoding.UTF8.GetBytes(postData);
+                            SMSrequest.ContentLength = SMSbytes.Length;
+
+                            Stream requestStream = SMSrequest.GetRequestStream();
+                            requestStream.Write(SMSbytes, 0, SMSbytes.Length);
+                            requestStream.Close();
+
+                            WebResponse response1 = SMSrequest.GetResponse();
+                            Stream responseStream = response1.GetResponseStream();
+
+                            StreamReader reader = new StreamReader(responseStream);
+                            var result = reader.ReadToEnd();
+                            responseStream.Dispose();
+                            reader.Dispose();
+                            requestStream.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                #endregion
+
+                var emailModel = new ActivateEmailModel();
+                emailModel.Username = user.Username;
+                emailModel.DisplayName = user.DisplayName;
+                emailModel.ActivateLink = emailotp;
+                //emailModel.EmailVerificationCode = emailotp;
+
+                var emailSubject = Texts.Forms.Membership.SignUp.ActivateEmailSubject.ToString();
+
+               
+
+
+                return response;
+            }
+        }
+
+        [HttpPost,  Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme), IgnoreAntiforgeryToken]
+        public Result<ServiceResponse> ValidateMobile(UnBlockUserRequest request, [FromServices] ISqlConnections sqlConnections)
+        {
+            return this.ExecuteMethod(() =>
+            {
+
+                using (var connectionT = sqlConnections.NewFor<UserRow>())
+                {
+                    var user = connectionT.TryFirst<UserRow>(UserRow.Fields.UserId == User.GetIdentifier());
+                    if (user == null)
+                        throw new ValidationError("InvalidUser", "UserNotFound");
+                    if (user.SMSVerificationCode != request.OTP.ToString())
+                        throw new ValidationError("InvalidMobileOTP", "Mobile OTP Entered is incorrect");
+                    else
+                    {
+
+                        user.MobilePhoneVerified = true;
+                        connectionT.UpdateById<UserRow>(user);
+                        return new ServiceResponse();
+                    }
+                }
+
+            });
+        }
 
         [AllowAnonymous, HttpPost]
         public Result<ServiceResponse> SignUpAsTeacher(SignUpRequest request , [FromServices] IOptions<EnvironmentSettings> options = null)
@@ -400,6 +507,8 @@ namespace Rio.Membership.Pages
 
                 if (string.IsNullOrWhiteSpace(request.Email))
                     throw new ArgumentNullException(nameof(request.Email));
+                if(request.Countrycode==null)
+                    throw new ValidationError("Country Code is Mandatory");
                 if (string.IsNullOrEmpty(request.Password))
                     throw new ArgumentNullException(nameof(request.Password));
 
@@ -441,6 +550,7 @@ namespace Rio.Membership.Pages
                     Email = email,
                     PasswordHash = hash,
                     PasswordSalt = salt,
+                    Countrycode = request.Countrycode,
                     IsActive = 1,
                     InsertDate = DateTime.Now,
                     InsertUserId = 1,
@@ -532,5 +642,17 @@ namespace Rio.Membership.Pages
                 return new ServiceResponse();
             });
         }
+    }
+
+    public class UnBlockUserRequest
+    {
+        public int UserId { get; set; }
+        public int OTP { get; set; }
+    }
+    public class GetOTPResponse
+    {
+        public int UserId { get; set; }
+        public string EmailVerificationCode { get; set; }
+        public string SMSVerificationCode { get; set; }
     }
 }

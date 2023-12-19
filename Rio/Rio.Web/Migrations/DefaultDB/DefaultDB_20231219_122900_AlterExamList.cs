@@ -12,7 +12,10 @@ namespace Rio.Migrations.DefaultDB
             Alter.Table("ExamLists")
                 .AddColumn("Thumbnail").AsString(int.MaxValue).Nullable();
 
-           
+
+            Alter.Table("Users")
+                .AddColumn("CountryCode").AsInt16().Nullable()
+                 .AddColumn("SMSVerificationCode").AsInt32().Nullable();
         }
         public override void Down()
         {

@@ -5,6 +5,7 @@
         DisplayName?: string;
         FirstName?: string;
         LastName?: string;
+        Countrycode?: Web.Enums.CountryCode;
         Mobile?: string;
     }
 }

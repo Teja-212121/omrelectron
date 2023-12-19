@@ -255,7 +255,10 @@ namespace Rio.Workspace.Endpoints
 
                 //activationLog.Log = "Success";
                 activationLog.EStatus = KeyStatus.Activated;
-                activationLog.ActivationId = activationId;
+                //activationLog.ActivationId = activationId;
+                activationLog.InsertDate = DateTime.Now;
+                activationLog.InsertUserId = userid;
+                activationLog.IsActive = 1;
                 activationLog.SerialKeyId = Id;
                 activationLog.SerialKey = serialkeyrow.SerialKey;
                 activationLog.TeacherId = Teacher.Id;

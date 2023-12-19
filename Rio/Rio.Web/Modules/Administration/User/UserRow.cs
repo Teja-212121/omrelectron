@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -130,6 +131,20 @@ namespace Rio.Administration
             set => Fields.TenantId[this] = value;
         }
 
+        [DisplayName("Country Code")]
+        public CountryCode? Countrycode
+        {
+            get { return (CountryCode?)Fields.Countrycode[this]; }
+            set { Fields.Countrycode[this] = (Int32?)value; }
+        }
+
+        [DisplayName("SMS Verification Code"), Size(10)]
+        public String SMSVerificationCode
+        {
+            get { return Fields.SMSVerificationCode[this]; }
+            set { Fields.SMSVerificationCode[this] = value; }
+        }
+
         [DisplayName("Tenant"), Expression("tnt.TenantName")]
         public String TenantName
         {
@@ -181,7 +196,8 @@ namespace Rio.Administration
             public StringField UserImage;
             public DateTimeField LastDirectoryUpdate;
             public Int16Field IsActive;
-
+            public Int32Field Countrycode;
+            public StringField SMSVerificationCode;
             public StringField Password;
             public StringField PasswordConfirm;
 

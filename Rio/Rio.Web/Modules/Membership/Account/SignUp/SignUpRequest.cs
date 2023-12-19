@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.Services;
 using System;
 
@@ -10,6 +11,7 @@ namespace Rio.Membership
         public string DisplayName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public CountryCode? Countrycode { get; set; }
         public string Mobile { get; set; }
     }
 }

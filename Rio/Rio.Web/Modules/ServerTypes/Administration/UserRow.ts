@@ -1,4 +1,5 @@
 ﻿import { TwoFactorAuthType } from "./TwoFactorAuthType";
+import { CountryCode } from "../Web/Enums.CountryCode";
 import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
 
 export interface UserRow {
@@ -15,6 +16,8 @@ export interface UserRow {
     UserImage?: string;
     LastDirectoryUpdate?: string;
     IsActive?: number;
+    Countrycode?: CountryCode;
+    SMSVerificationCode?: string;
     Password?: string;
     PasswordConfirm?: string;
     ImpersonationToken?: string;
