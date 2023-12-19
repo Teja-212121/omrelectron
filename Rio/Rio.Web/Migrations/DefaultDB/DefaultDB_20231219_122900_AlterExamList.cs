@@ -11,6 +11,8 @@ namespace Rio.Migrations.DefaultDB
         {
             Alter.Table("ExamLists")
                 .AddColumn("Thumbnail").AsString(int.MaxValue).Nullable();
+
+           
         }
         public override void Down()
         {
