@@ -13,6 +13,7 @@ namespace Rio.Workspace.Forms
         [TextAreaEditor(Rows =3)]
         [HalfWidth]
         public string Description { get; set; }
+        public string Thumbnail { get; set; }
         [HalfWidth]
         public int TenantId { get; set; }
     }

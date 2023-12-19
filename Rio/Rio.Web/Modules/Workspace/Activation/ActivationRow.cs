@@ -107,6 +107,14 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
+
+        [DisplayName("SerialKey"), Expression("jSerialKey.[SerialKey]")]
+        public string SerialKey
+        {
+            get => fields.SerialKey[this];
+            set => fields.SerialKey[this] = value;
+        }
+
         [DisplayName("Exam List Name"), Expression("jExamList.[Name]")]
         public string ExamListName
         {
@@ -119,6 +127,13 @@ namespace Rio.Workspace
         {
             get => fields.ExamListDescription[this];
             set => fields.ExamListDescription[this] = value;
+        }
+
+        [DisplayName("Exam List Thumbnail"), Expression("jExamList.[Thumbnail]")]
+        public string ExamListThumbnail
+        {
+            get => fields.ExamListThumbnail[this];
+            set => fields.ExamListThumbnail[this] = value;
         }
 
         [DisplayName("Exam List Insert Date"), Expression("jExamList.[InsertDate]")]
@@ -322,9 +337,11 @@ namespace Rio.Workspace
             public Int32Field TenantId;
 
             public StringField TenantTenantName;
+            public StringField SerialKey;
 
             public StringField ExamListName;
             public StringField ExamListDescription;
+            public StringField ExamListThumbnail;
             public DateTimeField ExamListInsertDate;
             public Int32Field ExamListInsertUserId;
             public DateTimeField ExamListUpdateDate;

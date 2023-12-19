@@ -3,6 +3,7 @@
         Id?: number;
         Name?: string;
         Description?: string;
+        Thumbnail?: string;
         IsActive?: number;
         TenantId?: number;
         TenantTenantName?: string;
@@ -32,6 +33,7 @@
             Id = "Id",
             Name = "Name",
             Description = "Description",
+            Thumbnail = "Thumbnail",
             IsActive = "IsActive",
             TenantId = "TenantId",
             TenantTenantName = "TenantTenantName",

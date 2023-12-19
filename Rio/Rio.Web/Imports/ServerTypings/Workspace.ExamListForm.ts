@@ -2,6 +2,7 @@
     export interface ExamListForm {
         Name: Serenity.StringEditor;
         Description: Serenity.TextAreaEditor;
+        Thumbnail: Serenity.ImageUploadEditor;
         TenantId: Serenity.LookupEditor;
     }
 
@@ -18,12 +19,14 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.TextAreaEditor;
-                var w2 = s.LookupEditor;
+                var w2 = s.ImageUploadEditor;
+                var w3 = s.LookupEditor;
 
                 Q.initFormType(ExamListForm, [
                     'Name', w0,
                     'Description', w1,
-                    'TenantId', w2
+                    'Thumbnail', w2,
+                    'TenantId', w3
                 ]);
             }
         }

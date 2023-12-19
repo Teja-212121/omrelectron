@@ -274,7 +274,7 @@ export class ExamQuestionGrid extends EntityGrid<ExamQuestionRow, any> {
             cssClass: 'export-xlsx-button',
             onClick: () => {
                 // open import dialog, let it handle rest
-                var dialog = new ExamQuestionImportDialog();
+                var dialog = new ExamQuestionImportDialog(this.ExamId);
                 dialog.element.on('dialogclose', () => {
                     this.refresh();
                     dialog = null;

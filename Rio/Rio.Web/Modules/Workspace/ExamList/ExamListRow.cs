@@ -43,6 +43,13 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
+        [DisplayName("Thumbnail"), Size(2000), ImageUploadEditor(FilenameFormat = "ExamLists/Thumbnail/~")]
+        public string Thumbnail
+        {
+            get => fields.Thumbnail[this];
+            set => fields.Thumbnail[this] = value;
+        }
+
         [DisplayName("Tenant"), NotNull, ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
         [LookupEditor("Administration.Tenant")]
         public int? TenantId
@@ -92,6 +99,7 @@ namespace Rio.Workspace
             public Int32Field Id;
             public StringField Name;
             public StringField Description;          
+            public StringField Thumbnail;          
             public Int32Field IsActive;
             public Int32Field TenantId;
 

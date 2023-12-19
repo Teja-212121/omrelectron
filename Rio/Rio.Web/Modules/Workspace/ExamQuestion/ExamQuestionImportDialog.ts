@@ -1,23 +1,30 @@
-import { Decorators, PropertyDialog, EditorUtils } from "@serenity-is/corelib";
+import { Decorators, EntityDialog, EditorUtils } from "@serenity-is/corelib";
 import { DialogButton, isEmptyOrNull, notifyError, notifyInfo } from '@serenity-is/corelib/q';
-import { ExamQuestionImportForm, ExamQuestionService, ExamService } from "../../ServerTypes/Workspace";
+import { ExamQuestionRow, ExamQuestionImportForm, ExamQuestionService, ExamService } from "../../ServerTypes/Workspace";
 
 @Decorators.registerClass()
-export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
+export class ExamQuestionImportDialog extends EntityDialog<ExamQuestionRow, any> {
     protected getFormKey() { return ExamQuestionImportForm.formKey }
 
     protected form = new ExamQuestionImportForm(this.idPrefix);
-
-    constructor() {
+    public ExamId: number;
+    constructor(ExamId) {
         super();
         this.form = new ExamQuestionImportForm(this.idPrefix);
+        this.ExamId = ExamId;
+        //this.form.ExamId = ExamId;
     
     }
 
     protected getDialogTitle(): string {
         return "Excel Import";
     }
-
+    
+    //loadEntity(entity: ExamQuestionRow) {
+    //    super.loadEntity(entity);
+    //    this.form.ExamId.value = this.ExamId.toString();
+        
+    //}
     protected getDialogButtons(): DialogButton[] {
         return [
             {
@@ -35,7 +42,7 @@ export class ExamQuestionImportDialog extends PropertyDialog<any, any> {
 
                     ExamQuestionService.ExcelImport({
                         FileName: this.form.FileName.value.Filename,
-                        ExamId: Number(this.form.ExamId.value)
+                        ExamId: Number(this.ExamId)
                     }, response => {
                         notifyInfo(
                             'Inserted: ' + (response.Inserted || 0));

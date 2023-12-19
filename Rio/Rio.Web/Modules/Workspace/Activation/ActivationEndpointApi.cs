@@ -68,7 +68,7 @@ namespace Rio.Workspace.Endpoints
 
                 if (teacher != null)
                 {
-                    var examsList = connection.Query<MyRow>(@"select ac.ExamListId as ExamListId, el.Name as ExamListName, sr.SerialKey, ac.ActivationDate, ac.ExpiryDate, ac.TenantId, tn.TenantName as TenantTenantName from Activations ac
+                    var examsList = connection.Query<MyRow>(@"select ac.ExamListId as ExamListId, el.Name as ExamListName,el.IsActive as ExamListIsActive,el.Thumbnail as ExamListThumbnail, sr.SerialKey, ac.ActivationDate, ac.ExpiryDate, ac.TenantId, tn.TenantName as TenantTenantName from Activations ac
 INNER JOIN ExamLists el on el.Id = ac.ExamListId
 INNER JOIN Teachers tr on tr.Id = ac.TeacherId
 INNER JOIN SerialKeys sr on sr.Id = ac.SerialKeyId

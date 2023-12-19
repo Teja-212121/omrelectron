@@ -13,8 +13,10 @@
         IsActive?: number;
         TenantId?: number;
         TenantTenantName?: string;
+        SerialKey?: string;
         ExamListName?: string;
         ExamListDescription?: string;
+        ExamListThumbnail?: string;
         ExamListInsertDate?: string;
         ExamListInsertUserId?: number;
         ExamListUpdateDate?: string;
@@ -73,8 +75,10 @@
             IsActive = "IsActive",
             TenantId = "TenantId",
             TenantTenantName = "TenantTenantName",
+            SerialKey = "SerialKey",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",
+            ExamListThumbnail = "ExamListThumbnail",
             ExamListInsertDate = "ExamListInsertDate",
             ExamListInsertUserId = "ExamListInsertUserId",
             ExamListUpdateDate = "ExamListUpdateDate",
