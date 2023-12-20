@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Services;
 
 namespace Rio.Membership
@@ -15,5 +15,18 @@ namespace Rio.Membership
         public string TwoFactorGuid { get; set; }
         [Ignore]
         public int? TwoFactorCode { get; set; }
+        
+    }
+
+
+    [BasedOnRow(typeof(Administration.UserRow), CheckNames = true)]
+    public class LoginOTPRequest : ServiceRequest
+    {
+        [Placeholder("MobileNumber")]
+        public string MobileNumber { get; set; }
+        [ Required(true), Placeholder("VerificationCode")]
+        public int VerificationCode { get; set; }
+       
+
     }
 }

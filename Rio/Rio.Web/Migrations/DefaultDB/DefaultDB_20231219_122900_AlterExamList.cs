@@ -15,7 +15,7 @@ namespace Rio.Migrations.DefaultDB
 
             Alter.Table("Users")
                 .AddColumn("CountryCode").AsInt16().Nullable()
-                 .AddColumn("SMSVerificationCode").AsInt32().Nullable();
+                 .AddColumn("SMSVerificationCode").AsString(10).Nullable();
         }
         public override void Down()
         {

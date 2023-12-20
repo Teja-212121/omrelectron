@@ -76,6 +76,7 @@ namespace Rio.Membership.Pages
             [FromServices] ISMSService smsService = null)
         {
             return this.ExecuteMethod(() =>
+
             {
                 if (request is null)
                     throw new ArgumentNullException(nameof(request));
@@ -347,6 +348,83 @@ namespace Rio.Membership.Pages
             return BadRequest("Could not create token");
         }
 
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> GenerateTokenViaOTP(LoginOTPRequest request,
+                       [FromServices] IUserPasswordValidator passwordValidator,
+                       [FromServices] IUserRetrieveService userRetriever,
+                      [FromServices] ISqlConnections sqlConnections,
+                       [FromServices] IEmailSender emailSender = null,
+                       [FromServices] ISMSService smsService = null)
+        {
+            bool loggedIn = false;
+            if (ModelState.IsValid)
+            {
+                if (request is null)
+                    throw new ArgumentNullException(nameof(request));
+
+                if (string.IsNullOrEmpty(request.MobileNumber))
+                    throw new ArgumentNullException(nameof(request.MobileNumber));
+
+                if (passwordValidator is null)
+                    throw new ArgumentNullException(nameof(passwordValidator));
+
+                if (userRetriever is null)
+                    throw new ArgumentNullException(nameof(userRetriever));
+                var username = request.MobileNumber;
+                await Task.Run(() =>
+                {
+                   
+                    using (var connectionT = sqlConnections.NewFor<UserRow>())
+                    {
+                        var user=connectionT.TryFirst<UserRow>(UserRow.Fields.MobilePhoneNumber==request.MobileNumber && UserRow.Fields.SMSVerificationCode == request.VerificationCode && UserRow.Fields.MobilePhoneVerified==1);
+                        if (user != null)
+                        {
+                            loggedIn = true;
+                            username = user.Username;
+                        }
+                    }
+                   
+                });
+                if (loggedIn)
+                {
+                    UserDefinition userDefinition = (UserDefinition)userRetriever.ByUsername(username);
+                    var claims = new[]
+                    {
+                        new Claim(JwtRegisteredClaimNames.NameId,userDefinition.Id),
+                        new Claim(ClaimTypes.Name,username),
+                        new Claim(ClaimTypes.NameIdentifier,username),
+                        new Claim(JwtRegisteredClaimNames.UniqueName,username),
+                        new Claim(JwtRegisteredClaimNames.Sub, username),
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                        new Claim("TenantId",userDefinition.TenantId.ToString()),
+                };
+
+                    //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("6LftZ6gUAAAAAD1Ken7Eep9Wv3Z_WISb9lrxh_QN"));
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                    var token = new JwtSecurityToken("https://omrapp.azurewebsites.net", "https://omrapp.azurewebsites.net",
+                      claims,
+                      expires: DateTime.Now.AddDays(365),
+                      signingCredentials: creds);
+
+                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+                }
+                else
+                {
+                    //var error = new ServiceError();
+                    //error.Code = "400A";
+                    //error.Message = "Admission already taken";
+
+                    return BadRequest(Texts.Validation.AuthenticationError);
+
+                }
+            }
+            return BadRequest("Could not create token");
+        }
+
         [HttpPost]
         public RetrieveResponse<UserDefinition> UserData([FromServices] IUserRetrieveService userRetriever, [FromServices] ISqlConnections sqlConnections)
         {
@@ -389,6 +467,91 @@ namespace Rio.Membership.Pages
 
 
         #endregion
+
+        [HttpPost,AllowAnonymous, IgnoreAntiforgeryToken]
+        public RetrieveResponse<OTPResponse> GetOTP(GetOtpRequest request,[FromServices] ISqlConnections sqlConnections)
+        {
+            //var entity = new MyRow();
+            using (var connectionT = sqlConnections.NewFor<UserRow>())
+            {
+                if (string.IsNullOrEmpty(request.MobileNumber))
+                    throw new ValidationError("Mobile number is mandatory");
+                var user = connectionT.TryFirst<UserRow>(UserRow.Fields.MobilePhoneNumber == request.MobileNumber);
+                if (user == null)
+                    throw new ValidationError("No User Found");
+                if (user .IsActive==0)
+                    throw new ValidationError(" User Is InActive");
+                if (user.MobilePhoneVerified == false)
+                    throw new ValidationError(" Phone number is not Verified");
+                if (user.Countrycode != CountryCode.India91)
+                    throw new ValidationError(" Country Code must be India");
+                
+                var smsOtp = Password.RandomNumber(6);
+                //user.EmailVerificationCode = emailotp;
+                user.SMSVerificationCode = smsOtp;
+                connectionT.UpdateById<UserRow>(user);
+                var response = new RetrieveResponse<OTPResponse>();
+                response.Entity = new OTPResponse();
+                response.Entity.SMSVerificationCode = smsOtp;
+                //response.Entity.EmailVerificationCode = emailotp;
+                //response.Entity.UserId = user.UserId.Value;
+
+                #region SMS
+                if (user.Countrycode != null)
+                    if (user.Countrycode == CountryCode.India91)
+                    {
+                        try
+                        {
+                            string source = "RioPlay";
+                            // string requestUrl = "http://vas.mobinext.in/vendorsms/pushsms.aspx?";
+                            string requestUrl = "http://vas.sevenomedia.com/domestic/sendsms/bulksms_v2.php";
+                            HttpWebRequest SMSrequest = (HttpWebRequest)WebRequest.Create(requestUrl);
+                            SMSrequest.Method = "POST";
+                            SMSrequest.ContentType = "application/x-www-form-urlencoded";
+                            //MobileNo = "91" + request.Phone;
+                            string MobileNo = user.MobilePhoneNumber;
+                            MobileNo = "91" + MobileNo;
+                            user.DisplayName = user.DisplayName.Replace(" ", "");
+                            string content = "Dear " + user.DisplayName + " your SMS Verification Code for Rioplay is: " + smsOtp;
+                            //string postData = "user=dilipk&password=qwerty123&msisdn=" + row.To + "&sid=BLBHRT&msg=" + row.Body + "&fl=0&gwid=2";
+                            //string postData = "authkey=325575AKW63CoJc35e8c23e4&&mobiles=" + MobileNo + "&message=" + row.Body + "&sender=BLBHRT&route=4&country=91";
+                            string postData = "apikey=YW50YXJneWFuOjNxMllQZ09J&type=TEXT&sender=RIOPLY&entityId=1201161191548157480&templateId=1207163963160871141&mobile=" + MobileNo + "&message=" + content;
+                            postData = postData.Replace("##toMobile##", MobileNo);
+                            postData = postData.Replace("##smsBody##", content);
+                            postData = postData.Replace("##source##", source);
+                            byte[] SMSbytes = Encoding.ASCII.GetBytes(postData);
+
+                            //byte[] SMSbytes = Encoding.UTF8.GetBytes(postData);
+                            SMSrequest.ContentLength = SMSbytes.Length;
+
+                            Stream requestStream = SMSrequest.GetRequestStream();
+                            requestStream.Write(SMSbytes, 0, SMSbytes.Length);
+                            requestStream.Close();
+
+                            WebResponse response1 = SMSrequest.GetResponse();
+                            Stream responseStream = response1.GetResponseStream();
+
+                            StreamReader reader = new StreamReader(responseStream);
+                            var result = reader.ReadToEnd();
+                            responseStream.Dispose();
+                            reader.Dispose();
+                            requestStream.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                #endregion
+
+                
+
+
+
+
+                return response;
+            }
+        }
 
         [HttpPost,  Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme), IgnoreAntiforgeryToken]
         public RetrieveResponse<GetOTPResponse> GetVerificationCode( [FromServices] ISqlConnections sqlConnections)
@@ -649,10 +812,21 @@ namespace Rio.Membership.Pages
         public int UserId { get; set; }
         public int OTP { get; set; }
     }
+
+    public class GetOtpRequest
+    {
+        public string MobileNumber { get; set; }
+    }
     public class GetOTPResponse
     {
         public int UserId { get; set; }
         public string EmailVerificationCode { get; set; }
+        public string SMSVerificationCode { get; set; }
+    }
+    public class OTPResponse
+    {
+        //public int UserId { get; set; }
+        //public string EmailVerificationCode { get; set; }
         public string SMSVerificationCode { get; set; }
     }
 }

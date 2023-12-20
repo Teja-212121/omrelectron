@@ -1,3 +1,4 @@
+using Rio.Web.Enums;
 using Serenity.ComponentModel;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Rio.Administration.Forms
         public string Email { get; set; }
         [LookupEditor(typeof(RoleRow), Multiple = true)]
         public List<int> Roles { get; set; }
+        public CountryCode? Countrycode { get; set; }
         public string MobilePhoneNumber { get; set; }
         public bool MobilePhoneVerified { get; set; }
         public TwoFactorAuthType TwoFactorAuth { get; set; }

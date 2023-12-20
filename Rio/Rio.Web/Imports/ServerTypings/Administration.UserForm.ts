@@ -4,6 +4,7 @@
         DisplayName: Serenity.StringEditor;
         Email: Serenity.EmailAddressEditor;
         Roles: Serenity.LookupEditor;
+        Countrycode: Serenity.EnumEditor;
         MobilePhoneNumber: Serenity.StringEditor;
         MobilePhoneVerified: Serenity.BooleanEditor;
         TwoFactorAuth: Serenity.EnumEditor;
@@ -28,8 +29,8 @@
                 var w0 = s.StringEditor;
                 var w1 = s.EmailAddressEditor;
                 var w2 = s.LookupEditor;
-                var w3 = s.BooleanEditor;
-                var w4 = s.EnumEditor;
+                var w3 = s.EnumEditor;
+                var w4 = s.BooleanEditor;
                 var w5 = s.ImageUploadEditor;
                 var w6 = s.PasswordEditor;
 
@@ -38,9 +39,10 @@
                     'DisplayName', w0,
                     'Email', w1,
                     'Roles', w2,
+                    'Countrycode', w3,
                     'MobilePhoneNumber', w0,
-                    'MobilePhoneVerified', w3,
-                    'TwoFactorAuth', w4,
+                    'MobilePhoneVerified', w4,
+                    'TwoFactorAuth', w3,
                     'UserImage', w5,
                     'Password', w6,
                     'PasswordConfirm', w6,
