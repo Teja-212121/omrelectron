@@ -9,6 +9,7 @@
         ValidDate?: string;
         Note?: string;
         EStatus?: Web.Enums.KeyStatus;
+        TenantId?: number;
         IsActive?: number;
         ExamListName?: string;
         ExamListDescription?: string;
@@ -48,6 +49,7 @@
             ValidDate = "ValidDate",
             Note = "Note",
             EStatus = "EStatus",
+            TenantId = "TenantId",
             IsActive = "IsActive",
             ExamListName = "ExamListName",
             ExamListDescription = "ExamListDescription",

@@ -12,8 +12,8 @@ namespace Rio.Workspace
     [DisplayName("Serial Key"), InstanceName("Serial Key")]
     [ReadPermission(PermissionKeys.ActivationManagement.View)]
     [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
-    [LookupScript("Workspace.SerialKey")]
-    public sealed class SerialKeyRow : LoggingRow<SerialKeyRow.RowFields>, IIdRow, INameRow
+    [LookupScript("Workspace.SerialKey",LookupType = typeof(MultiTenantRowLookupScript<>), Expiration = 1)]
+    public sealed class SerialKeyRow : LoggingRow<SerialKeyRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         [SortOrder(1, descending: true)]
@@ -85,6 +85,18 @@ namespace Rio.Workspace
         {
             get => fields.IsActive[this];
             set => fields.IsActive[this] = value;
+        }
+
+        [DisplayName("Tenant"), NotNull, ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
+        public int? TenantId
+        {
+            get => fields.TenantId[this];
+            set => fields.TenantId[this] = value;
+        }
+
+        public Int32Field TenantIdField
+        {
+            get => Fields.TenantId;
         }
 
         [DisplayName("Exam List Name"), Expression("jExamList.[Name]")]
@@ -164,7 +176,7 @@ namespace Rio.Workspace
             public DateTimeField ValidDate;
             public StringField Note;
             public Int32Field EStatus;
-           
+            public Int32Field TenantId;
             public Int32Field IsActive;
 
             public StringField ExamListName;

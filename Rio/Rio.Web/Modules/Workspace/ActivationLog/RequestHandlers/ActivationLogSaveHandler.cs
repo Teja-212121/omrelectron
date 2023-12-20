@@ -56,10 +56,10 @@ namespace Rio.Workspace
                     ExamListRow examList = Connection.Single<ExamListRow>(ExamListRow.Fields.Id == serialkeyrow.ExamListId.Value);
 
                     //CHECK FOR SERIALKEY
-                    var activation = Connection.TryFirst<ActivationRow>(ActivationRow.Fields.SerialKeyId == serialkeyrow.Id.Value && ActivationRow.Fields.ExamListId == serialkeyrow.ExamListId.Value && ActivationRow.Fields.TeacherId == Convert.ToInt32(User.GetIdentifier()));
+                    var activation = Connection.TryFirst<ActivationRow>( ActivationRow.Fields.ExamListId == serialkeyrow.ExamListId.Value && ActivationRow.Fields.TeacherId == teacher.Id.Value);
                     if (activation != null)
                     {
-                        throw new ValidationError("ERROR: Teacher already have activated SerialKey " + serialkeyrow.SerialKey + " for " + examList.Name);
+                        throw new ValidationError("ERROR: Teacher already have activation  for " + examList.Name);
                     }
                     else
                     {
@@ -147,7 +147,7 @@ namespace Rio.Workspace
                 if (actvation != null)
                 {
                    
-                    Connection.UpdateById<ActivationRow>(actvation);
+                    //Connection.UpdateById<ActivationRow>(actvation);
                     Response.EntityId = ActvtnId;
                 }
             }

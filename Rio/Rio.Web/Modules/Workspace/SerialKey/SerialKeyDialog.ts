@@ -1,4 +1,4 @@
-import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Decorators, EditorUtils, EntityDialog } from '@serenity-is/corelib';
 import { isEmptyOrNull } from '@serenity-is/corelib/q';
 import { SerialKeyForm, SerialKeyRow, SerialKeyService } from '../../ServerTypes/Workspace';
 
@@ -22,7 +22,7 @@ export class SerialKeyDialog extends EntityDialog<SerialKeyRow, any> {
         //debugger;
         if (this.isNew()) {
             this.form.EStatus.set_readOnly(true);
-           /* this.form.EStatus.value = '2';*/
+            /* this.form.EStatus.value = '2';*/
             this.form.ValidityType.changeSelect2(e => {
                 var vValidityType = this.form.ValidityType.value;
                 if (isEmptyOrNull(vValidityType)) {
@@ -44,6 +44,12 @@ export class SerialKeyDialog extends EntityDialog<SerialKeyRow, any> {
                     this.form.ValidDate.getGridField().toggle(false);
                 }
             });
+        }
+        else {
+            
+            EditorUtils.setReadonly(this.form.SerialKey.element, true);
+            EditorUtils.setReadonly(this.form.ExamListId.element, true);
+            
         }
 
         this.form.ValidityType.change(e => {

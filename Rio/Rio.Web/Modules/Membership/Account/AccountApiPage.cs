@@ -20,6 +20,7 @@ using Serenity.Data;
 using Serenity.Extensions;
 using Serenity.Services;
 using Serenity.Web;
+using StackExchange.Exceptional.Internal;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
@@ -366,6 +367,8 @@ namespace Rio.Membership.Pages
 
                 if (string.IsNullOrEmpty(request.MobileNumber))
                     throw new ArgumentNullException(nameof(request.MobileNumber));
+                if (request.VerificationCode==0)
+                    throw new ArgumentNullException(nameof(request.VerificationCode));
 
                 if (passwordValidator is null)
                     throw new ArgumentNullException(nameof(passwordValidator));
@@ -478,13 +481,13 @@ namespace Rio.Membership.Pages
                     throw new ValidationError("Mobile number is mandatory");
                 var user = connectionT.TryFirst<UserRow>(UserRow.Fields.MobilePhoneNumber == request.MobileNumber);
                 if (user == null)
-                    throw new ValidationError("No User Found");
+                    throw new ValidationError("InvalidMobileNumber", "UserNotFound");
                 if (user .IsActive==0)
-                    throw new ValidationError(" User Is InActive");
+                    throw new ValidationError("InActiveUser", "User Is InActive");
                 if (user.MobilePhoneVerified == false)
-                    throw new ValidationError(" Phone number is not Verified");
+                    throw new ValidationError("NotVerified", "Phone number is not Verified");
                 if (user.Countrycode != CountryCode.India91)
-                    throw new ValidationError(" Country Code must be India");
+                    throw new ValidationError("Country Code must be India");
                 
                 var smsOtp = Password.RandomNumber(6);
                 //user.EmailVerificationCode = emailotp;
@@ -714,6 +717,7 @@ namespace Rio.Membership.Pages
                     PasswordHash = hash,
                     PasswordSalt = salt,
                     Countrycode = request.Countrycode,
+                    MobilePhoneNumber=request.Mobile,
                     IsActive = 1,
                     InsertDate = DateTime.Now,
                     InsertUserId = 1,

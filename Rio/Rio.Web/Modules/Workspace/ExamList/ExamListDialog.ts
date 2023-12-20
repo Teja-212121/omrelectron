@@ -1,4 +1,4 @@
-import { Decorators, EntityDialog, TabsExtensions } from '@serenity-is/corelib';
+import { Decorators,  EntityDialog, TabsExtensions } from '@serenity-is/corelib';
 import { ExamListForm, ExamListRow, ExamListService } from '../../ServerTypes/Workspace';
 import { ExamListExamsGrid } from '../ExamListExams/ExamListExamsGrid';
 
@@ -47,6 +47,8 @@ export class ExamListDialog extends EntityDialog<ExamListRow, any> {
         TabsExtensions.setDisabled(this.tabs, 'ExamListExams', this.isNewOrDeleted());
 
         this.examListExamsGrid.ExamListId = entity.Id;
+        
+        
     }
 
     protected afterLoadEntity() {

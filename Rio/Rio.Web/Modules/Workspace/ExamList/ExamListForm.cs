@@ -14,7 +14,7 @@ namespace Rio.Workspace.Forms
         [HalfWidth]
         public string Description { get; set; }
         public string Thumbnail { get; set; }
-        [HalfWidth]
-        public int TenantId { get; set; }
+        //[HalfWidth]
+        //public int TenantId { get; set; }
     }
 }

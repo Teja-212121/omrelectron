@@ -18,13 +18,23 @@ namespace Rio.Workspace
         protected override void BeforeSave()
         {
             base.BeforeSave();
-
-            var code = Connection.TryFirst<CouponCodeRow>(CouponCodeRow.Fields.Code == Row.Code);
-
-            if (code != null && code.Code == Row.Code)
+            if(IsCreate)
             {
-                throw new ValidationError("This Code already exists");
+                var code = Connection.TryFirst<CouponCodeRow>(CouponCodeRow.Fields.Code == Row.Code);
+
+                if (code != null )
+                {
+                    throw new ValidationError("This Code already exists");
+                }
+
             }
+            //if(Row.ValidityInDays ==null && Row.ValidDate== null)
+            //{
+
+            //    throw new ValidationError(" ValidityInDays and Valid Date both cannot be null");
+            //}
+
+           
          
         }
 

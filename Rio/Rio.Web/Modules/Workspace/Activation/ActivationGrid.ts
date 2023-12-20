@@ -1,4 +1,4 @@
-﻿import { Decorators, EntityGrid } from '@serenity-is/corelib';
+import { Decorators, EntityGrid } from '@serenity-is/corelib';
 import { ActivationColumns, ActivationRow, ActivationService } from '../../ServerTypes/Workspace';
 import { ActivationDialog } from './ActivationDialog';
 
@@ -13,5 +13,13 @@ export class ActivationGrid extends EntityGrid<ActivationRow, any> {
 
     constructor(container: JQuery) {
         super(container);
+    }
+
+    protected getButtons() {
+        const buttons = super.getButtons();
+        buttons.splice(0, 3);
+
+       
+        return buttons;
     }
 }

@@ -12,7 +12,8 @@ namespace Rio.Workspace
     [DisplayName("Coupon Code"), InstanceName("Coupon Code")]
     [ReadPermission(PermissionKeys.ActivationManagement.View)]
     [ModifyPermission(PermissionKeys.ActivationManagement.Modify)]
-    public sealed class CouponCodeRow : LoggingRow<CouponCodeRow.RowFields>, IIdRow, INameRow
+    [LookupScript("Workspace.CouponCodes", Permission = "?", LookupType = typeof(MultiTenantRowLookupScript<>),Expiration = 1)]
+    public sealed class CouponCodeRow : LoggingRow<CouponCodeRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
         public int? Id
@@ -92,6 +93,19 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
+        [DisplayName("Tenant"), NotNull, ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
+        
+        public int? TenantId
+        {
+            get => fields.TenantId[this];
+            set => fields.TenantId[this] = value;
+        }
+
+        public Int32Field TenantIdField
+        {
+            get => Fields.TenantId;
+        }
+
         [DisplayName("Exam List Name"), Expression("jExamList.[Name]")]
         public string ExamListName
         {
@@ -169,6 +183,7 @@ namespace Rio.Workspace
             public Int32Field ValidityInDays;
             public DateTimeField ValidDate;
             public Int32Field ConsumedCount;
+            public Int32Field TenantId;
             public DateTimeField CouponValidityDate;
            
             public Int32Field IsActive;

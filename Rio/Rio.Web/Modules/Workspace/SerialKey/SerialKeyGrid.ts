@@ -21,7 +21,7 @@ export class SerialKeyGrid extends EntityGrid<SerialKeyRow, any> {
 
     protected getButtons() {
         const buttons = super.getButtons();
-        buttons.splice(1, 3);
+        buttons.splice(0, 3);
 
         buttons.push({
             title: 'Generate SerialKey',

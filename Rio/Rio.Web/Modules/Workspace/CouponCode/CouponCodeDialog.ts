@@ -1,4 +1,4 @@
-import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { Decorators, EditorUtils, EntityDialog } from '@serenity-is/corelib';
 import { isEmptyOrNull } from '@serenity-is/corelib/q';
 import { CouponCodeForm, CouponCodeRow, CouponCodeService } from '../../ServerTypes/Workspace';
 
@@ -27,7 +27,7 @@ export class CouponCodeDialog extends EntityDialog<CouponCodeRow, any> {
                 }
 
                 if (vValidityType == '2') {
-                  
+
                     this.form.ValidDate.getGridField().toggle(true);
                     this.form.ValidityInDays.getGridField().toggle(false);
                 }
@@ -40,6 +40,10 @@ export class CouponCodeDialog extends EntityDialog<CouponCodeRow, any> {
                     this.form.ValidDate.getGridField().toggle(false);
                 }
             });
+        }
+        else {
+            //this.form.Code.element.
+            EditorUtils.setReadonly(this.form.Code.element, true);
         }
 
         this.form.ValidityType.change(e => {

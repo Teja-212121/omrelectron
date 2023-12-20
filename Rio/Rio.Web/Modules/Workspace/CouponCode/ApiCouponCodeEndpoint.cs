@@ -54,7 +54,7 @@ namespace Rio.Workspace.Endpoints
 
             var Teacher= uow.Connection.TryFirst<TeachersRow>(TeachersRow.Fields.UserId == User.GetIdentifier());
 
-            var activationt = uow.Connection.TryFirst<ActivationRow>(ActivationRow.Fields.ExamListId == couponcode.ExamListId.Value && ActivationRow.Fields.TeacherId == Teacher.Id.Value && ActivationRow.Fields.ExpiryDate >= DateTime.Today);
+            var activationt = uow.Connection.TryFirst<ActivationRow>(ActivationRow.Fields.ExamListId == couponcode.ExamListId.Value && ActivationRow.Fields.TeacherId == Teacher.Id.Value );
             if (activationt != null)
                 throw new ValidationError("User Already have activation");
 
@@ -91,7 +91,7 @@ namespace Rio.Workspace.Endpoints
             keygenrow.ValidityInDays = couponcode.ValidityInDays;
             keygenrow.ValidDate = couponcode.ValidDate;
             
-            keygenrow.EStatus = KeyStatus.Open;
+            keygenrow.EStatus = KeyStatus.Activated;
             
             keygenrow.ExamListId = couponcode.ExamListId;
             
@@ -113,7 +113,7 @@ namespace Rio.Workspace.Endpoints
             serialkeyrow.ValidDate = couponcode.ValidDate;
             serialkeyrow.Note = "generated for coupon code:" + couponcode.Code;
             serialkeyrow.SerialKey = "To Be generated";
-            serialkeyrow.EStatus = KeyStatus.Open;
+            serialkeyrow.EStatus = KeyStatus.Activated;
             serialkeyrow.InsertDate = DateTime.Now;
             serialkeyrow.InsertUserId = Convert.ToInt32(User.GetIdentifier());
             serialkeyrow.IsActive = 1;

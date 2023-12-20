@@ -9,6 +9,7 @@
         ValidityInDays?: number;
         ValidDate?: string;
         ConsumedCount?: number;
+        TenantId?: number;
         CouponValidityDate?: string;
         IsActive?: number;
         ExamListName?: string;
@@ -29,6 +30,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Code';
         export const localTextPrefix = 'Workspace.CouponCode';
+        export const lookupKey = 'Workspace.CouponCodes';
+
+        export function getLookup(): Q.Lookup<CouponCodeRow> {
+            return Q.getLookup<CouponCodeRow>('Workspace.CouponCodes');
+        }
         export const deletePermission = 'Workspace:ActivationManagement:Modify';
         export const insertPermission = 'Workspace:ActivationManagement:Modify';
         export const readPermission = 'Workspace:ActivationManagement:View';
@@ -44,6 +50,7 @@
             ValidityInDays = "ValidityInDays",
             ValidDate = "ValidDate",
             ConsumedCount = "ConsumedCount",
+            TenantId = "TenantId",
             CouponValidityDate = "CouponValidityDate",
             IsActive = "IsActive",
             ExamListName = "ExamListName",

@@ -11,11 +11,12 @@ namespace Rio.Workspace.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public int Id { get; set; }
-        public string ExamListName { get; set; }
-        public string TeacherFirstName { get; set; }
         [EditLink]
-        public string DeviceId { get; set; }
-        public string DeviceDetails { get; set; }
+        public string ExamListName { get; set; }
+        public string TeacherFullName { get; set; }
+        
+        public string TeacherEmail { get; set; }
+        public string TeacherMobile { get; set; }
         [QuickFilter]
         public DateTime ActivationDate { get; set; }
         [QuickFilter]

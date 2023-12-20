@@ -43,11 +43,10 @@ using MyPage = Rio.Common.Pages;
 [assembly: NavigationLink(8004, "Reports/Exam Group Wise Results", typeof(MyPages.ExamGroupWiseResultController), icon: "fa-circle-o")]
 [assembly: NavigationLink(8005, "Reports/Exam Rank Wise Results", typeof(MyPages.ExamRankWiseResultController), icon: "fa-circle-o")]
 
-/*[assembly: NavigationMenu(8000, "Users", icon: "fa-Users")]*/
-
+[assembly: NavigationMenu(6100, "Users", icon:"fa-Users")]
+[assembly: NavigationLink(6101, "Users/Teachers", typeof(MyPages.TeachersController), icon: "fa-User")]
 
 [assembly: NavigationMenu(10000, "Workspace", icon: "fa-building-o")]
-[assembly: NavigationLink(10001, "Workspace/Teachers", typeof(MyPages.TeachersController), icon: "fa-circle-o")]
 [assembly: NavigationLink(10002, "Workspace/Exam Teachers", typeof(MyPages.ExamTeachersController), icon: "fa-circle-o")]
 [assembly: NavigationLink(10003, "Workspace/Theory Exams", typeof(MyPages.TheoryExamsController), icon: "fa-circle-o")]
 [assembly: NavigationLink(10004, "Workspace/Theory Exam Sections", typeof(MyPages.TheoryExamSectionsController), icon: "fa-circle-o")]
@@ -58,5 +57,5 @@ using MyPage = Rio.Common.Pages;
 //[assembly: NavigationLink(2002, "Sheets/Select Sheet Type", typeof(MyPages.SelectSheetTypeController), icon: "fa-circle-o")]
 //[assembly: NavigationLink(int.MaxValue, "Workspace/Scanned Batch As Per Date", typeof(MyPages.ScannedBatchAsPerDateController), icon: null)]
 [assembly: NavigationLink(10008, "Workspace/Get Scan Data", typeof(MyPages.GetScanDataController), icon: "fa-circle-o")]
-[assembly: NavigationLink(10009, "Workspace/Settings", typeof(MyPages.SettingsController), icon: "fa-circle-o")]
-[assembly: NavigationLink(int.MaxValue, "Workspace/Key Gen As", typeof(MyPages.KeyGenAsController), icon: null)]
+//[assembly: NavigationLink(10009, "Workspace/Settings", typeof(MyPages.SettingsController), icon: "fa-circle-o")]
+//[assembly: NavigationLink(int.MaxValue, "Workspace/Key Gen As", typeof(MyPages.KeyGenAsController), icon: null)]
