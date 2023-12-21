@@ -1,0 +1,19 @@
+@inject Serenity.ITextLocalizer Localizer
+@{
+    ViewData["Title"] = "SerialKey";
+}
+@section Head {
+    @Html.StyleBundle("Pages/SerialKey")
+}
+<script type="module" src=@Html.ResolveWithHash("~/esm/Modules/Workspace/SerialKey/SerialKeyPage.js")></script>
+@Html.ScriptBundle("Base")
+@Html.ScriptBundle("Site")
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new ScannedSheetGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

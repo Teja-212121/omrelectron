@@ -86,6 +86,11 @@ namespace MVC
                 public const string ScannedSheetIndex = "~/Modules/Workspace/ScannedSheet/ScannedSheetIndex.cshtml";
             }
 
+            public static class SerialKey
+            {
+                public const string SerialKeyIndex = "~/Modules/Workspace/SerialKey/SerialKeyIndex.cshtml";
+            }
+
         }
 
     }
