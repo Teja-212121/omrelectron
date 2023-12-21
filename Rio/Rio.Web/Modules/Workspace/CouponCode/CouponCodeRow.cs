@@ -93,7 +93,7 @@ namespace Rio.Workspace
             set => fields.IsActive[this] = value;
         }
 
-        [DisplayName("Tenant"), NotNull, ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
+        [DisplayName("Tenant"),  ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
         
         public int? TenantId
         {

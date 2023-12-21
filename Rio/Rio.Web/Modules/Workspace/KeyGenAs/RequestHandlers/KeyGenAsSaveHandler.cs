@@ -23,11 +23,14 @@ namespace Rio.Workspace
             base.AfterSave();
             if (IsCreate)
             {
+                var ExamList = Connection.TryFirst<ExamListRow>(ExamListRow.Fields.Id == Row.ExamListId.Value);
             
                 for (int i=0;i<Row.Quantity;i++)
                 {
 
                     var serialkeyrow = new SerialKeyRow();
+                    if (Row.ValidityType == EValidityType.Unlimited)
+                        Row.ValidDate = new DateTime(2099, 12, 31); 
                     
                     serialkeyrow.KeyGenAsId = Row.Id;
                     serialkeyrow.ExamListId = Row.ExamListId;
@@ -40,6 +43,7 @@ namespace Rio.Workspace
                     serialkeyrow.InsertDate = DateTime.Now;
                     serialkeyrow.InsertUserId =Convert.ToInt32( User.GetIdentifier());
                     serialkeyrow.IsActive = 1;
+                    serialkeyrow.TenantId = ExamList.TenantId;
 
                     var Id = (int)Connection.InsertAndGetID(serialkeyrow);
                     var PredefinedSerialkeys = Connection.TryFirst<PreDefinedKeyRow>(PreDefinedKeyRow.Fields.Id == Id);

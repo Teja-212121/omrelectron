@@ -673,8 +673,17 @@ namespace Rio.Membership.Pages
 
                 if (string.IsNullOrWhiteSpace(request.Email))
                     throw new ArgumentNullException(nameof(request.Email));
-                if(request.Countrycode==null)
+                if (request.Countrycode == null)
+                {
+                    //ServiceResponse serviceResponse = new ServiceResponse();
+                    //serviceResponse.Error = new ServiceError()
+                    //{
+                    //    Code = "403",
+                    //    Message = "Country Code  is Mandatory"
+                    //};
+                    //return serviceResponse;
                     throw new ValidationError("Country Code is Mandatory");
+                }
                 if (string.IsNullOrEmpty(request.Password))
                     throw new ArgumentNullException(nameof(request.Password));
 

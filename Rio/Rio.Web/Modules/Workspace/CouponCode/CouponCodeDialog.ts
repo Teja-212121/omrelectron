@@ -18,56 +18,65 @@ export class CouponCodeDialog extends EntityDialog<CouponCodeRow, any> {
     loadEntity(entity: CouponCodeRow) {
         super.loadEntity(entity);
         //debugger;
-        if (this.isNew()) {
-            this.form.ValidityType.changeSelect2(e => {
-                var vValidityType = this.form.ValidityType.value;
-                if (isEmptyOrNull(vValidityType)) {
-                    this.form.ValidityInDays.getGridField().toggle(false);
-                    this.form.ValidDate.getGridField().toggle(false);
-                }
-
-                if (vValidityType == '2') {
-
-                    this.form.ValidDate.getGridField().toggle(true);
-                    this.form.ValidityInDays.getGridField().toggle(false);
-                }
-                else if (vValidityType == '3') {
-                    this.form.ValidDate.getGridField().toggle(false);
-                    this.form.ValidityInDays.getGridField().toggle(true);
-                }
-                else {
-                    this.form.ValidityInDays.getGridField().toggle(false);
-                    this.form.ValidDate.getGridField().toggle(false);
-                }
-            });
-        }
-        else {
-            //this.form.Code.element.
+        if (this.isNew()==false) {
             EditorUtils.setReadonly(this.form.Code.element, true);
+           
         }
+       
 
-        this.form.ValidityType.change(e => {
+        this.form.ValidityType.changeSelect2(e => {
             var vValidityType = this.form.ValidityType.value;
-          
+            if (isEmptyOrNull(vValidityType)) {
                 this.form.ValidityInDays.getGridField().toggle(false);
                 this.form.ValidDate.getGridField().toggle(false);
-            
+            }
 
             if (vValidityType == '2') {
-           
+
                 this.form.ValidDate.getGridField().toggle(true);
                 this.form.ValidityInDays.getGridField().toggle(false);
+                EditorUtils.setRequired(this.form.ValidDate, true);
+                EditorUtils.setRequired(this.form.ValidityInDays, false);
             }
             else if (vValidityType == '3') {
                 this.form.ValidDate.getGridField().toggle(false);
                 this.form.ValidityInDays.getGridField().toggle(true);
+                EditorUtils.setRequired(this.form.ValidityInDays, true);
+                EditorUtils.setRequired(this.form.ValidDate, false);
             }
             else {
                 this.form.ValidityInDays.getGridField().toggle(false);
                 this.form.ValidDate.getGridField().toggle(false);
+                EditorUtils.setRequired(this.form.ValidityInDays, false);
+                EditorUtils.setRequired(this.form.ValidDate, false);
             }
-
         });
+
+        var vValidityType = this.form.ValidityType.value;
+        if (isEmptyOrNull(vValidityType)) {
+            this.form.ValidityInDays.getGridField().toggle(false);
+            this.form.ValidDate.getGridField().toggle(false);
+        }
+
+        if (vValidityType == '2') {
+
+            this.form.ValidDate.getGridField().toggle(true);
+            this.form.ValidityInDays.getGridField().toggle(false);
+            EditorUtils.setRequired(this.form.ValidDate, true);
+            EditorUtils.setRequired(this.form.ValidityInDays, false);
+        }
+        else if (vValidityType == '3') {
+            this.form.ValidDate.getGridField().toggle(false);
+            this.form.ValidityInDays.getGridField().toggle(true);
+            EditorUtils.setRequired(this.form.ValidityInDays, true);
+            EditorUtils.setRequired(this.form.ValidDate, false);
+        }
+        else {
+            this.form.ValidityInDays.getGridField().toggle(false);
+            this.form.ValidDate.getGridField().toggle(false);
+            EditorUtils.setRequired(this.form.ValidityInDays, false);
+            EditorUtils.setRequired(this.form.ValidDate, false);
+        }
 
     }
 

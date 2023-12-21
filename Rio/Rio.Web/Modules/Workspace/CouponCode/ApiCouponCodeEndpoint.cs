@@ -58,13 +58,13 @@ namespace Rio.Workspace.Endpoints
             if (activationt != null)
                 throw new ValidationError("User Already have activation");
 
-            
+
 
             //if (couponcode.ValidityType != null)
             //{
             //    ValidityInDays = couponcode.ValidityInDays;
             //}
-           
+
             ////if (Row.EDeviceLockingType == null)
             ////    Row.EDeviceLockingType = EDeviceLockingType.UnlimitedDevices;
             //if (couponcode.ValidityType == ValidityType.FixedDate)
@@ -83,8 +83,9 @@ namespace Rio.Workspace.Endpoints
             //    days = ValidityInDays.Value;
             //}
 
-          
 
+            if (couponcode.ValidityType == EValidityType.Unlimited)
+                couponcode.ValidDate = new DateTime(2099, 12, 31);
             KeyGenAsRow keygenrow = new KeyGenAsRow();
             
             keygenrow.ValidityType = couponcode.ValidityType;
@@ -117,6 +118,7 @@ namespace Rio.Workspace.Endpoints
             serialkeyrow.InsertDate = DateTime.Now;
             serialkeyrow.InsertUserId = Convert.ToInt32(User.GetIdentifier());
             serialkeyrow.IsActive = 1;
+            serialkeyrow.TenantId = ExamList.TenantId;
             //serialkeyrow.Te = 1;
 
             var Id = (int)uow.Connection.InsertAndGetID(serialkeyrow);
@@ -163,7 +165,7 @@ namespace Rio.Workspace.Endpoints
                         ExpiryDate = couponcode.ValidDate.Value;
                     }
                     else {
-                        ExpiryDate = null;
+                        ExpiryDate = new DateTime(2099, 12, 31); ;
 
                     }
                     //activationLog.ValidFrom = UtcDate;
