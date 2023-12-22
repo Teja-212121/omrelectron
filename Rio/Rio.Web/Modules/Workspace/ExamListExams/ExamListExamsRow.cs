@@ -39,7 +39,7 @@ namespace Rio.Workspace
             set => fields.ExamId[this] = value;
         }
 
-        [DisplayName("Tenant"), NotNull, ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
+        [DisplayName("Tenant"),  ForeignKey("Tenants", "TenantId"), LeftJoin("jTenant"), TextualField("TenantTenantName")]
         [LookupEditor("Administration.Tenant")]
         public int? TenantId
         {
