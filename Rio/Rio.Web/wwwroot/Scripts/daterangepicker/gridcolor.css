@@ -17,3 +17,48 @@
 .s-Workspace-ScannedSheetGrid .Opensheet .slick-cell a {
   background-color: lightgrey;
 }
+
+.s-Workspace-ScannedSheetGrid .failedsheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .failedsheet .slick-cell a {
+  background-color: red;
+}
+
+.s-Workspace-ScannedSheetGrid .warningsheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .warningsheet .slick-cell a {
+  background-color: orange;
+}
+
+.s-Workspace-ScannedSheetGrid .successsheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .successsheet .slick-cell a {
+  background-color: green;
+}
+
+.s-Workspace-ScannedSheetGrid .Opensheet .slick-cell,
+.s-Workspace-ScannedSheetGrid .Opensheet .slick-cell a {
+  background-color: lightgrey;
+}
+
+.s-Workspace-SerialKeyGrid .created .slick-cell,
+.s-Workspace-SerialKeyGrid .created .slick-cell a {
+  background-color: lightyellow;
+}
+
+.s-Workspace-SerialKeyGrid .open .slick-cell,
+.s-Workspace-SerialKeyGrid .open .slick-cell a {
+  background-color: deepskyblue;
+}
+
+.s-Workspace-SerialKeyGrid .activated .slick-cell,
+.s-Workspace-SerialKeyGrid .activated .slick-cell a {
+  background-color: lightgreen;
+}
+
+.s-Workspace-SerialKeyGrid .disabled .slick-cell,
+.s-Workspace-SerialKeyGrid .disabled .slick-cell a {
+  background-color: lightgrey;
+}
+
+.s-Workspace-SerialKeyGrid .expired .slick-cell,
+.s-Workspace-SerialKeyGrid .expired .slick-cell a {
+  background-color: red;
+}

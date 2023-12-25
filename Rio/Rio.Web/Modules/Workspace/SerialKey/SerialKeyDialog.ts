@@ -20,30 +20,11 @@ export class SerialKeyDialog extends EntityDialog<SerialKeyRow, any> {
     loadEntity(entity: SerialKeyRow) {
         super.loadEntity(entity);
         //debugger;
-        if (this.isNew()) {
+        if (this.isNew())
+        {
             this.form.EStatus.set_readOnly(true);
             /* this.form.EStatus.value = '2';*/
-            this.form.ValidityType.changeSelect2(e => {
-                var vValidityType = this.form.ValidityType.value;
-                if (isEmptyOrNull(vValidityType)) {
-                    this.form.ValidityInDays.getGridField().toggle(false);
-                    this.form.ValidDate.getGridField().toggle(false);
-                }
-
-                if (vValidityType == '2') {
-
-                    this.form.ValidDate.getGridField().toggle(true);
-                    this.form.ValidityInDays.getGridField().toggle(false);
-                }
-                else if (vValidityType == '3') {
-                    this.form.ValidDate.getGridField().toggle(false);
-                    this.form.ValidityInDays.getGridField().toggle(true);
-                }
-                else {
-                    this.form.ValidityInDays.getGridField().toggle(false);
-                    this.form.ValidDate.getGridField().toggle(false);
-                }
-            });
+          
         }
         else {
             
@@ -52,28 +33,60 @@ export class SerialKeyDialog extends EntityDialog<SerialKeyRow, any> {
             
         }
 
-        this.form.ValidityType.change(e => {
+        this.form.ValidityType.changeSelect2(e => {
             var vValidityType = this.form.ValidityType.value;
-
-            this.form.ValidityInDays.getGridField().toggle(false);
-            this.form.ValidDate.getGridField().toggle(false);
-
+            if (isEmptyOrNull(vValidityType)) {
+                this.form.ValidityInDays.getGridField().toggle(false);
+                this.form.ValidDate.getGridField().toggle(false);
+            }
 
             if (vValidityType == '2') {
 
                 this.form.ValidDate.getGridField().toggle(true);
                 this.form.ValidityInDays.getGridField().toggle(false);
+                EditorUtils.setRequired(this.form.ValidDate, true);
+                EditorUtils.setRequired(this.form.ValidityInDays, false);
             }
             else if (vValidityType == '3') {
                 this.form.ValidDate.getGridField().toggle(false);
                 this.form.ValidityInDays.getGridField().toggle(true);
+                EditorUtils.setRequired(this.form.ValidityInDays, true);
+                EditorUtils.setRequired(this.form.ValidDate, false);
             }
             else {
                 this.form.ValidityInDays.getGridField().toggle(false);
                 this.form.ValidDate.getGridField().toggle(false);
+                EditorUtils.setRequired(this.form.ValidityInDays, false);
+                EditorUtils.setRequired(this.form.ValidDate, false);
             }
-
         });
+
+        var vValidityType = this.form.ValidityType.value;
+        if (isEmptyOrNull(vValidityType)) {
+            this.form.ValidityInDays.getGridField().toggle(false);
+            this.form.ValidDate.getGridField().toggle(false);
+        }
+
+        if (vValidityType == '2') {
+
+            this.form.ValidDate.getGridField().toggle(true);
+            this.form.ValidityInDays.getGridField().toggle(false);
+            EditorUtils.setRequired(this.form.ValidDate, true);
+            EditorUtils.setRequired(this.form.ValidityInDays, false);
+        }
+        else if (vValidityType == '3') {
+            this.form.ValidDate.getGridField().toggle(false);
+            this.form.ValidityInDays.getGridField().toggle(true);
+            EditorUtils.setRequired(this.form.ValidityInDays, true);
+            EditorUtils.setRequired(this.form.ValidDate, false);
+        }
+        else {
+            this.form.ValidityInDays.getGridField().toggle(false);
+            this.form.ValidDate.getGridField().toggle(false);
+            //this.form.ValidDate.value = new Date()
+            EditorUtils.setRequired(this.form.ValidityInDays, false);
+            EditorUtils.setRequired(this.form.ValidDate, false);
+        }
 
     }
 

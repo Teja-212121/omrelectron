@@ -11,8 +11,8 @@ namespace Rio.Workspace.Forms
         [HideOnInsert, HideOnUpdate]
         public string RowIds { get; set; }
         [HalfWidth]
-        [DisplayName("Group Name"), QuickSearch, NameProperty]
-        [LookupEditor(typeof(GroupRow), InplaceAdd = true)]
+        [DisplayName("Group Name")]
+        [LookupEditor("Workspace.Group")]
         public Int32Field GroupId { get; set; }
     }
 }

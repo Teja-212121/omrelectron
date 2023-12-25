@@ -812,7 +812,56 @@ namespace Rio.Membership.Pages
                 mail.MailTo = email;
                 connection.Insert<MailRow>(mail);
                 #endregion
-               
+
+                #region SMS
+                if (request.Countrycode != null)
+                    if (request.Countrycode == CountryCode.India91)
+                    {
+                        try
+                        {
+                            var smsOtp = Password.RandomNumber(6);
+                            string source = "RioPlay";
+                            // string requestUrl = "http://vas.mobinext.in/vendorsms/pushsms.aspx?";
+                            string requestUrl = "http://vas.sevenomedia.com/domestic/sendsms/bulksms_v2.php";
+                            HttpWebRequest SMSrequest = (HttpWebRequest)WebRequest.Create(requestUrl);
+                            SMSrequest.Method = "POST";
+                            SMSrequest.ContentType = "application/x-www-form-urlencoded";
+                            //MobileNo = "91" + request.Phone;
+                            string MobileNo = request.Mobile;
+                            MobileNo = "91" + MobileNo;
+                            displayName = displayName.Replace(" ", "");
+                            string content = "Dear " + displayName + " your SMS Verification Code for Rioplay is: " + smsOtp;
+                            //string postData = "user=dilipk&password=qwerty123&msisdn=" + row.To + "&sid=BLBHRT&msg=" + row.Body + "&fl=0&gwid=2";
+                            //string postData = "authkey=325575AKW63CoJc35e8c23e4&&mobiles=" + MobileNo + "&message=" + row.Body + "&sender=BLBHRT&route=4&country=91";
+                            string postData = "apikey=YW50YXJneWFuOjNxMllQZ09J&type=TEXT&sender=RIOPLY&entityId=1201161191548157480&templateId=1207163963160871141&mobile=" + MobileNo + "&message=" + content;
+                            postData = postData.Replace("##toMobile##", MobileNo);
+                            postData = postData.Replace("##smsBody##", content);
+                            postData = postData.Replace("##source##", source);
+                            byte[] SMSbytes = Encoding.ASCII.GetBytes(postData);
+
+                            //byte[] SMSbytes = Encoding.UTF8.GetBytes(postData);
+                            SMSrequest.ContentLength = SMSbytes.Length;
+
+                            Stream requestStream = SMSrequest.GetRequestStream();
+                            requestStream.Write(SMSbytes, 0, SMSbytes.Length);
+                            requestStream.Close();
+
+                            WebResponse response1 = SMSrequest.GetResponse();
+                            Stream responseStream = response1.GetResponseStream();
+
+                            StreamReader reader = new StreamReader(responseStream);
+                            var result = reader.ReadToEnd();
+                            responseStream.Dispose();
+                            reader.Dispose();
+                            requestStream.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                #endregion
+
                 uow.Commit();
 
                 return new ServiceResponse();
