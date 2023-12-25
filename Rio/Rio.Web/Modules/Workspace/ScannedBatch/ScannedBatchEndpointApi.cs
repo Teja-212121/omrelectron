@@ -66,18 +66,18 @@ namespace Rio.Workspace.Endpoints
                     IsActive = ScannedSheet.IsActive,
                     TenantId = ScannedSheet.TenantId,
                     InsertDate=DateTime.Now,
-                    InsertUserId=Convert.ToInt32(User.GetIdentifier())
-                    
-                    //,OCRData1Key= OCRData1Key,
-                    //OCRData1Value = ScannedSheet.OCRData1Value,
-                    //OCRData2Key = ScannedSheet.OCRData2Key,
+                    InsertUserId=Convert.ToInt32(User.GetIdentifier()),
+
+                    OCRData1Key = ScannedSheet.OCRData1Key,
+                    OCRData1Value = ScannedSheet.OCRData1Value,
+                    OCRData2Key = ScannedSheet.OCRData2Key,
                     //OCRData2Value = ScannedSheet.OCRData2Value,
                     //OCRData3Key = ScannedSheet.OCRData3Key,
                     //OCRData3Value = ScannedSheet.OCRData3Value,
-                    //ICRData1Key = ScannedSheet.ICRData1Key,
-                    //ICRData1Value = ScannedSheet.ICRData1Value,
-                    //ICRData2Key = ScannedSheet.ICRData2Key,
-                    //ICRData2Value = ScannedSheet.ICRData2Value,
+                    ICRData1Key = ScannedSheet.ICRData1Key,
+                    ICRData1Value = ScannedSheet.ICRData1Value,
+                    ICRData2Key = ScannedSheet.ICRData2Key,
+                    ICRData2Value = ScannedSheet.ICRData2Value,
                     //ICRData3Key = ScannedSheet.ICRData3Key,
                     //ICRData3Value = ScannedSheet.ICRData3Value
                 };
