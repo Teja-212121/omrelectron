@@ -35,7 +35,8 @@ using MyPage = Rio.Common.Pages;
 
 [assembly: NavigationMenu(7000, "Master", icon: "fa-graduation-cap")]
 [assembly: NavigationLink(7001, "Master/Rule Types", typeof(MyPages.RuleTypeController), icon: "fa-circle-o")]
-
+[assembly: NavigationLink(7002, "Master/Cloud Storage Provider", typeof(MyPages.CloudStorageProviderController), icon:"fa-solid fa-cloud")]
+[assembly: NavigationLink(7003, "Master/Cloud Storage Setting", typeof(MyPages.CloudStorageSettingController), "fa-solid fa-gears")]
 [assembly: NavigationMenu(8000, "Reports", icon: "fa-files-o")]
 [assembly: NavigationLink(8001, "Reports/Exam Results", typeof(MyPages.ExamResultController), icon: "fa-circle-o")]
 [assembly: NavigationLink(8002, "Reports/Exam Section Results", typeof(MyPages.ExamSectionResultController), icon: "fa-circle-o")]

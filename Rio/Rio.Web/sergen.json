@@ -27,6 +27,18 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "dbo.CloudStorageProviders",
+          "Identifier": "CloudStorageProvider",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "dbo.CloudStorageSettings",
+          "Identifier": "CloudStorageSetting",
+          "Module": "Workspace",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "dbo.ExamGroupWiseResults",
           "Identifier": "ExamGroupWiseResult",
           "Module": "Workspace",
